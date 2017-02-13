@@ -1,0 +1,34 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Capital Markets</title>
+
+    @Styles.Render("~/app/styles")
+    @RenderSection("styles", required: false)
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <div id='app' class="container-fluid">
+    </div>
+
+    @RenderBody()
+
+    @Scripts.Render("~/bundles/bootstrap")
+
+    <script src="~/js/vendor.js"></script>
+
+    <script type="text/javascript">
+        self._babelPolyfill = false;    //HACK: see http://stackoverflow.com/a/36672020/1434764
+    </script>
+
+    <script src="~/js/main.js"></script>
+
+    @RenderSection("scripts", required: false)
+
+</body>
+
+</html>

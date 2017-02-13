@@ -1,0 +1,1076 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="MrcDataModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ApplicationGroup">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ApplicationLink">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ApplicationGroupId" Type="int" />
+          <Property Name="Name" Type="varchar" MaxLength="250" />
+          <Property Name="AppTypeCode" Type="varchar" MaxLength="20" />
+          <Property Name="Notes" Type="varchar" MaxLength="2000" />
+        </EntityType>
+        <EntityType Name="Environment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="5" />
+          <Property Name="SortOrder" Type="int" />
+        </EntityType>
+        <EntityType Name="EnvironmentLink">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ServiceLinkId" Type="int" />
+          <Property Name="ServerId" Type="int" />
+          <Property Name="Url" Type="varchar" MaxLength="500" />
+          <Property Name="FolderPath" Type="varchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="Server">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" />
+          <Property Name="EnvironmentId" Type="int" />
+        </EntityType>
+        <EntityType Name="ServiceLink">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ApplicationLinkId" Type="int" Nullable="false" />
+          <Property Name="ServiceName" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="ApplicationType">
+          <Key>
+            <PropertyRef Name="Code" />
+          </Key>
+          <Property Name="Code" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="50" />
+          <Property Name="SortOrder" Type="int" />
+        </EntityType>
+        <EntityType Name="RunbookStepStatus">
+          <Key>
+            <PropertyRef Name="Code" />
+          </Key>
+          <Property Name="Code" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="SortOrder" Type="int" />
+        </EntityType>
+        <EntityType Name="RunbookStepType">
+          <Key>
+            <PropertyRef Name="Code" />
+          </Key>
+          <Property Name="Code" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="50" />
+          <Property Name="SortOrder" Type="int" />
+        </EntityType>
+        <EntityType Name="Contact">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" />
+          <Property Name="DisplayName" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Team">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Rfc">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Number" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="StartTime" Type="datetime" />
+          <Property Name="EndTime" Type="datetime" />
+          <Property Name="ContactId" Type="int" />
+        </EntityType>
+        <EntityType Name="RunbookStep">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TemplateId" Type="int" />
+          <Property Name="RfcId" Type="int" />
+          <Property Name="GroupNumber" Type="int" />
+          <Property Name="StepNumber" Type="int" />
+          <Property Name="Duration" Type="int" />
+          <Property Name="Name" Type="varchar" MaxLength="100" />
+          <Property Name="Description" Type="varchar" MaxLength="2000" />
+          <Property Name="Notes" Type="varchar" MaxLength="2000" />
+          <Property Name="Time" Type="datetimeoffset" Precision="7" />
+          <Property Name="IsHtml" Type="bit" />
+          <Property Name="RunbookStepTypeCode" Type="varchar" MaxLength="20" />
+          <Property Name="RunbookStepStatusCode" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="RunbookStepDeveloper">
+          <Key>
+            <PropertyRef Name="RunbookStepId" />
+            <PropertyRef Name="ContactId" />
+          </Key>
+          <Property Name="RunbookStepId" Type="int" Nullable="false" />
+          <Property Name="ContactId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RunbookStepPbi">
+          <Key>
+            <PropertyRef Name="RunbookStepId" />
+            <PropertyRef Name="PbiNumber" />
+          </Key>
+          <Property Name="RunbookStepId" Type="int" Nullable="false" />
+          <Property Name="PbiNumber" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RunbookStepResource">
+          <Key>
+            <PropertyRef Name="RunbookStepId" />
+            <PropertyRef Name="ContactId" />
+          </Key>
+          <Property Name="RunbookStepId" Type="int" Nullable="false" />
+          <Property Name="ContactId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RunbookStepTeam">
+          <Key>
+            <PropertyRef Name="RunbookStepId" />
+            <PropertyRef Name="TeamId" />
+          </Key>
+          <Property Name="RunbookStepId" Type="int" Nullable="false" />
+          <Property Name="TeamId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RunbookTemplate">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Association Name="ApplicationLink_ApplicationGroup_FK">
+          <End Role="ApplicationGroup" Type="Self.ApplicationGroup" Multiplicity="0..1" />
+          <End Role="ApplicationLink" Type="Self.ApplicationLink" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ApplicationGroup">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ApplicationLink">
+              <PropertyRef Name="ApplicationGroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ApplicationLink_ApplicationType_FK">
+          <End Role="ApplicationType" Type="Self.ApplicationType" Multiplicity="0..1" />
+          <End Role="ApplicationLink" Type="Self.ApplicationLink" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ApplicationType">
+              <PropertyRef Name="Code" />
+            </Principal>
+            <Dependent Role="ApplicationLink">
+              <PropertyRef Name="AppTypeCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="EnvironmentLink_Server_FK">
+          <End Role="Server" Type="Self.Server" Multiplicity="0..1" />
+          <End Role="EnvironmentLink" Type="Self.EnvironmentLink" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Server">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="EnvironmentLink">
+              <PropertyRef Name="ServerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="EnvironmentLink_ServiceLink_FK">
+          <End Role="ServiceLink" Type="Self.ServiceLink" Multiplicity="0..1" />
+          <End Role="EnvironmentLink" Type="Self.EnvironmentLink" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ServiceLink">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="EnvironmentLink">
+              <PropertyRef Name="ServiceLinkId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Rfc_Contact_FK">
+          <End Role="Contact" Type="Self.Contact" Multiplicity="0..1" />
+          <End Role="Rfc" Type="Self.Rfc" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Contact">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Rfc">
+              <PropertyRef Name="ContactId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RunbookStep_Rfc_FK">
+          <End Role="Rfc" Type="Self.Rfc" Multiplicity="0..1" />
+          <End Role="RunbookStep" Type="Self.RunbookStep" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rfc">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RunbookStep">
+              <PropertyRef Name="RfcId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RunbookStep_RunbookStepStatus_FK">
+          <End Role="RunbookStepStatus" Type="Self.RunbookStepStatus" Multiplicity="0..1" />
+          <End Role="RunbookStep" Type="Self.RunbookStep" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RunbookStepStatus">
+              <PropertyRef Name="Code" />
+            </Principal>
+            <Dependent Role="RunbookStep">
+              <PropertyRef Name="RunbookStepStatusCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RunbookStep_RunbookStepType_FK">
+          <End Role="RunbookStepType" Type="Self.RunbookStepType" Multiplicity="0..1" />
+          <End Role="RunbookStep" Type="Self.RunbookStep" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RunbookStepType">
+              <PropertyRef Name="Code" />
+            </Principal>
+            <Dependent Role="RunbookStep">
+              <PropertyRef Name="RunbookStepTypeCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RunbookStep_RunbookTemplate_FK">
+          <End Role="RunbookTemplate" Type="Self.RunbookTemplate" Multiplicity="0..1" />
+          <End Role="RunbookStep" Type="Self.RunbookStep" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RunbookTemplate">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RunbookStep">
+              <PropertyRef Name="TemplateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RunbookStepDeveloper_Contact_FK">
+          <End Role="Contact" Type="Self.Contact" Multiplicity="1" />
+          <End Role="RunbookStepDeveloper" Type="Self.RunbookStepDeveloper" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Contact">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RunbookStepDeveloper">
+              <PropertyRef Name="ContactId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RunbookStepDeveloper_RunbookStep_FK">
+          <End Role="RunbookStep" Type="Self.RunbookStep" Multiplicity="1" />
+          <End Role="RunbookStepDeveloper" Type="Self.RunbookStepDeveloper" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RunbookStep">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RunbookStepDeveloper">
+              <PropertyRef Name="RunbookStepId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RunbookStepPbi_RunbookStep_FK">
+          <End Role="RunbookStep" Type="Self.RunbookStep" Multiplicity="1" />
+          <End Role="RunbookStepPbi" Type="Self.RunbookStepPbi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RunbookStep">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RunbookStepPbi">
+              <PropertyRef Name="RunbookStepId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RunbookStepResource_Contact_FK">
+          <End Role="Contact" Type="Self.Contact" Multiplicity="1" />
+          <End Role="RunbookStepResource" Type="Self.RunbookStepResource" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Contact">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RunbookStepResource">
+              <PropertyRef Name="ContactId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RunbookStepResource_RunbookStep_FK">
+          <End Role="RunbookStep" Type="Self.RunbookStep" Multiplicity="1" />
+          <End Role="RunbookStepResource" Type="Self.RunbookStepResource" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RunbookStep">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RunbookStepResource">
+              <PropertyRef Name="RunbookStepId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RunbookStepTeam_RunbookStep_FK">
+          <End Role="RunbookStep" Type="Self.RunbookStep" Multiplicity="1" />
+          <End Role="RunbookStepTeam" Type="Self.RunbookStepTeam" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RunbookStep">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RunbookStepTeam">
+              <PropertyRef Name="RunbookStepId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RunbookStepTeam_Team_FK">
+          <End Role="Team" Type="Self.Team" Multiplicity="1" />
+          <End Role="RunbookStepTeam" Type="Self.RunbookStepTeam" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Team">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RunbookStepTeam">
+              <PropertyRef Name="TeamId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Server_Environment_FK">
+          <End Role="Environment" Type="Self.Environment" Multiplicity="0..1" />
+          <End Role="Server" Type="Self.Server" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Environment">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Server">
+              <PropertyRef Name="EnvironmentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ServiceLink_ApplicationLink_FK">
+          <End Role="ApplicationLink" Type="Self.ApplicationLink" Multiplicity="1" />
+          <End Role="ServiceLink" Type="Self.ServiceLink" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ApplicationLink">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ServiceLink">
+              <PropertyRef Name="ApplicationLinkId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MrcDataModelStoreContainer">
+          <EntitySet Name="ApplicationGroup" EntityType="Self.ApplicationGroup" Schema="Links" store:Type="Tables" />
+          <EntitySet Name="ApplicationLink" EntityType="Self.ApplicationLink" Schema="Links" store:Type="Tables" />
+          <EntitySet Name="Environment" EntityType="Self.Environment" Schema="Links" store:Type="Tables" />
+          <EntitySet Name="EnvironmentLink" EntityType="Self.EnvironmentLink" Schema="Links" store:Type="Tables" />
+          <EntitySet Name="Server" EntityType="Self.Server" Schema="Links" store:Type="Tables" />
+          <EntitySet Name="ServiceLink" EntityType="Self.ServiceLink" Schema="Links" store:Type="Tables" />
+          <EntitySet Name="ApplicationType" EntityType="Self.ApplicationType" Schema="Lookup" store:Type="Tables" />
+          <EntitySet Name="RunbookStepStatus" EntityType="Self.RunbookStepStatus" Schema="Lookup" store:Type="Tables" />
+          <EntitySet Name="RunbookStepType" EntityType="Self.RunbookStepType" Schema="Lookup" store:Type="Tables" />
+          <EntitySet Name="Contact" EntityType="Self.Contact" Schema="People" store:Type="Tables" />
+          <EntitySet Name="Team" EntityType="Self.Team" Schema="People" store:Type="Tables" />
+          <EntitySet Name="Rfc" EntityType="Self.Rfc" Schema="Runbook" store:Type="Tables" />
+          <EntitySet Name="RunbookStep" EntityType="Self.RunbookStep" Schema="Runbook" store:Type="Tables" />
+          <EntitySet Name="RunbookStepDeveloper" EntityType="Self.RunbookStepDeveloper" Schema="Runbook" store:Type="Tables" />
+          <EntitySet Name="RunbookStepPbi" EntityType="Self.RunbookStepPbi" Schema="Runbook" store:Type="Tables" />
+          <EntitySet Name="RunbookStepResource" EntityType="Self.RunbookStepResource" Schema="Runbook" store:Type="Tables" />
+          <EntitySet Name="RunbookStepTeam" EntityType="Self.RunbookStepTeam" Schema="Runbook" store:Type="Tables" />
+          <EntitySet Name="RunbookTemplate" EntityType="Self.RunbookTemplate" Schema="Runbook" store:Type="Tables" />
+          <AssociationSet Name="ApplicationLink_ApplicationGroup_FK" Association="Self.ApplicationLink_ApplicationGroup_FK">
+            <End Role="ApplicationGroup" EntitySet="ApplicationGroup" />
+            <End Role="ApplicationLink" EntitySet="ApplicationLink" />
+          </AssociationSet>
+          <AssociationSet Name="ApplicationLink_ApplicationType_FK" Association="Self.ApplicationLink_ApplicationType_FK">
+            <End Role="ApplicationType" EntitySet="ApplicationType" />
+            <End Role="ApplicationLink" EntitySet="ApplicationLink" />
+          </AssociationSet>
+          <AssociationSet Name="EnvironmentLink_Server_FK" Association="Self.EnvironmentLink_Server_FK">
+            <End Role="Server" EntitySet="Server" />
+            <End Role="EnvironmentLink" EntitySet="EnvironmentLink" />
+          </AssociationSet>
+          <AssociationSet Name="EnvironmentLink_ServiceLink_FK" Association="Self.EnvironmentLink_ServiceLink_FK">
+            <End Role="ServiceLink" EntitySet="ServiceLink" />
+            <End Role="EnvironmentLink" EntitySet="EnvironmentLink" />
+          </AssociationSet>
+          <AssociationSet Name="Rfc_Contact_FK" Association="Self.Rfc_Contact_FK">
+            <End Role="Contact" EntitySet="Contact" />
+            <End Role="Rfc" EntitySet="Rfc" />
+          </AssociationSet>
+          <AssociationSet Name="RunbookStep_Rfc_FK" Association="Self.RunbookStep_Rfc_FK">
+            <End Role="Rfc" EntitySet="Rfc" />
+            <End Role="RunbookStep" EntitySet="RunbookStep" />
+          </AssociationSet>
+          <AssociationSet Name="RunbookStep_RunbookStepStatus_FK" Association="Self.RunbookStep_RunbookStepStatus_FK">
+            <End Role="RunbookStepStatus" EntitySet="RunbookStepStatus" />
+            <End Role="RunbookStep" EntitySet="RunbookStep" />
+          </AssociationSet>
+          <AssociationSet Name="RunbookStep_RunbookStepType_FK" Association="Self.RunbookStep_RunbookStepType_FK">
+            <End Role="RunbookStepType" EntitySet="RunbookStepType" />
+            <End Role="RunbookStep" EntitySet="RunbookStep" />
+          </AssociationSet>
+          <AssociationSet Name="RunbookStep_RunbookTemplate_FK" Association="Self.RunbookStep_RunbookTemplate_FK">
+            <End Role="RunbookTemplate" EntitySet="RunbookTemplate" />
+            <End Role="RunbookStep" EntitySet="RunbookStep" />
+          </AssociationSet>
+          <AssociationSet Name="RunbookStepDeveloper_Contact_FK" Association="Self.RunbookStepDeveloper_Contact_FK">
+            <End Role="Contact" EntitySet="Contact" />
+            <End Role="RunbookStepDeveloper" EntitySet="RunbookStepDeveloper" />
+          </AssociationSet>
+          <AssociationSet Name="RunbookStepDeveloper_RunbookStep_FK" Association="Self.RunbookStepDeveloper_RunbookStep_FK">
+            <End Role="RunbookStep" EntitySet="RunbookStep" />
+            <End Role="RunbookStepDeveloper" EntitySet="RunbookStepDeveloper" />
+          </AssociationSet>
+          <AssociationSet Name="RunbookStepPbi_RunbookStep_FK" Association="Self.RunbookStepPbi_RunbookStep_FK">
+            <End Role="RunbookStep" EntitySet="RunbookStep" />
+            <End Role="RunbookStepPbi" EntitySet="RunbookStepPbi" />
+          </AssociationSet>
+          <AssociationSet Name="RunbookStepResource_Contact_FK" Association="Self.RunbookStepResource_Contact_FK">
+            <End Role="Contact" EntitySet="Contact" />
+            <End Role="RunbookStepResource" EntitySet="RunbookStepResource" />
+          </AssociationSet>
+          <AssociationSet Name="RunbookStepResource_RunbookStep_FK" Association="Self.RunbookStepResource_RunbookStep_FK">
+            <End Role="RunbookStep" EntitySet="RunbookStep" />
+            <End Role="RunbookStepResource" EntitySet="RunbookStepResource" />
+          </AssociationSet>
+          <AssociationSet Name="RunbookStepTeam_RunbookStep_FK" Association="Self.RunbookStepTeam_RunbookStep_FK">
+            <End Role="RunbookStep" EntitySet="RunbookStep" />
+            <End Role="RunbookStepTeam" EntitySet="RunbookStepTeam" />
+          </AssociationSet>
+          <AssociationSet Name="RunbookStepTeam_Team_FK" Association="Self.RunbookStepTeam_Team_FK">
+            <End Role="Team" EntitySet="Team" />
+            <End Role="RunbookStepTeam" EntitySet="RunbookStepTeam" />
+          </AssociationSet>
+          <AssociationSet Name="Server_Environment_FK" Association="Self.Server_Environment_FK">
+            <End Role="Environment" EntitySet="Environment" />
+            <End Role="Server" EntitySet="Server" />
+          </AssociationSet>
+          <AssociationSet Name="ServiceLink_ApplicationLink_FK" Association="Self.ServiceLink_ApplicationLink_FK">
+            <End Role="ApplicationLink" EntitySet="ApplicationLink" />
+            <End Role="ServiceLink" EntitySet="ServiceLink" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MrcDataModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="MrcDataEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="RunbookTemplates" EntityType="MrcDataModel.RunbookTemplate" />
+          <EntitySet Name="RunbookStepStatus" EntityType="MrcDataModel.RunbookStepStatus" />
+          <EntitySet Name="RunbookSteps" EntityType="MrcDataModel.RunbookStep" />
+          <AssociationSet Name="RunbookStep_RunbookStepStatus_FK" Association="MrcDataModel.RunbookStep_RunbookStepStatus_FK">
+            <End Role="RunbookStepStatu" EntitySet="RunbookStepStatus" />
+            <End Role="RunbookStep" EntitySet="RunbookSteps" />
+          </AssociationSet>
+          <EntitySet Name="RunbookStepPbis" EntityType="MrcDataModel.RunbookStepPbi" />
+          <AssociationSet Name="RunbookStepPbi_RunbookStep_FK" Association="MrcDataModel.RunbookStepPbi_RunbookStep_FK">
+            <End Role="RunbookStep" EntitySet="RunbookSteps" />
+            <End Role="RunbookStepPbi" EntitySet="RunbookStepPbis" />
+          </AssociationSet>
+          <EntitySet Name="RunbookStepTypes" EntityType="MrcDataModel.RunbookStepType" />
+          <AssociationSet Name="RunbookStep_RunbookStepType_FK" Association="MrcDataModel.RunbookStep_RunbookStepType_FK">
+            <End Role="RunbookStepType" EntitySet="RunbookStepTypes" />
+            <End Role="RunbookStep" EntitySet="RunbookSteps" />
+          </AssociationSet>
+          <AssociationSet Name="RunbookStep_RunbookTemplate_FK" Association="MrcDataModel.RunbookStep_RunbookTemplate_FK">
+            <End Role="RunbookTemplate" EntitySet="RunbookTemplates" />
+            <End Role="RunbookStep" EntitySet="RunbookSteps" />
+          </AssociationSet>
+          <EntitySet Name="Teams" EntityType="MrcDataModel.Team" />
+          <AssociationSet Name="RunbookStepTeam" Association="MrcDataModel.RunbookStepTeam">
+            <End Role="RunbookStep" EntitySet="RunbookSteps" />
+            <End Role="Team" EntitySet="Teams" />
+          </AssociationSet>
+          <EntitySet Name="Contacts" EntityType="MrcDataModel.Contact" />
+          <AssociationSet Name="RunbookStepDeveloper" Association="MrcDataModel.RunbookStepDeveloper">
+            <End Role="Contact" EntitySet="Contacts" />
+            <End Role="RunbookStep" EntitySet="RunbookSteps" />
+          </AssociationSet>
+          <AssociationSet Name="RunbookStepResource" Association="MrcDataModel.RunbookStepResource">
+            <End Role="Contact" EntitySet="Contacts" />
+            <End Role="RunbookStep" EntitySet="RunbookSteps" />
+          </AssociationSet>
+          <EntitySet Name="ApplicationGroups" EntityType="MrcDataModel.ApplicationGroup" />
+          <EntitySet Name="ApplicationLinks" EntityType="MrcDataModel.ApplicationLink" />
+          <EntitySet Name="Environments" EntityType="MrcDataModel.Environment" />
+          <EntitySet Name="EnvironmentLinks" EntityType="MrcDataModel.EnvironmentLink" />
+          <EntitySet Name="Servers" EntityType="MrcDataModel.Server" />
+          <EntitySet Name="ServiceLinks" EntityType="MrcDataModel.ServiceLink" />
+          <AssociationSet Name="ApplicationLink_ApplicationGroup_FK" Association="MrcDataModel.ApplicationLink_ApplicationGroup_FK">
+            <End Role="ApplicationGroup" EntitySet="ApplicationGroups" />
+            <End Role="ApplicationLink" EntitySet="ApplicationLinks" />
+          </AssociationSet>
+          <AssociationSet Name="ServiceLink_ApplicationLink_FK" Association="MrcDataModel.ServiceLink_ApplicationLink_FK">
+            <End Role="ApplicationLink" EntitySet="ApplicationLinks" />
+            <End Role="ServiceLink" EntitySet="ServiceLinks" />
+          </AssociationSet>
+          <AssociationSet Name="Server_Environment_FK" Association="MrcDataModel.Server_Environment_FK">
+            <End Role="Environment" EntitySet="Environments" />
+            <End Role="Server" EntitySet="Servers" />
+          </AssociationSet>
+          <AssociationSet Name="EnvironmentLink_Server_FK" Association="MrcDataModel.EnvironmentLink_Server_FK">
+            <End Role="Server" EntitySet="Servers" />
+            <End Role="EnvironmentLink" EntitySet="EnvironmentLinks" />
+          </AssociationSet>
+          <AssociationSet Name="EnvironmentLink_ServiceLink_FK" Association="MrcDataModel.EnvironmentLink_ServiceLink_FK">
+            <End Role="ServiceLink" EntitySet="ServiceLinks" />
+            <End Role="EnvironmentLink" EntitySet="EnvironmentLinks" />
+          </AssociationSet>
+          <EntitySet Name="ApplicationTypes" EntityType="MrcDataModel.ApplicationType" />
+          <AssociationSet Name="ApplicationLink_ApplicationType_FK" Association="MrcDataModel.ApplicationLink_ApplicationType_FK">
+            <End Role="ApplicationType" EntitySet="ApplicationTypes" />
+            <End Role="ApplicationLink" EntitySet="ApplicationLinks" />
+          </AssociationSet>
+          <EntitySet Name="Rfcs" EntityType="MrcDataModel.Rfc" />
+          <AssociationSet Name="Rfc_Contact_FK" Association="MrcDataModel.Rfc_Contact_FK">
+            <End Role="Contact" EntitySet="Contacts" />
+            <End Role="Rfc" EntitySet="Rfcs" />
+          </AssociationSet>
+          <AssociationSet Name="RunbookStep_Rfc_FK" Association="MrcDataModel.RunbookStep_Rfc_FK">
+            <End Role="Rfc" EntitySet="Rfcs" />
+            <End Role="RunbookStep" EntitySet="RunbookSteps" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="RunbookTemplate">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="RunbookSteps" Relationship="MrcDataModel.RunbookStep_RunbookTemplate_FK" FromRole="RunbookTemplate" ToRole="RunbookStep" />
+        </EntityType>
+        <EntityType Name="RunbookStepStatus">
+          <Key>
+            <PropertyRef Name="Code" />
+          </Key>
+          <Property Name="Code" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SortOrder" Type="Int32" />
+          <NavigationProperty Name="RunbookSteps" Relationship="MrcDataModel.RunbookStep_RunbookStepStatus_FK" FromRole="RunbookStepStatu" ToRole="RunbookStep" />
+        </EntityType>
+        <EntityType Name="RunbookStep">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GroupNumber" Type="Int32" />
+          <Property Name="StepNumber" Type="Int32" />
+          <Property Name="Duration" Type="Int32" />
+          <Property Name="Description" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <Property Name="Notes" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <Property Name="Time" Type="DateTimeOffset" Precision="7" />
+          <Property Name="RunbookStepStatusCode" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="RunbookStepStatuses" Relationship="MrcDataModel.RunbookStep_RunbookStepStatus_FK" FromRole="RunbookStep" ToRole="RunbookStepStatu" />
+          <NavigationProperty Name="RunbookStepPbis" Relationship="MrcDataModel.RunbookStepPbi_RunbookStep_FK" FromRole="RunbookStep" ToRole="RunbookStepPbi" />
+          <Property Name="RunbookStepTypeCode" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="RunbookStepType" Relationship="MrcDataModel.RunbookStep_RunbookStepType_FK" FromRole="RunbookStep" ToRole="RunbookStepType" />
+          <Property Name="TemplateId" Type="Int32" />
+          <NavigationProperty Name="RunbookTemplate" Relationship="MrcDataModel.RunbookStep_RunbookTemplate_FK" FromRole="RunbookStep" ToRole="RunbookTemplate" />
+          <Property Name="IsHtml" Type="Boolean" />
+          <NavigationProperty Name="Teams" Relationship="MrcDataModel.RunbookStepTeam" FromRole="RunbookStep" ToRole="Team" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Developers" Relationship="MrcDataModel.RunbookStepDeveloper" FromRole="RunbookStep" ToRole="Contact" />
+          <NavigationProperty Name="Resources" Relationship="MrcDataModel.RunbookStepResource" FromRole="RunbookStep" ToRole="Contact" />
+          <Property Name="RfcId" Type="Int32" />
+          <NavigationProperty Name="Rfc" Relationship="MrcDataModel.RunbookStep_Rfc_FK" FromRole="RunbookStep" ToRole="Rfc" />
+        </EntityType>
+        <Association Name="RunbookStep_RunbookStepStatus_FK">
+          <End Type="MrcDataModel.RunbookStepStatus" Role="RunbookStepStatu" Multiplicity="0..1" />
+          <End Type="MrcDataModel.RunbookStep" Role="RunbookStep" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RunbookStepStatu">
+              <PropertyRef Name="Code" />
+            </Principal>
+            <Dependent Role="RunbookStep">
+              <PropertyRef Name="RunbookStepStatusCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="RunbookStepPbi">
+          <Key>
+            <PropertyRef Name="RunbookStepId" />
+            <PropertyRef Name="PbiNumber" />
+          </Key>
+          <Property Name="RunbookStepId" Type="Int32" Nullable="false" />
+          <Property Name="PbiNumber" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="RunbookStep" Relationship="MrcDataModel.RunbookStepPbi_RunbookStep_FK" FromRole="RunbookStepPbi" ToRole="RunbookStep" />
+        </EntityType>
+        <Association Name="RunbookStepPbi_RunbookStep_FK">
+          <End Type="MrcDataModel.RunbookStep" Role="RunbookStep" Multiplicity="1" />
+          <End Type="MrcDataModel.RunbookStepPbi" Role="RunbookStepPbi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RunbookStep">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RunbookStepPbi">
+              <PropertyRef Name="RunbookStepId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="RunbookStepType">
+          <Key>
+            <PropertyRef Name="Code" />
+          </Key>
+          <Property Name="Code" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SortOrder" Type="Int32" />
+          <NavigationProperty Name="RunbookSteps" Relationship="MrcDataModel.RunbookStep_RunbookStepType_FK" FromRole="RunbookStepType" ToRole="RunbookStep" />
+        </EntityType>
+        <Association Name="RunbookStep_RunbookStepType_FK">
+          <End Type="MrcDataModel.RunbookStepType" Role="RunbookStepType" Multiplicity="0..1" />
+          <End Type="MrcDataModel.RunbookStep" Role="RunbookStep" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RunbookStepType">
+              <PropertyRef Name="Code" />
+            </Principal>
+            <Dependent Role="RunbookStep">
+              <PropertyRef Name="RunbookStepTypeCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RunbookStep_RunbookTemplate_FK">
+          <End Type="MrcDataModel.RunbookTemplate" Role="RunbookTemplate" Multiplicity="0..1" />
+          <End Type="MrcDataModel.RunbookStep" Role="RunbookStep" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RunbookTemplate">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RunbookStep">
+              <PropertyRef Name="TemplateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Team">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="RunbookSteps" Relationship="MrcDataModel.RunbookStepTeam" FromRole="Team" ToRole="RunbookStep" />
+        </EntityType>
+        <Association Name="RunbookStepTeam">
+          <End Type="MrcDataModel.RunbookStep" Role="RunbookStep" Multiplicity="*" />
+          <End Type="MrcDataModel.Team" Role="Team" Multiplicity="*" />
+        </Association>
+        <EntityType Name="Contact">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" />
+          <Property Name="DisplayName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="RunbookStepDevelopers" Relationship="MrcDataModel.RunbookStepDeveloper" FromRole="Contact" ToRole="RunbookStep" />
+          <NavigationProperty Name="RunbookStepResources" Relationship="MrcDataModel.RunbookStepResource" FromRole="Contact" ToRole="RunbookStep" />
+          <NavigationProperty Name="Rfcs" Relationship="MrcDataModel.Rfc_Contact_FK" FromRole="Contact" ToRole="Rfc" />
+        </EntityType>
+        <Association Name="RunbookStepDeveloper">
+          <End Type="MrcDataModel.Contact" Role="Contact" Multiplicity="*" />
+          <End Type="MrcDataModel.RunbookStep" Role="RunbookStep" Multiplicity="*" />
+        </Association>
+        <Association Name="RunbookStepResource">
+          <End Type="MrcDataModel.Contact" Role="Contact" Multiplicity="*" />
+          <End Type="MrcDataModel.RunbookStep" Role="RunbookStep" Multiplicity="*" />
+        </Association>
+        <EntityType Name="ApplicationGroup">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="ApplicationLinks" Relationship="MrcDataModel.ApplicationLink_ApplicationGroup_FK" FromRole="ApplicationGroup" ToRole="ApplicationLink" />
+        </EntityType>
+        <EntityType Name="ApplicationLink">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ApplicationGroupId" Type="Int32" />
+          <Property Name="Name" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Notes" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="ApplicationGroup" Relationship="MrcDataModel.ApplicationLink_ApplicationGroup_FK" FromRole="ApplicationLink" ToRole="ApplicationGroup" />
+          <NavigationProperty Name="ServiceLinks" Relationship="MrcDataModel.ServiceLink_ApplicationLink_FK" FromRole="ApplicationLink" ToRole="ServiceLink" />
+          <Property Name="AppTypeCode" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="ApplicationType" Relationship="MrcDataModel.ApplicationLink_ApplicationType_FK" FromRole="ApplicationLink" ToRole="ApplicationType" />
+        </EntityType>
+        <EntityType Name="Environment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="SortOrder" Type="Int32" />
+          <NavigationProperty Name="Servers" Relationship="MrcDataModel.Server_Environment_FK" FromRole="Environment" ToRole="Server" />
+        </EntityType>
+        <EntityType Name="EnvironmentLink">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ServiceLinkId" Type="Int32" />
+          <Property Name="ServerId" Type="Int32" />
+          <Property Name="Url" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="FolderPath" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Server" Relationship="MrcDataModel.EnvironmentLink_Server_FK" FromRole="EnvironmentLink" ToRole="Server" />
+          <NavigationProperty Name="ServiceLink" Relationship="MrcDataModel.EnvironmentLink_ServiceLink_FK" FromRole="EnvironmentLink" ToRole="ServiceLink" />
+        </EntityType>
+        <EntityType Name="Server">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EnvironmentId" Type="Int32" />
+          <NavigationProperty Name="Environment" Relationship="MrcDataModel.Server_Environment_FK" FromRole="Server" ToRole="Environment" />
+          <NavigationProperty Name="EnvironmentLinks" Relationship="MrcDataModel.EnvironmentLink_Server_FK" FromRole="Server" ToRole="EnvironmentLink" />
+        </EntityType>
+        <EntityType Name="ServiceLink">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ApplicationLinkId" Type="Int32" Nullable="false" />
+          <Property Name="ServiceName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="ApplicationLink" Relationship="MrcDataModel.ServiceLink_ApplicationLink_FK" FromRole="ServiceLink" ToRole="ApplicationLink" />
+          <NavigationProperty Name="EnvironmentLinks" Relationship="MrcDataModel.EnvironmentLink_ServiceLink_FK" FromRole="ServiceLink" ToRole="EnvironmentLink" />
+        </EntityType>
+        <Association Name="ApplicationLink_ApplicationGroup_FK">
+          <End Type="MrcDataModel.ApplicationGroup" Role="ApplicationGroup" Multiplicity="0..1" />
+          <End Type="MrcDataModel.ApplicationLink" Role="ApplicationLink" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ApplicationGroup">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ApplicationLink">
+              <PropertyRef Name="ApplicationGroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ServiceLink_ApplicationLink_FK">
+          <End Type="MrcDataModel.ApplicationLink" Role="ApplicationLink" Multiplicity="1" />
+          <End Type="MrcDataModel.ServiceLink" Role="ServiceLink" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ApplicationLink">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ServiceLink">
+              <PropertyRef Name="ApplicationLinkId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Server_Environment_FK">
+          <End Type="MrcDataModel.Environment" Role="Environment" Multiplicity="0..1" />
+          <End Type="MrcDataModel.Server" Role="Server" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Environment">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Server">
+              <PropertyRef Name="EnvironmentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="EnvironmentLink_Server_FK">
+          <End Type="MrcDataModel.Server" Role="Server" Multiplicity="0..1" />
+          <End Type="MrcDataModel.EnvironmentLink" Role="EnvironmentLink" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Server">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="EnvironmentLink">
+              <PropertyRef Name="ServerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="EnvironmentLink_ServiceLink_FK">
+          <End Type="MrcDataModel.ServiceLink" Role="ServiceLink" Multiplicity="0..1" />
+          <End Type="MrcDataModel.EnvironmentLink" Role="EnvironmentLink" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ServiceLink">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="EnvironmentLink">
+              <PropertyRef Name="ServiceLinkId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="ApplicationType">
+          <Key>
+            <PropertyRef Name="Code" />
+          </Key>
+          <Property Name="Code" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SortOrder" Type="Int32" />
+          <NavigationProperty Name="ApplicationLinks" Relationship="MrcDataModel.ApplicationLink_ApplicationType_FK" FromRole="ApplicationType" ToRole="ApplicationLink" />
+        </EntityType>
+        <Association Name="ApplicationLink_ApplicationType_FK">
+          <End Type="MrcDataModel.ApplicationType" Role="ApplicationType" Multiplicity="0..1" />
+          <End Type="MrcDataModel.ApplicationLink" Role="ApplicationLink" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ApplicationType">
+              <PropertyRef Name="Code" />
+            </Principal>
+            <Dependent Role="ApplicationLink">
+              <PropertyRef Name="AppTypeCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Rfc">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Number" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ContactId" Type="Int32" />
+          <NavigationProperty Name="Contact" Relationship="MrcDataModel.Rfc_Contact_FK" FromRole="Rfc" ToRole="Contact" />
+          <NavigationProperty Name="RunbookSteps" Relationship="MrcDataModel.RunbookStep_Rfc_FK" FromRole="Rfc" ToRole="RunbookStep" />
+          <Property Name="StartTime" Type="DateTime" Precision="3" />
+          <Property Name="EndTime" Type="DateTime" Precision="3" />
+        </EntityType>
+        <Association Name="Rfc_Contact_FK">
+          <End Type="MrcDataModel.Contact" Role="Contact" Multiplicity="0..1" />
+          <End Type="MrcDataModel.Rfc" Role="Rfc" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Contact">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Rfc">
+              <PropertyRef Name="ContactId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RunbookStep_Rfc_FK">
+          <End Type="MrcDataModel.Rfc" Role="Rfc" Multiplicity="0..1" />
+          <End Type="MrcDataModel.RunbookStep" Role="RunbookStep" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rfc">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RunbookStep">
+              <PropertyRef Name="RfcId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MrcDataModelStoreContainer" CdmEntityContainer="MrcDataEntities">
+          <EntitySetMapping Name="RunbookTemplates">
+            <EntityTypeMapping TypeName="MrcDataModel.RunbookTemplate">
+              <MappingFragment StoreEntitySet="RunbookTemplate">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RunbookStepStatus">
+            <EntityTypeMapping TypeName="MrcDataModel.RunbookStepStatus">
+              <MappingFragment StoreEntitySet="RunbookStepStatus">
+                <ScalarProperty Name="SortOrder" ColumnName="SortOrder" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RunbookSteps">
+            <EntityTypeMapping TypeName="MrcDataModel.RunbookStep">
+              <MappingFragment StoreEntitySet="RunbookStep">
+                <ScalarProperty Name="RfcId" ColumnName="RfcId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="IsHtml" ColumnName="IsHtml" />
+                <ScalarProperty Name="TemplateId" ColumnName="TemplateId" />
+                <ScalarProperty Name="RunbookStepTypeCode" ColumnName="RunbookStepTypeCode" />
+                <ScalarProperty Name="RunbookStepStatusCode" ColumnName="RunbookStepStatusCode" />
+                <ScalarProperty Name="Time" ColumnName="Time" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Duration" ColumnName="Duration" />
+                <ScalarProperty Name="StepNumber" ColumnName="StepNumber" />
+                <ScalarProperty Name="GroupNumber" ColumnName="GroupNumber" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RunbookStepPbis">
+            <EntityTypeMapping TypeName="MrcDataModel.RunbookStepPbi">
+              <MappingFragment StoreEntitySet="RunbookStepPbi">
+                <ScalarProperty Name="PbiNumber" ColumnName="PbiNumber" />
+                <ScalarProperty Name="RunbookStepId" ColumnName="RunbookStepId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RunbookStepTypes">
+            <EntityTypeMapping TypeName="MrcDataModel.RunbookStepType">
+              <MappingFragment StoreEntitySet="RunbookStepType">
+                <ScalarProperty Name="SortOrder" ColumnName="SortOrder" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Teams">
+            <EntityTypeMapping TypeName="MrcDataModel.Team">
+              <MappingFragment StoreEntitySet="Team">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="RunbookStepTeam" TypeName="MrcDataModel.RunbookStepTeam" StoreEntitySet="RunbookStepTeam">
+            <EndProperty Name="Team">
+              <ScalarProperty Name="Id" ColumnName="TeamId" />
+            </EndProperty>
+            <EndProperty Name="RunbookStep">
+              <ScalarProperty Name="Id" ColumnName="RunbookStepId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <EntitySetMapping Name="Contacts">
+            <EntityTypeMapping TypeName="MrcDataModel.Contact">
+              <MappingFragment StoreEntitySet="Contact">
+                <ScalarProperty Name="DisplayName" ColumnName="DisplayName" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="RunbookStepDeveloper" TypeName="MrcDataModel.RunbookStepDeveloper" StoreEntitySet="RunbookStepDeveloper">
+            <EndProperty Name="RunbookStep">
+              <ScalarProperty Name="Id" ColumnName="RunbookStepId" />
+            </EndProperty>
+            <EndProperty Name="Contact">
+              <ScalarProperty Name="Id" ColumnName="ContactId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="RunbookStepResource" TypeName="MrcDataModel.RunbookStepResource" StoreEntitySet="RunbookStepResource">
+            <EndProperty Name="RunbookStep">
+              <ScalarProperty Name="Id" ColumnName="RunbookStepId" />
+            </EndProperty>
+            <EndProperty Name="Contact">
+              <ScalarProperty Name="Id" ColumnName="ContactId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <EntitySetMapping Name="ApplicationGroups">
+            <EntityTypeMapping TypeName="MrcDataModel.ApplicationGroup">
+              <MappingFragment StoreEntitySet="ApplicationGroup">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ApplicationLinks">
+            <EntityTypeMapping TypeName="MrcDataModel.ApplicationLink">
+              <MappingFragment StoreEntitySet="ApplicationLink">
+                <ScalarProperty Name="AppTypeCode" ColumnName="AppTypeCode" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ApplicationGroupId" ColumnName="ApplicationGroupId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Environments">
+            <EntityTypeMapping TypeName="MrcDataModel.Environment">
+              <MappingFragment StoreEntitySet="Environment">
+                <ScalarProperty Name="SortOrder" ColumnName="SortOrder" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EnvironmentLinks">
+            <EntityTypeMapping TypeName="MrcDataModel.EnvironmentLink">
+              <MappingFragment StoreEntitySet="EnvironmentLink">
+                <ScalarProperty Name="FolderPath" ColumnName="FolderPath" />
+                <ScalarProperty Name="Url" ColumnName="Url" />
+                <ScalarProperty Name="ServerId" ColumnName="ServerId" />
+                <ScalarProperty Name="ServiceLinkId" ColumnName="ServiceLinkId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Servers">
+            <EntityTypeMapping TypeName="MrcDataModel.Server">
+              <MappingFragment StoreEntitySet="Server">
+                <ScalarProperty Name="EnvironmentId" ColumnName="EnvironmentId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ServiceLinks">
+            <EntityTypeMapping TypeName="MrcDataModel.ServiceLink">
+              <MappingFragment StoreEntitySet="ServiceLink">
+                <ScalarProperty Name="ServiceName" ColumnName="ServiceName" />
+                <ScalarProperty Name="ApplicationLinkId" ColumnName="ApplicationLinkId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ApplicationTypes">
+            <EntityTypeMapping TypeName="MrcDataModel.ApplicationType">
+              <MappingFragment StoreEntitySet="ApplicationType">
+                <ScalarProperty Name="SortOrder" ColumnName="SortOrder" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Rfcs">
+            <EntityTypeMapping TypeName="MrcDataModel.Rfc">
+              <MappingFragment StoreEntitySet="Rfc">
+                <ScalarProperty Name="EndTime" ColumnName="EndTime" />
+                <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+                <ScalarProperty Name="ContactId" ColumnName="ContactId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Number" ColumnName="Number" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

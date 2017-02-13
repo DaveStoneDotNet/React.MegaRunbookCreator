@@ -1,0 +1,10 @@
+﻿[
+  {
+    "outputFile": "app/styles/_mrc-colors.css",
+    "inputFile": "app/styles/_mrc-colors.scss"
+  },
+  {
+    "outputFile": "app/styles/sass.css",
+    "inputFile": "app/styles/sass.scss"
+  }
+]

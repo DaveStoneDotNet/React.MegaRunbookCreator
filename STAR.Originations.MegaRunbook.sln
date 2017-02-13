@@ -1,0 +1,46 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "STAR.Originations.MegaRunbook.Website", "STAR.Originations.MegaRunbook.Website\STAR.Originations.MegaRunbook.Website.csproj", "{8140BA2D-5A78-4686-BB64-ED05326B916B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{72753524-F309-4AD0-BDBA-8003EF383417}"
+	ProjectSection(SolutionItems) = preProject
+		licence.txt = licence.txt
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "STAR.Originations.MegaRunbook.Contracts", "STAR.Originations.MegaRunbook.Contracts\STAR.Originations.MegaRunbook.Contracts.csproj", "{9D69834D-7130-473D-AA2E-9D63E67F0B8F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "STAR.Originations.MegaRunbook.Excel", "STAR.Originations.MegaRunbook.Excel\STAR.Originations.MegaRunbook.Excel.csproj", "{EB3088D9-E2DD-4C06-A7FC-F993ABF3C58E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "STAR.Originations.MRC.DataAccess", "STAR.Originations.MRC.DataAccess\STAR.Originations.MRC.DataAccess.csproj", "{0EEA4435-D75D-42DF-B309-CE9EA5E4E440}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8140BA2D-5A78-4686-BB64-ED05326B916B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8140BA2D-5A78-4686-BB64-ED05326B916B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8140BA2D-5A78-4686-BB64-ED05326B916B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8140BA2D-5A78-4686-BB64-ED05326B916B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9D69834D-7130-473D-AA2E-9D63E67F0B8F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9D69834D-7130-473D-AA2E-9D63E67F0B8F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9D69834D-7130-473D-AA2E-9D63E67F0B8F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9D69834D-7130-473D-AA2E-9D63E67F0B8F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EB3088D9-E2DD-4C06-A7FC-F993ABF3C58E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB3088D9-E2DD-4C06-A7FC-F993ABF3C58E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EB3088D9-E2DD-4C06-A7FC-F993ABF3C58E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB3088D9-E2DD-4C06-A7FC-F993ABF3C58E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0EEA4435-D75D-42DF-B309-CE9EA5E4E440}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0EEA4435-D75D-42DF-B309-CE9EA5E4E440}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0EEA4435-D75D-42DF-B309-CE9EA5E4E440}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0EEA4435-D75D-42DF-B309-CE9EA5E4E440}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

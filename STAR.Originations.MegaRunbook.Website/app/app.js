@@ -1,0 +1,28 @@
+/* eslint-disable import/default */
+
+import React                      from 'react';
+import { render }                 from 'react-dom';
+import { Provider }               from 'react-redux';
+import { Router, browserHistory } from 'react-router';
+import { syncHistoryWithStore }   from 'react-router-redux';
+
+import routes                     from './routes';
+import configureStore             from './store/configureStore';
+
+// Import babel-polyfill to support Object.assign functions for deep-cloning of immutable objects.
+// Babel does not support Object.assign by default, so a pollyfill is needed.
+// 
+//      e.g. Object.assign({}, state, { someProperty: 'some value' });
+
+import 'babel-polyfill';
+
+const store = configureStore();
+
+// Create an enhanced history that syncs navigation events with the store
+const history = syncHistoryWithStore(browserHistory, store);
+
+render(
+  <Provider store = { store }>
+    <Router history = { history } routes = { routes } />
+  </Provider>, document.getElementById('app')
+);
