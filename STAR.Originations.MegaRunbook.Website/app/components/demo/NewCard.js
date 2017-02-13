@@ -1,4 +1,6 @@
-import React,{Component}  from 'react';
+// OBSOLETE
+
+import React, {Component} from 'react';
 import {Container}        from 'flux/utils';
 
 import DraftStore         from '../../stores/DraftStore';
@@ -22,18 +24,17 @@ class NewCard extends Component{
     this.props.history.pushState(null,'/');
   }
 
-  componentDidMount(){
-    setTimeout(()=>CardActionCreators.createDraft(), 0)
+  componentDidMount() {
+      setTimeout(() => CardActionCreators.createDraft(), 0);
   }
-
 
   render(){
     return (
-      <CardForm draftCard={this.state.draft}
-                buttonLabel="Create Card"
-                handleChange={this.handleChange.bind(this)}
-                handleSubmit={this.handleSubmit.bind(this)}
-                handleClose={this.handleClose.bind(this)} />
+      <CardForm buttonLabel  = "Create Card"
+                draftCard    = { this.state.draft             }
+                handleChange = { this.handleChange.bind(this) }
+                handleSubmit = { this.handleSubmit.bind(this) }
+                handleClose  = { this.handleClose.bind(this)  } />
     );
   }
 }

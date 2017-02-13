@@ -10,10 +10,12 @@ import CourseForm             from './CourseForm';
 class ManageCoursePage extends React.Component {
 
     constructor(props, context) {
+
         super(props, context);
+
         this.state = {
-                         course: Object.assign({}, this.props.course),
-                         errors: {},
+                         course: Object.assign({ }, this.props.course),
+                         errors: { },
                          saving: false
                      };
 
@@ -21,17 +23,27 @@ class ManageCoursePage extends React.Component {
         this.saveCourse        = this.saveCourse.bind(this);
     }
 
+    componentWillMount () {
+
+    }
+
+    componentDidMount () {
+
+    }
+
     componentWillReceiveProps(nextProps) {
-        
+
         // Necessary to populate from when existing course is loaded directly
         if (this.props.course.id != nextProps.course.id) {
-            this.setState({ course: Object.assign({}, nextProps.course)});
+            this.setState({
+                               course: Object.assign({ }, nextProps.course)
+                          });
         }
     }
 
     updateCourseState(event) {
-        const field = event.target.name;
-        let course = this.state.course;
+        const field   = event.target.name;
+        let course    = this.state.course;
         course[field] = event.target.value;
         return this.setState({ course: course });
     }
@@ -40,11 +52,11 @@ class ManageCoursePage extends React.Component {
         event.preventDefault();
         this.setState({ saving: true });
         this.props.actions.saveCourse(this.state.course)
-          .then(() => this.redirect())
-          .catch(error => {
-              toastr.error(error);
-              this.setState({ saving: false });
-          });
+                          .then(() => this.redirect())
+                          .catch(error => {
+                              toastr.error(error);
+                              this.setState({ saving: false });
+                          });
     }
 
     redirect() {
@@ -108,8 +120,8 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        actions: bindActionCreators(courseActions, dispatch)
-    };
+               actions: bindActionCreators(courseActions, dispatch)
+           };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ManageCoursePage);

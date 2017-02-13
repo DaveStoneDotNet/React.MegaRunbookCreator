@@ -1,16 +1,4 @@
-﻿#region licence
-// =====================================================
-// AspNetReactSample solution - using React js with ASP.NET MVC
-// Filename = CardData.cs
-// Date Created = 2016/05/03
-// 
-// Under the MIT License (MIT)
-// 
-// Written by Jon Smith  = GitHub JonPSmith, www.thereformedprogrammer.net
-// =====================================================
-#endregion
-
-using System;
+﻿
 using System.Collections.Generic;
 
 namespace STAR.Originations.MegaRunbook.Website.Models
@@ -24,7 +12,6 @@ namespace STAR.Originations.MegaRunbook.Website.Models
 
         public const string DefaultColor = "#000000";
 
-        // ReSharper disable InconsistentNaming
         public long id { get; set; }
         public string title { get; set; }
         public string description { get; set; }
@@ -32,7 +19,6 @@ namespace STAR.Originations.MegaRunbook.Website.Models
         public string status { get; set; }
 
         public ICollection<TaskData> tasks { get; set; }
-        // ReSharper restore InconsistentNaming
 
         private CardData()
         {

@@ -1,3 +1,5 @@
+// OBSOLETE
+
 import React, {Component, PropTypes} from 'react';
 
 class CardForm extends Component {

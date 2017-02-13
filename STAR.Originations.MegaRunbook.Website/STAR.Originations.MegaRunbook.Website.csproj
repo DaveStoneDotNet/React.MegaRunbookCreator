@@ -159,6 +159,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\CardData.cs" />
+    <Compile Include="Models\CourseData.cs" />
     <Compile Include="Models\TaskData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -174,6 +175,7 @@
     <Content Include="app\api\KanbanApi.js" />
     <Content Include="app\api\mockAuthorApi.js" />
     <Content Include="app\api\mockCourseApi.js" />
+    <Content Include="app\api\MrcApi.js" />
     <Content Include="app\components\demo\CourseForm.Enzyme.test.js" />
     <Content Include="app\components\demo\CourseForm.js" />
     <Content Include="app\components\demo\CourseForm.ReactTestUtils.test.js" />

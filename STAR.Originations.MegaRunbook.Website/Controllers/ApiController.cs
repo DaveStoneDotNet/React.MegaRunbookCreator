@@ -13,16 +13,25 @@ using STAR.Originations.MRC.DataAccess;
 
 using STAR.Originations.MegaRunbook.Contracts;
 using STAR.Originations.MegaRunbook.Website.CustomAttributes;
-
+using STAR.Originations.MegaRunbook.Website.Models;
 using contracts = STAR.Originations.MegaRunbook.Contracts.Data;
 
 namespace STAR.Originations.MegaRunbook.Website.Controllers
 {
     [JsonRequestBehavior]
-    public class xApiController : BaseController
+    public class ApiController : BaseController
     {
         private MrcDataAccess mrcDataAccess;
         public MrcDataAccess MrcDataAccess => this.mrcDataAccess ?? (this.mrcDataAccess = new MrcDataAccess());
+
+        #region GetUserProfile
+        [System.Web.Http.HttpGet]
+        public JsonResult GetGourses()
+        {
+            var courses = CourseData.SeedData();
+            return this.Json(courses);
+        }
+        #endregion GetUserProfile
 
         #region GetUserProfile
         [System.Web.Http.HttpGet]

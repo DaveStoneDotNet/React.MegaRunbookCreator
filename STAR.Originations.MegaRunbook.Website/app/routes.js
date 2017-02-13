@@ -9,7 +9,10 @@ import NotFoundComponent     from './components/common/NotFoundComponent';
 import CoursesComponent      from './components/demo/CoursesComponent';
 import ManageCoursePage      from './components/demo/ManageCoursePage';
 
+import KanbanBoardContainer  from './containers/demo/KanbanBoardContainer';
+
 export default (
+  <Route component = { KanbanBoardContainer }>
   <Route path = "/" component = { ShellComponent }>
     <IndexRoute component = { HomeComponent }/>
     <Route path="about"      component = { AboutComponent    } />
@@ -17,5 +20,6 @@ export default (
     <Route path="course"     component = { ManageCoursePage  } />
     <Route path="course/:id" component = { ManageCoursePage  } />
     <Route path="*"          component = { NotFoundComponent } />
+  </Route>
   </Route>
 );

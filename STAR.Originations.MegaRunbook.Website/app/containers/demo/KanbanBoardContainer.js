@@ -8,7 +8,7 @@ import CardStore            from '../../stores/CardStore';
 class KanbanBoardContainer extends Component {
 
   componentDidMount(){
-    CardActionCreators.fetchCards();
+      CardActionCreators.fetchCourses();
   }
 
   render() {

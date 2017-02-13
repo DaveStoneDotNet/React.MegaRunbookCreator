@@ -1,4 +1,6 @@
-import React,{Component}  from 'react';
+// OBSOLETE
+
+import React, {Component} from 'react';
 import {Container}        from 'flux/utils';
 
 import CardForm           from './CardForm';
@@ -29,20 +31,19 @@ class EditCard extends Component{
   }
 
   componentDidMount(){
-    setTimeout(()=>{
-      CardActionCreators.createDraft(CardStore.getCard(this.props.params.card_id))
+    setTimeout(()=> {
+        CardActionCreators.createDraft(CardStore.getCard(this.props.params.card_id));
     }, 0);
   }
 
-
   render(){
     return (
-      <CardForm draftCard={this.state.draft}
-                buttonLabel="Edit Card"
-                handleChange={this.handleChange.bind(this)}
-                handleSubmit={this.handleSubmit.bind(this)}
-                handleClose={this.handleClose.bind(this)} />
-    )
+      <CardForm buttonLabel  = "Edit Card"
+                draftCard    = { this.state.draft             }
+                handleChange = { this.handleChange.bind(this) }
+                handleSubmit = { this.handleSubmit.bind(this) }
+                handleClose  = { this.handleClose.bind(this)  } />
+    );
   }
 }
 

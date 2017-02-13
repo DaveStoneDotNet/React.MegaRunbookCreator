@@ -1,3 +1,5 @@
+// OBSOLETE
+
 import {Dispatcher} from 'flux';
 
 import 'babel-polyfill';

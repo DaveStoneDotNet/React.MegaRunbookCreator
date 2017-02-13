@@ -49,12 +49,22 @@ CoursesComponent.propTypes = {
     courses: PropTypes.array.isRequired
 };
 
-const mapStateToProps = (state, ownProps) => ({ courses: state.courses });
+
+// 'mapStateToProps' defines what part of the redux store to expose to child components.
+// When you define this function, it subscribes to redux store's updates.
+// Each property defined will become a property of the component.
+// In short: Determines what properties should be available to the component as props.
+
+const mapStateToProps = (state, ownProps) => ({
+                                                   courses: state.courses
+                                              });
+
+// 'mapDispatchToProps' exposes the actions exposed to the component.
 
 const mapDispatchToProps = (dispatch) => { 
     return {
-        actions: bindActionCreators(courseActions, dispatch)
-    };
+               actions: bindActionCreators(courseActions, dispatch)
+           };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(CoursesComponent);

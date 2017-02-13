@@ -1,10 +1,12 @@
 export default {
 
-  //API_URL: 'http://kanbanapi.pro-react.com';    //original value
-
   API_URL: 'http://localhost:50120/api',          //reads from MVC app
 
   CARD: 'card',
+
+  FETCH_COURSES:              'fetch courses',
+  FETCH_COURSES_SUCCESS:      'fetch courses success',
+  FETCH_COURSES_ERROR:        'fetch courses error',
 
   FETCH_CARDS:                'fetch cards',
   FETCH_CARDS_SUCCESS:        'fetch cards success',
