@@ -1,11 +1,11 @@
-﻿import React, {PropTypes}   from 'react';
-import {bindActionCreators} from 'redux';
-import {connect}            from 'react-redux';
-import {browserHistory}     from 'react-router';
+﻿import React, { PropTypes }   from 'react';
+import { bindActionCreators } from 'redux';
+import { connect }            from 'react-redux';
+import { browserHistory }     from 'react-router';
 
-import * as courseActions   from '../../actions/courseActions';
+import * as courseActions     from '../../actions/courseActions';
 
-import CourseList           from './CourseList';
+import CourseList             from './CourseList';
 
 class CoursesComponent extends React.Component {
 
@@ -13,34 +13,17 @@ class CoursesComponent extends React.Component {
 
         super(props, context);
 
-        this.initializeState();
-        this.initializeEvents();
+        this.redirectToAddCoursePage = this.redirectToAddCoursePage.bind(this);
     }
 
-    initializeState() {
-        this.state = {
-                         course: {
-                                     title: ''
-                                 }
-                     };
+    courseRow(course, index) {
+        return (
+                 <div key={ index }>{ course.title }</div>
+               );
     }
 
-    initializeEvents() {
-        this.onTitleChanged = this.onTitleChanged.bind(this);
-        this.onClickSaved   = this.onClickSaved.bind(this);
-    }
-
-    onTitleChanged(event) {
-
-        const course = this.state.course;
-
-        course.title = event.target.value;
-
-        this.setState({ course: course });
-    }
-
-    onClickSaved() {
-        alert(`Saving ${this.state.course.title}`);     // Note the back-`ticks`. These are NOT apostrophe's
+    redirectToAddCoursePage() {
+        browserHistory.push('/course');
     }
 
     render() {
@@ -48,20 +31,30 @@ class CoursesComponent extends React.Component {
         const { courses } = this.props;
 
         return (
-                <div>
-                    <h1>Courses</h1>
-                    <input type     = 'text' 
-                           onChange = { this.onTitleChanged } 
-                           value    = { this.state.course.title }>
-                    </input>
-                    <input type      = 'submit'
-                           value     = 'Save'
-                           className = 'btn btn-primary'
-                           onClick   = { this.onClickSaved }>
-                    </input>
-                </div>
-            );
-        }
+                   <div>
+                       <h1>Courses</h1>
+                       <input type      = 'submit'
+                              value     = 'Add Course'
+                              className = 'btn btn-primary'
+                              onClick   = { this.redirectToAddCoursePage }
+                       />
+                       <CourseList courses = { courses } />
+                   </div>
+               );
+    }
 }
 
-export default CoursesComponent;
+CoursesComponent.propTypes = {
+    actions: PropTypes.object.isRequired,
+    courses: PropTypes.array.isRequired
+};
+
+const mapStateToProps = (state, ownProps) => ({ courses: state.courses });
+
+const mapDispatchToProps = (dispatch) => { 
+    return {
+        actions: bindActionCreators(courseActions, dispatch)
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(CoursesComponent);

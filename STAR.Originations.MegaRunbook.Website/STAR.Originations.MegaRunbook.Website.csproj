@@ -163,10 +163,29 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="app\actions\actionTypes.js" />
+    <Content Include="app\actions\ajaxStatusActions.js" />
+    <Content Include="app\actions\authorActions.js" />
     <Content Include="app\actions\CardActionCreators.js" />
+    <Content Include="app\actions\courseActions.js" />
+    <Content Include="app\actions\courseActions.test.js" />
     <Content Include="app\actions\TaskActionCreators.js" />
+    <Content Include="app\api\delay.js" />
     <Content Include="app\api\KanbanApi.js" />
+    <Content Include="app\api\mockAuthorApi.js" />
+    <Content Include="app\api\mockCourseApi.js" />
+    <Content Include="app\components\demo\CourseForm.Enzyme.test.js" />
+    <Content Include="app\components\demo\CourseForm.js" />
+    <Content Include="app\components\demo\CourseForm.ReactTestUtils.test.js" />
+    <Content Include="app\components\demo\CourseList.js" />
+    <Content Include="app\components\demo\CourseListRow.js" />
     <Content Include="app\components\demo\CoursesComponent.js" />
+    <Content Include="app\components\demo\ManageCoursePage.js" />
+    <Content Include="app\components\demo\ManageCoursePage.test.js" />
+    <Content Include="app\reducers\ajaxStatusReducer.js" />
+    <Content Include="app\reducers\authorReducer.js" />
+    <Content Include="app\reducers\courseReducer.js" />
+    <Content Include="app\reducers\initialState.js" />
     <Content Include="app\x-app.js" />
     <Content Include="app\AppDispatcher.js" />
     <Content Include="app\components\common\ShellComponent.js" />
@@ -292,6 +311,9 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="app\components\common\LoadingDots.js" />
+    <Content Include="app\components\common\SelectInput.js" />
+    <Content Include="app\components\common\TextInput.js" />
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
