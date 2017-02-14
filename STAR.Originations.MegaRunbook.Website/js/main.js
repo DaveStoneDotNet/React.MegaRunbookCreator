@@ -32,6 +32,8 @@ webpackJsonp([0],{
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
+	// It's possible to pass the optional 'initialState' parameter here.
+	
 	/* eslint-disable import/default */
 	
 	var store = (0, _configureStore2.default)();
@@ -616,6 +618,9 @@ webpackJsonp([0],{
 	    }, {
 	        key: 'render',
 	        value: function render() {
+	
+	            debugger;
+	
 	            var courses = this.props.courses;
 	
 	
@@ -648,7 +653,20 @@ webpackJsonp([0],{
 	// 'mapStateToProps' defines what part of the redux store to expose to child components.
 	// When you define this function, it subscribes to redux store's updates.
 	// Each property defined will become a property of the component.
-	// In short: Determines what properties should be available to the component as props.
+	// In short, it defines an object with properties exposed to the component.
+	//
+	//      e.g. this.props.courses...
+	//
+	// The 'state' parameter represents the 'state' in the redux store.
+	// 
+	// The 'state.courses' property is determined by the choice to name the property 'courses' 
+	// in the 'rootReducer' of index.js. In this case, 'courses' was just an 'alias' of the 
+	// 'courseReducer'
+	// 
+	// So if you wanted to expose the entire store could you just say { everything: state } ?
+	//
+	// 'ownProps' is useful for accessing routing-related props injected by react-router.
+	//
 	
 	var mapStateToProps = function mapStateToProps(state, ownProps) {
 	    return {
@@ -664,6 +682,24 @@ webpackJsonp([0],{
 	    };
 	};
 	
+	// Instead of exporting a 'plain' component...
+	// .. export a component that's decorated by the react-redux connect function.
+	// The connect function is used to interact with react-redux and can be referred to as 'container-components'.
+	// 
+	// If you OMIT the 'mapDispatchToProps' parameter, the 'connect' function injects a 'dispatch' property to 
+	// the component. That is, this component automatically gets a 'dispatch' property attached to it.
+	// The 'dispatch' function is a function which allows you to fire off the actions defined in 'courseActions.js'.
+	//
+	// To dispatch an action, a reference to actions is needed. e.g. courseActions.
+	// 
+	// The 'dispatch' function could then referenced as follows... 
+	//
+	//          this.props.dispatch(courseActions.loadCourses());
+	// 
+	// This is somewhat verbose, so an alternative would be to call the 'mapDispatchToProps' function instead.
+	//
+	// It's important to note that when implementing 'mapDispatchToProps', 'dispatch' is *NOT* injected.
+	// 
 	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(CoursesComponent);
 
 /***/ },
@@ -679,11 +715,15 @@ webpackJsonp([0],{
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
-	exports.loadCoursesSuccess = loadCoursesSuccess;
 	exports.createCourseSuccess = createCourseSuccess;
 	exports.updateCourseSuccess = updateCourseSuccess;
-	exports.loadCourses = loadCourses;
+	exports.loadCoursesSuccess = loadCoursesSuccess;
 	exports.saveCourse = saveCourse;
+	exports.loadCourses = loadCourses;
+	
+	var _MrcApi = __webpack_require__(/*! ../api/MrcApi */ 1050);
+	
+	var _MrcApi2 = _interopRequireDefault(_MrcApi);
 	
 	var _mockCourseApi = __webpack_require__(/*! ../api/mockCourseApi */ 279);
 	
@@ -705,26 +745,21 @@ webpackJsonp([0],{
 	// 2) Store sends action to reducers.
 	// 3) Reducers accept state and return new state.
 	
-	function loadCoursesSuccess(courses) {
-	    return { type: types.LOAD_COURSES_SUCCESS, courses: courses };
-	}
+	// Action Creators... returning a plain javascript object which must have a 'type' property.
+	// Once an action is created, you need a function which will 'handle' that action, and that's where reducers come in.
+	// Reducers are just functions which accept a state and an action and returns a new state.
+	
 	function createCourseSuccess(course) {
-	    return { type: types.CREATE_COURSE_SUCCESS, course: course };
+	    debugger;return { type: types.CREATE_COURSE_SUCCESS, course: course };
 	}
 	function updateCourseSuccess(course) {
-	    return { type: types.UPDATE_COURSE_SUCCESS, course: course };
+	    debugger;return { type: types.UPDATE_COURSE_SUCCESS, course: course };
+	}
+	function loadCoursesSuccess(courses) {
+	    debugger;return { type: types.LOAD_COURSES_SUCCESS, courses: courses };
 	}
 	
-	function loadCourses() {
-	    return function (dispatch) {
-	        dispatch((0, _ajaxStatusActions.beginAjaxCall)());
-	        return _mockCourseApi2.default.getAllCourses().then(function (courses) {
-	            dispatch(loadCoursesSuccess(courses));
-	        }).catch(function (error) {
-	            throw error;
-	        });
-	    };
-	}
+	// ---
 	
 	function saveCourse(course) {
 	    return function (dispatch, getState) {
@@ -733,6 +768,17 @@ webpackJsonp([0],{
 	            course.id ? dispatch(updateCourseSuccess(course)) : dispatch(createCourseSuccess(course));
 	        }).catch(function (error) {
 	            dispatch((0, _ajaxStatusActions.ajaxCallError)(error));throw error;
+	        });
+	    };
+	}
+	
+	function loadCourses() {
+	    return function (dispatch) {
+	        dispatch((0, _ajaxStatusActions.beginAjaxCall)());
+	        return _MrcApi2.default.getAllCourses().then(function (courses) {
+	            dispatch(loadCoursesSuccess(courses));
+	        }).catch(function (error) {
+	            throw error;
 	        });
 	    };
 	}
@@ -1289,7 +1335,7 @@ webpackJsonp([0],{
 	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
-	      value: true
+	             value: true
 	});
 	
 	var _react = __webpack_require__(/*! react */ 1);
@@ -1307,58 +1353,58 @@ webpackJsonp([0],{
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var CourseForm = function CourseForm(_ref) {
-	      var course = _ref.course,
-	          allAuthors = _ref.allAuthors,
-	          onSave = _ref.onSave,
-	          onChange = _ref.onChange,
-	          saving = _ref.saving,
-	          errors = _ref.errors;
+	             var course = _ref.course,
+	                 allAuthors = _ref.allAuthors,
+	                 onSave = _ref.onSave,
+	                 onChange = _ref.onChange,
+	                 saving = _ref.saving,
+	                 errors = _ref.errors;
 	
-	      return _react2.default.createElement(
-	            'form',
-	            null,
-	            _react2.default.createElement(
-	                  'h1',
-	                  null,
-	                  'Manage Course'
-	            ),
-	            _react2.default.createElement(_TextInput2.default, { name: 'title',
-	                  label: 'Title',
-	                  value: course.title,
-	                  onChange: onChange,
-	                  error: errors.title }),
-	            _react2.default.createElement(_SelectInput2.default, { name: 'authorId',
-	                  label: 'Author',
-	                  value: course.authorId,
-	                  defaultOption: 'Select Author',
-	                  options: allAuthors,
-	                  onChange: onChange,
-	                  error: errors.authorId }),
-	            _react2.default.createElement(_TextInput2.default, { name: 'category',
-	                  label: 'Category',
-	                  value: course.category,
-	                  onChange: onChange,
-	                  error: errors.category }),
-	            _react2.default.createElement(_TextInput2.default, { name: 'length',
-	                  label: 'Length',
-	                  value: course.length,
-	                  onChange: onChange,
-	                  error: errors.length }),
-	            _react2.default.createElement('input', { type: 'submit',
-	                  disabled: saving,
-	                  value: saving ? 'Saving...' : 'Save',
-	                  className: 'btn btn-primary',
-	                  onClick: onSave })
-	      );
+	             return _react2.default.createElement(
+	                          'form',
+	                          null,
+	                          _react2.default.createElement(
+	                                       'h1',
+	                                       null,
+	                                       'Manage Course'
+	                          ),
+	                          _react2.default.createElement(_TextInput2.default, { name: 'title',
+	                                       label: 'Title',
+	                                       value: course.title,
+	                                       onChange: onChange,
+	                                       error: errors.title }),
+	                          _react2.default.createElement(_SelectInput2.default, { name: 'authorId',
+	                                       label: 'Author',
+	                                       value: course.authorId,
+	                                       defaultOption: 'Select Author',
+	                                       options: allAuthors,
+	                                       onChange: onChange,
+	                                       error: errors.authorId }),
+	                          _react2.default.createElement(_TextInput2.default, { name: 'category',
+	                                       label: 'Category',
+	                                       value: course.category,
+	                                       onChange: onChange,
+	                                       error: errors.category }),
+	                          _react2.default.createElement(_TextInput2.default, { name: 'length',
+	                                       label: 'Length',
+	                                       value: course.length,
+	                                       onChange: onChange,
+	                                       error: errors.length }),
+	                          _react2.default.createElement('input', { type: 'submit',
+	                                       disabled: saving,
+	                                       value: saving ? 'Saving...' : 'Save',
+	                                       className: 'btn btn-primary',
+	                                       onClick: onSave })
+	             );
 	};
 	
 	CourseForm.propTypes = {
-	      course: _react2.default.PropTypes.object.isRequired,
-	      allAuthors: _react2.default.PropTypes.array,
-	      onSave: _react2.default.PropTypes.func.isRequired,
-	      onChange: _react2.default.PropTypes.func.isRequired,
-	      saving: _react2.default.PropTypes.bool,
-	      errors: _react2.default.PropTypes.object
+	             course: _react2.default.PropTypes.object.isRequired,
+	             allAuthors: _react2.default.PropTypes.array,
+	             onSave: _react2.default.PropTypes.func.isRequired,
+	             onChange: _react2.default.PropTypes.func.isRequired,
+	             saving: _react2.default.PropTypes.bool,
+	             errors: _react2.default.PropTypes.object
 	};
 	
 	exports.default = CourseForm;
@@ -1551,6 +1597,10 @@ webpackJsonp([0],{
 	
 	var _CardStore2 = _interopRequireDefault(_CardStore);
 	
+	var _courseActions = __webpack_require__(/*! ../../actions/courseActions */ 278);
+	
+	var _courseActions2 = _interopRequireDefault(_courseActions);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -1572,6 +1622,7 @@ webpackJsonp([0],{
 	    key: 'componentDidMount',
 	    value: function componentDidMount() {
 	      _CardActionCreators2.default.fetchCourses();
+	      //courseActions.loadCourses();
 	    }
 	  }, {
 	    key: 'render',
@@ -8902,6 +8953,10 @@ webpackJsonp([0],{
 	
 	var _KanbanApi2 = _interopRequireDefault(_KanbanApi);
 	
+	var _MrcApi = __webpack_require__(/*! ../api/MrcApi */ 1050);
+	
+	var _MrcApi2 = _interopRequireDefault(_MrcApi);
+	
 	var _CardStore = __webpack_require__(/*! ../stores/CardStore */ 779);
 	
 	var _CardStore2 = _interopRequireDefault(_CardStore);
@@ -8919,7 +8974,7 @@ webpackJsonp([0],{
 	    });
 	  },
 	  fetchCourses: function fetchCourses() {
-	    _AppDispatcher2.default.dispatchAsync(_KanbanApi2.default.fetchCourses(), {
+	    _AppDispatcher2.default.dispatchAsync(_MrcApi2.default.fetchCourses(), {
 	      request: _constants2.default.FETCH_CARDS,
 	      success: _constants2.default.FETCH_CARDS_SUCCESS,
 	      failure: _constants2.default.FETCH_CARDS_ERROR
@@ -9243,7 +9298,7 @@ webpackJsonp([0],{
 	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
-	  value: true
+	    value: true
 	});
 	exports.default = configureStore;
 	
@@ -9264,9 +9319,10 @@ webpackJsonp([0],{
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function configureStore(initialState) {
-	  return (0, _redux.createStore)(_reducers2.default, initialState, (0, _redux.compose)((0, _redux.applyMiddleware)(_reduxThunk2.default, (0, _reduxImmutableStateInvariant2.default)()), window.devToolsExtension ? window.devToolsExtension() : function (f) {
-	    return f;
-	  }));
+	
+	    return (0, _redux.createStore)(_reducers2.default, initialState, (0, _redux.compose)((0, _redux.applyMiddleware)(_reduxThunk2.default, (0, _reduxImmutableStateInvariant2.default)()), window.devToolsExtension ? window.devToolsExtension() : function (f) {
+	        return f;
+	    }));
 	}
 
 /***/ },
@@ -9489,7 +9545,7 @@ webpackJsonp([0],{
 	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
-	    value: true
+	                                        value: true
 	});
 	
 	var _redux = __webpack_require__(/*! redux */ 179);
@@ -9510,11 +9566,18 @@ webpackJsonp([0],{
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
+	// Naming is important here. Each of the 'properties' listed below become the 
+	// property names on 'state'. For example, 'state.courses'.
+	// 
+	// That is, the 'courseReducer' was aliased to 'courses' so it can be referenced
+	// as 'state.courses' instead of 'state.courseReducer'.
+	// 
+	
 	var rootReducer = (0, _redux.combineReducers)({
-	    routing: _reactRouterRedux.routerReducer,
-	    courses: _courseReducer2.default,
-	    authors: _authorReducer2.default,
-	    ajaxCallsInProgress: _ajaxStatusReducer2.default
+	                                        routing: _reactRouterRedux.routerReducer,
+	                                        courses: _courseReducer2.default,
+	                                        authors: _authorReducer2.default,
+	                                        ajaxCallsInProgress: _ajaxStatusReducer2.default
 	});
 	
 	exports.default = rootReducer;
@@ -9556,12 +9619,15 @@ webpackJsonp([0],{
 	    switch (action.type) {
 	
 	        case types.LOAD_COURSES_SUCCESS:
+	            debugger;
 	            return action.courses;
 	
 	        case types.CREATE_COURSE_SUCCESS:
+	            debugger;
 	            return [].concat(_toConsumableArray(state), [Object.assign({}, action.course)]);
 	
 	        case types.UPDATE_COURSE_SUCCESS:
+	            debugger;
 	            return [].concat(_toConsumableArray(state.filter(function (course) {
 	                return course.id !== action.course.id;
 	            })), [Object.assign({}, action.course)]);
@@ -9677,6 +9743,41 @@ webpackJsonp([0],{
 	};
 	
 	exports.default = ajaxStatusReducer;
+
+/***/ },
+
+/***/ 1050:
+/*!***************************!*\
+  !*** ./app/api/MrcApi.js ***!
+  \***************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	__webpack_require__(/*! whatwg-fetch */ 776);
+	
+	__webpack_require__(/*! babel-polyfill */ 479);
+	
+	var API_HEADERS = {
+	    'Content-Type': 'application/json',
+	    'Accept': 'application/json, text/plain, */*'
+	};
+	
+	var MrcApi = {
+	    fetchCourses: function fetchCourses() {
+	        return fetch('api/GetGourses', {
+	            headers: API_HEADERS
+	        }).then(function (response) {
+	            return response.json();
+	        });
+	    }
+	};
+	
+	exports.default = MrcApi;
 
 /***/ }
 

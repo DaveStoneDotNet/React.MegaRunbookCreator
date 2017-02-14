@@ -16,6 +16,8 @@ import configureStore             from './store/configureStore';
 
 import 'babel-polyfill';
 
+// It's possible to pass the optional 'initialState' parameter here.
+
 const store = configureStore();
 
 // Create an enhanced history that syncs navigation events with the store

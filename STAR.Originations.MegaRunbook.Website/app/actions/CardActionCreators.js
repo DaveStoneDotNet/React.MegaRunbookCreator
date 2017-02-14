@@ -1,6 +1,7 @@
 import AppDispatcher from '../AppDispatcher';
 import constants     from '../constants/constants';
 import KanbanAPI     from '../api/KanbanApi';
+import MrcApi        from '../api/MrcApi';
 import CardStore     from '../stores/CardStore';
 import { throttle }  from '../utils';
 
@@ -14,7 +15,7 @@ let CardActionCreators = {
   },
 
   fetchCourses() {
-      AppDispatcher.dispatchAsync(KanbanAPI.fetchCourses(),                                   {
+      AppDispatcher.dispatchAsync(MrcApi.fetchCourses(),                                      {
                                                                                                    request: constants.FETCH_CARDS,
                                                                                                    success: constants.FETCH_CARDS_SUCCESS,
                                                                                                    failure: constants.FETCH_CARDS_ERROR

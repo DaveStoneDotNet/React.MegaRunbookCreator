@@ -5,10 +5,13 @@ import KanbanBoard          from '../../components/demo/KanbanBoard';
 import CardActionCreators   from '../../actions/CardActionCreators';
 import CardStore            from '../../stores/CardStore';
 
+import courseActions        from '../../actions/courseActions';
+
 class KanbanBoardContainer extends Component {
 
   componentDidMount(){
       CardActionCreators.fetchCourses();
+      //courseActions.loadCourses();
   }
 
   render() {

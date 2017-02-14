@@ -1,4 +1,5 @@
-﻿import 'whatwg-fetch';
+﻿
+import 'whatwg-fetch';
 import 'babel-polyfill';
 
 const API_HEADERS = {
