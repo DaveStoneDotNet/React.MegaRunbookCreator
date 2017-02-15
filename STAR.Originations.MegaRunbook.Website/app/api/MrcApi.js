@@ -3,9 +3,9 @@ import 'whatwg-fetch';
 import 'babel-polyfill';
 
 const API_HEADERS = {
-    'Content-Type': 'application/json',
-    'Accept': 'application/json, text/plain, */*' 
-}
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json, text/plain, */*' 
+                    }
 
 class MrcApi {
 

@@ -24,6 +24,7 @@ exports.common = function (paths, vendorPackages) {
                               },
 
                resolve:       {
+                                  extensions:         ['', '.json', '.jsx', '.js'], 
                                   modulesDirectories: ['node_modules']
                               },
 
@@ -41,6 +42,10 @@ exports.common = function (paths, vendorPackages) {
 
                module:        {
                                   loaders: [
+                                               {
+                                                   include: /\.json$/,
+                                                   loader:  'json-loader'
+                                               }, 
                                                {
                                                    test:    /\.js$/,
                                                    exclude: /node_modules/,

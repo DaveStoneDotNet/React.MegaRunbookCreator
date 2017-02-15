@@ -1,6 +1,5 @@
-
-import courseApi                        from '../api/mockCourseApi';    // Only need to change this import to use a real api instead of a mocked one.
-import MrcApi                           from '../api/MrcApi';           // For example, substitute it with a real api.
+﻿
+import MrcApi                           from '../api/MrcApi';
 import { beginAjaxCall, ajaxCallError } from './ajaxStatusActions';
 import * as types                       from './actionTypes';
 
@@ -27,9 +26,7 @@ import * as types                       from './actionTypes';
 // 
 // -----------------------------------------------------------------------------------------------------------------------
 
-export function getCoursesSuccess(courses)  { return { type: types.GET_COURSES_SUCCESS,  courses: courses  }; }
-export function createCourseSuccess(course) { return { type: types.CREATE_COURSE_SUCCESS, course:  course  }; }
-export function updateCourseSuccess(course) { return { type: types.UPDATE_COURSE_SUCCESS, course:  course  }; }
+export function getLookupsSuccess(lookups)  { return { type: types.GET_LOOKUPS_SUCCESS,   lookups: lookups }; }
 
 // -----------------------------------------------------------------------------------------------------------------------
 // Thunks:
@@ -42,27 +39,13 @@ export function updateCourseSuccess(course) { return { type: types.UPDATE_COURSE
 // 
 // -----------------------------------------------------------------------------------------------------------------------
 
-export function getCourses() {
+export function getLookups() {
     return function(dispatch) {
         dispatch(beginAjaxCall());
-        return MrcApi.getCourses()
-                     .then(response => { dispatch(getCoursesSuccess(response)); })
+        return MrcApi.getLookups()
+                     .then(response => { dispatch(getLookupsSuccess(response)); })
                      .catch(error   => { throw(error); }); 
     };
 };
 
-// -------------------------------------------------------------------------------------------------
-
-// CourseForm > Button Click > ManageCoursePage.onSave > ManageCoursePage.saveCourse > this.props.actions.saveCourse(this.state.course)
-
-export function saveCourse(course) {
-    return function (dispatch, getState) {
-        dispatch(beginAjaxCall());
-        return courseApi.saveCourse(course)
-                        .then(course => { course.id ? dispatch(updateCourseSuccess(course)) : dispatch(createCourseSuccess(course)); })
-                        .catch(error => { dispatch(ajaxCallError(error)); throw(error); }); 
-    };
-};
-
-// -------------------------------------------------------------------------------------------------
-
+// -----------------------------------------------------------------------------------------------------------------------

@@ -3,6 +3,9 @@ import { routerReducer }   from 'react-router-redux';
 
 import courses             from './courseReducer';
 import authors             from './authorReducer';
+import user                from './userReducer';
+import lookups             from './lookupReducer';
+
 import ajaxCallsInProgress from './ajaxStatusReducer';
 
 // Naming is important here. Each of the 'properties' listed below become the 
@@ -14,8 +17,12 @@ import ajaxCallsInProgress from './ajaxStatusReducer';
 
 const rootReducer = combineReducers({
                                         routing:             routerReducer, 
+
                                         courses:             courses, 
                                         authors:             authors, 
+                                        user:                user,
+                                        lookups:             lookups,
+
                                         ajaxCallsInProgress: ajaxCallsInProgress
                                     });
 

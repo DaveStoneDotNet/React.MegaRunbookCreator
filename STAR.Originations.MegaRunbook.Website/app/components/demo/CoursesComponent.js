@@ -28,16 +28,18 @@ class CoursesComponent extends React.Component {
 
     render() {
 
-        const { courses } = this.props;
+        const courses = this.props.courses;
+        const user = this.props.user;
 
         return (
                    <div>
+                       <div>
+                           <div>
+                               { user.UserDisplayName }
+                           </div>
+                       </div>
                        <h1>Courses</h1>
-                       <input type      = 'submit'
-                              value     = 'Add Course'
-                              className = 'btn btn-primary'
-                              onClick   = { this.redirectToAddCoursePage }
-                       />
+                       <input type='submit' value='Add Course' className='btn btn-primary' onClick = { this.redirectToAddCoursePage } />
                        <CourseList courses = { courses } />
                    </div>
                );
@@ -48,7 +50,6 @@ CoursesComponent.propTypes = {
                                  actions: PropTypes.object.isRequired,
                                  courses: PropTypes.array.isRequired
                              };
-
 
 // 'mapStateToProps' defines what part of the redux store to expose to child components.
 // When you define this function, it subscribes to redux store's updates.
@@ -92,7 +93,7 @@ const mapDispatchToProps = (dispatch) => {
 // 
 // The 'dispatch' function could then referenced as follows... 
 //
-//          this.props.dispatch(courseActions.loadCourses());
+//          this.props.dispatch(courseActions.getCourses());
 // 
 // This is somewhat verbose, so an alternative would be to call the 'mapDispatchToProps' function instead.
 //

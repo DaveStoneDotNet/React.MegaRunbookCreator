@@ -6,8 +6,8 @@ export default function courseReducer(state = initialState.courses, action) {
 
     switch (action.type) {
 
-        case types.LOAD_COURSES_SUCCESS:
-            return action.courses;
+        case types.GET_COURSES_SUCCESS:
+            return action.courses;                                  // This will replace whatever was in our state.
 
         case types.CREATE_COURSE_SUCCESS:
             return [...state, Object.assign({}, action.course)];

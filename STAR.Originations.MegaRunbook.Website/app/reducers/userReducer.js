@@ -2,15 +2,15 @@
 import * as types   from '../actions/actionTypes';
 import initialState from './initialState';
 
-export default function mrcReducer(state = initialState.user, action) {
+// Reducers are simple functions that accept state and actions and return a new state.
+// All reducers are called when an action is dispatched.
+
+export default function userReducer(state = initialState.user, action) {
 
     switch (action.type) {
 
         case types.GET_USER_SUCCESS:
             return action.user;
-
-        case types.GET_LOOKUPS_SUCCESS:
-            return action.lookups;
 
         default:
             return state;

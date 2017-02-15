@@ -16,9 +16,8 @@ namespace STAR.Originations.MegaRunbook.Website
             bundles.Add(new StyleBundle("~/app/styles").Include(
                       "~/node_modules/font-awesome/css/font-awesome.min.css",
                       "~/node_modules/bootstrap/dist/css/bootstrap.min.css",
-                      "~/app/styles/sass.min.css", 
-                      "~/app/styles/site.css",
-                      "~/app/styles/kanban-styles.css"));
+                      "~/app/styles/sass.min.css"
+                      ));
         }
     }
 }

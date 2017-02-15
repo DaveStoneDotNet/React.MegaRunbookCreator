@@ -34,7 +34,7 @@ describe('Async Actions', () => {
         nock.cleanAll();
     });
 
-    it('should create BEGIN_AJAX_CALL and LOAD_COURSES_SUCCESS when loading courses', (done) => {
+    it('should create BEGIN_AJAX_CALL and GET_COURSES_SUCCESS when loading courses', (done) => {
 
         // Here's an example call to nock.
         // nock('http://example.com/')
@@ -43,14 +43,14 @@ describe('Async Actions', () => {
 
         const expectedActions = [
           {type: types.BEGIN_AJAX_CALL},
-          {type: types.LOAD_COURSES_SUCCESS, body: {courses: [{id: 'clean-code', title: 'Clean Code'}]}}
+          {type: types.GET_COURSES_SUCCESS, body: {courses: [{id: 'clean-code', title: 'Clean Code'}]}}
         ];
 
         const store = mockStore({courses: []}, expectedActions, done);
-        store.dispatch(courseActions.loadCourses()).then(() => {
+        store.dispatch(courseActions.getCourses()).then(() => {
             const actions = store.getActions();
             expect(actions[0].type).toEqual(types.BEGIN_AJAX_CALL);
-            expect(actions[1].type).toEqual(types.LOAD_COURSES_SUCCESS);
+            expect(actions[1].type).toEqual(types.GET_COURSES_SUCCESS);
             done();
         });
     });

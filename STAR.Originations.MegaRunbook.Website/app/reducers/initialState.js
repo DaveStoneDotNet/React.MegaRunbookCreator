@@ -1,8 +1,9 @@
 
 export default {
-  authors: [],
-  courses: [],
-  user:    {},
-  lookups: {},
-  ajaxCallsInProgress: 0
-};
+                   authors: [],
+                   courses: [],
+                   user:    {},
+                   lookups: {},
+
+                   ajaxCallsInProgress: 0
+               };

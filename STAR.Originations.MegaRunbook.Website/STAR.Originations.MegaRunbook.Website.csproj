@@ -167,13 +167,11 @@
     <Content Include="app\actions\actionTypes.js" />
     <Content Include="app\actions\ajaxStatusActions.js" />
     <Content Include="app\actions\authorActions.js" />
-    <Content Include="app\actions\CardActionCreators.js" />
     <Content Include="app\actions\courseActions.js" />
     <Content Include="app\actions\courseActions.test.js" />
-    <Content Include="app\actions\mrcActions.js" />
-    <Content Include="app\actions\TaskActionCreators.js" />
+    <Content Include="app\actions\lookupActions.js" />
+    <Content Include="app\actions\userActions.js" />
     <Content Include="app\api\delay.js" />
-    <Content Include="app\api\KanbanApi.js" />
     <Content Include="app\api\mockAuthorApi.js" />
     <Content Include="app\api\mockCourseApi.js" />
     <Content Include="app\api\MrcApi.js" />
@@ -189,26 +187,14 @@
     <Content Include="app\reducers\authorReducer.js" />
     <Content Include="app\reducers\courseReducer.js" />
     <Content Include="app\reducers\initialState.js" />
-    <Content Include="app\reducers\mrcReducer.js" />
-    <Content Include="app\x-app.js" />
-    <Content Include="app\AppDispatcher.js" />
+    <Content Include="app\reducers\lookupReducer.js" />
+    <Content Include="app\reducers\userReducer.js" />
     <Content Include="app\components\common\ShellComponent.js" />
-    <Content Include="app\components\demo\Card.js" />
-    <Content Include="app\components\demo\CardForm.js" />
-    <Content Include="app\components\demo\CheckList.js" />
     <Content Include="app\components\common\AppFooterComponent.js" />
     <Content Include="app\components\common\LoadingComponent.js" />
     <Content Include="app\components\common\NavHeaderComponent.js" />
-    <Content Include="app\components\demo\EditCard.js" />
-    <Content Include="app\components\demo\KanbanBoard.js" />
     <Content Include="app\components\home\HomeComponent.js" />
-    <Content Include="app\containers\demo\KanbanBoardContainer.js" />
-    <Content Include="app\components\demo\List.js" />
-    <Content Include="app\components\demo\NewCard.js" />
-    <Content Include="app\constants\constants.js" />
-    <Content Include="app\constants\ActionTypes.js" />
     <Content Include="app\components\about\AboutComponent.js" />
-    <Content Include="app\containers\x-App.js" />
     <Content Include="app\components\common\NotFoundComponent.js" />
     <Content Include="app\containers\DevTools.js" />
     <Content Include="app\containers\Home.js" />
@@ -229,8 +215,6 @@
     <Content Include="app\app.js" />
     <Content Include="app\reducers\index.js" />
     <Content Include="app\routes.js" />
-    <Content Include="app\stores\CardStore.js" />
-    <Content Include="app\stores\DraftStore.js" />
     <Content Include="app\store\configureStore.js" />
     <Content Include="app\styles\sass.css">
       <DependentUpon>sass.scss</DependentUpon>
@@ -238,7 +222,6 @@
     <Content Include="app\styles\sass.min.css">
       <DependentUpon>sass.css</DependentUpon>
     </Content>
-    <Content Include="app\styles\styles.css" />
     <Content Include="app\styles\_mrc-colors.css">
       <DependentUpon>_mrc-colors.scss</DependentUpon>
     </Content>
@@ -246,11 +229,9 @@
       <DependentUpon>_mrc-colors.css</DependentUpon>
     </Content>
     <Content Include="app\utils.js" />
-    <Content Include="app\styles\kanban-styles.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="app\styles\site.css" />
     <Content Include="package.json" />
     <Content Include="webpack.config.js" />
     <Content Include="webpack.parts.js" />
@@ -294,11 +275,13 @@
     <Folder Include="app\components\rfcs\" />
     <Folder Include="app\components\runbooks\" />
     <Folder Include="app\components\templates\" />
+    <Folder Include="app\constants\" />
     <Folder Include="app\containers\about\" />
     <Folder Include="app\containers\admin\" />
     <Folder Include="app\containers\applications\" />
     <Folder Include="app\containers\builds\" />
     <Folder Include="app\containers\common\" />
+    <Folder Include="app\containers\demo\" />
     <Folder Include="app\containers\home\" />
     <Folder Include="app\containers\releases\" />
     <Folder Include="app\containers\rfcs\" />
