@@ -37,6 +37,7 @@ namespace STAR.Originations.MegaRunbook.Website.Controllers
         [System.Web.Http.HttpGet]
         public JsonResult GetUserProfile()
         {
+            System.Threading.Thread.Sleep(10000);
             var userProfile = new contracts::UserProfile
             {
                 UserId = 21981,

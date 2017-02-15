@@ -3,6 +3,7 @@ import { connect }          from 'react-redux';
 
 import NavHeaderComponent   from './NavHeaderComponent';
 import AppFooterComponent   from './AppFooterComponent';
+import SplashComponent   from './SplashComponent';
 
 class ShellComponent extends React.Component {
 

@@ -1,12 +1,12 @@
 ﻿import React    from 'react';
 import { Link } from 'react-router';
 
-const AboutComponent = () => {
+const BuildsComponent = () => {
     return (
       <div>
-        ABOUT
+        BUILDS
       </div>
   );
 };
 
-export default AboutComponent;
+export default BuildsComponent;

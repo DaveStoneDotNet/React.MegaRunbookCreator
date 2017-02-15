@@ -4,6 +4,7 @@ export default {
                    courses: [],
                    user:    {},
                    lookups: {},
+                   app:     {},
 
                    ajaxCallsInProgress: 0
                };

@@ -1,12 +1,12 @@
 ﻿import React    from 'react';
 import { Link } from 'react-router';
 
-const AboutComponent = () => {
+const RfcsComponent = () => {
     return (
       <div>
-        ABOUT
+        RFCs
       </div>
   );
 };
 
-export default AboutComponent;
+export default RfcsComponent;

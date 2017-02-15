@@ -166,6 +166,7 @@
   <ItemGroup>
     <Content Include="app\actions\actionTypes.js" />
     <Content Include="app\actions\ajaxStatusActions.js" />
+    <Content Include="app\actions\appActions.js" />
     <Content Include="app\actions\authorActions.js" />
     <Content Include="app\actions\courseActions.js" />
     <Content Include="app\actions\courseActions.test.js" />
@@ -175,6 +176,10 @@
     <Content Include="app\api\mockAuthorApi.js" />
     <Content Include="app\api\mockCourseApi.js" />
     <Content Include="app\api\MrcApi.js" />
+    <Content Include="app\components\admin\AdminComponent.js" />
+    <Content Include="app\components\applications\ApplicationsComponent.js" />
+    <Content Include="app\components\builds\BuildsComponent.js" />
+    <Content Include="app\components\common\SplashComponent.js" />
     <Content Include="app\components\demo\CourseForm.Enzyme.test.js" />
     <Content Include="app\components\demo\CourseForm.js" />
     <Content Include="app\components\demo\CourseForm.ReactTestUtils.test.js" />
@@ -183,7 +188,12 @@
     <Content Include="app\components\demo\CoursesComponent.js" />
     <Content Include="app\components\demo\ManageCoursePage.js" />
     <Content Include="app\components\demo\ManageCoursePage.test.js" />
+    <Content Include="app\components\releases\ReleasesComponent.js" />
+    <Content Include="app\components\rfcs\RfcsComponent.js" />
+    <Content Include="app\components\runbooks\RunbooksComponent.js" />
+    <Content Include="app\components\templates\TemplatesComponent.js" />
     <Content Include="app\reducers\ajaxStatusReducer.js" />
+    <Content Include="app\reducers\appReducer.js" />
     <Content Include="app\reducers\authorReducer.js" />
     <Content Include="app\reducers\courseReducer.js" />
     <Content Include="app\reducers\initialState.js" />
@@ -268,13 +278,6 @@
     <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="app\components\admin\" />
-    <Folder Include="app\components\applications\" />
-    <Folder Include="app\components\builds\" />
-    <Folder Include="app\components\releases\" />
-    <Folder Include="app\components\rfcs\" />
-    <Folder Include="app\components\runbooks\" />
-    <Folder Include="app\components\templates\" />
     <Folder Include="app\constants\" />
     <Folder Include="app\containers\about\" />
     <Folder Include="app\containers\admin\" />

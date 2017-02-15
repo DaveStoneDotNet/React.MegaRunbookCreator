@@ -8,3 +8,5 @@ export const UPDATE_COURSE_SUCCESS = 'UPDATE_COURSE_SUCCESS';
 
 export const GET_USER_SUCCESS      = 'GET_USER_SUCCESS';
 export const GET_LOOKUPS_SUCCESS   = 'GET_LOOKUPS_SUCCESS';
+
+export const UPDATE_MONKEY         = 'UPDATE_MONKEY';
