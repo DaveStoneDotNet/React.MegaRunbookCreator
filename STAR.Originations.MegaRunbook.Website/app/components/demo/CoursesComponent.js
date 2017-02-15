@@ -28,8 +28,6 @@ class CoursesComponent extends React.Component {
 
     render() {
 
-        debugger;
-
         const { courses } = this.props;
 
         return (

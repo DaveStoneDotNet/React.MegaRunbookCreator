@@ -6,16 +6,17 @@ import CardStore     from '../stores/CardStore';
 import { throttle }  from '../utils';
 
 let CardActionCreators = {
-  fetchCards() {
-    AppDispatcher.dispatchAsync(KanbanAPI.fetchCards(),                                       {
+
+  fetchCourses() {
+      AppDispatcher.dispatchAsync(MrcApi.getCourses(),                                        {
                                                                                                    request: constants.FETCH_CARDS,
                                                                                                    success: constants.FETCH_CARDS_SUCCESS,
                                                                                                    failure: constants.FETCH_CARDS_ERROR
                                                                                               });
   },
 
-  fetchCourses() {
-      AppDispatcher.dispatchAsync(MrcApi.fetchCourses(),                                      {
+  fetchCards() {
+    AppDispatcher.dispatchAsync(KanbanAPI.fetchCards(),                                       {
                                                                                                    request: constants.FETCH_CARDS,
                                                                                                    success: constants.FETCH_CARDS_SUCCESS,
                                                                                                    failure: constants.FETCH_CARDS_ERROR

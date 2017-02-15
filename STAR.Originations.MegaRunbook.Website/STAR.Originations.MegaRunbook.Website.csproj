@@ -170,6 +170,7 @@
     <Content Include="app\actions\CardActionCreators.js" />
     <Content Include="app\actions\courseActions.js" />
     <Content Include="app\actions\courseActions.test.js" />
+    <Content Include="app\actions\mrcActions.js" />
     <Content Include="app\actions\TaskActionCreators.js" />
     <Content Include="app\api\delay.js" />
     <Content Include="app\api\KanbanApi.js" />
@@ -188,6 +189,7 @@
     <Content Include="app\reducers\authorReducer.js" />
     <Content Include="app\reducers\courseReducer.js" />
     <Content Include="app\reducers\initialState.js" />
+    <Content Include="app\reducers\mrcReducer.js" />
     <Content Include="app\x-app.js" />
     <Content Include="app\AppDispatcher.js" />
     <Content Include="app\components\common\ShellComponent.js" />

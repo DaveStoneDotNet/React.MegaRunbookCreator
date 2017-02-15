@@ -7,9 +7,10 @@ const API_HEADERS = {
     'Accept': 'application/json, text/plain, */*' 
 }
 
-let MrcApi = {
+class MrcApi {
 
-    fetchCourses() {
+    static getCourses() {
+
         return fetch('api/GetGourses',
                {
                    headers: API_HEADERS
@@ -17,6 +18,23 @@ let MrcApi = {
                .then((response) => response.json());
     }
 
+    static getUser() {
+
+        return fetch('api/GetUserProfile',
+               {
+                   headers: API_HEADERS
+               })
+               .then((response) => response.json());
+    }
+
+    static getLookups() {
+
+        return fetch('api/GetLookups',
+               {
+                   headers: API_HEADERS
+               })
+               .then((response) => response.json());
+    }
 };
 
 export default MrcApi;

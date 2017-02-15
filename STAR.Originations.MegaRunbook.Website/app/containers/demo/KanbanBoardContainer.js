@@ -1,17 +1,17 @@
 import React, { Component } from 'react';
-import {Container}          from 'flux/utils';
+import { Container }        from 'flux/utils';
 
 import KanbanBoard          from '../../components/demo/KanbanBoard';
 import CardActionCreators   from '../../actions/CardActionCreators';
 import CardStore            from '../../stores/CardStore';
 
-import courseActions        from '../../actions/courseActions';
+import * as courseActions   from '../../actions/courseActions';
 
 class KanbanBoardContainer extends Component {
 
-  componentDidMount(){
-      CardActionCreators.fetchCourses();
-      //courseActions.loadCourses();
+    componentDidMount() {
+        //CardActionCreators.fetchCourses();
+        //courseActions.getCourses();
   }
 
   render() {

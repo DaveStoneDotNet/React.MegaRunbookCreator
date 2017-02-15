@@ -24,14 +24,14 @@ namespace STAR.Originations.MegaRunbook.Website.Controllers
         private MrcDataAccess mrcDataAccess;
         public MrcDataAccess MrcDataAccess => this.mrcDataAccess ?? (this.mrcDataAccess = new MrcDataAccess());
 
-        #region GetUserProfile
+        #region GetGourses
         [System.Web.Http.HttpGet]
         public JsonResult GetGourses()
         {
             var courses = CourseData.SeedData();
             return this.Json(courses);
         }
-        #endregion GetUserProfile
+        #endregion GetGourses
 
         #region GetUserProfile
         [System.Web.Http.HttpGet]

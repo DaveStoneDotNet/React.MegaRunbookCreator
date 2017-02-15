@@ -24,11 +24,21 @@ webpackJsonp([0],{
 	
 	var _routes2 = _interopRequireDefault(_routes);
 	
-	var _configureStore = __webpack_require__(/*! ./store/configureStore */ 783);
+	var _configureStore = __webpack_require__(/*! ./store/configureStore */ 784);
 	
 	var _configureStore2 = _interopRequireDefault(_configureStore);
 	
-	__webpack_require__(/*! babel-polyfill */ 479);
+	var _courseActions = __webpack_require__(/*! ./actions/courseActions */ 278);
+	
+	var courseActions = _interopRequireWildcard(_courseActions);
+	
+	var _mrcActions = __webpack_require__(/*! ./actions/mrcActions */ 1051);
+	
+	var mrcActions = _interopRequireWildcard(_mrcActions);
+	
+	__webpack_require__(/*! babel-polyfill */ 283);
+	
+	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -38,14 +48,16 @@ webpackJsonp([0],{
 	
 	var store = (0, _configureStore2.default)();
 	
-	// Create an enhanced history that syncs navigation events with the store
-	
-	
 	// Import babel-polyfill to support Object.assign functions for deep-cloning of immutable objects.
 	// Babel does not support Object.assign by default, so a pollyfill is needed.
 	// 
 	//      e.g. Object.assign({}, state, { someProperty: 'some value' });
 	
+	store.dispatch(courseActions.getCourses());
+	store.dispatch(mrcActions.getUser());
+	store.dispatch(mrcActions.getLookups());
+	
+	// Create an enhanced history that syncs navigation events with the store
 	var history = (0, _reactRouterRedux.syncHistoryWithStore)(_reactRouter.browserHistory, store);
 	
 	(0, _reactDom.render)(_react2.default.createElement(
@@ -94,11 +106,11 @@ webpackJsonp([0],{
 	
 	var _CoursesComponent2 = _interopRequireDefault(_CoursesComponent);
 	
-	var _ManageCoursePage = __webpack_require__(/*! ./components/demo/ManageCoursePage */ 285);
+	var _ManageCoursePage = __webpack_require__(/*! ./components/demo/ManageCoursePage */ 583);
 	
 	var _ManageCoursePage2 = _interopRequireDefault(_ManageCoursePage);
 	
-	var _KanbanBoardContainer = __webpack_require__(/*! ./containers/demo/KanbanBoardContainer */ 292);
+	var _KanbanBoardContainer = __webpack_require__(/*! ./containers/demo/KanbanBoardContainer */ 590);
 	
 	var _KanbanBoardContainer2 = _interopRequireDefault(_KanbanBoardContainer);
 	
@@ -575,7 +587,7 @@ webpackJsonp([0],{
 	
 	var courseActions = _interopRequireWildcard(_courseActions);
 	
-	var _CourseList = __webpack_require__(/*! ./CourseList */ 283);
+	var _CourseList = __webpack_require__(/*! ./CourseList */ 581);
 	
 	var _CourseList2 = _interopRequireDefault(_CourseList);
 	
@@ -618,9 +630,6 @@ webpackJsonp([0],{
 	    }, {
 	        key: 'render',
 	        value: function render() {
-	
-	            debugger;
-	
 	            var courses = this.props.courses;
 	
 	
@@ -715,23 +724,24 @@ webpackJsonp([0],{
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
+	exports.loadCoursesSuccess = loadCoursesSuccess;
 	exports.createCourseSuccess = createCourseSuccess;
 	exports.updateCourseSuccess = updateCourseSuccess;
-	exports.loadCoursesSuccess = loadCoursesSuccess;
-	exports.saveCourse = saveCourse;
+	exports.getCourses = getCourses;
 	exports.loadCourses = loadCourses;
-	
-	var _MrcApi = __webpack_require__(/*! ../api/MrcApi */ 1050);
-	
-	var _MrcApi2 = _interopRequireDefault(_MrcApi);
+	exports.saveCourse = saveCourse;
 	
 	var _mockCourseApi = __webpack_require__(/*! ../api/mockCourseApi */ 279);
 	
 	var _mockCourseApi2 = _interopRequireDefault(_mockCourseApi);
 	
-	var _ajaxStatusActions = __webpack_require__(/*! ./ajaxStatusActions */ 281);
+	var _MrcApi = __webpack_require__(/*! ../api/MrcApi */ 281);
 	
-	var _actionTypes = __webpack_require__(/*! ./actionTypes */ 282);
+	var _MrcApi2 = _interopRequireDefault(_MrcApi);
+	
+	var _ajaxStatusActions = __webpack_require__(/*! ./ajaxStatusActions */ 579);
+	
+	var _actionTypes = __webpack_require__(/*! ./actionTypes */ 580);
 	
 	var types = _interopRequireWildcard(_actionTypes);
 	
@@ -749,28 +759,52 @@ webpackJsonp([0],{
 	// Once an action is created, you need a function which will 'handle' that action, and that's where reducers come in.
 	// Reducers are just functions which accept a state and an action and returns a new state.
 	
+	// For example, substitute it with a real api.
+	function loadCoursesSuccess(courses) {
+	    return { type: types.LOAD_COURSES_SUCCESS, courses: courses };
+	} // Only need to change this import to use a real api instead of a mocked one.
 	function createCourseSuccess(course) {
-	    debugger;return { type: types.CREATE_COURSE_SUCCESS, course: course };
+	    return { type: types.CREATE_COURSE_SUCCESS, course: course };
 	}
 	function updateCourseSuccess(course) {
-	    debugger;return { type: types.UPDATE_COURSE_SUCCESS, course: course };
+	    return { type: types.UPDATE_COURSE_SUCCESS, course: course };
 	}
-	function loadCoursesSuccess(courses) {
-	    debugger;return { type: types.LOAD_COURSES_SUCCESS, courses: courses };
-	}
+	
+	//export function getUserSuccess(user)        { return { type: types.GET_USER_SUCCESS,      user:    user    }; }
+	//export function getLookupsSuccess(lookups)  { return { type: types.GET_LOOKUPS_SUCCESS,   lookups: lookups }; }
 	
 	// ---
 	
-	function saveCourse(course) {
-	    return function (dispatch, getState) {
+	function getCourses() {
+	    return function (dispatch) {
 	        dispatch((0, _ajaxStatusActions.beginAjaxCall)());
-	        return _mockCourseApi2.default.saveCourse(course).then(function (course) {
-	            course.id ? dispatch(updateCourseSuccess(course)) : dispatch(createCourseSuccess(course));
+	        return _MrcApi2.default.getCourses().then(function (response) {
+	            dispatch(loadCoursesSuccess(response));
 	        }).catch(function (error) {
-	            dispatch((0, _ajaxStatusActions.ajaxCallError)(error));throw error;
+	            throw error;
 	        });
 	    };
-	}
+	};
+	
+	//export function getUser() {
+	//    return function(dispatch) {
+	//        dispatch(beginAjaxCall());
+	//        return MrcApi.getUser()
+	//                     .then(response => { dispatch(getUserSuccess(response)); })
+	//                     .catch(error   => { throw(error); }); 
+	//    };
+	//};
+	
+	//export function getLookups() {
+	//    return function(dispatch) {
+	//        dispatch(beginAjaxCall());
+	//        return MrcApi.getLookups()
+	//                     .then(response => { dispatch(getLookupsSuccess(response)); })
+	//                     .catch(error   => { throw(error); }); 
+	//    };
+	//};
+	
+	// -------------------------------------------------------------------------------------------------
 	
 	function loadCourses() {
 	    return function (dispatch) {
@@ -781,7 +815,18 @@ webpackJsonp([0],{
 	            throw error;
 	        });
 	    };
-	}
+	};
+	
+	function saveCourse(course) {
+	    return function (dispatch, getState) {
+	        dispatch((0, _ajaxStatusActions.beginAjaxCall)());
+	        return _mockCourseApi2.default.saveCourse(course).then(function (course) {
+	            course.id ? dispatch(updateCourseSuccess(course)) : dispatch(createCourseSuccess(course));
+	        }).catch(function (error) {
+	            dispatch((0, _ajaxStatusActions.ajaxCallError)(error));throw error;
+	        });
+	    };
+	};
 
 /***/ },
 
@@ -947,6 +992,77 @@ webpackJsonp([0],{
 /***/ },
 
 /***/ 281:
+/*!***************************!*\
+  !*** ./app/api/MrcApi.js ***!
+  \***************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	__webpack_require__(/*! whatwg-fetch */ 282);
+	
+	__webpack_require__(/*! babel-polyfill */ 283);
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	var API_HEADERS = {
+	    'Content-Type': 'application/json',
+	    'Accept': 'application/json, text/plain, */*'
+	};
+	
+	var MrcApi = function () {
+	    function MrcApi() {
+	        _classCallCheck(this, MrcApi);
+	    }
+	
+	    _createClass(MrcApi, null, [{
+	        key: 'getCourses',
+	        value: function getCourses() {
+	
+	            return fetch('api/GetGourses', {
+	                headers: API_HEADERS
+	            }).then(function (response) {
+	                return response.json();
+	            });
+	        }
+	    }, {
+	        key: 'getUser',
+	        value: function getUser() {
+	
+	            return fetch('api/GetUserProfile', {
+	                headers: API_HEADERS
+	            }).then(function (response) {
+	                return response.json();
+	            });
+	        }
+	    }, {
+	        key: 'getLookups',
+	        value: function getLookups() {
+	
+	            return fetch('api/GetLookups', {
+	                headers: API_HEADERS
+	            }).then(function (response) {
+	                return response.json();
+	            });
+	        }
+	    }]);
+	
+	    return MrcApi;
+	}();
+	
+	;
+	
+	exports.default = MrcApi;
+
+/***/ },
+
+/***/ 579:
 /*!******************************************!*\
   !*** ./app/actions/ajaxStatusActions.js ***!
   \******************************************/
@@ -960,7 +1076,7 @@ webpackJsonp([0],{
 	exports.beginAjaxCall = beginAjaxCall;
 	exports.ajaxCallError = ajaxCallError;
 	
-	var _actionTypes = __webpack_require__(/*! ./actionTypes */ 282);
+	var _actionTypes = __webpack_require__(/*! ./actionTypes */ 580);
 	
 	var types = _interopRequireWildcard(_actionTypes);
 	
@@ -980,7 +1096,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 282:
+/***/ 580:
 /*!************************************!*\
   !*** ./app/actions/actionTypes.js ***!
   \************************************/
@@ -993,14 +1109,18 @@ webpackJsonp([0],{
 	});
 	var BEGIN_AJAX_CALL = exports.BEGIN_AJAX_CALL = 'BEGIN_AJAX_CALL';
 	var AJAX_CALL_ERROR = exports.AJAX_CALL_ERROR = 'AJAX_CALL_ERROR';
+	
 	var LOAD_COURSES_SUCCESS = exports.LOAD_COURSES_SUCCESS = 'LOAD_COURSES_SUCCESS';
 	var LOAD_AUTHORS_SUCCESS = exports.LOAD_AUTHORS_SUCCESS = 'LOAD_AUTHORS_SUCCESS';
 	var CREATE_COURSE_SUCCESS = exports.CREATE_COURSE_SUCCESS = 'CREATE_COURSE_SUCCESS';
 	var UPDATE_COURSE_SUCCESS = exports.UPDATE_COURSE_SUCCESS = 'UPDATE_COURSE_SUCCESS';
+	
+	var GET_USER_SUCCESS = exports.GET_USER_SUCCESS = 'GET_USER_SUCCESS';
+	var GET_LOOKUPS_SUCCESS = exports.GET_LOOKUPS_SUCCESS = 'GET_LOOKUPS_SUCCESS';
 
 /***/ },
 
-/***/ 283:
+/***/ 581:
 /*!*******************************************!*\
   !*** ./app/components/demo/CourseList.js ***!
   \*******************************************/
@@ -1016,7 +1136,7 @@ webpackJsonp([0],{
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _CourseListRow = __webpack_require__(/*! ./CourseListRow */ 284);
+	var _CourseListRow = __webpack_require__(/*! ./CourseListRow */ 582);
 	
 	var _CourseListRow2 = _interopRequireDefault(_CourseListRow);
 	
@@ -1079,7 +1199,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 284:
+/***/ 582:
 /*!**********************************************!*\
   !*** ./app/components/demo/CourseListRow.js ***!
   \**********************************************/
@@ -1149,7 +1269,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 285:
+/***/ 583:
 /*!*************************************************!*\
   !*** ./app/components/demo/ManageCoursePage.js ***!
   \*************************************************/
@@ -1171,7 +1291,7 @@ webpackJsonp([0],{
 	
 	var _redux = __webpack_require__(/*! redux */ 179);
 	
-	var _toastr = __webpack_require__(/*! toastr */ 286);
+	var _toastr = __webpack_require__(/*! toastr */ 584);
 	
 	var _toastr2 = _interopRequireDefault(_toastr);
 	
@@ -1179,7 +1299,7 @@ webpackJsonp([0],{
 	
 	var courseActions = _interopRequireWildcard(_courseActions);
 	
-	var _CourseForm = __webpack_require__(/*! ./CourseForm */ 289);
+	var _CourseForm = __webpack_require__(/*! ./CourseForm */ 587);
 	
 	var _CourseForm2 = _interopRequireDefault(_CourseForm);
 	
@@ -1326,7 +1446,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 289:
+/***/ 587:
 /*!*******************************************!*\
   !*** ./app/components/demo/CourseForm.js ***!
   \*******************************************/
@@ -1342,11 +1462,11 @@ webpackJsonp([0],{
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _TextInput = __webpack_require__(/*! ../common/TextInput */ 290);
+	var _TextInput = __webpack_require__(/*! ../common/TextInput */ 588);
 	
 	var _TextInput2 = _interopRequireDefault(_TextInput);
 	
-	var _SelectInput = __webpack_require__(/*! ../common/SelectInput */ 291);
+	var _SelectInput = __webpack_require__(/*! ../common/SelectInput */ 589);
 	
 	var _SelectInput2 = _interopRequireDefault(_SelectInput);
 	
@@ -1411,7 +1531,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 290:
+/***/ 588:
 /*!********************************************!*\
   !*** ./app/components/common/TextInput.js ***!
   \********************************************/
@@ -1483,7 +1603,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 291:
+/***/ 589:
 /*!**********************************************!*\
   !*** ./app/components/common/SelectInput.js ***!
   \**********************************************/
@@ -1565,7 +1685,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 292:
+/***/ 590:
 /*!*****************************************************!*\
   !*** ./app/containers/demo/KanbanBoardContainer.js ***!
   \*****************************************************/
@@ -1583,23 +1703,25 @@ webpackJsonp([0],{
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _utils = __webpack_require__(/*! flux/utils */ 293);
+	var _utils = __webpack_require__(/*! flux/utils */ 591);
 	
-	var _KanbanBoard = __webpack_require__(/*! ../../components/demo/KanbanBoard */ 311);
+	var _KanbanBoard = __webpack_require__(/*! ../../components/demo/KanbanBoard */ 609);
 	
 	var _KanbanBoard2 = _interopRequireDefault(_KanbanBoard);
 	
-	var _CardActionCreators = __webpack_require__(/*! ../../actions/CardActionCreators */ 778);
+	var _CardActionCreators = __webpack_require__(/*! ../../actions/CardActionCreators */ 779);
 	
 	var _CardActionCreators2 = _interopRequireDefault(_CardActionCreators);
 	
-	var _CardStore = __webpack_require__(/*! ../../stores/CardStore */ 779);
+	var _CardStore = __webpack_require__(/*! ../../stores/CardStore */ 780);
 	
 	var _CardStore2 = _interopRequireDefault(_CardStore);
 	
 	var _courseActions = __webpack_require__(/*! ../../actions/courseActions */ 278);
 	
-	var _courseActions2 = _interopRequireDefault(_courseActions);
+	var courseActions = _interopRequireWildcard(_courseActions);
+	
+	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -1621,8 +1743,8 @@ webpackJsonp([0],{
 	  _createClass(KanbanBoardContainer, [{
 	    key: 'componentDidMount',
 	    value: function componentDidMount() {
-	      _CardActionCreators2.default.fetchCourses();
-	      //courseActions.loadCourses();
+	      //CardActionCreators.fetchCourses();
+	      //courseActions.getCourses();
 	    }
 	  }, {
 	    key: 'render',
@@ -1646,7 +1768,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 293:
+/***/ 591:
 /*!*************************!*\
   !*** ./~/flux/utils.js ***!
   \*************************/
@@ -1661,16 +1783,16 @@ webpackJsonp([0],{
 	 * of patent rights can be found in the PATENTS file in the same directory.
 	 */
 	
-	module.exports.Container = __webpack_require__(/*! ./lib/FluxContainer */ 294);
-	module.exports.MapStore = __webpack_require__(/*! ./lib/FluxMapStore */ 298);
-	module.exports.Mixin = __webpack_require__(/*! ./lib/FluxMixinLegacy */ 310);
-	module.exports.ReduceStore = __webpack_require__(/*! ./lib/FluxReduceStore */ 299);
-	module.exports.Store = __webpack_require__(/*! ./lib/FluxStore */ 300);
+	module.exports.Container = __webpack_require__(/*! ./lib/FluxContainer */ 592);
+	module.exports.MapStore = __webpack_require__(/*! ./lib/FluxMapStore */ 596);
+	module.exports.Mixin = __webpack_require__(/*! ./lib/FluxMixinLegacy */ 608);
+	module.exports.ReduceStore = __webpack_require__(/*! ./lib/FluxReduceStore */ 597);
+	module.exports.Store = __webpack_require__(/*! ./lib/FluxStore */ 598);
 
 
 /***/ },
 
-/***/ 294:
+/***/ 592:
 /*!*************************************!*\
   !*** ./~/flux/lib/FluxContainer.js ***!
   \*************************************/
@@ -1695,10 +1817,10 @@ webpackJsonp([0],{
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
-	var FluxStoreGroup = __webpack_require__(/*! ./FluxStoreGroup */ 295);
+	var FluxStoreGroup = __webpack_require__(/*! ./FluxStoreGroup */ 593);
 	
-	var invariant = __webpack_require__(/*! fbjs/lib/invariant */ 296);
-	var shallowEqual = __webpack_require__(/*! fbjs/lib/shallowEqual */ 297);
+	var invariant = __webpack_require__(/*! fbjs/lib/invariant */ 594);
+	var shallowEqual = __webpack_require__(/*! fbjs/lib/shallowEqual */ 595);
 	
 	var DEFAULT_OPTIONS = {
 	  pure: true,
@@ -1857,7 +1979,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 295:
+/***/ 593:
 /*!**************************************!*\
   !*** ./~/flux/lib/FluxStoreGroup.js ***!
   \**************************************/
@@ -1879,7 +2001,7 @@ webpackJsonp([0],{
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
 	
-	var invariant = __webpack_require__(/*! fbjs/lib/invariant */ 296);
+	var invariant = __webpack_require__(/*! fbjs/lib/invariant */ 594);
 	
 	/**
 	 * FluxStoreGroup allows you to execute a callback on every dispatch after
@@ -1942,7 +2064,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 297:
+/***/ 595:
 /*!************************************!*\
   !*** ./~/fbjs/lib/shallowEqual.js ***!
   \************************************/
@@ -2001,7 +2123,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 298:
+/***/ 596:
 /*!************************************!*\
   !*** ./~/flux/lib/FluxMapStore.js ***!
   \************************************/
@@ -2025,10 +2147,10 @@ webpackJsonp([0],{
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
-	var FluxReduceStore = __webpack_require__(/*! ./FluxReduceStore */ 299);
-	var Immutable = __webpack_require__(/*! immutable */ 309);
+	var FluxReduceStore = __webpack_require__(/*! ./FluxReduceStore */ 597);
+	var Immutable = __webpack_require__(/*! immutable */ 607);
 	
-	var invariant = __webpack_require__(/*! fbjs/lib/invariant */ 296);
+	var invariant = __webpack_require__(/*! fbjs/lib/invariant */ 594);
 	
 	/**
 	 * This is a simple store. It allows caching key value pairs. An implementation
@@ -2155,7 +2277,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 299:
+/***/ 597:
 /*!***************************************!*\
   !*** ./~/flux/lib/FluxReduceStore.js ***!
   \***************************************/
@@ -2179,10 +2301,10 @@ webpackJsonp([0],{
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
-	var FluxStore = __webpack_require__(/*! ./FluxStore */ 300);
+	var FluxStore = __webpack_require__(/*! ./FluxStore */ 598);
 	
-	var abstractMethod = __webpack_require__(/*! ./abstractMethod */ 308);
-	var invariant = __webpack_require__(/*! fbjs/lib/invariant */ 296);
+	var abstractMethod = __webpack_require__(/*! ./abstractMethod */ 606);
+	var invariant = __webpack_require__(/*! fbjs/lib/invariant */ 594);
 	
 	var FluxReduceStore = (function (_FluxStore) {
 	  _inherits(FluxReduceStore, _FluxStore);
@@ -2266,7 +2388,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 300:
+/***/ 598:
 /*!*********************************!*\
   !*** ./~/flux/lib/FluxStore.js ***!
   \*********************************/
@@ -2288,11 +2410,11 @@ webpackJsonp([0],{
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
 	
-	var _require = __webpack_require__(/*! fbemitter */ 301);
+	var _require = __webpack_require__(/*! fbemitter */ 599);
 	
 	var EventEmitter = _require.EventEmitter;
 	
-	var invariant = __webpack_require__(/*! fbjs/lib/invariant */ 296);
+	var invariant = __webpack_require__(/*! fbjs/lib/invariant */ 594);
 	
 	/**
 	 * This class should be extended by the stores in your application, like so:
@@ -2453,7 +2575,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 301:
+/***/ 599:
 /*!******************************!*\
   !*** ./~/fbemitter/index.js ***!
   \******************************/
@@ -2469,8 +2591,8 @@ webpackJsonp([0],{
 	 */
 	
 	var fbemitter = {
-	  EventEmitter: __webpack_require__(/*! ./lib/BaseEventEmitter */ 302),
-	  EmitterSubscription : __webpack_require__(/*! ./lib/EmitterSubscription */ 303)
+	  EventEmitter: __webpack_require__(/*! ./lib/BaseEventEmitter */ 600),
+	  EmitterSubscription : __webpack_require__(/*! ./lib/EmitterSubscription */ 601)
 	};
 	
 	module.exports = fbemitter;
@@ -2478,7 +2600,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 302:
+/***/ 600:
 /*!*********************************************!*\
   !*** ./~/fbemitter/lib/BaseEventEmitter.js ***!
   \*********************************************/
@@ -2500,11 +2622,11 @@ webpackJsonp([0],{
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
 	
-	var EmitterSubscription = __webpack_require__(/*! ./EmitterSubscription */ 303);
-	var EventSubscriptionVendor = __webpack_require__(/*! ./EventSubscriptionVendor */ 305);
+	var EmitterSubscription = __webpack_require__(/*! ./EmitterSubscription */ 601);
+	var EventSubscriptionVendor = __webpack_require__(/*! ./EventSubscriptionVendor */ 603);
 	
-	var emptyFunction = __webpack_require__(/*! fbjs/lib/emptyFunction */ 307);
-	var invariant = __webpack_require__(/*! fbjs/lib/invariant */ 306);
+	var emptyFunction = __webpack_require__(/*! fbjs/lib/emptyFunction */ 605);
+	var invariant = __webpack_require__(/*! fbjs/lib/invariant */ 604);
 	
 	/**
 	 * @class BaseEventEmitter
@@ -2679,7 +2801,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 303:
+/***/ 601:
 /*!************************************************!*\
   !*** ./~/fbemitter/lib/EmitterSubscription.js ***!
   \************************************************/
@@ -2703,7 +2825,7 @@ webpackJsonp([0],{
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
-	var EventSubscription = __webpack_require__(/*! ./EventSubscription */ 304);
+	var EventSubscription = __webpack_require__(/*! ./EventSubscription */ 602);
 	
 	/**
 	 * EmitterSubscription represents a subscription with listener and context data.
@@ -2736,7 +2858,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 304:
+/***/ 602:
 /*!**********************************************!*\
   !*** ./~/fbemitter/lib/EventSubscription.js ***!
   \**********************************************/
@@ -2794,7 +2916,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 305:
+/***/ 603:
 /*!****************************************************!*\
   !*** ./~/fbemitter/lib/EventSubscriptionVendor.js ***!
   \****************************************************/
@@ -2816,7 +2938,7 @@ webpackJsonp([0],{
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
 	
-	var invariant = __webpack_require__(/*! fbjs/lib/invariant */ 306);
+	var invariant = __webpack_require__(/*! fbjs/lib/invariant */ 604);
 	
 	/**
 	 * EventSubscriptionVendor stores a set of EventSubscriptions that are
@@ -2907,7 +3029,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 306:
+/***/ 604:
 /*!*********************************************!*\
   !*** ./~/fbemitter/~/fbjs/lib/invariant.js ***!
   \*********************************************/
@@ -2972,7 +3094,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 307:
+/***/ 605:
 /*!*************************************************!*\
   !*** ./~/fbemitter/~/fbjs/lib/emptyFunction.js ***!
   \*************************************************/
@@ -3019,7 +3141,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 308:
+/***/ 606:
 /*!**************************************!*\
   !*** ./~/flux/lib/abstractMethod.js ***!
   \**************************************/
@@ -3039,7 +3161,7 @@ webpackJsonp([0],{
 	
 	'use strict';
 	
-	var invariant = __webpack_require__(/*! fbjs/lib/invariant */ 296);
+	var invariant = __webpack_require__(/*! fbjs/lib/invariant */ 594);
 	
 	function abstractMethod(className, methodName) {
 	   true ? process.env.NODE_ENV !== 'production' ? invariant(false, 'Subclasses of %s must override %s() with their own implementation.', className, methodName) : invariant(false) : undefined;
@@ -3050,7 +3172,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 309:
+/***/ 607:
 /*!***************************************!*\
   !*** ./~/immutable/dist/immutable.js ***!
   \***************************************/
@@ -8038,7 +8160,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 310:
+/***/ 608:
 /*!***************************************!*\
   !*** ./~/flux/lib/FluxMixinLegacy.js ***!
   \***************************************/
@@ -8058,9 +8180,9 @@ webpackJsonp([0],{
 	
 	'use strict';
 	
-	var FluxStoreGroup = __webpack_require__(/*! ./FluxStoreGroup */ 295);
+	var FluxStoreGroup = __webpack_require__(/*! ./FluxStoreGroup */ 593);
 	
-	var invariant = __webpack_require__(/*! fbjs/lib/invariant */ 296);
+	var invariant = __webpack_require__(/*! fbjs/lib/invariant */ 594);
 	
 	/**
 	 * `FluxContainer` should be preferred over this mixin, but it requires using
@@ -8165,7 +8287,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 311:
+/***/ 609:
 /*!********************************************!*\
   !*** ./app/components/demo/KanbanBoard.js ***!
   \********************************************/
@@ -8183,15 +8305,15 @@ webpackJsonp([0],{
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _reactDnd = __webpack_require__(/*! react-dnd */ 312);
+	var _reactDnd = __webpack_require__(/*! react-dnd */ 610);
 	
-	var _reactDndHtml5Backend = __webpack_require__(/*! react-dnd-html5-backend */ 432);
+	var _reactDndHtml5Backend = __webpack_require__(/*! react-dnd-html5-backend */ 730);
 	
 	var _reactDndHtml5Backend2 = _interopRequireDefault(_reactDndHtml5Backend);
 	
 	var _reactRouter = __webpack_require__(/*! react-router */ 206);
 	
-	var _List = __webpack_require__(/*! ./List */ 464);
+	var _List = __webpack_require__(/*! ./List */ 762);
 	
 	var _List2 = _interopRequireDefault(_List);
 	
@@ -8279,7 +8401,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 464:
+/***/ 762:
 /*!*************************************!*\
   !*** ./app/components/demo/List.js ***!
   \*************************************/
@@ -8299,17 +8421,17 @@ webpackJsonp([0],{
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _reactDnd = __webpack_require__(/*! react-dnd */ 312);
+	var _reactDnd = __webpack_require__(/*! react-dnd */ 610);
 	
-	var _Card = __webpack_require__(/*! ./Card */ 465);
+	var _Card = __webpack_require__(/*! ./Card */ 763);
 	
 	var _Card2 = _interopRequireDefault(_Card);
 	
-	var _constants = __webpack_require__(/*! ../../constants/constants */ 777);
+	var _constants = __webpack_require__(/*! ../../constants/constants */ 778);
 	
 	var _constants2 = _interopRequireDefault(_constants);
 	
-	var _CardActionCreators = __webpack_require__(/*! ../../actions/CardActionCreators */ 778);
+	var _CardActionCreators = __webpack_require__(/*! ../../actions/CardActionCreators */ 779);
 	
 	var _CardActionCreators2 = _interopRequireDefault(_CardActionCreators);
 	
@@ -8380,7 +8502,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 465:
+/***/ 763:
 /*!*************************************!*\
   !*** ./app/components/demo/Card.js ***!
   \*************************************/
@@ -8398,27 +8520,27 @@ webpackJsonp([0],{
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _reactAddonsCssTransitionGroup = __webpack_require__(/*! react-addons-css-transition-group */ 466);
+	var _reactAddonsCssTransitionGroup = __webpack_require__(/*! react-addons-css-transition-group */ 764);
 	
 	var _reactAddonsCssTransitionGroup2 = _interopRequireDefault(_reactAddonsCssTransitionGroup);
 	
-	var _marked = __webpack_require__(/*! marked */ 473);
+	var _marked = __webpack_require__(/*! marked */ 771);
 	
 	var _marked2 = _interopRequireDefault(_marked);
 	
-	var _reactDnd = __webpack_require__(/*! react-dnd */ 312);
+	var _reactDnd = __webpack_require__(/*! react-dnd */ 610);
 	
 	var _reactRouter = __webpack_require__(/*! react-router */ 206);
 	
-	var _CheckList = __webpack_require__(/*! ./CheckList */ 474);
+	var _CheckList = __webpack_require__(/*! ./CheckList */ 772);
 	
 	var _CheckList2 = _interopRequireDefault(_CheckList);
 	
-	var _constants = __webpack_require__(/*! ../../constants/constants */ 777);
+	var _constants = __webpack_require__(/*! ../../constants/constants */ 778);
 	
 	var _constants2 = _interopRequireDefault(_constants);
 	
-	var _CardActionCreators = __webpack_require__(/*! ../../actions/CardActionCreators */ 778);
+	var _CardActionCreators = __webpack_require__(/*! ../../actions/CardActionCreators */ 779);
 	
 	var _CardActionCreators2 = _interopRequireDefault(_CardActionCreators);
 	
@@ -8563,7 +8685,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 474:
+/***/ 772:
 /*!******************************************!*\
   !*** ./app/components/demo/CheckList.js ***!
   \******************************************/
@@ -8581,7 +8703,7 @@ webpackJsonp([0],{
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _TaskActionCreators = __webpack_require__(/*! ../../actions/TaskActionCreators */ 475);
+	var _TaskActionCreators = __webpack_require__(/*! ../../actions/TaskActionCreators */ 773);
 	
 	var _TaskActionCreators2 = _interopRequireDefault(_TaskActionCreators);
 	
@@ -8658,7 +8780,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 475:
+/***/ 773:
 /*!*******************************************!*\
   !*** ./app/actions/TaskActionCreators.js ***!
   \*******************************************/
@@ -8670,15 +8792,15 @@ webpackJsonp([0],{
 	    value: true
 	});
 	
-	var _AppDispatcher = __webpack_require__(/*! ../AppDispatcher */ 476);
+	var _AppDispatcher = __webpack_require__(/*! ../AppDispatcher */ 774);
 	
 	var _AppDispatcher2 = _interopRequireDefault(_AppDispatcher);
 	
-	var _KanbanApi = __webpack_require__(/*! ../api/KanbanApi */ 775);
+	var _KanbanApi = __webpack_require__(/*! ../api/KanbanApi */ 777);
 	
 	var _KanbanApi2 = _interopRequireDefault(_KanbanApi);
 	
-	var _constants = __webpack_require__(/*! ../constants/constants */ 777);
+	var _constants = __webpack_require__(/*! ../constants/constants */ 778);
 	
 	var _constants2 = _interopRequireDefault(_constants);
 	
@@ -8712,7 +8834,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 476:
+/***/ 774:
 /*!******************************!*\
   !*** ./app/AppDispatcher.js ***!
   \******************************/
@@ -8726,9 +8848,9 @@ webpackJsonp([0],{
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
-	var _flux = __webpack_require__(/*! flux */ 477);
+	var _flux = __webpack_require__(/*! flux */ 775);
 	
-	__webpack_require__(/*! babel-polyfill */ 479);
+	__webpack_require__(/*! babel-polyfill */ 283);
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
@@ -8780,7 +8902,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 775:
+/***/ 777:
 /*!******************************!*\
   !*** ./app/api/KanbanApi.js ***!
   \******************************/
@@ -8792,9 +8914,9 @@ webpackJsonp([0],{
 	    value: true
 	});
 	
-	__webpack_require__(/*! whatwg-fetch */ 776);
+	__webpack_require__(/*! whatwg-fetch */ 282);
 	
-	__webpack_require__(/*! babel-polyfill */ 479);
+	__webpack_require__(/*! babel-polyfill */ 283);
 	
 	var API_HEADERS = {
 	    'Content-Type': 'application/json',
@@ -8867,7 +8989,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 777:
+/***/ 778:
 /*!************************************!*\
   !*** ./app/constants/constants.js ***!
   \************************************/
@@ -8929,7 +9051,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 778:
+/***/ 779:
 /*!*******************************************!*\
   !*** ./app/actions/CardActionCreators.js ***!
   \*******************************************/
@@ -8941,40 +9063,40 @@ webpackJsonp([0],{
 	  value: true
 	});
 	
-	var _AppDispatcher = __webpack_require__(/*! ../AppDispatcher */ 476);
+	var _AppDispatcher = __webpack_require__(/*! ../AppDispatcher */ 774);
 	
 	var _AppDispatcher2 = _interopRequireDefault(_AppDispatcher);
 	
-	var _constants = __webpack_require__(/*! ../constants/constants */ 777);
+	var _constants = __webpack_require__(/*! ../constants/constants */ 778);
 	
 	var _constants2 = _interopRequireDefault(_constants);
 	
-	var _KanbanApi = __webpack_require__(/*! ../api/KanbanApi */ 775);
+	var _KanbanApi = __webpack_require__(/*! ../api/KanbanApi */ 777);
 	
 	var _KanbanApi2 = _interopRequireDefault(_KanbanApi);
 	
-	var _MrcApi = __webpack_require__(/*! ../api/MrcApi */ 1050);
+	var _MrcApi = __webpack_require__(/*! ../api/MrcApi */ 281);
 	
 	var _MrcApi2 = _interopRequireDefault(_MrcApi);
 	
-	var _CardStore = __webpack_require__(/*! ../stores/CardStore */ 779);
+	var _CardStore = __webpack_require__(/*! ../stores/CardStore */ 780);
 	
 	var _CardStore2 = _interopRequireDefault(_CardStore);
 	
-	var _utils = __webpack_require__(/*! ../utils */ 782);
+	var _utils = __webpack_require__(/*! ../utils */ 783);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var CardActionCreators = {
-	  fetchCards: function fetchCards() {
-	    _AppDispatcher2.default.dispatchAsync(_KanbanApi2.default.fetchCards(), {
+	  fetchCourses: function fetchCourses() {
+	    _AppDispatcher2.default.dispatchAsync(_MrcApi2.default.getCourses(), {
 	      request: _constants2.default.FETCH_CARDS,
 	      success: _constants2.default.FETCH_CARDS_SUCCESS,
 	      failure: _constants2.default.FETCH_CARDS_ERROR
 	    });
 	  },
-	  fetchCourses: function fetchCourses() {
-	    _AppDispatcher2.default.dispatchAsync(_MrcApi2.default.fetchCourses(), {
+	  fetchCards: function fetchCards() {
+	    _AppDispatcher2.default.dispatchAsync(_KanbanApi2.default.fetchCards(), {
 	      request: _constants2.default.FETCH_CARDS,
 	      success: _constants2.default.FETCH_CARDS_SUCCESS,
 	      failure: _constants2.default.FETCH_CARDS_ERROR
@@ -9033,7 +9155,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 779:
+/***/ 780:
 /*!*********************************!*\
   !*** ./app/stores/CardStore.js ***!
   \*********************************/
@@ -9047,21 +9169,21 @@ webpackJsonp([0],{
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
-	var _utils = __webpack_require__(/*! flux/utils */ 293);
+	var _utils = __webpack_require__(/*! flux/utils */ 591);
 	
-	var _reactAddonsUpdate = __webpack_require__(/*! react-addons-update */ 780);
+	var _reactAddonsUpdate = __webpack_require__(/*! react-addons-update */ 781);
 	
 	var _reactAddonsUpdate2 = _interopRequireDefault(_reactAddonsUpdate);
 	
-	var _constants = __webpack_require__(/*! ../constants/constants */ 777);
+	var _constants = __webpack_require__(/*! ../constants/constants */ 778);
 	
 	var _constants2 = _interopRequireDefault(_constants);
 	
-	var _AppDispatcher = __webpack_require__(/*! ../AppDispatcher */ 476);
+	var _AppDispatcher = __webpack_require__(/*! ../AppDispatcher */ 774);
 	
 	var _AppDispatcher2 = _interopRequireDefault(_AppDispatcher);
 	
-	__webpack_require__(/*! babel-polyfill */ 479);
+	__webpack_require__(/*! babel-polyfill */ 283);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -9243,7 +9365,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 782:
+/***/ 783:
 /*!**********************!*\
   !*** ./app/utils.js ***!
   \**********************/
@@ -9256,7 +9378,7 @@ webpackJsonp([0],{
 	});
 	exports.throttle = undefined;
 	
-	__webpack_require__(/*! babel-polyfill */ 479);
+	__webpack_require__(/*! babel-polyfill */ 283);
 	
 	var throttle = exports.throttle = function throttle(func, wait) {
 	    var context = void 0,
@@ -9289,7 +9411,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 783:
+/***/ 784:
 /*!*************************************!*\
   !*** ./app/store/configureStore.js ***!
   \*************************************/
@@ -9302,17 +9424,17 @@ webpackJsonp([0],{
 	});
 	exports.default = configureStore;
 	
-	var _reduxImmutableStateInvariant = __webpack_require__(/*! redux-immutable-state-invariant */ 784);
+	var _reduxImmutableStateInvariant = __webpack_require__(/*! redux-immutable-state-invariant */ 785);
 	
 	var _reduxImmutableStateInvariant2 = _interopRequireDefault(_reduxImmutableStateInvariant);
 	
-	var _reduxThunk = __webpack_require__(/*! redux-thunk */ 788);
+	var _reduxThunk = __webpack_require__(/*! redux-thunk */ 789);
 	
 	var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
 	
 	var _redux = __webpack_require__(/*! redux */ 179);
 	
-	var _reducers = __webpack_require__(/*! ../reducers */ 789);
+	var _reducers = __webpack_require__(/*! ../reducers */ 790);
 	
 	var _reducers2 = _interopRequireDefault(_reducers);
 	
@@ -9327,7 +9449,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 784:
+/***/ 785:
 /*!*********************************************************!*\
   !*** ./~/redux-immutable-state-invariant/dist/index.js ***!
   \*********************************************************/
@@ -9346,15 +9468,15 @@ webpackJsonp([0],{
 	
 	var _invariant2 = _interopRequireDefault(_invariant);
 	
-	var _jsonStringifySafe = __webpack_require__(/*! json-stringify-safe */ 785);
+	var _jsonStringifySafe = __webpack_require__(/*! json-stringify-safe */ 786);
 	
 	var _jsonStringifySafe2 = _interopRequireDefault(_jsonStringifySafe);
 	
-	var _isImmutable = __webpack_require__(/*! ./isImmutable */ 786);
+	var _isImmutable = __webpack_require__(/*! ./isImmutable */ 787);
 	
 	var _isImmutable2 = _interopRequireDefault(_isImmutable);
 	
-	var _trackForMutations = __webpack_require__(/*! ./trackForMutations */ 787);
+	var _trackForMutations = __webpack_require__(/*! ./trackForMutations */ 788);
 	
 	var _trackForMutations2 = _interopRequireDefault(_trackForMutations);
 	
@@ -9403,7 +9525,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 785:
+/***/ 786:
 /*!********************************************!*\
   !*** ./~/json-stringify-safe/stringify.js ***!
   \********************************************/
@@ -9440,7 +9562,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 786:
+/***/ 787:
 /*!***************************************************************!*\
   !*** ./~/redux-immutable-state-invariant/dist/isImmutable.js ***!
   \***************************************************************/
@@ -9461,7 +9583,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 787:
+/***/ 788:
 /*!*********************************************************************!*\
   !*** ./~/redux-immutable-state-invariant/dist/trackForMutations.js ***!
   \*********************************************************************/
@@ -9536,7 +9658,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 789:
+/***/ 790:
 /*!*******************************!*\
   !*** ./app/reducers/index.js ***!
   \*******************************/
@@ -9552,15 +9674,15 @@ webpackJsonp([0],{
 	
 	var _reactRouterRedux = __webpack_require__(/*! react-router-redux */ 265);
 	
-	var _courseReducer = __webpack_require__(/*! ./courseReducer */ 790);
+	var _courseReducer = __webpack_require__(/*! ./courseReducer */ 791);
 	
 	var _courseReducer2 = _interopRequireDefault(_courseReducer);
 	
-	var _authorReducer = __webpack_require__(/*! ./authorReducer */ 792);
+	var _authorReducer = __webpack_require__(/*! ./authorReducer */ 793);
 	
 	var _authorReducer2 = _interopRequireDefault(_authorReducer);
 	
-	var _ajaxStatusReducer = __webpack_require__(/*! ./ajaxStatusReducer */ 793);
+	var _ajaxStatusReducer = __webpack_require__(/*! ./ajaxStatusReducer */ 794);
 	
 	var _ajaxStatusReducer2 = _interopRequireDefault(_ajaxStatusReducer);
 	
@@ -9584,7 +9706,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 790:
+/***/ 791:
 /*!***************************************!*\
   !*** ./app/reducers/courseReducer.js ***!
   \***************************************/
@@ -9597,11 +9719,11 @@ webpackJsonp([0],{
 	});
 	exports.default = courseReducer;
 	
-	var _actionTypes = __webpack_require__(/*! ../actions/actionTypes */ 282);
+	var _actionTypes = __webpack_require__(/*! ../actions/actionTypes */ 580);
 	
 	var types = _interopRequireWildcard(_actionTypes);
 	
-	var _initialState = __webpack_require__(/*! ./initialState */ 791);
+	var _initialState = __webpack_require__(/*! ./initialState */ 792);
 	
 	var _initialState2 = _interopRequireDefault(_initialState);
 	
@@ -9619,15 +9741,12 @@ webpackJsonp([0],{
 	    switch (action.type) {
 	
 	        case types.LOAD_COURSES_SUCCESS:
-	            debugger;
 	            return action.courses;
 	
 	        case types.CREATE_COURSE_SUCCESS:
-	            debugger;
 	            return [].concat(_toConsumableArray(state), [Object.assign({}, action.course)]);
 	
 	        case types.UPDATE_COURSE_SUCCESS:
-	            debugger;
 	            return [].concat(_toConsumableArray(state.filter(function (course) {
 	                return course.id !== action.course.id;
 	            })), [Object.assign({}, action.course)]);
@@ -9639,7 +9758,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 791:
+/***/ 792:
 /*!**************************************!*\
   !*** ./app/reducers/initialState.js ***!
   \**************************************/
@@ -9653,12 +9772,14 @@ webpackJsonp([0],{
 	exports.default = {
 	  authors: [],
 	  courses: [],
+	  user: {},
+	  lookups: {},
 	  ajaxCallsInProgress: 0
 	};
 
 /***/ },
 
-/***/ 792:
+/***/ 793:
 /*!***************************************!*\
   !*** ./app/reducers/authorReducer.js ***!
   \***************************************/
@@ -9671,11 +9792,11 @@ webpackJsonp([0],{
 	});
 	exports.default = authorReducer;
 	
-	var _actionTypes = __webpack_require__(/*! ../actions/actionTypes */ 282);
+	var _actionTypes = __webpack_require__(/*! ../actions/actionTypes */ 580);
 	
 	var types = _interopRequireWildcard(_actionTypes);
 	
-	var _initialState = __webpack_require__(/*! ./initialState */ 791);
+	var _initialState = __webpack_require__(/*! ./initialState */ 792);
 	
 	var _initialState2 = _interopRequireDefault(_initialState);
 	
@@ -9700,7 +9821,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 793:
+/***/ 794:
 /*!*******************************************!*\
   !*** ./app/reducers/ajaxStatusReducer.js ***!
   \*******************************************/
@@ -9712,11 +9833,11 @@ webpackJsonp([0],{
 	  value: true
 	});
 	
-	var _actionTypes = __webpack_require__(/*! ../actions/actionTypes.js */ 282);
+	var _actionTypes = __webpack_require__(/*! ../actions/actionTypes.js */ 580);
 	
 	var types = _interopRequireWildcard(_actionTypes);
 	
-	var _initialState = __webpack_require__(/*! ./initialState */ 791);
+	var _initialState = __webpack_require__(/*! ./initialState */ 792);
 	
 	var _initialState2 = _interopRequireDefault(_initialState);
 	
@@ -9746,10 +9867,10 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 1050:
-/*!***************************!*\
-  !*** ./app/api/MrcApi.js ***!
-  \***************************/
+/***/ 1051:
+/*!***********************************!*\
+  !*** ./app/actions/mrcActions.js ***!
+  \***********************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -9757,27 +9878,65 @@ webpackJsonp([0],{
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
+	exports.getUserSuccess = getUserSuccess;
+	exports.getLookupsSuccess = getLookupsSuccess;
+	exports.getUser = getUser;
+	exports.getLookups = getLookups;
 	
-	__webpack_require__(/*! whatwg-fetch */ 776);
+	var _MrcApi = __webpack_require__(/*! ../api/MrcApi */ 281);
 	
-	__webpack_require__(/*! babel-polyfill */ 479);
+	var _MrcApi2 = _interopRequireDefault(_MrcApi);
 	
-	var API_HEADERS = {
-	    'Content-Type': 'application/json',
-	    'Accept': 'application/json, text/plain, */*'
-	};
+	var _ajaxStatusActions = __webpack_require__(/*! ./ajaxStatusActions */ 579);
 	
-	var MrcApi = {
-	    fetchCourses: function fetchCourses() {
-	        return fetch('api/GetGourses', {
-	            headers: API_HEADERS
-	        }).then(function (response) {
-	            return response.json();
+	var _actionTypes = __webpack_require__(/*! ./actionTypes */ 580);
+	
+	var types = _interopRequireWildcard(_actionTypes);
+	
+	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	// An action describes user intent.
+	
+	// 1) Store gets notified of action.
+	// 2) Store sends action to reducers.
+	// 3) Reducers accept state and return new state.
+	
+	// Action Creators... returning a plain javascript object which must have a 'type' property.
+	// Once an action is created, you need a function which will 'handle' that action, and that's where reducers come in.
+	// Reducers are just functions which accept a state and an action and returns a new state.
+	
+	function getUserSuccess(user) {
+	    return { type: types.GET_USER_SUCCESS, user: user };
+	}
+	function getLookupsSuccess(lookups) {
+	    return { type: types.GET_LOOKUPS_SUCCESS, lookups: lookups };
+	}
+	
+	// ---
+	
+	function getUser() {
+	    return function (dispatch) {
+	        dispatch((0, _ajaxStatusActions.beginAjaxCall)());
+	        return _MrcApi2.default.getUser().then(function (response) {
+	            dispatch(getUserSuccess(response));
+	        }).catch(function (error) {
+	            throw error;
 	        });
-	    }
+	    };
 	};
 	
-	exports.default = MrcApi;
+	function getLookups() {
+	    return function (dispatch) {
+	        dispatch((0, _ajaxStatusActions.beginAjaxCall)());
+	        return _MrcApi2.default.getLookups().then(function (response) {
+	            dispatch(getLookupsSuccess(response));
+	        }).catch(function (error) {
+	            throw error;
+	        });
+	    };
+	};
 
 /***/ }
 

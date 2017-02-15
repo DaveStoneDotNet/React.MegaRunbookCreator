@@ -13,13 +13,13 @@ import KanbanBoardContainer  from './containers/demo/KanbanBoardContainer';
 
 export default (
   <Route component = { KanbanBoardContainer }>
-  <Route path = "/" component = { ShellComponent }>
-    <IndexRoute component = { HomeComponent }/>
-    <Route path="about"      component = { AboutComponent    } />
-    <Route path="courses"    component = { CoursesComponent  } />
-    <Route path="course"     component = { ManageCoursePage  } />
-    <Route path="course/:id" component = { ManageCoursePage  } />
-    <Route path="*"          component = { NotFoundComponent } />
-  </Route>
+      <Route path = "/" component = { ShellComponent }>
+        <IndexRoute component = { HomeComponent }/>
+        <Route path="about"      component = { AboutComponent    } />
+        <Route path="courses"    component = { CoursesComponent  } />
+        <Route path="course"     component = { ManageCoursePage  } />
+        <Route path="course/:id" component = { ManageCoursePage  } />
+        <Route path="*"          component = { NotFoundComponent } />
+      </Route>
   </Route>
 );
