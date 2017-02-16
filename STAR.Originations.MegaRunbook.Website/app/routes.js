@@ -8,7 +8,6 @@ import AboutComponent        from './components/about/AboutComponent';
 import AdminComponent        from './components/admin/AdminComponent';
 import ApplicationsComponent from './components/applications/ApplicationsComponent';
 import BuildsComponent       from './components/builds/BuildsComponent';
-import ReleasesComponent     from './components/releases/ReleasesComponent';
 import RfcsComponent         from './components/rfcs/RfcsComponent';
 import RunbooksComponent     from './components/runbooks/RunbooksComponent';
 import TemplatesComponent    from './components/templates/TemplatesComponent';
@@ -27,7 +26,6 @@ export default (
     <Route path="admin"        component = { AdminComponent        } />
     <Route path="applications" component = { ApplicationsComponent } />
     <Route path="builds"       component = { BuildsComponent       } />
-    <Route path="releases"     component = { ReleasesComponent     } />
     <Route path="rfcs"         component = { RfcsComponent         } />
     <Route path="runbooks"     component = { RunbooksComponent     } />
     <Route path="templates"    component = { TemplatesComponent    } />

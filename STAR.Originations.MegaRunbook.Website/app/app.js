@@ -10,8 +10,9 @@ import routes                     from './routes';
 import configureStore             from './store/configureStore';
 
 import * as courseActions         from './actions/courseActions';
-import * as userActions           from './actions/userActions';
-import * as lookupActions         from './actions/lookupActions';
+import * as appActions            from './actions/appActions';
+//import * as userActions           from './actions/userActions';
+//import * as lookupActions         from './actions/lookupActions';
 
 // Import babel-polyfill to support Object.assign functions for deep-cloning of immutable objects.
 // Babel does not support Object.assign by default, so a pollyfill is needed.
@@ -27,8 +28,12 @@ import 'babel-polyfill';
 const store = configureStore();
 
 store.dispatch(courseActions.getCourses());
-store.dispatch(userActions.getUser());
-store.dispatch(lookupActions.getLookups());
+store.dispatch(appActions.getUser());
+store.dispatch(appActions.getLookups());
+
+store.subscribe(() =>
+    console.log(store.getState())
+);
 
 // Create an enhanced history that syncs navigation events with the store
 const history = syncHistoryWithStore(browserHistory, store);

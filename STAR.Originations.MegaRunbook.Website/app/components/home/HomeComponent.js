@@ -18,7 +18,7 @@ class HomeComponent extends React.Component {
                    <div>
                      <div className='pad-20 white'>
                          <div className='home-brand-button-block'>
-                             <IndexLink to='/templatelist' className='no-underline'>
+                             <IndexLink to='/templates' className='no-underline'>
                                  <img src='../app/images/Mega-Runbook-Creator-Button-04.png' className='pointer;' title='Runbooks'/>
                                  <div className='home-date-block'>
                                      { formattedMomentDate }

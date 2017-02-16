@@ -1,5 +1,5 @@
 ﻿
-import * as types   from '../actions/appActions';
+import * as types   from '../actions/actionTypes';
 import initialState from './initialState';
 
 // The whole state of your app is stored in an object tree inside a single store.
@@ -10,8 +10,8 @@ export default function appReducer(state = initialState.app, action) {
 
     switch (action.type) {
 
-        case types.UPDATE_MONKEY:
-            return action.isMonkey;
+        case types.IS_INITIALIZED:
+            return Object.assign({}, state, action.app);
 
         default:
             return state;

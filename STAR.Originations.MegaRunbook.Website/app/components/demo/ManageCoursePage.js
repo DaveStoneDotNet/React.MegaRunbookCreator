@@ -33,8 +33,8 @@ class ManageCoursePage extends React.Component {
 
     componentWillReceiveProps(nextProps) {
 
-        // Necessary to populate from when existing course is loaded directly
-        if (this.props.course.id != nextProps.course.id) {
+        // Necessary to populate when existing course is loaded directly
+        if (this.props.course.id !== nextProps.course.id) {
             this.setState({
                                course: Object.assign({ }, nextProps.course)
                           });

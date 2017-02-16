@@ -10,10 +10,12 @@ class SplashComponent extends React.Component {
 
     render() {
 
+        const app = this.props.app;
+
         return (
-                   <div>
+                   <div className={ app.isAppInitialized ? 'hide' : ''}>
                     <div className='app-authenticating-box'>
-                        <div className='BebasNeue font-2-00 white opacity-50'>
+                        <div className='white opacity-50'>
                             <div>
                                 <img src='../../app/images/Mega-Runbook-Creator-Button-01.png' alt='mega-runbook-creator' />
                             </div>

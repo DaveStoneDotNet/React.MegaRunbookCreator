@@ -3,7 +3,7 @@ import { connect }          from 'react-redux';
 
 import NavHeaderComponent   from './NavHeaderComponent';
 import AppFooterComponent   from './AppFooterComponent';
-import SplashComponent   from './SplashComponent';
+import SplashComponent      from './SplashComponent';
 
 class ShellComponent extends React.Component {
 
@@ -28,13 +28,22 @@ class ShellComponent extends React.Component {
         // 
         // 'user' and 'lookups' are defined here off of 'this.props' since 'this.props' 
         // would not be 'visible' inside the mapping function.
+        // 
+        // Many times, props are passed to the child within the render method of the 
+        // parent as an ATTRIBUTE.
+        // 
+        // However, here, using REDUX, props are obtained via the 'mapStateToProps'
+        // function.
+        //
 
-        const user = this.props.user;
+        const app     = this.props.app;
+        const user    = this.props.user;
         const lookups = this.props.lookups;
 
         return (
                   <div>
-                    <NavHeaderComponent user = { this.props.user } />
+                    <SplashComponent app = { app} />
+                    <NavHeaderComponent user = { user } />
                     <div className = 'container body-content'>
                         {
                             React.Children.map(this.props.children, function(child) {
@@ -55,6 +64,7 @@ ShellComponent.propTypes = {
                            };
 
 const mapStateToProps = (state, ownProps) => ({
+    app:     state.app,
     user:    state.user, 
     lookups: state.lookups
 });
