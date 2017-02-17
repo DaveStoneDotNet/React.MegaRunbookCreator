@@ -2986,7 +2986,7 @@ webpackJsonp([0],{
 	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
-	  value: true
+	    value: true
 	});
 	
 	var _actionTypes = __webpack_require__(/*! ../actions/actionTypes.js */ 697);
@@ -3002,21 +3002,23 @@ webpackJsonp([0],{
 	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 	
 	var actionTypeEndsInSuccess = function actionTypeEndsInSuccess(type) {
-	  return type.substring(type.length - 8) === '_SUCCESS';
+	    return type.substring(type.length - 8) === '_SUCCESS';
 	};
 	
 	var ajaxStatusReducer = function ajaxStatusReducer() {
-	  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : _initialState2.default.ajaxCallsInProgress;
-	  var action = arguments[1];
+	    var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : _initialState2.default.app;
+	    var action = arguments[1];
 	
 	
-	  if (action.type === types.BEGIN_AJAX_CALL) {
-	    return state + 1;
-	  } else if (action.type === types.AJAX_CALL_ERROR || actionTypeEndsInSuccess(action.type)) {
-	    return state - 1;
-	  }
+	    if (action.type === types.BEGIN_AJAX_CALL) {
+	        var incrementedCount = state.ajaxCallsInProgress + 1;
+	        return Object.assign({}, state, { ajaxCallsInProgress: incrementedCount });
+	    } else if (action.type === types.AJAX_CALL_ERROR || actionTypeEndsInSuccess(action.type)) {
+	        var decrementedCount = state.ajaxCallsInProgress - 1;
+	        return Object.assign({}, state, { ajaxCallsInProgress: decrementedCount });
+	    }
 	
-	  return state;
+	    return state;
 	};
 	
 	exports.default = ajaxStatusReducer;
