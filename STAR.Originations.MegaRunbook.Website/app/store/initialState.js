@@ -15,9 +15,7 @@ export default {
                                 lookups:              {},
                                 isUserInitialized:    false, 
                                 isLookupsInitialized: false, 
-                                isAppInitialized:     false, 
-                                ajaxCallsInProgress:  0
-                            },
-
-                   ajaxCallsInProgress: 0
+                                isAppInitialized:     false
+                            }, 
+                   ajaxCallsInProgress:  0
                };

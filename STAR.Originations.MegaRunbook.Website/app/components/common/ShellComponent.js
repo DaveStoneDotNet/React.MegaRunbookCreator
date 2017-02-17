@@ -11,6 +11,12 @@ class ShellComponent extends React.Component {
 
         // In this ShellComponent, 'user' and 'lookups' are intended to be available to 
         // all the child routing elements indirectly defined via the 'routes.js' file. 
+        //
+        // That is, it's desirable to have some data available to the entire application 
+        // rather than just an individual component; for example, 'user' and 'lookups'.
+        // 
+        // Rather than treating these values separately off the root store hierarchy, 
+        // an 'app' object was created with 'user' and 'lookups' properties.
         // 
         // Ordinarily, you might wire routing up as follows in the 'container' div below...
         // 
@@ -20,14 +26,14 @@ class ShellComponent extends React.Component {
         // elements by default, the 'children' should be cloned. Each child component is 
         // cloned and the 'user' and 'lookups' are 'bolted' onto the cloned elements: 
         // 
-        //          React.cloneElement(child, { user: user, lookups: lookups })
+        //          React.cloneElement(child, { app: app })
         // 
         // 'user' and 'lookups' props will then be available to these child components 
         // without having to map them (e.g. 'mapStateToProps') or explicity declare them 
         // (e.g. as an attribute on a custom component).
         // 
-        // 'user' and 'lookups' are defined here off of 'this.props' since 'this.props' 
-        // would not be 'visible' inside the mapping function.
+        // 'app' is defined here off of 'this.props' since 'this.props' would not be 
+        // 'visible' inside the mapping function.
         // 
         // Many times, props are passed to the child within the render method of the 
         // parent as an ATTRIBUTE.
@@ -36,7 +42,7 @@ class ShellComponent extends React.Component {
         // function.
         //
 
-        const app     = this.props.app;
+        const app = this.props.app;
 
         return (
                   <div>
@@ -61,7 +67,7 @@ ShellComponent.propTypes = {
                            };
 
 const mapStateToProps = (state, ownProps) => ({
-    app:     state.app
+    app: state.app
 });
 
 export default connect(mapStateToProps)(ShellComponent);

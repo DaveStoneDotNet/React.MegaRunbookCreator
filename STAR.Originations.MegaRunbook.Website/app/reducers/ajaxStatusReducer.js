@@ -5,17 +5,14 @@ const actionTypeEndsInSuccess = (type) => {
     return type.substring(type.length - 8) === '_SUCCESS';
 };
 
-const ajaxStatusReducer = (state = initialState.app, action) => {
+const ajaxStatusReducer = (state = initialState.ajaxCallsInProgress, action) => {
 
     if (action.type === types.BEGIN_AJAX_CALL) {
-        var incrementedCount = state.ajaxCallsInProgress + 1;
-        return Object.assign({}, state, { ajaxCallsInProgress: incrementedCount });
+        return state + 1;
     } else if (action.type === types.AJAX_CALL_ERROR || actionTypeEndsInSuccess(action.type)) {
-        var decrementedCount = state.ajaxCallsInProgress - 1;
-        return Object.assign({}, state, { ajaxCallsInProgress: decrementedCount });
+        return state -1;
     }
 
-    
     return state;
 };
 

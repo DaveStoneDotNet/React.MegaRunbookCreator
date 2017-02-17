@@ -217,6 +217,12 @@ webpackJsonp([0],{
 	
 	            // In this ShellComponent, 'user' and 'lookups' are intended to be available to 
 	            // all the child routing elements indirectly defined via the 'routes.js' file. 
+	            //
+	            // That is, it's desirable to have some data available to the entire application 
+	            // rather than just an individual component; for example, 'user' and 'lookups'.
+	            // 
+	            // Rather than treating these values separately off the root store hierarchy, 
+	            // an 'app' object was created with 'user' and 'lookups' properties.
 	            // 
 	            // Ordinarily, you might wire routing up as follows in the 'container' div below...
 	            // 
@@ -226,14 +232,14 @@ webpackJsonp([0],{
 	            // elements by default, the 'children' should be cloned. Each child component is 
 	            // cloned and the 'user' and 'lookups' are 'bolted' onto the cloned elements: 
 	            // 
-	            //          React.cloneElement(child, { user: user, lookups: lookups })
+	            //          React.cloneElement(child, { app: app })
 	            // 
 	            // 'user' and 'lookups' props will then be available to these child components 
 	            // without having to map them (e.g. 'mapStateToProps') or explicity declare them 
 	            // (e.g. as an attribute on a custom component).
 	            // 
-	            // 'user' and 'lookups' are defined here off of 'this.props' since 'this.props' 
-	            // would not be 'visible' inside the mapping function.
+	            // 'app' is defined here off of 'this.props' since 'this.props' would not be 
+	            // 'visible' inside the mapping function.
 	            // 
 	            // Many times, props are passed to the child within the render method of the 
 	            // parent as an ATTRIBUTE.
@@ -579,7 +585,12 @@ webpackJsonp([0],{
 	                            'authenticating'
 	                        ),
 	                        _react2.default.createElement('img', { src: 'app/images/running.gif', className: 'opacity-50' }),
-	                        _react2.default.createElement('img', { src: 'app/images/spiro.svg', className: 'spriro-02' })
+	                        _react2.default.createElement('img', { src: 'app/images/spiro.svg', className: 'spriro-02' }),
+	                        _react2.default.createElement(
+	                            'div',
+	                            null,
+	                            app.ajaxCallsInProgress
+	                        )
 	                    )
 	                )
 	            );
@@ -2686,12 +2697,39 @@ webpackJsonp([0],{
 	
 	// The Root Reducer where you define/name and shape the store.
 	// 
-	// Naming is important here. Each of the 'properties' listed below become the 
-	// property names on 'state'. For example, 'state.courses'.
+	// Naming is important here. Each of the 'properties' listed below become the property names on 'state'. For example, 'state.courses'.
 	// 
-	// That is, the 'courseReducer' was aliased to 'courses' so it can be referenced
-	// as 'state.courses' instead of 'state.courseReducer'.
+	// That is, the 'courseReducer' was aliased to 'courses' so it can be referenced // as 'state.courses' instead of 'state.courseReducer'.
 	// 
+	// Given the following...
+	//
+	//              const rootReducer = combineReducers({ courses: courseReducer })
+	//
+	//... the 'state' parameter passed into the 'courseReducer' below will be the 'courses' property in the 'store'...
+	// 
+	//              export default function courseReducer(state, action)
+	// 
+	// The corresponding 'action.type' will then set 'courses' to whatever value the reducer returns, typically something like 'action.courses' 
+	// or potentially some other non-mutated value.
+	// 
+	// This essentially represents the first-level hierarchy of the store. Each named property below will be set to the 'state' returned by the corresponding reducer 
+	// based on the action type it is passed.
+	// 
+	// This represents first-level hierarchy because, while you could do something like this...
+	//
+	//              app: appReducer
+	// 
+	// ... you would not be able to do this...
+	//
+	//              app.lookups: appReducer
+	//
+	// Note the dot-notation in 'app.lookups'. What I'm not currently certain of is if you could surround the property name in quotes, like so...
+	//
+	//              'app.lookups': appReducer
+	//
+	// Currently, 'app' here is special. 'app' is intended to be those values that are global to the entire application; for example, 'user' and 'lookups'.
+	// This is accomplished by mapping 'app' to the 'props' in the 'ShellComponent' and then cloning any routing element and attaching 'app' as a property 
+	// on the child element/component.
 	
 	var rootReducer = (0, _redux.combineReducers)({
 	                                        routing: _reactRouterRedux.routerReducer,
@@ -2732,18 +2770,30 @@ webpackJsonp([0],{
 	
 	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 	
-	// The whole state of your app is stored in an object tree inside a single store.
-	// The only way to change the state tree is to emit an action, an object describing what happened.
-	// To specify how the actions transform the state tree, you write pure reducers.
-	
-	// app: {
-	//          user:                 {},
-	//          lookups:              {},
-	//          isUserInitialized:    false,
-	//          isLookupsInitialized: false,
-	//          isAppInitialized:     false,
-	//          ajaxCallsInProgress:  0
-	//      }
+	// - The whole state of an app is stored in an object tree inside a single store.
+	// - The only way to change the state tree is to emit an action, an object describing what happened.
+	// - To specify how actions transform the state tree, you write pure reducers.
+	// 
+	// The 'state' parameter passed in will be the 'app' property defined in the combined reducers of 'index.js'...
+	//
+	//          const rootReducer = combineReducers({
+	//                                                 ...
+	//                                                 app: appReducer
+	//                                                 ...
+	//                                             });
+	// 
+	// That is, this reducer is specifically managing that 'app' property.
+	//
+	// 'app' is currently shaped as follows:
+	//
+	//          app: {
+	//                   user:                 {},
+	//                   lookups:              {},
+	//                   isUserInitialized:    false,
+	//                   isLookupsInitialized: false,
+	//                   isAppInitialized:     false,
+	//                   ajaxCallsInProgress:  0
+	//               }
 	
 	function appReducer() {
 	    var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : _initialState2.default.app;
@@ -2782,7 +2832,7 @@ webpackJsonp([0],{
 	"use strict";
 	
 	Object.defineProperty(exports, "__esModule", {
-	                   value: true
+	             value: true
 	});
 	
 	// The whole state of your app is stored in an object tree inside a single store.
@@ -2794,18 +2844,16 @@ webpackJsonp([0],{
 	// That is, by defining initial states here, it can be helpful to provide a picture of the full object tree in the store.
 	
 	exports.default = {
-	                   authors: [],
-	                   courses: [],
-	                   app: {
-	                                      user: {},
-	                                      lookups: {},
-	                                      isUserInitialized: false,
-	                                      isLookupsInitialized: false,
-	                                      isAppInitialized: false,
-	                                      ajaxCallsInProgress: 0
-	                   },
-	
-	                   ajaxCallsInProgress: 0
+	             authors: [],
+	             courses: [],
+	             app: {
+	                          user: {},
+	                          lookups: {},
+	                          isUserInitialized: false,
+	                          isLookupsInitialized: false,
+	                          isAppInitialized: false
+	             },
+	             ajaxCallsInProgress: 0
 	};
 
 /***/ },
@@ -2937,16 +2985,14 @@ webpackJsonp([0],{
 	};
 	
 	var ajaxStatusReducer = function ajaxStatusReducer() {
-	    var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : _initialState2.default.app;
+	    var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : _initialState2.default.ajaxCallsInProgress;
 	    var action = arguments[1];
 	
 	
 	    if (action.type === types.BEGIN_AJAX_CALL) {
-	        var incrementedCount = state.ajaxCallsInProgress + 1;
-	        return Object.assign({}, state, { ajaxCallsInProgress: incrementedCount });
+	        return state + 1;
 	    } else if (action.type === types.AJAX_CALL_ERROR || actionTypeEndsInSuccess(action.type)) {
-	        var decrementedCount = state.ajaxCallsInProgress - 1;
-	        return Object.assign({}, state, { ajaxCallsInProgress: decrementedCount });
+	        return state - 1;
 	    }
 	
 	    return state;
