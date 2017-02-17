@@ -1,11 +1,9 @@
 import { combineReducers } from 'redux';
 import { routerReducer }   from 'react-router-redux';
 
-import app                 from './appReducer';
-import courses             from './courseReducer';
-import authors             from './authorReducer';
-import user                from './userReducer';
-import lookups             from './lookupReducer';
+import appReducer          from './appReducer';
+import courseReducer       from './courseReducer';
+import authorReducer       from './authorReducer';
 
 import ajaxCallsInProgress from './ajaxStatusReducer';
 
@@ -21,11 +19,9 @@ import ajaxCallsInProgress from './ajaxStatusReducer';
 const rootReducer = combineReducers({
                                         routing:  routerReducer, 
 
-                                        app:      app,
-                                        courses:  courses, 
-                                        authors:  authors, 
-                                        user:     user,
-                                        lookups:  lookups, 
+                                        app:      appReducer,
+                                        courses:  courseReducer, 
+                                        authors:  authorReducer, 
 
                                         ajaxCallsInProgress: ajaxCallsInProgress
                                     });

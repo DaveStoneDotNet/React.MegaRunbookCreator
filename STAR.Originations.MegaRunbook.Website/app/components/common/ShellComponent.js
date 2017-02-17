@@ -37,17 +37,15 @@ class ShellComponent extends React.Component {
         //
 
         const app     = this.props.app;
-        const user    = this.props.user;
-        const lookups = this.props.lookups;
 
         return (
                   <div>
-                    <SplashComponent app = { app} />
-                    <NavHeaderComponent user = { user } />
+                    <SplashComponent app = { app } />
+                    <NavHeaderComponent app = { app } />
                     <div className = 'container body-content'>
                         {
                             React.Children.map(this.props.children, function(child) {
-                                return React.cloneElement(child, { user: user, lookups: lookups });
+                                return React.cloneElement(child, { app: app });
                             })
                         }                        
                     </div>
@@ -59,14 +57,11 @@ class ShellComponent extends React.Component {
 
 ShellComponent.propTypes = {
                                children: PropTypes.element, 
-                               user:     PropTypes.object.isRequired, 
-                               lookups:  PropTypes.object.isRequired
+                               app:      PropTypes.object.isRequired
                            };
 
 const mapStateToProps = (state, ownProps) => ({
-    app:     state.app,
-    user:    state.user, 
-    lookups: state.lookups
+    app:     state.app
 });
 
 export default connect(mapStateToProps)(ShellComponent);

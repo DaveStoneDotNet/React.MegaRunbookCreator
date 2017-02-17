@@ -32,7 +32,7 @@ webpackJsonp([0],{
 	
 	var courseActions = _interopRequireWildcard(_courseActions);
 	
-	var _appActions = __webpack_require__(/*! ./actions/appActions */ 721);
+	var _appActions = __webpack_require__(/*! ./actions/appActions */ 719);
 	
 	var appActions = _interopRequireWildcard(_appActions);
 	
@@ -49,8 +49,6 @@ webpackJsonp([0],{
 	/* eslint-disable import/default */
 	
 	var store = (0, _configureStore2.default)();
-	//import * as userActions           from './actions/userActions';
-	//import * as lookupActions         from './actions/lookupActions';
 	
 	// Import babel-polyfill to support Object.assign functions for deep-cloning of immutable objects.
 	// Babel does not support Object.assign by default, so a pollyfill is needed.
@@ -245,19 +243,17 @@ webpackJsonp([0],{
 	            //
 	
 	            var app = this.props.app;
-	            var user = this.props.user;
-	            var lookups = this.props.lookups;
 	
 	            return _react2.default.createElement(
 	                'div',
 	                null,
 	                _react2.default.createElement(_SplashComponent2.default, { app: app }),
-	                _react2.default.createElement(_NavHeaderComponent2.default, { user: user }),
+	                _react2.default.createElement(_NavHeaderComponent2.default, { app: app }),
 	                _react2.default.createElement(
 	                    'div',
 	                    { className: 'container body-content' },
 	                    _react2.default.Children.map(this.props.children, function (child) {
-	                        return _react2.default.cloneElement(child, { user: user, lookups: lookups });
+	                        return _react2.default.cloneElement(child, { app: app });
 	                    })
 	                ),
 	                _react2.default.createElement(_AppFooterComponent2.default, null)
@@ -270,15 +266,12 @@ webpackJsonp([0],{
 	
 	ShellComponent.propTypes = {
 	    children: _react.PropTypes.element,
-	    user: _react.PropTypes.object.isRequired,
-	    lookups: _react.PropTypes.object.isRequired
+	    app: _react.PropTypes.object.isRequired
 	};
 	
 	var mapStateToProps = function mapStateToProps(state, ownProps) {
 	    return {
-	        app: state.app,
-	        user: state.user,
-	        lookups: state.lookups
+	        app: state.app
 	    };
 	};
 	
@@ -331,7 +324,7 @@ webpackJsonp([0],{
 	    key: 'render',
 	    value: function render() {
 	
-	      var user = this.props.user;
+	      var app = this.props.app;
 	
 	      return _react2.default.createElement(
 	        'div',
@@ -365,7 +358,7 @@ webpackJsonp([0],{
 	                  _react2.default.createElement(
 	                    'span',
 	                    { className: 'BebasNeue font-1-40 opacity-60 pad-left-5' },
-	                    user.UserDisplayName
+	                    app.user.UserDisplayName
 	                  )
 	                ),
 	                ' ',
@@ -478,6 +471,10 @@ webpackJsonp([0],{
 	
 	  return NavHeaderComponent;
 	}(_react2.default.Component);
+	
+	NavHeaderComponent.propTypes = {
+	  app: _react.PropTypes.object.isRequired
+	};
 	
 	exports.default = NavHeaderComponent;
 
@@ -642,7 +639,7 @@ webpackJsonp([0],{
 	        value: function render() {
 	
 	            var formattedMomentDate = (0, _moment2.default)().format('dddd MMMM Do, YYYY');
-	            var user = this.props.user;
+	            var app = this.props.app;
 	
 	            return _react2.default.createElement(
 	                'div',
@@ -664,7 +661,7 @@ webpackJsonp([0],{
 	                                _react2.default.createElement(
 	                                    'div',
 	                                    { className: 'opacity-50' },
-	                                    user.UserDisplayName
+	                                    app.user.UserDisplayName
 	                                ),
 	                                _react2.default.createElement(
 	                                    'div',
@@ -2165,7 +2162,7 @@ webpackJsonp([0],{
 	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
-	             value: true
+	      value: true
 	});
 	
 	var _react = __webpack_require__(/*! react */ 1);
@@ -2183,58 +2180,58 @@ webpackJsonp([0],{
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var CourseForm = function CourseForm(_ref) {
-	             var course = _ref.course,
-	                 allAuthors = _ref.allAuthors,
-	                 onSave = _ref.onSave,
-	                 onChange = _ref.onChange,
-	                 saving = _ref.saving,
-	                 errors = _ref.errors;
+	      var course = _ref.course,
+	          allAuthors = _ref.allAuthors,
+	          onSave = _ref.onSave,
+	          onChange = _ref.onChange,
+	          saving = _ref.saving,
+	          errors = _ref.errors;
 	
-	             return _react2.default.createElement(
-	                          'form',
-	                          null,
-	                          _react2.default.createElement(
-	                                       'h1',
-	                                       null,
-	                                       'Manage Course'
-	                          ),
-	                          _react2.default.createElement(_TextInput2.default, { name: 'title',
-	                                       label: 'Title',
-	                                       value: course.title,
-	                                       onChange: onChange,
-	                                       error: errors.title }),
-	                          _react2.default.createElement(_SelectInput2.default, { name: 'authorId',
-	                                       label: 'Author',
-	                                       value: course.authorId,
-	                                       defaultOption: 'Select Author',
-	                                       options: allAuthors,
-	                                       onChange: onChange,
-	                                       error: errors.authorId }),
-	                          _react2.default.createElement(_TextInput2.default, { name: 'category',
-	                                       label: 'Category',
-	                                       value: course.category,
-	                                       onChange: onChange,
-	                                       error: errors.category }),
-	                          _react2.default.createElement(_TextInput2.default, { name: 'length',
-	                                       label: 'Length',
-	                                       value: course.length,
-	                                       onChange: onChange,
-	                                       error: errors.length }),
-	                          _react2.default.createElement('input', { type: 'submit',
-	                                       disabled: saving,
-	                                       value: saving ? 'Saving...' : 'Save',
-	                                       className: 'btn btn-primary',
-	                                       onClick: onSave })
-	             );
+	      return _react2.default.createElement(
+	            'form',
+	            null,
+	            _react2.default.createElement(
+	                  'h1',
+	                  null,
+	                  'Manage Course'
+	            ),
+	            _react2.default.createElement(_TextInput2.default, { name: 'title',
+	                  label: 'Title',
+	                  value: course.title,
+	                  onChange: onChange,
+	                  error: errors.title }),
+	            _react2.default.createElement(_SelectInput2.default, { name: 'authorId',
+	                  label: 'Author',
+	                  value: course.authorId,
+	                  defaultOption: 'Select Author',
+	                  options: allAuthors,
+	                  onChange: onChange,
+	                  error: errors.authorId }),
+	            _react2.default.createElement(_TextInput2.default, { name: 'category',
+	                  label: 'Category',
+	                  value: course.category,
+	                  onChange: onChange,
+	                  error: errors.category }),
+	            _react2.default.createElement(_TextInput2.default, { name: 'length',
+	                  label: 'Length',
+	                  value: course.length,
+	                  onChange: onChange,
+	                  error: errors.length }),
+	            _react2.default.createElement('input', { type: 'submit',
+	                  disabled: saving,
+	                  value: saving ? 'Saving...' : 'Save',
+	                  className: 'btn btn-primary',
+	                  onClick: onSave })
+	      );
 	};
 	
 	CourseForm.propTypes = {
-	             course: _react2.default.PropTypes.object.isRequired,
-	             allAuthors: _react2.default.PropTypes.array,
-	             onSave: _react2.default.PropTypes.func.isRequired,
-	             onChange: _react2.default.PropTypes.func.isRequired,
-	             saving: _react2.default.PropTypes.bool,
-	             errors: _react2.default.PropTypes.object
+	      course: _react2.default.PropTypes.object.isRequired,
+	      allAuthors: _react2.default.PropTypes.array,
+	      onSave: _react2.default.PropTypes.func.isRequired,
+	      onChange: _react2.default.PropTypes.func.isRequired,
+	      saving: _react2.default.PropTypes.bool,
+	      errors: _react2.default.PropTypes.object
 	};
 	
 	exports.default = CourseForm;
@@ -2427,8 +2424,13 @@ webpackJsonp([0],{
 	// Create a Redux store holding the state of your app.
 	// Its API is { subscribe, dispatch, getState }.
 	
+	// The whole state of your app is stored in an object tree inside a single store.
+	// The only way to change the state tree is to emit an action - an object describing what happened.
+	// To specify how actions transform the state tree, you write pure reducers.
+	
 	// The actual 'shape' of the store is better reflected in 'reducers/index.js' which combines all of the defined reducers into a single reducer, 
-	// and 'reducers/initialState.js'.
+	// and 'reducers/initialState.js' which is an optional, non-redux object, intended to provide default values for each defined state object.
+	// That is, by defining initial states, it can be helpful to provide a picture of the full object tree in the store.
 	
 	function configureStore(initialState) {
 	
@@ -2676,15 +2678,7 @@ webpackJsonp([0],{
 	
 	var _authorReducer2 = _interopRequireDefault(_authorReducer);
 	
-	var _userReducer = __webpack_require__(/*! ./userReducer */ 718);
-	
-	var _userReducer2 = _interopRequireDefault(_userReducer);
-	
-	var _lookupReducer = __webpack_require__(/*! ./lookupReducer */ 719);
-	
-	var _lookupReducer2 = _interopRequireDefault(_lookupReducer);
-	
-	var _ajaxStatusReducer = __webpack_require__(/*! ./ajaxStatusReducer */ 720);
+	var _ajaxStatusReducer = __webpack_require__(/*! ./ajaxStatusReducer */ 718);
 	
 	var _ajaxStatusReducer2 = _interopRequireDefault(_ajaxStatusReducer);
 	
@@ -2705,8 +2699,6 @@ webpackJsonp([0],{
 	                                        app: _appReducer2.default,
 	                                        courses: _courseReducer2.default,
 	                                        authors: _authorReducer2.default,
-	                                        user: _userReducer2.default,
-	                                        lookups: _lookupReducer2.default,
 	
 	                                        ajaxCallsInProgress: _ajaxStatusReducer2.default
 	});
@@ -2732,7 +2724,7 @@ webpackJsonp([0],{
 	
 	var types = _interopRequireWildcard(_actionTypes);
 	
-	var _initialState = __webpack_require__(/*! ./initialState */ 715);
+	var _initialState = __webpack_require__(/*! ../store/initialState */ 715);
 	
 	var _initialState2 = _interopRequireDefault(_initialState);
 	
@@ -2744,15 +2736,35 @@ webpackJsonp([0],{
 	// The only way to change the state tree is to emit an action, an object describing what happened.
 	// To specify how the actions transform the state tree, you write pure reducers.
 	
+	// app: {
+	//          user:                 {},
+	//          lookups:              {},
+	//          isUserInitialized:    false,
+	//          isLookupsInitialized: false,
+	//          isAppInitialized:     false,
+	//          ajaxCallsInProgress:  0
+	//      }
+	
 	function appReducer() {
 	    var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : _initialState2.default.app;
 	    var action = arguments[1];
 	
 	
+	    var new_state;
+	
 	    switch (action.type) {
 	
 	        case types.IS_INITIALIZED:
-	            return Object.assign({}, state, action.app);
+	            new_state = Object.assign({}, state, action.app);
+	            return new_state;
+	
+	        case types.GET_USER_SUCCESS:
+	            new_state = Object.assign({}, state, { user: action.user });
+	            return new_state;
+	
+	        case types.GET_LOOKUPS_SUCCESS:
+	            new_state = Object.assign({}, state, { lookups: action.lookups });
+	            return new_state;
 	
 	        default:
 	            return state;
@@ -2762,9 +2774,9 @@ webpackJsonp([0],{
 /***/ },
 
 /***/ 715:
-/*!**************************************!*\
-  !*** ./app/reducers/initialState.js ***!
-  \**************************************/
+/*!***********************************!*\
+  !*** ./app/store/initialState.js ***!
+  \***********************************/
 /***/ function(module, exports) {
 
 	"use strict";
@@ -2772,12 +2784,21 @@ webpackJsonp([0],{
 	Object.defineProperty(exports, "__esModule", {
 	                   value: true
 	});
+	
+	// The whole state of your app is stored in an object tree inside a single store.
+	// The only way to change the state tree is to emit an action - an object describing what happened.
+	// To specify how actions transform the state tree, you write pure reducers.
+	
+	// The actual 'shape' of the store is better reflected in 'reducers/index.js' which combines all of the defined reducers into a single reducer, 
+	// and 'reducers/initialState.js' which is an optional, non-redux object, intended to provide default values for each defined state object.
+	// That is, by defining initial states here, it can be helpful to provide a picture of the full object tree in the store.
+	
 	exports.default = {
 	                   authors: [],
 	                   courses: [],
-	                   user: {},
-	                   lookups: {},
 	                   app: {
+	                                      user: {},
+	                                      lookups: {},
 	                                      isUserInitialized: false,
 	                                      isLookupsInitialized: false,
 	                                      isAppInitialized: false,
@@ -2806,7 +2827,7 @@ webpackJsonp([0],{
 	
 	var types = _interopRequireWildcard(_actionTypes);
 	
-	var _initialState = __webpack_require__(/*! ./initialState */ 715);
+	var _initialState = __webpack_require__(/*! ../store/initialState */ 715);
 	
 	var _initialState2 = _interopRequireDefault(_initialState);
 	
@@ -2862,7 +2883,7 @@ webpackJsonp([0],{
 	
 	var types = _interopRequireWildcard(_actionTypes);
 	
-	var _initialState = __webpack_require__(/*! ./initialState */ 715);
+	var _initialState = __webpack_require__(/*! ../store/initialState */ 715);
 	
 	var _initialState2 = _interopRequireDefault(_initialState);
 	
@@ -2888,96 +2909,6 @@ webpackJsonp([0],{
 /***/ },
 
 /***/ 718:
-/*!*************************************!*\
-  !*** ./app/reducers/userReducer.js ***!
-  \*************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	exports.default = userReducer;
-	
-	var _actionTypes = __webpack_require__(/*! ../actions/actionTypes */ 697);
-	
-	var types = _interopRequireWildcard(_actionTypes);
-	
-	var _initialState = __webpack_require__(/*! ./initialState */ 715);
-	
-	var _initialState2 = _interopRequireDefault(_initialState);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
-	
-	// Reducers are simple functions that accept state and actions and return a new state.
-	// All reducers are called when an action is dispatched.
-	
-	function userReducer() {
-	    var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : _initialState2.default.user;
-	    var action = arguments[1];
-	
-	
-	    switch (action.type) {
-	
-	        case types.GET_USER_SUCCESS:
-	            return action.user;
-	
-	        default:
-	            return state;
-	    }
-	}
-
-/***/ },
-
-/***/ 719:
-/*!***************************************!*\
-  !*** ./app/reducers/lookupReducer.js ***!
-  \***************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	exports.default = lookupReducer;
-	
-	var _actionTypes = __webpack_require__(/*! ../actions/actionTypes */ 697);
-	
-	var types = _interopRequireWildcard(_actionTypes);
-	
-	var _initialState = __webpack_require__(/*! ./initialState */ 715);
-	
-	var _initialState2 = _interopRequireDefault(_initialState);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
-	
-	// Reducers are simple functions that accept state and actions and return a new state.
-	// All reducers are called when an action is dispatched.
-	
-	function lookupReducer() {
-	    var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : _initialState2.default.lookups;
-	    var action = arguments[1];
-	
-	
-	    switch (action.type) {
-	
-	        case types.GET_LOOKUPS_SUCCESS:
-	            return action.lookups;
-	
-	        default:
-	            return state;
-	    }
-	}
-
-/***/ },
-
-/***/ 720:
 /*!*******************************************!*\
   !*** ./app/reducers/ajaxStatusReducer.js ***!
   \*******************************************/
@@ -2993,7 +2924,7 @@ webpackJsonp([0],{
 	
 	var types = _interopRequireWildcard(_actionTypes);
 	
-	var _initialState = __webpack_require__(/*! ./initialState */ 715);
+	var _initialState = __webpack_require__(/*! ../store/initialState */ 715);
 	
 	var _initialState2 = _interopRequireDefault(_initialState);
 	
@@ -3025,7 +2956,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 721:
+/***/ 719:
 /*!***********************************!*\
   !*** ./app/actions/appActions.js ***!
   \***********************************/
@@ -3060,20 +2991,30 @@ webpackJsonp([0],{
 	// Actions:
 	// -----------------------------------------------------------------------------------------------------------------------
 	// 
-	// Events happening in an app are called 'actions'. They're just plain object describing events. They must have a 'type' key. 
-	// The second property contains data, is optional, and can be of any type.
+	// Events happening in an app are called 'actions'. They're just plain objects describing events. They must have a 
+	// 'type' key. The second property contains data, is optional, and can be of any type.
+	// 
+	// Instead of mutating state directly, you specify mutations you want to happen with plain objects called 'actions'. 
+	// Then you write a special function called a 'reducer' to decide how every action transforms the entire application's state.
+	// 
+	// To specify how the state tree is transformed by actions, you write pure reducers.
+	// 
+	// Reducers are just pure functions that take the previous state and an action, and return the next state. Remember to 
+	// return NEW state objects, instead of mutating the previous state. You can start with a single reducer, and as your app 
+	// grows, split it off into smaller reducers that manage specific parts of the state tree. Because reducers are just 
+	// functions, you can control the order in which they are called, pass additional data, or even make reusable reducers for 
+	// common tasks such as pagination.
 	// 
 	// An action describes user intent.
 	// 
-	// 1) Store gets notified of action.
-	// 2) Store sends action to reducers.
-	// 3) Reducers accept state and return new state.
+	//      1) Store gets notified of action.
+	//      2) Store sends action to reducers.
+	//      3) Reducers accept state and return new state.
 	// 
-	// Action Creators... returning a plain javascript object which must have a 'type' property.
 	// Once an action is created, you need a function which will 'handle' that action, and that's where reducers come in.
 	// Reducers are just functions which accept a state, an action, and returns a new state.
 	// 
-	// All reducers are called when an action is dispatched.
+	// *ALL* reducers are called when an action is dispatched.
 	// 
 	// These ___SUCCESS actions don't fire until all the responses have been asynchronously returned by the API calls.
 	// 

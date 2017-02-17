@@ -12,7 +12,7 @@ class NavHeaderComponent extends React.Component {
 
     render() {
 
-        const user = this.props.user;
+        const app = this.props.app;
 
         return (
                <div>
@@ -23,7 +23,7 @@ class NavHeaderComponent extends React.Component {
                        </div>
                        <div className='navbar-collapse collapse'>
                          <div className='float-right pad-top-10'>
-                           <span><i className='fa fa-info-circle gray-5 font-1-40' /> <span className='BebasNeue font-1-40 opacity-60 pad-left-5'>{ user.UserDisplayName }</span></span> <span className='gray-6'>o</span>
+                           <span><i className='fa fa-info-circle gray-5 font-1-40' /> <span className='BebasNeue font-1-40 opacity-60 pad-left-5'>{ app.user.UserDisplayName }</span></span> <span className='gray-6'>o</span>
                          </div>
                          <ul className='nav navbar-nav'>
                            <li><IndexLink activeClassName='active' to='/'>Home</IndexLink></li>
@@ -44,5 +44,9 @@ class NavHeaderComponent extends React.Component {
            );
     }
 }
+
+NavHeaderComponent.propTypes = {
+                                   app: PropTypes.object.isRequired
+                               };
 
 export default NavHeaderComponent;

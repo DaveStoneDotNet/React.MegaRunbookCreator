@@ -12,7 +12,7 @@ class HomeComponent extends React.Component {
     render() {
 
         const formattedMomentDate = Moment().format('dddd MMMM Do, YYYY');
-        const user = this.props.user;
+        const app = this.props.app;
 
         return (
                    <div>
@@ -22,7 +22,7 @@ class HomeComponent extends React.Component {
                                  <img src='../app/images/Mega-Runbook-Creator-Button-04.png' className='pointer;' title='Runbooks'/>
                                  <div className='home-date-block'>
                                      { formattedMomentDate }
-                                     <div className='opacity-50'>{ user.UserDisplayName }</div>
+                                     <div className='opacity-50'>{ app.user.UserDisplayName }</div>
                                      <div>
                                          <i className='fa fa-cog font-1-20 white opacity-10 margin-top-10 hidden'></i>
                                      </div>

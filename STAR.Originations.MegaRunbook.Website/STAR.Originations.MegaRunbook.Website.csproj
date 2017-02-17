@@ -170,8 +170,6 @@
     <Content Include="app\actions\authorActions.js" />
     <Content Include="app\actions\courseActions.js" />
     <Content Include="app\actions\courseActions.test.js" />
-    <Content Include="app\actions\lookupActions.js" />
-    <Content Include="app\actions\userActions.js" />
     <Content Include="app\api\delay.js" />
     <Content Include="app\api\mockAuthorApi.js" />
     <Content Include="app\api\mockCourseApi.js" />
@@ -196,9 +194,7 @@
     <Content Include="app\reducers\appReducer.js" />
     <Content Include="app\reducers\authorReducer.js" />
     <Content Include="app\reducers\courseReducer.js" />
-    <Content Include="app\reducers\initialState.js" />
-    <Content Include="app\reducers\lookupReducer.js" />
-    <Content Include="app\reducers\userReducer.js" />
+    <Content Include="app\store\initialState.js" />
     <Content Include="app\components\common\ShellComponent.js" />
     <Content Include="app\components\common\AppFooterComponent.js" />
     <Content Include="app\components\common\LoadingComponent.js" />
