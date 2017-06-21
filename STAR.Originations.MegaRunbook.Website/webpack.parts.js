@@ -1,8 +1,8 @@
 ﻿const path               = require('path');
 const webpack            = require('webpack');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
-const ExtractTextPlugin  = require('extract-text-webpack-plugin');
-const HtmlWebpackPlugin  = require('html-webpack-plugin');
+const ExtractTextPlugin  = require('extract-text-webpack-plugin');      // 
+const HtmlWebpackPlugin  = require('html-webpack-plugin');              // 
 const NpmInstallPlugin   = require('npm-install-webpack-plugin');
 
 exports.common = function (paths, vendorPackages) {
@@ -24,20 +24,19 @@ exports.common = function (paths, vendorPackages) {
                               },
 
                resolve:       {
-                                  extensions:         ['', '.json', '.jsx', '.js'], 
-                                  modulesDirectories: ['node_modules']
+                                  extensions:        ['.json', '.jsx', '.js'], 
+                                  modules:           ['node_modules']
                               },
 
                // OldWatchingPlugin needed to make watch work. see http://stackoverflow.com/a/29292578/1434764
                // CommonsChunkPlugin(chunkName='vendor', filename='vendor.js')
 
                plugins:       [
-                                  new webpack.OldWatchingPlugin(),  
-                                  new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.js')
+                                  new webpack.optimize.CommonsChunkPlugin('vendor')
                               ],
 
                resolveLoader: {
-                                  'fallback': path.join(paths.root, 'node_modules')
+                                  modules:           ['node_modules']
                               },
 
                module:        {
@@ -49,14 +48,14 @@ exports.common = function (paths, vendorPackages) {
                                                {
                                                    test:    /\.js$/,
                                                    exclude: /node_modules/,
-                                                   loader:  'babel',
+                                                   loader:  'babel-loader',
                                                    query:   {
                                                                 presets: ['es2015', 'react']
                                                             }
                                                }, 
                                                {
                                                    test:    /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,         // WOFF FONTS
-                                                   loader:  'url',
+                                                   loader:  'url-loader',
                                                    options: {
                                                                 limit:      50000,
                                                                 mimetype:   'application/font-woff',
@@ -66,7 +65,7 @@ exports.common = function (paths, vendorPackages) {
                                                }, 
                                                {
                                                    test:    /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,    // TTF-SVG FONTS
-                                                   loader:  'file',
+                                                   loader:  'file-loader',
                                                    options: {
                                                                 limit:      50000,
                                                                 name:       './fonts/[hash].[ext]',          // Output below the fonts directory
@@ -75,7 +74,7 @@ exports.common = function (paths, vendorPackages) {
                                                }, 
                                                {
                                                    test:    /\.(jpe?g|png|gif)$/i,                           // IMAGES 
-                                                   loader:  'url',
+                                                   loader:  'url-loader',
                                                    options: {
                                                                 limit:      50000,
                                                                 name:       './images/[hash].[ext]',         // Output below the images directory

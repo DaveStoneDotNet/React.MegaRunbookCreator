@@ -1,38 +1,38 @@
 ﻿import React                 from 'react';
-import { Route, IndexRoute } from 'react-router';
+import { Route }             from 'react-router';
+import { IndexRoute }        from 'react-router';
 
-import ShellComponent        from './components/common/ShellComponent';
-import HomeComponent         from './components/home/HomeComponent';
-import AboutComponent        from './components/about/AboutComponent';
+import Shell                 from './components/common/Shell';
+import Home                  from './components/home/Home';
+import About                 from './components/about/About';
 
-import AdminComponent        from './components/admin/AdminComponent';
-import ApplicationsComponent from './components/applications/ApplicationsComponent';
-import BuildsComponent       from './components/builds/BuildsComponent';
-import RfcsComponent         from './components/rfcs/RfcsComponent';
-import RunbooksComponent     from './components/runbooks/RunbooksComponent';
-import TemplatesComponent    from './components/templates/TemplatesComponent';
+import Admin                 from './components/admin/Admin';
+import Applications          from './components/applications/Applications';
+import Builds                from './components/builds/Builds';
+import Rfcs                  from './components/rfcs/Rfcs';
+import Runbooks              from './components/runbooks/Runbooks';
+import Templates             from './components/templates/Templates';
 
-import NotFoundComponent     from './components/common/NotFoundComponent';
+import NotFound              from './components/common/NotFound';
 
-import CoursesComponent      from './components/demo/CoursesComponent';
+import Courses               from './components/demo/Courses';
 import ManageCoursePage      from './components/demo/ManageCoursePage';
 
 export default (
-    <Route path = "/" component = { ShellComponent }>
-    <IndexRoute component = { HomeComponent }/>
-    <Route path="about"        component = { AboutComponent        } />
+    <Route path = "/"          component = { Shell            }>
+    <IndexRoute                component = { Home             } />
 
-    <Route path="about"        component = { AboutComponent        } />
-    <Route path="admin"        component = { AdminComponent        } />
-    <Route path="applications" component = { ApplicationsComponent } />
-    <Route path="builds"       component = { BuildsComponent       } />
-    <Route path="rfcs"         component = { RfcsComponent         } />
-    <Route path="runbooks"     component = { RunbooksComponent     } />
-    <Route path="templates"    component = { TemplatesComponent    } />
+    <Route path="about"        component = { About            } />
+    <Route path="admin"        component = { Admin            } />
+    <Route path="applications" component = { Applications     } />
+    <Route path="builds"       component = { Builds           } />
+    <Route path="rfcs"         component = { Rfcs             } />
+    <Route path="runbooks"     component = { Runbooks         } />
+    <Route path="templates"    component = { Templates        } />
 
-    <Route path="courses"      component = { CoursesComponent      } />
-    <Route path="course"       component = { ManageCoursePage      } />
-    <Route path="course/:id"   component = { ManageCoursePage      } />
-    <Route path="*"            component = { NotFoundComponent     } />
+    <Route path="courses"      component = { Courses          } />
+    <Route path="course"       component = { ManageCoursePage } />
+    <Route path="course/:id"   component = { ManageCoursePage } />
+    <Route path="*"            component = { NotFound         } />
     </Route>
 );

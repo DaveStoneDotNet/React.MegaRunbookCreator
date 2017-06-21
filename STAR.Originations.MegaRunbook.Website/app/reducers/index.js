@@ -40,7 +40,7 @@ import ajaxStatusReducer    from './ajaxStatusReducer';
 //              'app.lookups': appReducer
 //
 // Currently, 'app' here is special. 'app' is intended to be those values that are global to the entire application; for example, 'user' and 'lookups'.
-// This is accomplished by mapping 'app' to the 'props' in the 'ShellComponent' and then cloning any routing element and attaching 'app' as a property 
+// This is accomplished by mapping 'app' to the 'props' in the 'Shell' component and then cloning any routing element and attaching 'app' as a property 
 // on the child element/component.
 
 const rootReducer = combineReducers({

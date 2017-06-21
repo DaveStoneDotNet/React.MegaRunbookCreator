@@ -18,15 +18,15 @@ const TARGET         = process.env.npm_lifecycle_event;
 const ENABLE_POLLING = process.env.ENABLE_POLLING;
 
 const PATHS = {
-    root:  __dirname,
-    app:   path.join(__dirname, 'app'),
-    build: path.join(__dirname, 'js'),
-    fonts: path.join(__dirname, 'app', 'fonts'),
-    test:  path.join(__dirname, 'tests'),
-    style: [
-               path.join(__dirname, 'app/styles', 'bootstrap.min.css')
-           ]
-};
+                  root:  __dirname,
+                  app:   path.join(__dirname, 'app'),
+                  build: path.join(__dirname, 'js'),
+                  fonts: path.join(__dirname, 'app', 'fonts'),
+                  test:  path.join(__dirname, 'tests'),
+                  style: [
+                             path.join(__dirname, 'app/styles', 'bootstrap.min.css')
+                         ]
+              };
 
 process.env.BABEL_ENV = TARGET;
 

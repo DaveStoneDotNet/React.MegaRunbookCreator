@@ -1,3133 +1,522 @@
 webpackJsonp([0],{
 
-/***/ 0:
-/*!********************!*\
-  !*** ./app/app.js ***!
-  \********************/
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	var _react = __webpack_require__(/*! react */ 1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _reactDom = __webpack_require__(/*! react-dom */ 38);
-	
-	var _reactRedux = __webpack_require__(/*! react-redux */ 168);
-	
-	var _reactRouter = __webpack_require__(/*! react-router */ 206);
-	
-	var _reactRouterRedux = __webpack_require__(/*! react-router-redux */ 265);
-	
-	var _routes = __webpack_require__(/*! ./routes */ 270);
-	
-	var _routes2 = _interopRequireDefault(_routes);
-	
-	var _configureStore = __webpack_require__(/*! ./store/configureStore */ 707);
-	
-	var _configureStore2 = _interopRequireDefault(_configureStore);
-	
-	var _courseActions = __webpack_require__(/*! ./actions/courseActions */ 395);
-	
-	var courseActions = _interopRequireWildcard(_courseActions);
-	
-	var _appActions = __webpack_require__(/*! ./actions/appActions */ 719);
-	
-	var appActions = _interopRequireWildcard(_appActions);
-	
-	__webpack_require__(/*! babel-polyfill */ 400);
-	
-	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	// The whole state of your app is stored in an object tree inside a single store.
-	// The only way to change the state tree is to emit an action, an object describing what happened.
-	// To specify how the actions transform the state tree, you write pure reducers.
-	
-	/* eslint-disable import/default */
-	
-	var store = (0, _configureStore2.default)();
-	
-	// Import babel-polyfill to support Object.assign functions for deep-cloning of immutable objects.
-	// Babel does not support Object.assign by default, so a pollyfill is needed.
-	// 
-	//      e.g. Object.assign({}, state, { someProperty: 'some value' });
-	
-	store.dispatch(courseActions.getCourses());
-	store.dispatch(appActions.getUser());
-	store.dispatch(appActions.getLookups());
-	
-	store.subscribe(function () {
-	  return console.log(store.getState());
-	});
-	
-	// Create an enhanced history that syncs navigation events with the store
-	var history = (0, _reactRouterRedux.syncHistoryWithStore)(_reactRouter.browserHistory, store);
-	
-	(0, _reactDom.render)(_react2.default.createElement(
-	  _reactRedux.Provider,
-	  { store: store },
-	  _react2.default.createElement(_reactRouter.Router, { history: history, routes: _routes2.default })
-	), document.getElementById('app'));
-
-/***/ },
-
-/***/ 270:
-/*!***********************!*\
-  !*** ./app/routes.js ***!
-  \***********************/
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	
-	var _react = __webpack_require__(/*! react */ 1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _reactRouter = __webpack_require__(/*! react-router */ 206);
-	
-	var _ShellComponent = __webpack_require__(/*! ./components/common/ShellComponent */ 271);
-	
-	var _ShellComponent2 = _interopRequireDefault(_ShellComponent);
-	
-	var _HomeComponent = __webpack_require__(/*! ./components/home/HomeComponent */ 275);
-	
-	var _HomeComponent2 = _interopRequireDefault(_HomeComponent);
-	
-	var _AboutComponent = __webpack_require__(/*! ./components/about/AboutComponent */ 386);
-	
-	var _AboutComponent2 = _interopRequireDefault(_AboutComponent);
-	
-	var _AdminComponent = __webpack_require__(/*! ./components/admin/AdminComponent */ 387);
-	
-	var _AdminComponent2 = _interopRequireDefault(_AdminComponent);
-	
-	var _ApplicationsComponent = __webpack_require__(/*! ./components/applications/ApplicationsComponent */ 388);
-	
-	var _ApplicationsComponent2 = _interopRequireDefault(_ApplicationsComponent);
-	
-	var _BuildsComponent = __webpack_require__(/*! ./components/builds/BuildsComponent */ 389);
-	
-	var _BuildsComponent2 = _interopRequireDefault(_BuildsComponent);
-	
-	var _RfcsComponent = __webpack_require__(/*! ./components/rfcs/RfcsComponent */ 390);
-	
-	var _RfcsComponent2 = _interopRequireDefault(_RfcsComponent);
-	
-	var _RunbooksComponent = __webpack_require__(/*! ./components/runbooks/RunbooksComponent */ 391);
-	
-	var _RunbooksComponent2 = _interopRequireDefault(_RunbooksComponent);
-	
-	var _TemplatesComponent = __webpack_require__(/*! ./components/templates/TemplatesComponent */ 392);
-	
-	var _TemplatesComponent2 = _interopRequireDefault(_TemplatesComponent);
-	
-	var _NotFoundComponent = __webpack_require__(/*! ./components/common/NotFoundComponent */ 393);
-	
-	var _NotFoundComponent2 = _interopRequireDefault(_NotFoundComponent);
-	
-	var _CoursesComponent = __webpack_require__(/*! ./components/demo/CoursesComponent */ 394);
-	
-	var _CoursesComponent2 = _interopRequireDefault(_CoursesComponent);
-	
-	var _ManageCoursePage = __webpack_require__(/*! ./components/demo/ManageCoursePage */ 700);
-	
-	var _ManageCoursePage2 = _interopRequireDefault(_ManageCoursePage);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	exports.default = _react2.default.createElement(
-	    _reactRouter.Route,
-	    { path: '/', component: _ShellComponent2.default },
-	    _react2.default.createElement(_reactRouter.IndexRoute, { component: _HomeComponent2.default }),
-	    _react2.default.createElement(_reactRouter.Route, { path: 'about', component: _AboutComponent2.default }),
-	    _react2.default.createElement(_reactRouter.Route, { path: 'about', component: _AboutComponent2.default }),
-	    _react2.default.createElement(_reactRouter.Route, { path: 'admin', component: _AdminComponent2.default }),
-	    _react2.default.createElement(_reactRouter.Route, { path: 'applications', component: _ApplicationsComponent2.default }),
-	    _react2.default.createElement(_reactRouter.Route, { path: 'builds', component: _BuildsComponent2.default }),
-	    _react2.default.createElement(_reactRouter.Route, { path: 'rfcs', component: _RfcsComponent2.default }),
-	    _react2.default.createElement(_reactRouter.Route, { path: 'runbooks', component: _RunbooksComponent2.default }),
-	    _react2.default.createElement(_reactRouter.Route, { path: 'templates', component: _TemplatesComponent2.default }),
-	    _react2.default.createElement(_reactRouter.Route, { path: 'courses', component: _CoursesComponent2.default }),
-	    _react2.default.createElement(_reactRouter.Route, { path: 'course', component: _ManageCoursePage2.default }),
-	    _react2.default.createElement(_reactRouter.Route, { path: 'course/:id', component: _ManageCoursePage2.default }),
-	    _react2.default.createElement(_reactRouter.Route, { path: '*', component: _NotFoundComponent2.default })
-	);
-
-/***/ },
-
-/***/ 271:
-/*!*************************************************!*\
-  !*** ./app/components/common/ShellComponent.js ***!
-  \*************************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _react = __webpack_require__(/*! react */ 1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _reactRedux = __webpack_require__(/*! react-redux */ 168);
-	
-	var _NavHeaderComponent = __webpack_require__(/*! ./NavHeaderComponent */ 272);
-	
-	var _NavHeaderComponent2 = _interopRequireDefault(_NavHeaderComponent);
-	
-	var _AppFooterComponent = __webpack_require__(/*! ./AppFooterComponent */ 273);
-	
-	var _AppFooterComponent2 = _interopRequireDefault(_AppFooterComponent);
-	
-	var _SplashComponent = __webpack_require__(/*! ./SplashComponent */ 274);
-	
-	var _SplashComponent2 = _interopRequireDefault(_SplashComponent);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	var ShellComponent = function (_React$Component) {
-	    _inherits(ShellComponent, _React$Component);
-	
-	    function ShellComponent() {
-	        _classCallCheck(this, ShellComponent);
-	
-	        return _possibleConstructorReturn(this, (ShellComponent.__proto__ || Object.getPrototypeOf(ShellComponent)).apply(this, arguments));
-	    }
-	
-	    _createClass(ShellComponent, [{
-	        key: 'render',
-	        value: function render() {
-	
-	            // In this ShellComponent, 'user' and 'lookups' are intended to be available to 
-	            // all the child routing elements indirectly defined via the 'routes.js' file. 
-	            //
-	            // That is, it's desirable to have some data available to the entire application 
-	            // rather than just an individual component; for example, 'user' and 'lookups'.
-	            // 
-	            // Rather than treating these values separately off the root store hierarchy, 
-	            // an 'app' object was created with 'user' and 'lookups' properties.
-	            // 
-	            // Ordinarily, you might wire routing up as follows in the 'container' div below...
-	            // 
-	            //          { this.props.children }
-	            // 
-	            // ... however, to make the 'user' and 'lookups' available to all child routing 
-	            // elements by default, the 'children' should be cloned. Each child component is 
-	            // cloned and the 'user' and 'lookups' are 'bolted' onto the cloned elements: 
-	            // 
-	            //          React.cloneElement(child, { app: app })
-	            // 
-	            // 'user' and 'lookups' props will then be available to these child components 
-	            // without having to map them (e.g. 'mapStateToProps') or explicity declare them 
-	            // (e.g. as an attribute on a custom component).
-	            // 
-	            // 'app' is defined here off of 'this.props' since 'this.props' would not be 
-	            // 'visible' inside the mapping function.
-	            // 
-	            // Many times, props are passed to the child within the render method of the 
-	            // parent as an ATTRIBUTE.
-	            // 
-	            // However, here, using REDUX, props are obtained via the 'mapStateToProps'
-	            // function.
-	            //
-	
-	            var app = this.props.app;
-	
-	            return _react2.default.createElement(
-	                'div',
-	                null,
-	                _react2.default.createElement(_SplashComponent2.default, { app: app }),
-	                _react2.default.createElement(_NavHeaderComponent2.default, { app: app }),
-	                _react2.default.createElement(
-	                    'div',
-	                    { className: 'container body-content' },
-	                    _react2.default.Children.map(this.props.children, function (child) {
-	                        return _react2.default.cloneElement(child, { app: app });
-	                    })
-	                ),
-	                _react2.default.createElement(_AppFooterComponent2.default, null)
-	            );
-	        }
-	    }]);
-	
-	    return ShellComponent;
-	}(_react2.default.Component);
-	
-	ShellComponent.propTypes = {
-	    children: _react.PropTypes.element,
-	    app: _react.PropTypes.object.isRequired
-	};
-	
-	var mapStateToProps = function mapStateToProps(state, ownProps) {
-	    return {
-	        app: state.app
-	    };
-	};
-	
-	exports.default = (0, _reactRedux.connect)(mapStateToProps)(ShellComponent);
-
-/***/ },
-
-/***/ 272:
-/*!*****************************************************!*\
-  !*** ./app/components/common/NavHeaderComponent.js ***!
-  \*****************************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _react = __webpack_require__(/*! react */ 1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _reactRouter = __webpack_require__(/*! react-router */ 206);
-	
-	var _redux = __webpack_require__(/*! redux */ 179);
-	
-	var _reactRedux = __webpack_require__(/*! react-redux */ 168);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	var NavHeaderComponent = function (_React$Component) {
-	  _inherits(NavHeaderComponent, _React$Component);
-	
-	  function NavHeaderComponent(props, context) {
-	    _classCallCheck(this, NavHeaderComponent);
-	
-	    return _possibleConstructorReturn(this, (NavHeaderComponent.__proto__ || Object.getPrototypeOf(NavHeaderComponent)).call(this, props, context));
-	  }
-	
-	  _createClass(NavHeaderComponent, [{
-	    key: 'render',
-	    value: function render() {
-	
-	      var app = this.props.app;
-	
-	      return _react2.default.createElement(
-	        'div',
-	        null,
-	        _react2.default.createElement(
-	          'div',
-	          { id: 'navbar', className: 'navbar navbar-inverse navbar-fixed-top' },
-	          _react2.default.createElement(
-	            'div',
-	            { className: 'container' },
-	            _react2.default.createElement(
-	              'div',
-	              { className: 'navbar-header' },
-	              _react2.default.createElement(
-	                _reactRouter.IndexLink,
-	                { className: 'navbar-brand', to: '/' },
-	                'MRC'
-	              )
-	            ),
-	            _react2.default.createElement(
-	              'div',
-	              { className: 'navbar-collapse collapse' },
-	              _react2.default.createElement(
-	                'div',
-	                { className: 'float-right pad-top-10' },
-	                _react2.default.createElement(
-	                  'span',
-	                  null,
-	                  _react2.default.createElement('i', { className: 'fa fa-info-circle gray-5 font-1-40' }),
-	                  ' ',
-	                  _react2.default.createElement(
-	                    'span',
-	                    { className: 'BebasNeue font-1-40 opacity-60 pad-left-5' },
-	                    app.user.UserDisplayName
-	                  )
-	                ),
-	                ' ',
-	                _react2.default.createElement(
-	                  'span',
-	                  { className: 'gray-6' },
-	                  'o'
-	                )
-	              ),
-	              _react2.default.createElement(
-	                'ul',
-	                { className: 'nav navbar-nav' },
-	                _react2.default.createElement(
-	                  'li',
-	                  null,
-	                  _react2.default.createElement(
-	                    _reactRouter.IndexLink,
-	                    { activeClassName: 'active', to: '/' },
-	                    'Home'
-	                  )
-	                ),
-	                _react2.default.createElement(
-	                  'li',
-	                  null,
-	                  _react2.default.createElement(
-	                    _reactRouter.Link,
-	                    { activeClassName: 'active', to: '/releases' },
-	                    'Release'
-	                  )
-	                ),
-	                _react2.default.createElement(
-	                  'li',
-	                  null,
-	                  _react2.default.createElement(
-	                    _reactRouter.Link,
-	                    { activeClassName: 'active', to: '/rfcs' },
-	                    'RFCs'
-	                  )
-	                ),
-	                _react2.default.createElement(
-	                  'li',
-	                  null,
-	                  _react2.default.createElement(
-	                    _reactRouter.Link,
-	                    { activeClassName: 'active', to: '/runbooks' },
-	                    'Runbooks'
-	                  )
-	                ),
-	                _react2.default.createElement(
-	                  'li',
-	                  null,
-	                  _react2.default.createElement(
-	                    _reactRouter.Link,
-	                    { activeClassName: 'active', to: '/templates' },
-	                    'Templates'
-	                  )
-	                ),
-	                _react2.default.createElement(
-	                  'li',
-	                  null,
-	                  _react2.default.createElement(
-	                    _reactRouter.Link,
-	                    { activeClassName: 'active', to: '/builds' },
-	                    'Builds'
-	                  )
-	                ),
-	                _react2.default.createElement(
-	                  'li',
-	                  null,
-	                  _react2.default.createElement(
-	                    _reactRouter.Link,
-	                    { activeClassName: 'active', to: '/applications' },
-	                    'Applications'
-	                  )
-	                ),
-	                _react2.default.createElement(
-	                  'li',
-	                  null,
-	                  _react2.default.createElement(
-	                    _reactRouter.Link,
-	                    { activeClassName: 'active', to: '/admin' },
-	                    'Admin'
-	                  )
-	                ),
-	                _react2.default.createElement(
-	                  'li',
-	                  null,
-	                  _react2.default.createElement(
-	                    _reactRouter.Link,
-	                    { activeClassName: 'active', to: '/about' },
-	                    'About'
-	                  )
-	                ),
-	                _react2.default.createElement(
-	                  'li',
-	                  null,
-	                  _react2.default.createElement(
-	                    _reactRouter.Link,
-	                    { activeClassName: 'active', to: '/courses' },
-	                    'Courses'
-	                  )
-	                )
-	              )
-	            )
-	          )
-	        )
-	      );
-	    }
-	  }]);
-	
-	  return NavHeaderComponent;
-	}(_react2.default.Component);
-	
-	NavHeaderComponent.propTypes = {
-	  app: _react.PropTypes.object.isRequired
-	};
-	
-	exports.default = NavHeaderComponent;
-
-/***/ },
-
-/***/ 273:
-/*!*****************************************************!*\
-  !*** ./app/components/common/AppFooterComponent.js ***!
-  \*****************************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	
-	var _react = __webpack_require__(/*! react */ 1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _reactRouter = __webpack_require__(/*! react-router */ 206);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	var AppFooterComponent = function AppFooterComponent() {
-	    return _react2.default.createElement(
-	        'div',
-	        null,
-	        _react2.default.createElement(
-	            'div',
-	            { id: 'footer', className: 'footer pointer' },
-	            'message'
-	        )
-	    );
-	};
-	
-	exports.default = AppFooterComponent;
-
-/***/ },
-
-/***/ 274:
-/*!**************************************************!*\
-  !*** ./app/components/common/SplashComponent.js ***!
-  \**************************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _react = __webpack_require__(/*! react */ 1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _reactRouter = __webpack_require__(/*! react-router */ 206);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	var SplashComponent = function (_React$Component) {
-	    _inherits(SplashComponent, _React$Component);
-	
-	    function SplashComponent(props, context) {
-	        _classCallCheck(this, SplashComponent);
-	
-	        return _possibleConstructorReturn(this, (SplashComponent.__proto__ || Object.getPrototypeOf(SplashComponent)).call(this, props, context));
-	    }
-	
-	    _createClass(SplashComponent, [{
-	        key: 'render',
-	        value: function render() {
-	
-	            var app = this.props.app;
-	
-	            return _react2.default.createElement(
-	                'div',
-	                { className: app.isAppInitialized ? 'hide' : '' },
-	                _react2.default.createElement(
-	                    'div',
-	                    { className: 'app-authenticating-box' },
-	                    _react2.default.createElement(
-	                        'div',
-	                        { className: 'white opacity-50' },
-	                        _react2.default.createElement(
-	                            'div',
-	                            null,
-	                            _react2.default.createElement('img', { src: '../../app/images/Mega-Runbook-Creator-Button-01.png', alt: 'mega-runbook-creator' })
-	                        ),
-	                        _react2.default.createElement(
-	                            'div',
-	                            { className: 'app-authenticating bounceInLeft animated' },
-	                            'authenticating'
-	                        ),
-	                        _react2.default.createElement('img', { src: 'app/images/running.gif', className: 'opacity-50' }),
-	                        _react2.default.createElement('img', { src: 'app/images/spiro.svg', className: 'spriro-02' }),
-	                        _react2.default.createElement(
-	                            'div',
-	                            null,
-	                            app.ajaxCallsInProgress
-	                        )
-	                    )
-	                )
-	            );
-	        }
-	    }]);
-	
-	    return SplashComponent;
-	}(_react2.default.Component);
-	
-	exports.default = SplashComponent;
-
-/***/ },
-
-/***/ 275:
-/*!**********************************************!*\
-  !*** ./app/components/home/HomeComponent.js ***!
-  \**********************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _react = __webpack_require__(/*! react */ 1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _reactRouter = __webpack_require__(/*! react-router */ 206);
-	
-	var _moment = __webpack_require__(/*! moment */ 276);
-	
-	var _moment2 = _interopRequireDefault(_moment);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	var HomeComponent = function (_React$Component) {
-	    _inherits(HomeComponent, _React$Component);
-	
-	    function HomeComponent(props, context) {
-	        _classCallCheck(this, HomeComponent);
-	
-	        return _possibleConstructorReturn(this, (HomeComponent.__proto__ || Object.getPrototypeOf(HomeComponent)).call(this, props, context));
-	    }
-	
-	    _createClass(HomeComponent, [{
-	        key: 'render',
-	        value: function render() {
-	
-	            var formattedMomentDate = (0, _moment2.default)().format('dddd MMMM Do, YYYY');
-	            var app = this.props.app;
-	
-	            return _react2.default.createElement(
-	                'div',
-	                null,
-	                _react2.default.createElement(
-	                    'div',
-	                    { className: 'pad-20 white' },
-	                    _react2.default.createElement(
-	                        'div',
-	                        { className: 'home-brand-button-block' },
-	                        _react2.default.createElement(
-	                            _reactRouter.IndexLink,
-	                            { to: '/templates', className: 'no-underline' },
-	                            _react2.default.createElement('img', { src: '../app/images/Mega-Runbook-Creator-Button-04.png', className: 'pointer;', title: 'Runbooks' }),
-	                            _react2.default.createElement(
-	                                'div',
-	                                { className: 'home-date-block' },
-	                                formattedMomentDate,
-	                                _react2.default.createElement(
-	                                    'div',
-	                                    { className: 'opacity-50' },
-	                                    app.user.UserDisplayName
-	                                ),
-	                                _react2.default.createElement(
-	                                    'div',
-	                                    null,
-	                                    _react2.default.createElement('i', { className: 'fa fa-cog font-1-20 white opacity-10 margin-top-10 hidden' })
-	                                ),
-	                                _react2.default.createElement('img', { src: '../app/images/spiro.svg', className: 'spriro-03' })
-	                            )
-	                        )
-	                    )
-	                )
-	            );
-	        }
-	    }]);
-	
-	    return HomeComponent;
-	}(_react2.default.Component);
-	
-	exports.default = HomeComponent;
-
-/***/ },
-
-/***/ 386:
-/*!************************************************!*\
-  !*** ./app/components/about/AboutComponent.js ***!
-  \************************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _react = __webpack_require__(/*! react */ 1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _reactRouter = __webpack_require__(/*! react-router */ 206);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	var AboutComponent = function AboutComponent() {
-	  return _react2.default.createElement(
-	    'div',
-	    null,
-	    'ABOUT'
-	  );
-	};
-	
-	exports.default = AboutComponent;
-
-/***/ },
-
-/***/ 387:
-/*!************************************************!*\
-  !*** ./app/components/admin/AdminComponent.js ***!
-  \************************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _react = __webpack_require__(/*! react */ 1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _reactRouter = __webpack_require__(/*! react-router */ 206);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	var AdminComponent = function AdminComponent() {
-	  return _react2.default.createElement(
-	    'div',
-	    null,
-	    'ADMIN'
-	  );
-	};
-	
-	exports.default = AdminComponent;
-
-/***/ },
-
-/***/ 388:
-/*!**************************************************************!*\
-  !*** ./app/components/applications/ApplicationsComponent.js ***!
-  \**************************************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _react = __webpack_require__(/*! react */ 1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _reactRouter = __webpack_require__(/*! react-router */ 206);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	var ApplicationsComponent = function (_React$Component) {
-	    _inherits(ApplicationsComponent, _React$Component);
-	
-	    function ApplicationsComponent(props, context) {
-	        _classCallCheck(this, ApplicationsComponent);
-	
-	        var _this = _possibleConstructorReturn(this, (ApplicationsComponent.__proto__ || Object.getPrototypeOf(ApplicationsComponent)).call(this, props, context));
-	
-	        _this.state = {
-	            someRandomValue: null
-	        };
-	        return _this;
-	    }
-	
-	    _createClass(ApplicationsComponent, [{
-	        key: 'render',
-	        value: function render() {
-	            var _this2 = this;
-	
-	            return _react2.default.createElement(
-	                'div',
-	                null,
-	                _react2.default.createElement(
-	                    'div',
-	                    { className: 'row' },
-	                    _react2.default.createElement(
-	                        'div',
-	                        { className: 'col-md-12 border-bottom-a-10 margin-bottom-10' },
-	                        _react2.default.createElement(
-	                            'div',
-	                            { className: 'float-right Lato font-1-60 opacity-50' },
-	                            'Application Links & Locations'
-	                        ),
-	                        _react2.default.createElement(
-	                            'div',
-	                            { className: 'mrc-forms' },
-	                            _react2.default.createElement(
-	                                'table',
-	                                null,
-	                                _react2.default.createElement(
-	                                    'tbody',
-	                                    null,
-	                                    _react2.default.createElement(
-	                                        'tr',
-	                                        null,
-	                                        _react2.default.createElement(
-	                                            'td',
-	                                            { className: 'td' },
-	                                            _react2.default.createElement('input', { type: 'text', name: 'ApplicationName', placeholder: 'search...', className: 'width-100' })
-	                                        ),
-	                                        _react2.default.createElement(
-	                                            'td',
-	                                            null,
-	                                            _react2.default.createElement(
-	                                                'div',
-	                                                { className: 'btn-group', dropdown: true, keyboardNav: 'true' },
-	                                                _react2.default.createElement(
-	                                                    'button',
-	                                                    { id: 'simple-btn-keyboard-nav', type: 'button', className: 'btn btn-sm btn-default', dropdownToggle: true },
-	                                                    'Group ',
-	                                                    _react2.default.createElement('span', { className: 'caret' })
-	                                                ),
-	                                                _react2.default.createElement(
-	                                                    'ul',
-	                                                    { className: 'dropdown-menu', dropdownMenu: true, role: 'menu' },
-	                                                    _react2.default.createElement(
-	                                                        'li',
-	                                                        { role: 'menuitem' },
-	                                                        _react2.default.createElement(
-	                                                            'a',
-	                                                            { className: 'dropdown-item' },
-	                                                            'lookup.Description'
-	                                                        )
-	                                                    )
-	                                                )
-	                                            )
-	                                        ),
-	                                        _react2.default.createElement(
-	                                            'td',
-	                                            null,
-	                                            _react2.default.createElement(
-	                                                'div',
-	                                                { className: 'btn-group', dropdown: true, keyboardNav: 'true' },
-	                                                _react2.default.createElement(
-	                                                    'button',
-	                                                    { id: 'simple-btn-keyboard-nav', type: 'button', className: 'btn btn-sm btn-default', dropdownToggle: true },
-	                                                    'Type ',
-	                                                    _react2.default.createElement('span', { className: 'caret' })
-	                                                ),
-	                                                _react2.default.createElement(
-	                                                    'ul',
-	                                                    { className: 'dropdown-menu', dropdownMenu: true, role: 'menu', 'aria-labelledby': 'simple-btn-keyboard-nav' },
-	                                                    _react2.default.createElement(
-	                                                        'li',
-	                                                        { role: 'menuitem' },
-	                                                        _react2.default.createElement(
-	                                                            'a',
-	                                                            { className: 'dropdown-item' },
-	                                                            'lookup.Description'
-	                                                        )
-	                                                    )
-	                                                )
-	                                            )
-	                                        ),
-	                                        _react2.default.createElement(
-	                                            'td',
-	                                            null,
-	                                            _react2.default.createElement(
-	                                                'div',
-	                                                null,
-	                                                _react2.default.createElement(
-	                                                    'button',
-	                                                    { className: 'btn btn-sm btn-primary', onClick: function onClick() {
-	                                                            return _this2.setState({ someRandomValue: 'MONKEY' });
-	                                                        } },
-	                                                    'Clear'
-	                                                ),
-	                                                ' ',
-	                                                this.state.someRandomValue
-	                                            )
-	                                        )
-	                                    )
-	                                )
-	                            )
-	                        )
-	                    )
-	                ),
-	                _react2.default.createElement(
-	                    'div',
-	                    { className: 'row' },
-	                    _react2.default.createElement(
-	                        'div',
-	                        { className: 'col-md-4' },
-	                        _react2.default.createElement(
-	                            'div',
-	                            null,
-	                            _react2.default.createElement(
-	                                'div',
-	                                { className: 'float-right align-right' },
-	                                'pagedApplicationLink.TotalRecordCount plural: \'application\' }}',
-	                                _react2.default.createElement(
-	                                    'div',
-	                                    { className: 'small-caps opacity-50' },
-	                                    _react2.default.createElement(
-	                                        'span',
-	                                        null,
-	                                        'selectedApplicationGroup.Description'
-	                                    ),
-	                                    ' ',
-	                                    _react2.default.createElement(
-	                                        'span',
-	                                        null,
-	                                        'selectedApplicationType.Description'
-	                                    )
-	                                )
-	                            ),
-	                            _react2.default.createElement(
-	                                'div',
-	                                { className: 'fat-header' },
-	                                'Application'
-	                            )
-	                        ),
-	                        _react2.default.createElement(
-	                            'table',
-	                            { className: 'mrc-data-table' },
-	                            _react2.default.createElement(
-	                                'thead',
-	                                null,
-	                                _react2.default.createElement(
-	                                    'tr',
-	                                    null,
-	                                    _react2.default.createElement(
-	                                        'th',
-	                                        { style: { width: '80%' } },
-	                                        _react2.default.createElement(
-	                                            'mrc-table-sorter',
-	                                            { PropertyName: 'Name' },
-	                                            'Name'
-	                                        )
-	                                    ),
-	                                    _react2.default.createElement(
-	                                        'th',
-	                                        { style: { width: '19%' } },
-	                                        _react2.default.createElement(
-	                                            'mrc-table-sorter',
-	                                            { PropertyName: 'ApplicationType.Description' },
-	                                            'Type'
-	                                        )
-	                                    ),
-	                                    _react2.default.createElement(
-	                                        'th',
-	                                        { style: { width: '1%' } },
-	                                        ' '
-	                                    )
-	                                )
-	                            ),
-	                            _react2.default.createElement(
-	                                'tbody',
-	                                null,
-	                                _react2.default.createElement(
-	                                    'tr',
-	                                    null,
-	                                    _react2.default.createElement(
-	                                        'td',
-	                                        null,
-	                                        'item.Name'
-	                                    ),
-	                                    _react2.default.createElement(
-	                                        'td',
-	                                        null,
-	                                        'item.ApplicationType.Description'
-	                                    ),
-	                                    _react2.default.createElement(
-	                                        'td',
-	                                        null,
-	                                        _react2.default.createElement(
-	                                            'span',
-	                                            { className: 'opacity-50 font-0-75 pad-right-10' },
-	                                            'edit'
-	                                        )
-	                                    )
-	                                )
-	                            ),
-	                            _react2.default.createElement(
-	                                'tfoot',
-	                                null,
-	                                _react2.default.createElement(
-	                                    'tr',
-	                                    null,
-	                                    _react2.default.createElement(
-	                                        'td',
-	                                        { colspan: '2' },
-	                                        'mrcBootstrapPaginator'
-	                                    )
-	                                )
-	                            )
-	                        )
-	                    ),
-	                    _react2.default.createElement(
-	                        'div',
-	                        { className: 'col-md-4 align-top' },
-	                        _react2.default.createElement(
-	                            'div',
-	                            { className: 'fat-header' },
-	                            'Sites / Services'
-	                        ),
-	                        _react2.default.createElement(
-	                            'div',
-	                            null,
-	                            _react2.default.createElement(
-	                                'div',
-	                                { className: 'row' },
-	                                _react2.default.createElement(
-	                                    'div',
-	                                    { className: 'link-table' },
-	                                    _react2.default.createElement(
-	                                        'div',
-	                                        { className: 'link-tr' },
-	                                        _react2.default.createElement(
-	                                            'div',
-	                                            { className: 'link-td' },
-	                                            'serviceLink.ServiceName'
-	                                        )
-	                                    )
-	                                )
-	                            )
-	                        )
-	                    ),
-	                    _react2.default.createElement(
-	                        'div',
-	                        { className: 'col-md-4' },
-	                        _react2.default.createElement(
-	                            'div',
-	                            { className: 'fat-header' },
-	                            'Environments'
-	                        ),
-	                        _react2.default.createElement(
-	                            'div',
-	                            null,
-	                            _react2.default.createElement(
-	                                'div',
-	                                { className: 'link-table' },
-	                                _react2.default.createElement(
-	                                    'div',
-	                                    { className: 'link-tr' },
-	                                    _react2.default.createElement(
-	                                        'div',
-	                                        { className: 'link-td align-right border-right-a-20', style: { width: '15%' } },
-	                                        'environmentLink.Server.Environment.Name'
-	                                    ),
-	                                    _react2.default.createElement(
-	                                        'div',
-	                                        { className: 'link-td' },
-	                                        _react2.default.createElement(
-	                                            'a',
-	                                            { href: 'environmentLink.Url', title: 'environmentLink.Url', target: '_blank', className: 'static-link' },
-	                                            _react2.default.createElement('i', { className: 'fa fa-external-link' })
-	                                        ),
-	                                        ' environmentLink.Server.Name'
-	                                    )
-	                                )
-	                            )
-	                        )
-	                    )
-	                )
-	            );
-	        }
-	    }]);
-	
-	    return ApplicationsComponent;
-	}(_react2.default.Component);
-	
-	exports.default = ApplicationsComponent;
-
-/***/ },
-
-/***/ 389:
-/*!**************************************************!*\
-  !*** ./app/components/builds/BuildsComponent.js ***!
-  \**************************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _react = __webpack_require__(/*! react */ 1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _reactRouter = __webpack_require__(/*! react-router */ 206);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	var BuildsComponent = function BuildsComponent() {
-	  return _react2.default.createElement(
-	    'div',
-	    null,
-	    'BUILDS'
-	  );
-	};
-	
-	exports.default = BuildsComponent;
-
-/***/ },
-
-/***/ 390:
-/*!**********************************************!*\
-  !*** ./app/components/rfcs/RfcsComponent.js ***!
-  \**********************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _react = __webpack_require__(/*! react */ 1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _reactRouter = __webpack_require__(/*! react-router */ 206);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	var RfcsComponent = function RfcsComponent() {
-	  return _react2.default.createElement(
-	    'div',
-	    null,
-	    'RFCs'
-	  );
-	};
-	
-	exports.default = RfcsComponent;
-
-/***/ },
-
-/***/ 391:
-/*!******************************************************!*\
-  !*** ./app/components/runbooks/RunbooksComponent.js ***!
-  \******************************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _react = __webpack_require__(/*! react */ 1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _reactRouter = __webpack_require__(/*! react-router */ 206);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	var RunbooksComponent = function RunbooksComponent() {
-	  return _react2.default.createElement(
-	    'div',
-	    null,
-	    'RUNBOOKS'
-	  );
-	};
-	
-	exports.default = RunbooksComponent;
-
-/***/ },
-
-/***/ 392:
-/*!********************************************************!*\
-  !*** ./app/components/templates/TemplatesComponent.js ***!
-  \********************************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _react = __webpack_require__(/*! react */ 1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _reactRouter = __webpack_require__(/*! react-router */ 206);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	var TemplatesComponent = function TemplatesComponent() {
-	  return _react2.default.createElement(
-	    'div',
-	    null,
-	    'TEMPLATES'
-	  );
-	};
-	
-	exports.default = TemplatesComponent;
-
-/***/ },
-
-/***/ 393:
-/*!****************************************************!*\
-  !*** ./app/components/common/NotFoundComponent.js ***!
-  \****************************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _react = __webpack_require__(/*! react */ 1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _reactRouter = __webpack_require__(/*! react-router */ 206);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	var NotFoundComponent = function NotFoundComponent() {
-	  return _react2.default.createElement(
-	    'div',
-	    null,
-	    _react2.default.createElement(
-	      'h4',
-	      null,
-	      '404 Page Not Found'
-	    ),
-	    _react2.default.createElement(
-	      _reactRouter.Link,
-	      { to: '/' },
-	      ' Go back to homepage '
-	    )
-	  );
-	};
-	
-	exports.default = NotFoundComponent;
-
-/***/ },
-
-/***/ 394:
-/*!*************************************************!*\
-  !*** ./app/components/demo/CoursesComponent.js ***!
-  \*************************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _react = __webpack_require__(/*! react */ 1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _redux = __webpack_require__(/*! redux */ 179);
-	
-	var _reactRedux = __webpack_require__(/*! react-redux */ 168);
-	
-	var _reactRouter = __webpack_require__(/*! react-router */ 206);
-	
-	var _courseActions = __webpack_require__(/*! ../../actions/courseActions */ 395);
-	
-	var courseActions = _interopRequireWildcard(_courseActions);
-	
-	var _CourseList = __webpack_require__(/*! ./CourseList */ 698);
-	
-	var _CourseList2 = _interopRequireDefault(_CourseList);
-	
-	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	var CoursesComponent = function (_React$Component) {
-	    _inherits(CoursesComponent, _React$Component);
-	
-	    function CoursesComponent(props, context) {
-	        _classCallCheck(this, CoursesComponent);
-	
-	        var _this = _possibleConstructorReturn(this, (CoursesComponent.__proto__ || Object.getPrototypeOf(CoursesComponent)).call(this, props, context));
-	
-	        _this.redirectToAddCoursePage = _this.redirectToAddCoursePage.bind(_this);
-	        return _this;
-	    }
-	
-	    _createClass(CoursesComponent, [{
-	        key: 'courseRow',
-	        value: function courseRow(course, index) {
-	            return _react2.default.createElement(
-	                'div',
-	                { key: index },
-	                course.title
-	            );
-	        }
-	    }, {
-	        key: 'redirectToAddCoursePage',
-	        value: function redirectToAddCoursePage() {
-	            _reactRouter.browserHistory.push('/course');
-	        }
-	    }, {
-	        key: 'render',
-	        value: function render() {
-	
-	            var courses = this.props.courses;
-	            var user = this.props.user;
-	
-	            return _react2.default.createElement(
-	                'div',
-	                null,
-	                _react2.default.createElement(
-	                    'div',
-	                    null,
-	                    _react2.default.createElement(
-	                        'div',
-	                        null,
-	                        user.UserDisplayName
-	                    )
-	                ),
-	                _react2.default.createElement(
-	                    'h1',
-	                    null,
-	                    'Courses'
-	                ),
-	                _react2.default.createElement('input', { type: 'submit', value: 'Add Course', className: 'btn btn-primary', onClick: this.redirectToAddCoursePage }),
-	                _react2.default.createElement(_CourseList2.default, { courses: courses })
-	            );
-	        }
-	    }]);
-	
-	    return CoursesComponent;
-	}(_react2.default.Component);
-	
-	CoursesComponent.propTypes = {
-	    actions: _react.PropTypes.object.isRequired,
-	    courses: _react.PropTypes.array.isRequired
-	};
-	
-	// 'mapStateToProps' defines what part of the redux store to expose to child components.
-	// When you define this function, it subscribes to redux store's updates.
-	// Each property defined will become a property of the component.
-	// In short, it defines an object with properties exposed to the component.
-	//
-	//      e.g. this.props.courses...
-	//
-	// The 'state' parameter represents the 'state' in the redux store.
-	// 
-	// The 'state.courses' property is determined by the choice to name the property 'courses' 
-	// in the 'rootReducer' of index.js. In this case, 'courses' was just an 'alias' of the 
-	// 'courseReducer'
-	// 
-	// So if you wanted to expose the entire store could you just say { everything: state } ?
-	//
-	// 'ownProps' is useful for accessing routing-related props injected by react-router.
-	//
-	
-	var mapStateToProps = function mapStateToProps(state, ownProps) {
-	    return {
-	        courses: state.courses
-	    };
-	};
-	
-	// 'mapDispatchToProps' exposes the actions exposed to the component.
-	
-	var mapDispatchToProps = function mapDispatchToProps(dispatch) {
-	    return {
-	        actions: (0, _redux.bindActionCreators)(courseActions, dispatch)
-	    };
-	};
-	
-	// Instead of exporting a 'plain' component...
-	// .. export a component that's decorated by the react-redux connect function.
-	// The connect function is used to interact with react-redux and can be referred to as 'container-components'.
-	// 
-	// If you OMIT the 'mapDispatchToProps' parameter, the 'connect' function injects a 'dispatch' property to 
-	// the component. That is, this component automatically gets a 'dispatch' property attached to it.
-	// The 'dispatch' function is a function which allows you to fire off the actions defined in 'courseActions.js'.
-	//
-	// To dispatch an action, a reference to actions is needed. e.g. courseActions.
-	// 
-	// The 'dispatch' function could then referenced as follows... 
-	//
-	//          this.props.dispatch(courseActions.getCourses());
-	// 
-	// This is somewhat verbose, so an alternative would be to call the 'mapDispatchToProps' function instead.
-	//
-	// It's important to note that when implementing 'mapDispatchToProps', 'dispatch' is *NOT* injected.
-	// 
-	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(CoursesComponent);
-
-/***/ },
-
-/***/ 395:
-/*!**************************************!*\
-  !*** ./app/actions/courseActions.js ***!
-  \**************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	exports.getCoursesSuccess = getCoursesSuccess;
-	exports.createCourseSuccess = createCourseSuccess;
-	exports.updateCourseSuccess = updateCourseSuccess;
-	exports.getCourses = getCourses;
-	exports.saveCourse = saveCourse;
-	
-	var _mockCourseApi = __webpack_require__(/*! ../api/mockCourseApi */ 396);
-	
-	var _mockCourseApi2 = _interopRequireDefault(_mockCourseApi);
-	
-	var _MrcApi = __webpack_require__(/*! ../api/MrcApi */ 398);
-	
-	var _MrcApi2 = _interopRequireDefault(_MrcApi);
-	
-	var _ajaxStatusActions = __webpack_require__(/*! ./ajaxStatusActions */ 696);
-	
-	var _actionTypes = __webpack_require__(/*! ./actionTypes */ 697);
-	
-	var types = _interopRequireWildcard(_actionTypes);
-	
-	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	// The whole state of your app is stored in an object tree inside a single store.
-	// The only way to change the state tree is to emit an action, an object describing what happened.
-	// To specify how the actions transform the state tree, you write pure reducers.
-	
-	// -----------------------------------------------------------------------------------------------------------------------
-	// Actions:
-	// -----------------------------------------------------------------------------------------------------------------------
-	// 
-	// Events happening in an app are called 'actions'. They're just plain object describing events. They must have a 'type' key. 
-	// The second property contains data, is optional, and can be of any type.
-	// 
-	// An action describes user intent.
-	// 
-	// 1) Store gets notified of action.
-	// 2) Store sends action to reducers.
-	// 3) Reducers accept state and return new state.
-	// 
-	// Action Creators... returning a plain javascript object which must have a 'type' property.
-	// Once an action is created, you need a function which will 'handle' that action, and that's where reducers come in.
-	// Reducers are just functions which accept a state, an action, and returns a new state.
-	// 
-	// All reducers are called when an action is dispatched.
-	// 
-	// These ___SUCCESS actions don't fire until all the responses have been asynchronously returned by the API calls.
-	// 
-	// -----------------------------------------------------------------------------------------------------------------------
-	
-	// For example, substitute it with a real api.
-	function getCoursesSuccess(courses) {
-	    return { type: types.GET_COURSES_SUCCESS, courses: courses };
-	} // Only need to change this import to use a real api instead of a mocked one.
-	function createCourseSuccess(course) {
-	    return { type: types.CREATE_COURSE_SUCCESS, course: course };
-	}
-	function updateCourseSuccess(course) {
-	    return { type: types.UPDATE_COURSE_SUCCESS, course: course };
-	}
-	
-	// -----------------------------------------------------------------------------------------------------------------------
-	// Thunks:
-	// -----------------------------------------------------------------------------------------------------------------------
-	// A thunk always returns a function that accepts a dispatch....
-	// 
-	//      return function (dispatch) 
-	// 
-	// ... this wrapper function will exist in every thunk.
-	// 
-	// -----------------------------------------------------------------------------------------------------------------------
-	
-	function getCourses() {
-	    return function (dispatch) {
-	        dispatch((0, _ajaxStatusActions.beginAjaxCall)());
-	        return _MrcApi2.default.getCourses().then(function (response) {
-	            dispatch(getCoursesSuccess(response));
-	        }).catch(function (error) {
-	            throw error;
-	        });
-	    };
-	};
-	
-	// -------------------------------------------------------------------------------------------------
-	
-	// CourseForm > Button Click > ManageCoursePage.onSave > ManageCoursePage.saveCourse > this.props.actions.saveCourse(this.state.course)
-	
-	function saveCourse(course) {
-	    return function (dispatch, getState) {
-	        dispatch((0, _ajaxStatusActions.beginAjaxCall)());
-	        return _mockCourseApi2.default.saveCourse(course).then(function (course) {
-	            course.id ? dispatch(updateCourseSuccess(course)) : dispatch(createCourseSuccess(course));
-	        }).catch(function (error) {
-	            dispatch((0, _ajaxStatusActions.ajaxCallError)(error));throw error;
-	        });
-	    };
-	};
-	
-	// -------------------------------------------------------------------------------------------------
-
-/***/ },
-
-/***/ 396:
-/*!**********************************!*\
-  !*** ./app/api/mockCourseApi.js ***!
-  \**********************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _delay = __webpack_require__(/*! ./delay */ 397);
-	
-	var _delay2 = _interopRequireDefault(_delay);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	// This file mocks a web API by working with the hard-coded data below. It uses setTimeout to simulate the delay of an AJAX call. All calls return promises.
-	var courses = [{
-	    id: 'react-flux-building-applications',
-	    title: 'Building Applications in React and Flux',
-	    watchHref: 'http://www.pluralsight.com/courses/react-flux-building-applications',
-	    authorId: 'cory-house',
-	    length: '5:08',
-	    category: 'JavaScript'
-	}, {
-	    id: 'clean-code',
-	    title: 'Clean Code: Writing Code for Humans',
-	    watchHref: 'http://www.pluralsight.com/courses/writing-clean-code-humans',
-	    authorId: 'cory-house',
-	    length: '3:10',
-	    category: 'Software Practices'
-	}, {
-	    id: 'architecture',
-	    title: 'Architecting Applications for the Real World',
-	    watchHref: 'http://www.pluralsight.com/courses/architecting-applications-dotnet',
-	    authorId: 'cory-house',
-	    length: '2:52',
-	    category: 'Software Architecture'
-	}, {
-	    id: 'career-reboot-for-developer-mind',
-	    title: 'Becoming an Outlier: Reprogramming the Developer Mind',
-	    watchHref: 'http://www.pluralsight.com/courses/career-reboot-for-developer-mind',
-	    authorId: 'cory-house',
-	    length: '2:30',
-	    category: 'Career'
-	}, {
-	    id: 'web-components-shadow-dom',
-	    title: 'Web Component Fundamentals',
-	    watchHref: 'http://www.pluralsight.com/courses/web-components-shadow-dom',
-	    authorId: 'cory-house',
-	    length: '5:10',
-	    category: 'HTML5'
-	}];
-	
-	function replaceAll(str, find, replace) {
-	    return str.replace(new RegExp(find, 'g'), replace);
-	}
-	
-	// This would be performed on the server in a real app. Just stubbing in.
-	
-	var generateId = function generateId(course) {
-	    return replaceAll(course.title, ' ', '-');
-	};
-	
-	var CourseApi = function () {
-	    function CourseApi() {
-	        _classCallCheck(this, CourseApi);
-	    }
-	
-	    _createClass(CourseApi, null, [{
-	        key: 'getAllCourses',
-	        value: function getAllCourses() {
-	
-	            return new Promise(function (resolve, reject) {
-	                setTimeout(function () {
-	                    resolve(Object.assign([], courses));
-	                }, _delay2.default);
-	            });
-	        }
-	    }, {
-	        key: 'saveCourse',
-	        value: function saveCourse(course) {
-	
-	            course = Object.assign({}, course); // to avoid manipulating object passed in.
-	
-	            return new Promise(function (resolve, reject) {
-	
-	                setTimeout(function () {
-	
-	                    // Simulate server-side validation
-	                    var minCourseTitleLength = 1;
-	                    if (course.title.length < minCourseTitleLength) {
-	                        reject('Title must be at least ' + minCourseTitleLength + ' characters.');
-	                    }
-	
-	                    if (course.id) {
-	                        var existingCourseIndex = courses.findIndex(function (a) {
-	                            return a.id == course.id;
-	                        });
-	                        courses.splice(existingCourseIndex, 1, course);
-	                    } else {
-	                        //Just simulating creation here.
-	                        //The server would generate ids and watchHref's for new courses in a real app.
-	                        //Cloning so copy returned is passed by value rather than by reference.
-	                        course.id = generateId(course);
-	                        course.watchHref = 'http://www.pluralsight.com/courses/' + course.id;
-	                        courses.push(course);
-	                    }
-	
-	                    resolve(course);
-	                }, _delay2.default);
-	            });
-	        }
-	    }, {
-	        key: 'deleteCourse',
-	        value: function deleteCourse(courseId) {
-	
-	            return new Promise(function (resolve, reject) {
-	
-	                setTimeout(function () {
-	
-	                    var indexOfCourseToDelete = courses.findIndex(function (course) {
-	                        course.courseId == courseId;
-	                    });
-	
-	                    courses.splice(indexOfCourseToDelete, 1);
-	
-	                    resolve();
-	                }, _delay2.default);
-	            });
-	        }
-	    }]);
-	
-	    return CourseApi;
-	}();
-	
-	exports.default = CourseApi;
-
-/***/ },
-
-/***/ 397:
-/*!**************************!*\
-  !*** ./app/api/delay.js ***!
-  \**************************/
-/***/ function(module, exports) {
-
-	"use strict";
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.default = 1000;
-
-/***/ },
-
-/***/ 398:
-/*!***************************!*\
-  !*** ./app/api/MrcApi.js ***!
-  \***************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	__webpack_require__(/*! whatwg-fetch */ 399);
-	
-	__webpack_require__(/*! babel-polyfill */ 400);
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	var API_HEADERS = {
-	    'Content-Type': 'application/json',
-	    'Accept': 'application/json, text/plain, */*'
-	};
-	
-	var MrcApi = function () {
-	    function MrcApi() {
-	        _classCallCheck(this, MrcApi);
-	    }
-	
-	    _createClass(MrcApi, null, [{
-	        key: 'getCourses',
-	        value: function getCourses() {
-	
-	            return fetch('api/GetGourses', {
-	                headers: API_HEADERS
-	            }).then(function (response) {
-	                return response.json();
-	            });
-	        }
-	    }, {
-	        key: 'getUser',
-	        value: function getUser() {
-	
-	            return fetch('api/GetUserProfile', {
-	                headers: API_HEADERS
-	            }).then(function (response) {
-	                return response.json();
-	            });
-	        }
-	    }, {
-	        key: 'getLookups',
-	        value: function getLookups() {
-	
-	            return fetch('api/GetLookups', {
-	                headers: API_HEADERS
-	            }).then(function (response) {
-	                return response.json();
-	            });
-	        }
-	    }]);
-	
-	    return MrcApi;
-	}();
-	
-	;
-	
-	exports.default = MrcApi;
-
-/***/ },
-
-/***/ 696:
-/*!******************************************!*\
-  !*** ./app/actions/ajaxStatusActions.js ***!
-  \******************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.beginAjaxCall = beginAjaxCall;
-	exports.ajaxCallError = ajaxCallError;
-	
-	var _actionTypes = __webpack_require__(/*! ./actionTypes */ 697);
-	
-	var types = _interopRequireWildcard(_actionTypes);
-	
-	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
-	
-	function beginAjaxCall() {
-	  return {
-	    type: types.BEGIN_AJAX_CALL
-	  };
-	}
-	
-	function ajaxCallError() {
-	  return {
-	    type: types.AJAX_CALL_ERROR
-	  };
-	}
-
-/***/ },
-
-/***/ 697:
-/*!************************************!*\
-  !*** ./app/actions/actionTypes.js ***!
-  \************************************/
-/***/ function(module, exports) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	var BEGIN_AJAX_CALL = exports.BEGIN_AJAX_CALL = 'BEGIN_AJAX_CALL';
-	var AJAX_CALL_ERROR = exports.AJAX_CALL_ERROR = 'AJAX_CALL_ERROR';
-	
-	var GET_COURSES_SUCCESS = exports.GET_COURSES_SUCCESS = 'GET_COURSES_SUCCESS';
-	var LOAD_AUTHORS_SUCCESS = exports.LOAD_AUTHORS_SUCCESS = 'LOAD_AUTHORS_SUCCESS';
-	var CREATE_COURSE_SUCCESS = exports.CREATE_COURSE_SUCCESS = 'CREATE_COURSE_SUCCESS';
-	var UPDATE_COURSE_SUCCESS = exports.UPDATE_COURSE_SUCCESS = 'UPDATE_COURSE_SUCCESS';
-	
-	var GET_USER_SUCCESS = exports.GET_USER_SUCCESS = 'GET_USER_SUCCESS';
-	var GET_LOOKUPS_SUCCESS = exports.GET_LOOKUPS_SUCCESS = 'GET_LOOKUPS_SUCCESS';
-	
-	var IS_INITIALIZED = exports.IS_INITIALIZED = 'IS_INITIALIZED';
-
-/***/ },
-
-/***/ 698:
-/*!*******************************************!*\
-  !*** ./app/components/demo/CourseList.js ***!
-  \*******************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _react = __webpack_require__(/*! react */ 1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _CourseListRow = __webpack_require__(/*! ./CourseListRow */ 699);
-	
-	var _CourseListRow2 = _interopRequireDefault(_CourseListRow);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	var CourseList = function CourseList(_ref) {
-	  var courses = _ref.courses;
-	
-	  return _react2.default.createElement(
-	    'table',
-	    { className: 'table' },
-	    _react2.default.createElement(
-	      'thead',
-	      null,
-	      _react2.default.createElement(
-	        'tr',
-	        null,
-	        _react2.default.createElement(
-	          'th',
-	          null,
-	          '\xA0'
-	        ),
-	        _react2.default.createElement(
-	          'th',
-	          null,
-	          'Title'
-	        ),
-	        _react2.default.createElement(
-	          'th',
-	          null,
-	          'Author'
-	        ),
-	        _react2.default.createElement(
-	          'th',
-	          null,
-	          'Category'
-	        ),
-	        _react2.default.createElement(
-	          'th',
-	          null,
-	          'Length'
-	        )
-	      )
-	    ),
-	    _react2.default.createElement(
-	      'tbody',
-	      null,
-	      courses.map(function (course) {
-	        return _react2.default.createElement(_CourseListRow2.default, { key: course.id, course: course });
-	      })
-	    )
-	  );
-	};
-	
-	CourseList.propTypes = {
-	  courses: _react.PropTypes.array.isRequired
-	};
-	
-	exports.default = CourseList;
-
-/***/ },
-
-/***/ 699:
-/*!**********************************************!*\
-  !*** ./app/components/demo/CourseListRow.js ***!
-  \**********************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _react = __webpack_require__(/*! react */ 1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _reactRouter = __webpack_require__(/*! react-router */ 206);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	var CourseListRow = function CourseListRow(_ref) {
-	  var course = _ref.course;
-	
-	  return _react2.default.createElement(
-	    'tr',
-	    null,
-	    _react2.default.createElement(
-	      'td',
-	      null,
-	      _react2.default.createElement(
-	        'a',
-	        { href: course.watchHref, target: '_blank' },
-	        'Watch'
-	      )
-	    ),
-	    _react2.default.createElement(
-	      'td',
-	      null,
-	      _react2.default.createElement(
-	        _reactRouter.Link,
-	        { to: '/course/' + course.id },
-	        course.title
-	      )
-	    ),
-	    _react2.default.createElement(
-	      'td',
-	      null,
-	      course.authorId
-	    ),
-	    _react2.default.createElement(
-	      'td',
-	      null,
-	      course.category
-	    ),
-	    _react2.default.createElement(
-	      'td',
-	      null,
-	      course.length
-	    )
-	  );
-	};
-	
-	CourseListRow.propTypes = {
-	  course: _react.PropTypes.object.isRequired
-	};
-	
-	exports.default = CourseListRow;
-
-/***/ },
-
-/***/ 700:
-/*!*************************************************!*\
-  !*** ./app/components/demo/ManageCoursePage.js ***!
-  \*************************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _react = __webpack_require__(/*! react */ 1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _reactRedux = __webpack_require__(/*! react-redux */ 168);
-	
-	var _redux = __webpack_require__(/*! redux */ 179);
-	
-	var _toastr = __webpack_require__(/*! toastr */ 701);
-	
-	var _toastr2 = _interopRequireDefault(_toastr);
-	
-	var _courseActions = __webpack_require__(/*! ../../actions/courseActions */ 395);
-	
-	var courseActions = _interopRequireWildcard(_courseActions);
-	
-	var _CourseForm = __webpack_require__(/*! ./CourseForm */ 704);
-	
-	var _CourseForm2 = _interopRequireDefault(_CourseForm);
-	
-	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	var ManageCoursePage = function (_React$Component) {
-	    _inherits(ManageCoursePage, _React$Component);
-	
-	    function ManageCoursePage(props, context) {
-	        _classCallCheck(this, ManageCoursePage);
-	
-	        var _this = _possibleConstructorReturn(this, (ManageCoursePage.__proto__ || Object.getPrototypeOf(ManageCoursePage)).call(this, props, context));
-	
-	        _this.state = {
-	            course: Object.assign({}, _this.props.course),
-	            errors: {},
-	            saving: false
-	        };
-	
-	        _this.updateCourseState = _this.updateCourseState.bind(_this);
-	        _this.saveCourse = _this.saveCourse.bind(_this);
-	        return _this;
-	    }
-	
-	    _createClass(ManageCoursePage, [{
-	        key: 'componentWillMount',
-	        value: function componentWillMount() {}
-	    }, {
-	        key: 'componentDidMount',
-	        value: function componentDidMount() {}
-	    }, {
-	        key: 'componentWillReceiveProps',
-	        value: function componentWillReceiveProps(nextProps) {
-	
-	            // Necessary to populate when existing course is loaded directly
-	            if (this.props.course.id !== nextProps.course.id) {
-	                this.setState({
-	                    course: Object.assign({}, nextProps.course)
-	                });
-	            }
-	        }
-	    }, {
-	        key: 'updateCourseState',
-	        value: function updateCourseState(event) {
-	            var field = event.target.name;
-	            var course = this.state.course;
-	            course[field] = event.target.value;
-	            return this.setState({ course: course });
-	        }
-	    }, {
-	        key: 'saveCourse',
-	        value: function saveCourse(event) {
-	            var _this2 = this;
-	
-	            event.preventDefault();
-	            this.setState({ saving: true });
-	            this.props.actions.saveCourse(this.state.course).then(function () {
-	                return _this2.redirect();
-	            }).catch(function (error) {
-	                _toastr2.default.error(error);
-	                _this2.setState({ saving: false });
-	            });
-	        }
-	    }, {
-	        key: 'redirect',
-	        value: function redirect() {
-	            this.setState({ saving: false });
-	            _toastr2.default.success('Course saved');
-	            this.context.router.push('/courses');
-	        }
-	    }, {
-	        key: 'render',
-	        value: function render() {
-	            return _react2.default.createElement(_CourseForm2.default, { allAuthors: this.props.authors,
-	                onChange: this.updateCourseState,
-	                onSave: this.saveCourse,
-	                course: this.state.course,
-	                errors: this.state.errors,
-	                saving: this.state.saving
-	            });
-	        }
-	    }]);
-	
-	    return ManageCoursePage;
-	}(_react2.default.Component);
-	
-	ManageCoursePage.propTypes = {
-	    course: _react.PropTypes.object.isRequired,
-	    errors: _react.PropTypes.object,
-	    authors: _react.PropTypes.array.isRequired,
-	    actions: _react.PropTypes.object.isRequired
-	};
-	
-	ManageCoursePage.contextTypes = {
-	    router: _react.PropTypes.object.isRequired
-	};
-	
-	var getCourseById = function getCourseById(courses, id) {
-	    var course = courses.filter(function (course) {
-	        return course.id == id;
-	    });
-	    if (course) return course[0];
-	    return null;
-	};
-	
-	var mapStateToProps = function mapStateToProps(state, ownProps) {
-	
-	    var courseId = ownProps.params.id; // From the path '/course/:id'
-	
-	    var course = { id: '', watchHref: '', title: '', authorId: '', length: '', category: '' };
-	
-	    if (courseId && state.courses.length > 0) {
-	        course = getCourseById(state.courses, courseId);
-	    }
-	
-	    var authorsFormattedForDropdown = state.authors.map(function (author) {
-	        return {
-	            value: author.id,
-	            text: author.firstName + ' ' + author.lastName
-	        };
-	    });
-	
-	    return {
-	        course: course,
-	        authors: authorsFormattedForDropdown
-	    };
-	};
-	
-	var mapDispatchToProps = function mapDispatchToProps(dispatch) {
-	    return {
-	        actions: (0, _redux.bindActionCreators)(courseActions, dispatch)
-	    };
-	};
-	
-	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(ManageCoursePage);
-
-/***/ },
-
-/***/ 704:
-/*!*******************************************!*\
-  !*** ./app/components/demo/CourseForm.js ***!
-  \*******************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	      value: true
-	});
-	
-	var _react = __webpack_require__(/*! react */ 1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _TextInput = __webpack_require__(/*! ../common/TextInput */ 705);
-	
-	var _TextInput2 = _interopRequireDefault(_TextInput);
-	
-	var _SelectInput = __webpack_require__(/*! ../common/SelectInput */ 706);
-	
-	var _SelectInput2 = _interopRequireDefault(_SelectInput);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	var CourseForm = function CourseForm(_ref) {
-	      var course = _ref.course,
-	          allAuthors = _ref.allAuthors,
-	          onSave = _ref.onSave,
-	          onChange = _ref.onChange,
-	          saving = _ref.saving,
-	          errors = _ref.errors;
-	
-	      return _react2.default.createElement(
-	            'form',
-	            null,
-	            _react2.default.createElement(
-	                  'h1',
-	                  null,
-	                  'Manage Course'
-	            ),
-	            _react2.default.createElement(_TextInput2.default, { name: 'title',
-	                  label: 'Title',
-	                  value: course.title,
-	                  onChange: onChange,
-	                  error: errors.title }),
-	            _react2.default.createElement(_SelectInput2.default, { name: 'authorId',
-	                  label: 'Author',
-	                  value: course.authorId,
-	                  defaultOption: 'Select Author',
-	                  options: allAuthors,
-	                  onChange: onChange,
-	                  error: errors.authorId }),
-	            _react2.default.createElement(_TextInput2.default, { name: 'category',
-	                  label: 'Category',
-	                  value: course.category,
-	                  onChange: onChange,
-	                  error: errors.category }),
-	            _react2.default.createElement(_TextInput2.default, { name: 'length',
-	                  label: 'Length',
-	                  value: course.length,
-	                  onChange: onChange,
-	                  error: errors.length }),
-	            _react2.default.createElement('input', { type: 'submit',
-	                  disabled: saving,
-	                  value: saving ? 'Saving...' : 'Save',
-	                  className: 'btn btn-primary',
-	                  onClick: onSave })
-	      );
-	};
-	
-	CourseForm.propTypes = {
-	      course: _react2.default.PropTypes.object.isRequired,
-	      allAuthors: _react2.default.PropTypes.array,
-	      onSave: _react2.default.PropTypes.func.isRequired,
-	      onChange: _react2.default.PropTypes.func.isRequired,
-	      saving: _react2.default.PropTypes.bool,
-	      errors: _react2.default.PropTypes.object
-	};
-	
-	exports.default = CourseForm;
-
-/***/ },
-
-/***/ 705:
-/*!********************************************!*\
-  !*** ./app/components/common/TextInput.js ***!
-  \********************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	
-	var _react = __webpack_require__(/*! react */ 1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	var TextInput = function TextInput(_ref) {
-	    var name = _ref.name,
-	        label = _ref.label,
-	        onChange = _ref.onChange,
-	        placeholder = _ref.placeholder,
-	        value = _ref.value,
-	        error = _ref.error;
-	
-	    var wrapperClass = 'form-group';
-	
-	    if (error && error.length > 0) {
-	        wrapperClass += ' has-error';
-	    }
-	
-	    return _react2.default.createElement(
-	        'div',
-	        { className: wrapperClass },
-	        _react2.default.createElement(
-	            'label',
-	            { htmlFor: '{ name }' },
-	            label
-	        ),
-	        _react2.default.createElement(
-	            'div',
-	            { className: 'field' },
-	            _react2.default.createElement('input', { type: 'text',
-	                className: 'form-control',
-	                name: name,
-	                value: value,
-	                placeholder: placeholder,
-	                onChange: onChange
-	            }),
-	            error && _react2.default.createElement(
-	                'div',
-	                { className: 'alert alert-danger' },
-	                'error'
-	            )
-	        )
-	    );
-	};
-	
-	TextInput.propTypes = {
-	    name: _react.PropTypes.string.isRequired,
-	    label: _react.PropTypes.string.isRequired,
-	    onChange: _react.PropTypes.func.isRequired,
-	    placeholder: _react.PropTypes.string,
-	    value: _react.PropTypes.string,
-	    error: _react.PropTypes.string
-	};
-	
-	exports.default = TextInput;
-
-/***/ },
-
-/***/ 706:
-/*!**********************************************!*\
-  !*** ./app/components/common/SelectInput.js ***!
-  \**********************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	
-	var _react = __webpack_require__(/*! react */ 1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	var SelectInput = function SelectInput(_ref) {
-	    var name = _ref.name,
-	        label = _ref.label,
-	        onChange = _ref.onChange,
-	        defaultOption = _ref.defaultOption,
-	        value = _ref.value,
-	        error = _ref.error,
-	        options = _ref.options;
-	
-	    return _react2.default.createElement(
-	        'div',
-	        { className: 'form-group' },
-	        _react2.default.createElement(
-	            'label',
-	            { htmlFor: '{ name }' },
-	            label
-	        ),
-	        _react2.default.createElement(
-	            'div',
-	            { className: 'field' },
-	            _react2.default.createElement(
-	                'select',
-	                { type: 'text',
-	                    className: 'form-control',
-	                    name: name,
-	                    value: value,
-	                    onChange: onChange
-	                },
-	                _react2.default.createElement(
-	                    'option',
-	                    { value: '' },
-	                    defaultOption
-	                ),
-	                options.map(function (option) {
-	                    return _react2.default.createElement(
-	                        'option',
-	                        { key: option.value, value: option.value },
-	                        option.text
-	                    );
-	                })
-	            ),
-	            error && _react2.default.createElement(
-	                'div',
-	                { className: 'alert alert-danger' },
-	                'error'
-	            )
-	        )
-	    );
-	};
-	
-	SelectInput.propTypes = {
-	    name: _react.PropTypes.string.isRequired,
-	    label: _react.PropTypes.string.isRequired,
-	    onChange: _react.PropTypes.func.isRequired,
-	    defaultOption: _react.PropTypes.string,
-	    value: _react.PropTypes.string,
-	    error: _react.PropTypes.string,
-	    options: _react.PropTypes.arrayOf(_react.PropTypes.object)
-	};
-	
-	exports.default = SelectInput;
-
-/***/ },
-
-/***/ 707:
-/*!*************************************!*\
-  !*** ./app/store/configureStore.js ***!
-  \*************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	exports.default = configureStore;
-	
-	var _reduxImmutableStateInvariant = __webpack_require__(/*! redux-immutable-state-invariant */ 708);
-	
-	var _reduxImmutableStateInvariant2 = _interopRequireDefault(_reduxImmutableStateInvariant);
-	
-	var _reduxThunk = __webpack_require__(/*! redux-thunk */ 712);
-	
-	var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
-	
-	var _redux = __webpack_require__(/*! redux */ 179);
-	
-	var _reducers = __webpack_require__(/*! ../reducers */ 713);
-	
-	var _reducers2 = _interopRequireDefault(_reducers);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	// Create a Redux store holding the state of your app.
-	// Its API is { subscribe, dispatch, getState }.
-	
-	// The whole state of your app is stored in an object tree inside a single store.
-	// The only way to change the state tree is to emit an action - an object describing what happened.
-	// To specify how actions transform the state tree, you write pure reducers.
-	
-	// The actual 'shape' of the store is better reflected in 'reducers/index.js' which combines all of the defined reducers into a single reducer, 
-	// and 'reducers/initialState.js' which is an optional, non-redux object, intended to provide default values for each defined state object.
-	// That is, by defining initial states, it can be helpful to provide a picture of the full object tree in the store.
-	
-	function configureStore(initialState) {
-	
-	    return (0, _redux.createStore)(_reducers2.default, initialState, (0, _redux.compose)((0, _redux.applyMiddleware)(_reduxThunk2.default, (0, _reduxImmutableStateInvariant2.default)()), window.devToolsExtension ? window.devToolsExtension() : function (f) {
-	        return f;
-	    }));
-	}
-
-/***/ },
-
-/***/ 708:
-/*!*********************************************************!*\
-  !*** ./~/redux-immutable-state-invariant/dist/index.js ***!
-  \*********************************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, '__esModule', {
-	  value: true
-	});
-	exports['default'] = immutableStateInvariantMiddleware;
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-	
-	var _invariant = __webpack_require__(/*! invariant */ 174);
-	
-	var _invariant2 = _interopRequireDefault(_invariant);
-	
-	var _jsonStringifySafe = __webpack_require__(/*! json-stringify-safe */ 709);
-	
-	var _jsonStringifySafe2 = _interopRequireDefault(_jsonStringifySafe);
-	
-	var _isImmutable = __webpack_require__(/*! ./isImmutable */ 710);
-	
-	var _isImmutable2 = _interopRequireDefault(_isImmutable);
-	
-	var _trackForMutations = __webpack_require__(/*! ./trackForMutations */ 711);
-	
-	var _trackForMutations2 = _interopRequireDefault(_trackForMutations);
-	
-	var BETWEEN_DISPATCHES_MESSAGE = ['A state mutation was detected between dispatches, in the path `%s`.', 'This may cause incorrect behavior.', '(http://redux.js.org/docs/Troubleshooting.html#never-mutate-reducer-arguments)'].join(' ');
-	
-	var INSIDE_DISPATCH_MESSAGE = ['A state mutation was detected inside a dispatch, in the path: `%s`.', 'Take a look at the reducer(s) handling the action %s.', '(http://redux.js.org/docs/Troubleshooting.html#never-mutate-reducer-arguments)'].join(' ');
-	
-	function immutableStateInvariantMiddleware() {
-	  var isImmutable = arguments.length <= 0 || arguments[0] === undefined ? _isImmutable2['default'] : arguments[0];
-	
-	  var track = _trackForMutations2['default'].bind(null, isImmutable);
-	
-	  return function (_ref) {
-	    var getState = _ref.getState;
-	
-	    var state = getState();
-	    var tracker = track(state);
-	
-	    var result = undefined;
-	    return function (next) {
-	      return function (action) {
-	        state = getState();
-	
-	        result = tracker.detectMutations();
-	        // Track before potentially not meeting the invariant
-	        tracker = track(state);
-	
-	        (0, _invariant2['default'])(!result.wasMutated, BETWEEN_DISPATCHES_MESSAGE, (result.path || []).join('.'));
-	
-	        var dispatchedAction = next(action);
-	        state = getState();
-	
-	        result = tracker.detectMutations();
-	        // Track before potentially not meeting the invariant
-	        tracker = track(state);
-	
-	        (0, _invariant2['default'])(!result.wasMutated, INSIDE_DISPATCH_MESSAGE, (result.path || []).join('.'), (0, _jsonStringifySafe2['default'])(action));
-	
-	        return dispatchedAction;
-	      };
-	    };
-	  };
-	}
-	
-	module.exports = exports['default'];
-
-/***/ },
-
-/***/ 709:
+/***/ 1100:
+/* unknown exports provided */
+/* all exports used */
 /*!********************************************!*\
   !*** ./~/json-stringify-safe/stringify.js ***!
   \********************************************/
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
-	exports = module.exports = stringify
-	exports.getSerialize = serializer
-	
-	function stringify(obj, replacer, spaces, cycleReplacer) {
-	  return JSON.stringify(obj, serializer(replacer, cycleReplacer), spaces)
-	}
-	
-	function serializer(replacer, cycleReplacer) {
-	  var stack = [], keys = []
-	
-	  if (cycleReplacer == null) cycleReplacer = function(key, value) {
-	    if (stack[0] === value) return "[Circular ~]"
-	    return "[Circular ~." + keys.slice(0, stack.indexOf(value)).join(".") + "]"
-	  }
-	
-	  return function(key, value) {
-	    if (stack.length > 0) {
-	      var thisPos = stack.indexOf(this)
-	      ~thisPos ? stack.splice(thisPos + 1) : stack.push(this)
-	      ~thisPos ? keys.splice(thisPos, Infinity, key) : keys.push(key)
-	      if (~stack.indexOf(value)) value = cycleReplacer.call(this, key, value)
-	    }
-	    else stack.push(value)
-	
-	    return replacer == null ? value : replacer.call(this, key, value)
-	  }
-	}
+eval("exports = module.exports = stringify\nexports.getSerialize = serializer\n\nfunction stringify(obj, replacer, spaces, cycleReplacer) {\n  return JSON.stringify(obj, serializer(replacer, cycleReplacer), spaces)\n}\n\nfunction serializer(replacer, cycleReplacer) {\n  var stack = [], keys = []\n\n  if (cycleReplacer == null) cycleReplacer = function(key, value) {\n    if (stack[0] === value) return \"[Circular ~]\"\n    return \"[Circular ~.\" + keys.slice(0, stack.indexOf(value)).join(\".\") + \"]\"\n  }\n\n  return function(key, value) {\n    if (stack.length > 0) {\n      var thisPos = stack.indexOf(this)\n      ~thisPos ? stack.splice(thisPos + 1) : stack.push(this)\n      ~thisPos ? keys.splice(thisPos, Infinity, key) : keys.push(key)\n      if (~stack.indexOf(value)) value = cycleReplacer.call(this, key, value)\n    }\n    else stack.push(value)\n\n    return replacer == null ? value : replacer.call(this, key, value)\n  }\n}\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiMTEwMC5qcyIsInNvdXJjZXMiOlsid2VicGFjazovLy8uL34vanNvbi1zdHJpbmdpZnktc2FmZS9zdHJpbmdpZnkuanM/ZDhjMSJdLCJzb3VyY2VzQ29udGVudCI6WyJleHBvcnRzID0gbW9kdWxlLmV4cG9ydHMgPSBzdHJpbmdpZnlcbmV4cG9ydHMuZ2V0U2VyaWFsaXplID0gc2VyaWFsaXplclxuXG5mdW5jdGlvbiBzdHJpbmdpZnkob2JqLCByZXBsYWNlciwgc3BhY2VzLCBjeWNsZVJlcGxhY2VyKSB7XG4gIHJldHVybiBKU09OLnN0cmluZ2lmeShvYmosIHNlcmlhbGl6ZXIocmVwbGFjZXIsIGN5Y2xlUmVwbGFjZXIpLCBzcGFjZXMpXG59XG5cbmZ1bmN0aW9uIHNlcmlhbGl6ZXIocmVwbGFjZXIsIGN5Y2xlUmVwbGFjZXIpIHtcbiAgdmFyIHN0YWNrID0gW10sIGtleXMgPSBbXVxuXG4gIGlmIChjeWNsZVJlcGxhY2VyID09IG51bGwpIGN5Y2xlUmVwbGFjZXIgPSBmdW5jdGlvbihrZXksIHZhbHVlKSB7XG4gICAgaWYgKHN0YWNrWzBdID09PSB2YWx1ZSkgcmV0dXJuIFwiW0NpcmN1bGFyIH5dXCJcbiAgICByZXR1cm4gXCJbQ2lyY3VsYXIgfi5cIiArIGtleXMuc2xpY2UoMCwgc3RhY2suaW5kZXhPZih2YWx1ZSkpLmpvaW4oXCIuXCIpICsgXCJdXCJcbiAgfVxuXG4gIHJldHVybiBmdW5jdGlvbihrZXksIHZhbHVlKSB7XG4gICAgaWYgKHN0YWNrLmxlbmd0aCA+IDApIHtcbiAgICAgIHZhciB0aGlzUG9zID0gc3RhY2suaW5kZXhPZih0aGlzKVxuICAgICAgfnRoaXNQb3MgPyBzdGFjay5zcGxpY2UodGhpc1BvcyArIDEpIDogc3RhY2sucHVzaCh0aGlzKVxuICAgICAgfnRoaXNQb3MgPyBrZXlzLnNwbGljZSh0aGlzUG9zLCBJbmZpbml0eSwga2V5KSA6IGtleXMucHVzaChrZXkpXG4gICAgICBpZiAofnN0YWNrLmluZGV4T2YodmFsdWUpKSB2YWx1ZSA9IGN5Y2xlUmVwbGFjZXIuY2FsbCh0aGlzLCBrZXksIHZhbHVlKVxuICAgIH1cbiAgICBlbHNlIHN0YWNrLnB1c2godmFsdWUpXG5cbiAgICByZXR1cm4gcmVwbGFjZXIgPT0gbnVsbCA/IHZhbHVlIDogcmVwbGFjZXIuY2FsbCh0aGlzLCBrZXksIHZhbHVlKVxuICB9XG59XG5cblxuXG4vLy8vLy8vLy8vLy8vLy8vLy9cbi8vIFdFQlBBQ0sgRk9PVEVSXG4vLyAuL34vanNvbi1zdHJpbmdpZnktc2FmZS9zdHJpbmdpZnkuanNcbi8vIG1vZHVsZSBpZCA9IDExMDBcbi8vIG1vZHVsZSBjaHVua3MgPSAwIl0sIm1hcHBpbmdzIjoiQUFBQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7Iiwic291cmNlUm9vdCI6IiJ9");
 
+/***/ }),
 
-/***/ },
+/***/ 1460:
+/* unknown exports provided */
+/* all exports used */
+/*!*********************************************************!*\
+  !*** ./~/redux-immutable-state-invariant/dist/index.js ***!
+  \*********************************************************/
+/***/ (function(module, exports, __webpack_require__) {
 
-/***/ 710:
+"use strict";
+eval("\n\nObject.defineProperty(exports, '__esModule', {\n  value: true\n});\nexports['default'] = immutableStateInvariantMiddleware;\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }\n\nvar _invariant = __webpack_require__(/*! invariant */ 29);\n\nvar _invariant2 = _interopRequireDefault(_invariant);\n\nvar _jsonStringifySafe = __webpack_require__(/*! json-stringify-safe */ 1100);\n\nvar _jsonStringifySafe2 = _interopRequireDefault(_jsonStringifySafe);\n\nvar _isImmutable = __webpack_require__(/*! ./isImmutable */ 1461);\n\nvar _isImmutable2 = _interopRequireDefault(_isImmutable);\n\nvar _trackForMutations = __webpack_require__(/*! ./trackForMutations */ 1462);\n\nvar _trackForMutations2 = _interopRequireDefault(_trackForMutations);\n\nvar BETWEEN_DISPATCHES_MESSAGE = ['A state mutation was detected between dispatches, in the path `%s`.', 'This may cause incorrect behavior.', '(http://redux.js.org/docs/Troubleshooting.html#never-mutate-reducer-arguments)'].join(' ');\n\nvar INSIDE_DISPATCH_MESSAGE = ['A state mutation was detected inside a dispatch, in the path: `%s`.', 'Take a look at the reducer(s) handling the action %s.', '(http://redux.js.org/docs/Troubleshooting.html#never-mutate-reducer-arguments)'].join(' ');\n\nfunction immutableStateInvariantMiddleware() {\n  var isImmutable = arguments.length <= 0 || arguments[0] === undefined ? _isImmutable2['default'] : arguments[0];\n\n  var track = _trackForMutations2['default'].bind(null, isImmutable);\n\n  return function (_ref) {\n    var getState = _ref.getState;\n\n    var state = getState();\n    var tracker = track(state);\n\n    var result = undefined;\n    return function (next) {\n      return function (action) {\n        state = getState();\n\n        result = tracker.detectMutations();\n        // Track before potentially not meeting the invariant\n        tracker = track(state);\n\n        (0, _invariant2['default'])(!result.wasMutated, BETWEEN_DISPATCHES_MESSAGE, (result.path || []).join('.'));\n\n        var dispatchedAction = next(action);\n        state = getState();\n\n        result = tracker.detectMutations();\n        // Track before potentially not meeting the invariant\n        tracker = track(state);\n\n        (0, _invariant2['default'])(!result.wasMutated, INSIDE_DISPATCH_MESSAGE, (result.path || []).join('.'), (0, _jsonStringifySafe2['default'])(action));\n\n        return dispatchedAction;\n      };\n    };\n  };\n}\n\nmodule.exports = exports['default'];//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiMTQ2MC5qcyIsInNvdXJjZXMiOlsid2VicGFjazovLy8uL34vcmVkdXgtaW1tdXRhYmxlLXN0YXRlLWludmFyaWFudC9kaXN0L2luZGV4LmpzPzI4MDEiXSwic291cmNlc0NvbnRlbnQiOlsiJ3VzZSBzdHJpY3QnO1xuXG5PYmplY3QuZGVmaW5lUHJvcGVydHkoZXhwb3J0cywgJ19fZXNNb2R1bGUnLCB7XG4gIHZhbHVlOiB0cnVlXG59KTtcbmV4cG9ydHNbJ2RlZmF1bHQnXSA9IGltbXV0YWJsZVN0YXRlSW52YXJpYW50TWlkZGxld2FyZTtcblxuZnVuY3Rpb24gX2ludGVyb3BSZXF1aXJlRGVmYXVsdChvYmopIHsgcmV0dXJuIG9iaiAmJiBvYmouX19lc01vZHVsZSA/IG9iaiA6IHsgJ2RlZmF1bHQnOiBvYmogfTsgfVxuXG52YXIgX2ludmFyaWFudCA9IHJlcXVpcmUoJ2ludmFyaWFudCcpO1xuXG52YXIgX2ludmFyaWFudDIgPSBfaW50ZXJvcFJlcXVpcmVEZWZhdWx0KF9pbnZhcmlhbnQpO1xuXG52YXIgX2pzb25TdHJpbmdpZnlTYWZlID0gcmVxdWlyZSgnanNvbi1zdHJpbmdpZnktc2FmZScpO1xuXG52YXIgX2pzb25TdHJpbmdpZnlTYWZlMiA9IF9pbnRlcm9wUmVxdWlyZURlZmF1bHQoX2pzb25TdHJpbmdpZnlTYWZlKTtcblxudmFyIF9pc0ltbXV0YWJsZSA9IHJlcXVpcmUoJy4vaXNJbW11dGFibGUnKTtcblxudmFyIF9pc0ltbXV0YWJsZTIgPSBfaW50ZXJvcFJlcXVpcmVEZWZhdWx0KF9pc0ltbXV0YWJsZSk7XG5cbnZhciBfdHJhY2tGb3JNdXRhdGlvbnMgPSByZXF1aXJlKCcuL3RyYWNrRm9yTXV0YXRpb25zJyk7XG5cbnZhciBfdHJhY2tGb3JNdXRhdGlvbnMyID0gX2ludGVyb3BSZXF1aXJlRGVmYXVsdChfdHJhY2tGb3JNdXRhdGlvbnMpO1xuXG52YXIgQkVUV0VFTl9ESVNQQVRDSEVTX01FU1NBR0UgPSBbJ0Egc3RhdGUgbXV0YXRpb24gd2FzIGRldGVjdGVkIGJldHdlZW4gZGlzcGF0Y2hlcywgaW4gdGhlIHBhdGggYCVzYC4nLCAnVGhpcyBtYXkgY2F1c2UgaW5jb3JyZWN0IGJlaGF2aW9yLicsICcoaHR0cDovL3JlZHV4LmpzLm9yZy9kb2NzL1Ryb3VibGVzaG9vdGluZy5odG1sI25ldmVyLW11dGF0ZS1yZWR1Y2VyLWFyZ3VtZW50cyknXS5qb2luKCcgJyk7XG5cbnZhciBJTlNJREVfRElTUEFUQ0hfTUVTU0FHRSA9IFsnQSBzdGF0ZSBtdXRhdGlvbiB3YXMgZGV0ZWN0ZWQgaW5zaWRlIGEgZGlzcGF0Y2gsIGluIHRoZSBwYXRoOiBgJXNgLicsICdUYWtlIGEgbG9vayBhdCB0aGUgcmVkdWNlcihzKSBoYW5kbGluZyB0aGUgYWN0aW9uICVzLicsICcoaHR0cDovL3JlZHV4LmpzLm9yZy9kb2NzL1Ryb3VibGVzaG9vdGluZy5odG1sI25ldmVyLW11dGF0ZS1yZWR1Y2VyLWFyZ3VtZW50cyknXS5qb2luKCcgJyk7XG5cbmZ1bmN0aW9uIGltbXV0YWJsZVN0YXRlSW52YXJpYW50TWlkZGxld2FyZSgpIHtcbiAgdmFyIGlzSW1tdXRhYmxlID0gYXJndW1lbnRzLmxlbmd0aCA8PSAwIHx8IGFyZ3VtZW50c1swXSA9PT0gdW5kZWZpbmVkID8gX2lzSW1tdXRhYmxlMlsnZGVmYXVsdCddIDogYXJndW1lbnRzWzBdO1xuXG4gIHZhciB0cmFjayA9IF90cmFja0Zvck11dGF0aW9uczJbJ2RlZmF1bHQnXS5iaW5kKG51bGwsIGlzSW1tdXRhYmxlKTtcblxuICByZXR1cm4gZnVuY3Rpb24gKF9yZWYpIHtcbiAgICB2YXIgZ2V0U3RhdGUgPSBfcmVmLmdldFN0YXRlO1xuXG4gICAgdmFyIHN0YXRlID0gZ2V0U3RhdGUoKTtcbiAgICB2YXIgdHJhY2tlciA9IHRyYWNrKHN0YXRlKTtcblxuICAgIHZhciByZXN1bHQgPSB1bmRlZmluZWQ7XG4gICAgcmV0dXJuIGZ1bmN0aW9uIChuZXh0KSB7XG4gICAgICByZXR1cm4gZnVuY3Rpb24gKGFjdGlvbikge1xuICAgICAgICBzdGF0ZSA9IGdldFN0YXRlKCk7XG5cbiAgICAgICAgcmVzdWx0ID0gdHJhY2tlci5kZXRlY3RNdXRhdGlvbnMoKTtcbiAgICAgICAgLy8gVHJhY2sgYmVmb3JlIHBvdGVudGlhbGx5IG5vdCBtZWV0aW5nIHRoZSBpbnZhcmlhbnRcbiAgICAgICAgdHJhY2tlciA9IHRyYWNrKHN0YXRlKTtcblxuICAgICAgICAoMCwgX2ludmFyaWFudDJbJ2RlZmF1bHQnXSkoIXJlc3VsdC53YXNNdXRhdGVkLCBCRVRXRUVOX0RJU1BBVENIRVNfTUVTU0FHRSwgKHJlc3VsdC5wYXRoIHx8IFtdKS5qb2luKCcuJykpO1xuXG4gICAgICAgIHZhciBkaXNwYXRjaGVkQWN0aW9uID0gbmV4dChhY3Rpb24pO1xuICAgICAgICBzdGF0ZSA9IGdldFN0YXRlKCk7XG5cbiAgICAgICAgcmVzdWx0ID0gdHJhY2tlci5kZXRlY3RNdXRhdGlvbnMoKTtcbiAgICAgICAgLy8gVHJhY2sgYmVmb3JlIHBvdGVudGlhbGx5IG5vdCBtZWV0aW5nIHRoZSBpbnZhcmlhbnRcbiAgICAgICAgdHJhY2tlciA9IHRyYWNrKHN0YXRlKTtcblxuICAgICAgICAoMCwgX2ludmFyaWFudDJbJ2RlZmF1bHQnXSkoIXJlc3VsdC53YXNNdXRhdGVkLCBJTlNJREVfRElTUEFUQ0hfTUVTU0FHRSwgKHJlc3VsdC5wYXRoIHx8IFtdKS5qb2luKCcuJyksICgwLCBfanNvblN0cmluZ2lmeVNhZmUyWydkZWZhdWx0J10pKGFjdGlvbikpO1xuXG4gICAgICAgIHJldHVybiBkaXNwYXRjaGVkQWN0aW9uO1xuICAgICAgfTtcbiAgICB9O1xuICB9O1xufVxuXG5tb2R1bGUuZXhwb3J0cyA9IGV4cG9ydHNbJ2RlZmF1bHQnXTtcblxuXG4vLy8vLy8vLy8vLy8vLy8vLy9cbi8vIFdFQlBBQ0sgRk9PVEVSXG4vLyAuL34vcmVkdXgtaW1tdXRhYmxlLXN0YXRlLWludmFyaWFudC9kaXN0L2luZGV4LmpzXG4vLyBtb2R1bGUgaWQgPSAxNDYwXG4vLyBtb2R1bGUgY2h1bmtzID0gMCJdLCJtYXBwaW5ncyI6IkFBQUE7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0EiLCJzb3VyY2VSb290IjoiIn0=");
+
+/***/ }),
+
+/***/ 1461:
+/* unknown exports provided */
+/* all exports used */
 /*!***************************************************************!*\
   !*** ./~/redux-immutable-state-invariant/dist/isImmutable.js ***!
   \***************************************************************/
-/***/ function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-	'use strict';
-	
-	Object.defineProperty(exports, '__esModule', {
-	  value: true
-	});
-	exports['default'] = isImmutableDefault;
-	
-	function isImmutableDefault(value) {
-	  return typeof value !== 'object' || value === null || typeof value === 'undefined';
-	}
-	
-	module.exports = exports['default'];
+"use strict";
+eval("\n\nObject.defineProperty(exports, '__esModule', {\n  value: true\n});\nexports['default'] = isImmutableDefault;\n\nfunction isImmutableDefault(value) {\n  return typeof value !== 'object' || value === null || typeof value === 'undefined';\n}\n\nmodule.exports = exports['default'];//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiMTQ2MS5qcyIsInNvdXJjZXMiOlsid2VicGFjazovLy8uL34vcmVkdXgtaW1tdXRhYmxlLXN0YXRlLWludmFyaWFudC9kaXN0L2lzSW1tdXRhYmxlLmpzPzA3MjIiXSwic291cmNlc0NvbnRlbnQiOlsiJ3VzZSBzdHJpY3QnO1xuXG5PYmplY3QuZGVmaW5lUHJvcGVydHkoZXhwb3J0cywgJ19fZXNNb2R1bGUnLCB7XG4gIHZhbHVlOiB0cnVlXG59KTtcbmV4cG9ydHNbJ2RlZmF1bHQnXSA9IGlzSW1tdXRhYmxlRGVmYXVsdDtcblxuZnVuY3Rpb24gaXNJbW11dGFibGVEZWZhdWx0KHZhbHVlKSB7XG4gIHJldHVybiB0eXBlb2YgdmFsdWUgIT09ICdvYmplY3QnIHx8IHZhbHVlID09PSBudWxsIHx8IHR5cGVvZiB2YWx1ZSA9PT0gJ3VuZGVmaW5lZCc7XG59XG5cbm1vZHVsZS5leHBvcnRzID0gZXhwb3J0c1snZGVmYXVsdCddO1xuXG5cbi8vLy8vLy8vLy8vLy8vLy8vL1xuLy8gV0VCUEFDSyBGT09URVJcbi8vIC4vfi9yZWR1eC1pbW11dGFibGUtc3RhdGUtaW52YXJpYW50L2Rpc3QvaXNJbW11dGFibGUuanNcbi8vIG1vZHVsZSBpZCA9IDE0NjFcbi8vIG1vZHVsZSBjaHVua3MgPSAwIl0sIm1hcHBpbmdzIjoiQUFBQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0EiLCJzb3VyY2VSb290IjoiIn0=");
 
-/***/ },
+/***/ }),
 
-/***/ 711:
+/***/ 1462:
+/* unknown exports provided */
+/* all exports used */
 /*!*********************************************************************!*\
   !*** ./~/redux-immutable-state-invariant/dist/trackForMutations.js ***!
   \*********************************************************************/
-/***/ function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-	"use strict";
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports["default"] = trackForMutations;
-	
-	function trackForMutations(isImmutable, obj) {
-	  var trackedProperties = trackProperties(isImmutable, obj);
-	  return {
-	    detectMutations: function detectMutations() {
-	      return _detectMutations(isImmutable, trackedProperties, obj);
-	    }
-	  };
-	}
-	
-	function trackProperties(isImmutable, obj) {
-	  var tracked = { value: obj };
-	
-	  if (!isImmutable(obj)) {
-	    tracked.children = {};
-	
-	    for (var key in obj) {
-	      tracked.children[key] = trackProperties(isImmutable, obj[key]);
-	    }
-	  }
-	  return tracked;
-	}
-	
-	function _detectMutations(isImmutable, trackedProperty, obj) {
-	  var sameParentRef = arguments.length <= 3 || arguments[3] === undefined ? false : arguments[3];
-	  var path = arguments.length <= 4 || arguments[4] === undefined ? [] : arguments[4];
-	
-	  var prevObj = trackedProperty ? trackedProperty.value : undefined;
-	
-	  var sameRef = prevObj === obj;
-	
-	  if (sameParentRef && !sameRef) {
-	    return { wasMutated: true, path: path };
-	  }
-	
-	  if (isImmutable(prevObj) || isImmutable(obj)) {
-	    return { wasMutated: false };
-	  }
-	
-	  // Gather all keys from prev (tracked) and after objs
-	  var keysToDetect = {};
-	  Object.keys(trackedProperty.children).forEach(function (key) {
-	    keysToDetect[key] = true;
-	  });
-	  Object.keys(obj).forEach(function (key) {
-	    keysToDetect[key] = true;
-	  });
-	
-	  var keys = Object.keys(keysToDetect);
-	  for (var i = 0; i < keys.length; i++) {
-	    var key = keys[i];
-	    var result = _detectMutations(isImmutable, trackedProperty.children[key], obj[key], sameRef, path.concat(key));
-	
-	    if (result.wasMutated) {
-	      return result;
-	    }
-	  }
-	  return { wasMutated: false };
-	}
-	module.exports = exports["default"];
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports[\"default\"] = trackForMutations;\n\nfunction trackForMutations(isImmutable, obj) {\n  var trackedProperties = trackProperties(isImmutable, obj);\n  return {\n    detectMutations: function detectMutations() {\n      return _detectMutations(isImmutable, trackedProperties, obj);\n    }\n  };\n}\n\nfunction trackProperties(isImmutable, obj) {\n  var tracked = { value: obj };\n\n  if (!isImmutable(obj)) {\n    tracked.children = {};\n\n    for (var key in obj) {\n      tracked.children[key] = trackProperties(isImmutable, obj[key]);\n    }\n  }\n  return tracked;\n}\n\nfunction _detectMutations(isImmutable, trackedProperty, obj) {\n  var sameParentRef = arguments.length <= 3 || arguments[3] === undefined ? false : arguments[3];\n  var path = arguments.length <= 4 || arguments[4] === undefined ? [] : arguments[4];\n\n  var prevObj = trackedProperty ? trackedProperty.value : undefined;\n\n  var sameRef = prevObj === obj;\n\n  if (sameParentRef && !sameRef && !Number.isNaN(obj)) {\n    return { wasMutated: true, path: path };\n  }\n\n  if (isImmutable(prevObj) || isImmutable(obj)) {\n    return { wasMutated: false };\n  }\n\n  // Gather all keys from prev (tracked) and after objs\n  var keysToDetect = {};\n  Object.keys(trackedProperty.children).forEach(function (key) {\n    keysToDetect[key] = true;\n  });\n  Object.keys(obj).forEach(function (key) {\n    keysToDetect[key] = true;\n  });\n\n  var keys = Object.keys(keysToDetect);\n  for (var i = 0; i < keys.length; i++) {\n    var key = keys[i];\n    var result = _detectMutations(isImmutable, trackedProperty.children[key], obj[key], sameRef, path.concat(key));\n\n    if (result.wasMutated) {\n      return result;\n    }\n  }\n  return { wasMutated: false };\n}\nmodule.exports = exports[\"default\"];//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiMTQ2Mi5qcyIsInNvdXJjZXMiOlsid2VicGFjazovLy8uL34vcmVkdXgtaW1tdXRhYmxlLXN0YXRlLWludmFyaWFudC9kaXN0L3RyYWNrRm9yTXV0YXRpb25zLmpzPzlkZDQiXSwic291cmNlc0NvbnRlbnQiOlsiXCJ1c2Ugc3RyaWN0XCI7XG5cbk9iamVjdC5kZWZpbmVQcm9wZXJ0eShleHBvcnRzLCBcIl9fZXNNb2R1bGVcIiwge1xuICB2YWx1ZTogdHJ1ZVxufSk7XG5leHBvcnRzW1wiZGVmYXVsdFwiXSA9IHRyYWNrRm9yTXV0YXRpb25zO1xuXG5mdW5jdGlvbiB0cmFja0Zvck11dGF0aW9ucyhpc0ltbXV0YWJsZSwgb2JqKSB7XG4gIHZhciB0cmFja2VkUHJvcGVydGllcyA9IHRyYWNrUHJvcGVydGllcyhpc0ltbXV0YWJsZSwgb2JqKTtcbiAgcmV0dXJuIHtcbiAgICBkZXRlY3RNdXRhdGlvbnM6IGZ1bmN0aW9uIGRldGVjdE11dGF0aW9ucygpIHtcbiAgICAgIHJldHVybiBfZGV0ZWN0TXV0YXRpb25zKGlzSW1tdXRhYmxlLCB0cmFja2VkUHJvcGVydGllcywgb2JqKTtcbiAgICB9XG4gIH07XG59XG5cbmZ1bmN0aW9uIHRyYWNrUHJvcGVydGllcyhpc0ltbXV0YWJsZSwgb2JqKSB7XG4gIHZhciB0cmFja2VkID0geyB2YWx1ZTogb2JqIH07XG5cbiAgaWYgKCFpc0ltbXV0YWJsZShvYmopKSB7XG4gICAgdHJhY2tlZC5jaGlsZHJlbiA9IHt9O1xuXG4gICAgZm9yICh2YXIga2V5IGluIG9iaikge1xuICAgICAgdHJhY2tlZC5jaGlsZHJlbltrZXldID0gdHJhY2tQcm9wZXJ0aWVzKGlzSW1tdXRhYmxlLCBvYmpba2V5XSk7XG4gICAgfVxuICB9XG4gIHJldHVybiB0cmFja2VkO1xufVxuXG5mdW5jdGlvbiBfZGV0ZWN0TXV0YXRpb25zKGlzSW1tdXRhYmxlLCB0cmFja2VkUHJvcGVydHksIG9iaikge1xuICB2YXIgc2FtZVBhcmVudFJlZiA9IGFyZ3VtZW50cy5sZW5ndGggPD0gMyB8fCBhcmd1bWVudHNbM10gPT09IHVuZGVmaW5lZCA/IGZhbHNlIDogYXJndW1lbnRzWzNdO1xuICB2YXIgcGF0aCA9IGFyZ3VtZW50cy5sZW5ndGggPD0gNCB8fCBhcmd1bWVudHNbNF0gPT09IHVuZGVmaW5lZCA/IFtdIDogYXJndW1lbnRzWzRdO1xuXG4gIHZhciBwcmV2T2JqID0gdHJhY2tlZFByb3BlcnR5ID8gdHJhY2tlZFByb3BlcnR5LnZhbHVlIDogdW5kZWZpbmVkO1xuXG4gIHZhciBzYW1lUmVmID0gcHJldk9iaiA9PT0gb2JqO1xuXG4gIGlmIChzYW1lUGFyZW50UmVmICYmICFzYW1lUmVmICYmICFOdW1iZXIuaXNOYU4ob2JqKSkge1xuICAgIHJldHVybiB7IHdhc011dGF0ZWQ6IHRydWUsIHBhdGg6IHBhdGggfTtcbiAgfVxuXG4gIGlmIChpc0ltbXV0YWJsZShwcmV2T2JqKSB8fCBpc0ltbXV0YWJsZShvYmopKSB7XG4gICAgcmV0dXJuIHsgd2FzTXV0YXRlZDogZmFsc2UgfTtcbiAgfVxuXG4gIC8vIEdhdGhlciBhbGwga2V5cyBmcm9tIHByZXYgKHRyYWNrZWQpIGFuZCBhZnRlciBvYmpzXG4gIHZhciBrZXlzVG9EZXRlY3QgPSB7fTtcbiAgT2JqZWN0LmtleXModHJhY2tlZFByb3BlcnR5LmNoaWxkcmVuKS5mb3JFYWNoKGZ1bmN0aW9uIChrZXkpIHtcbiAgICBrZXlzVG9EZXRlY3Rba2V5XSA9IHRydWU7XG4gIH0pO1xuICBPYmplY3Qua2V5cyhvYmopLmZvckVhY2goZnVuY3Rpb24gKGtleSkge1xuICAgIGtleXNUb0RldGVjdFtrZXldID0gdHJ1ZTtcbiAgfSk7XG5cbiAgdmFyIGtleXMgPSBPYmplY3Qua2V5cyhrZXlzVG9EZXRlY3QpO1xuICBmb3IgKHZhciBpID0gMDsgaSA8IGtleXMubGVuZ3RoOyBpKyspIHtcbiAgICB2YXIga2V5ID0ga2V5c1tpXTtcbiAgICB2YXIgcmVzdWx0ID0gX2RldGVjdE11dGF0aW9ucyhpc0ltbXV0YWJsZSwgdHJhY2tlZFByb3BlcnR5LmNoaWxkcmVuW2tleV0sIG9ialtrZXldLCBzYW1lUmVmLCBwYXRoLmNvbmNhdChrZXkpKTtcblxuICAgIGlmIChyZXN1bHQud2FzTXV0YXRlZCkge1xuICAgICAgcmV0dXJuIHJlc3VsdDtcbiAgICB9XG4gIH1cbiAgcmV0dXJuIHsgd2FzTXV0YXRlZDogZmFsc2UgfTtcbn1cbm1vZHVsZS5leHBvcnRzID0gZXhwb3J0c1tcImRlZmF1bHRcIl07XG5cblxuLy8vLy8vLy8vLy8vLy8vLy8vXG4vLyBXRUJQQUNLIEZPT1RFUlxuLy8gLi9+L3JlZHV4LWltbXV0YWJsZS1zdGF0ZS1pbnZhcmlhbnQvZGlzdC90cmFja0Zvck11dGF0aW9ucy5qc1xuLy8gbW9kdWxlIGlkID0gMTQ2MlxuLy8gbW9kdWxlIGNodW5rcyA9IDAiXSwibWFwcGluZ3MiOiJBQUFBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQSIsInNvdXJjZVJvb3QiOiIifQ==");
 
-/***/ },
+/***/ }),
 
-/***/ 713:
-/*!*******************************!*\
-  !*** ./app/reducers/index.js ***!
-  \*******************************/
-/***/ function(module, exports, __webpack_require__) {
+/***/ 1476:
+/* unknown exports provided */
+/* all exports used */
+/*!********************!*\
+  !*** ./app/app.js ***!
+  \********************/
+/***/ (function(module, exports, __webpack_require__) {
 
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	                                        value: true
-	});
-	
-	var _redux = __webpack_require__(/*! redux */ 179);
-	
-	var _reactRouterRedux = __webpack_require__(/*! react-router-redux */ 265);
-	
-	var _appReducer = __webpack_require__(/*! ./appReducer */ 714);
-	
-	var _appReducer2 = _interopRequireDefault(_appReducer);
-	
-	var _courseReducer = __webpack_require__(/*! ./courseReducer */ 716);
-	
-	var _courseReducer2 = _interopRequireDefault(_courseReducer);
-	
-	var _authorReducer = __webpack_require__(/*! ./authorReducer */ 717);
-	
-	var _authorReducer2 = _interopRequireDefault(_authorReducer);
-	
-	var _ajaxStatusReducer = __webpack_require__(/*! ./ajaxStatusReducer */ 718);
-	
-	var _ajaxStatusReducer2 = _interopRequireDefault(_ajaxStatusReducer);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	// The Root Reducer where you define/name and shape the store.
-	// 
-	// Naming is important here. Each of the 'properties' listed below become the property names on 'state'. For example, 'state.courses'.
-	// 
-	// That is, the 'courseReducer' was aliased to 'courses' so it can be referenced // as 'state.courses' instead of 'state.courseReducer'.
-	// 
-	// Given the following...
-	//
-	//              const rootReducer = combineReducers({ courses: courseReducer })
-	//
-	//... the 'state' parameter passed into the 'courseReducer' below will be the 'courses' property in the 'store'...
-	// 
-	//              export default function courseReducer(state, action)
-	// 
-	// The corresponding 'action.type' will then set 'courses' to whatever value the reducer returns, typically something like 'action.courses' 
-	// or potentially some other non-mutated value.
-	// 
-	// This essentially represents the first-level hierarchy of the store. Each named property below will be set to the 'state' returned by the corresponding reducer 
-	// based on the action type it is passed.
-	// 
-	// This represents first-level hierarchy because, while you could do something like this...
-	//
-	//              app: appReducer
-	// 
-	// ... you would not be able to do this...
-	//
-	//              app.lookups: appReducer
-	//
-	// Note the dot-notation in 'app.lookups'. What I'm not currently certain of is if you could surround the property name in quotes, like so...
-	//
-	//              'app.lookups': appReducer
-	//
-	// Currently, 'app' here is special. 'app' is intended to be those values that are global to the entire application; for example, 'user' and 'lookups'.
-	// This is accomplished by mapping 'app' to the 'props' in the 'ShellComponent' and then cloning any routing element and attaching 'app' as a property 
-	// on the child element/component.
-	
-	var rootReducer = (0, _redux.combineReducers)({
-	                                        routing: _reactRouterRedux.routerReducer,
-	
-	                                        app: _appReducer2.default,
-	                                        courses: _courseReducer2.default,
-	                                        authors: _authorReducer2.default,
-	
-	                                        ajaxCallsInProgress: _ajaxStatusReducer2.default
-	});
-	
-	exports.default = rootReducer;
+"use strict";
+eval("\n\nvar _react = __webpack_require__(/*! react */ 0);\n\nvar _react2 = _interopRequireDefault(_react);\n\nvar _reactDom = __webpack_require__(/*! react-dom */ 37);\n\nvar _reactRedux = __webpack_require__(/*! react-redux */ 96);\n\nvar _reactRouter = __webpack_require__(/*! react-router */ 33);\n\nvar _reactRouterRedux = __webpack_require__(/*! react-router-redux */ 177);\n\nvar _routes = __webpack_require__(/*! ./routes */ 702);\n\nvar _routes2 = _interopRequireDefault(_routes);\n\nvar _configureStore = __webpack_require__(/*! ./store/configureStore */ 703);\n\nvar _configureStore2 = _interopRequireDefault(_configureStore);\n\nvar _courseActions = __webpack_require__(/*! ./actions/courseActions */ 232);\n\nvar courseActions = _interopRequireWildcard(_courseActions);\n\nvar _appActions = __webpack_require__(/*! ./actions/appActions */ 701);\n\nvar appActions = _interopRequireWildcard(_appActions);\n\n__webpack_require__(/*! babel-polyfill */ 176);\n\nfunction _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\n// The whole state of your app is stored in an object tree inside a single store.\n// The only way to change the state tree is to emit an action, an object describing what happened.\n// To specify how the actions transform the state tree, you write pure reducers.\n\n/* eslint-disable import/default */\n\nvar store = (0, _configureStore2.default)();\n\n// Import babel-polyfill to support Object.assign functions for deep-cloning of immutable objects.\n// Babel does not support Object.assign by default, so a pollyfill is needed.\n// \n//      e.g. Object.assign({}, state, { someProperty: 'some value' });\n\nstore.dispatch(courseActions.getCourses());\nstore.dispatch(appActions.getUser());\nstore.dispatch(appActions.getLookups());\n\nstore.subscribe(function () {\n  return console.log(store.getState());\n});\n\n// Create an enhanced history that syncs navigation events with the store\nvar history = (0, _reactRouterRedux.syncHistoryWithStore)(_reactRouter.browserHistory, store);\n\n(0, _reactDom.render)(_react2.default.createElement(\n  _reactRedux.Provider,\n  { store: store },\n  _react2.default.createElement(_reactRouter.Router, { history: history, routes: _routes2.default })\n), document.getElementById('app'));//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiMTQ3Ni5qcyIsInNvdXJjZXMiOlsid2VicGFjazovLy9hcHAvYXBwLmpzPzJkZTkiXSwic291cmNlc0NvbnRlbnQiOlsiLyogZXNsaW50LWRpc2FibGUgaW1wb3J0L2RlZmF1bHQgKi9cclxuXHJcbmltcG9ydCBSZWFjdCAgICAgICAgICAgICAgICAgICAgICBmcm9tICdyZWFjdCc7XHJcbmltcG9ydCB7IHJlbmRlciB9ICAgICAgICAgICAgICAgICBmcm9tICdyZWFjdC1kb20nO1xyXG5pbXBvcnQgeyBQcm92aWRlciB9ICAgICAgICAgICAgICAgZnJvbSAncmVhY3QtcmVkdXgnO1xyXG5pbXBvcnQgeyBSb3V0ZXIsIGJyb3dzZXJIaXN0b3J5IH0gZnJvbSAncmVhY3Qtcm91dGVyJztcclxuaW1wb3J0IHsgc3luY0hpc3RvcnlXaXRoU3RvcmUgfSAgIGZyb20gJ3JlYWN0LXJvdXRlci1yZWR1eCc7XHJcblxyXG5pbXBvcnQgcm91dGVzICAgICAgICAgICAgICAgICAgICAgZnJvbSAnLi9yb3V0ZXMnO1xyXG5pbXBvcnQgY29uZmlndXJlU3RvcmUgICAgICAgICAgICAgZnJvbSAnLi9zdG9yZS9jb25maWd1cmVTdG9yZSc7XHJcblxyXG5pbXBvcnQgKiBhcyBjb3Vyc2VBY3Rpb25zICAgICAgICAgZnJvbSAnLi9hY3Rpb25zL2NvdXJzZUFjdGlvbnMnO1xyXG5pbXBvcnQgKiBhcyBhcHBBY3Rpb25zICAgICAgICAgICAgZnJvbSAnLi9hY3Rpb25zL2FwcEFjdGlvbnMnO1xyXG5cclxuLy8gSW1wb3J0IGJhYmVsLXBvbHlmaWxsIHRvIHN1cHBvcnQgT2JqZWN0LmFzc2lnbiBmdW5jdGlvbnMgZm9yIGRlZXAtY2xvbmluZyBvZiBpbW11dGFibGUgb2JqZWN0cy5cclxuLy8gQmFiZWwgZG9lcyBub3Qgc3VwcG9ydCBPYmplY3QuYXNzaWduIGJ5IGRlZmF1bHQsIHNvIGEgcG9sbHlmaWxsIGlzIG5lZWRlZC5cclxuLy8gXHJcbi8vICAgICAgZS5nLiBPYmplY3QuYXNzaWduKHt9LCBzdGF0ZSwgeyBzb21lUHJvcGVydHk6ICdzb21lIHZhbHVlJyB9KTtcclxuXHJcbmltcG9ydCAnYmFiZWwtcG9seWZpbGwnO1xyXG5cclxuLy8gVGhlIHdob2xlIHN0YXRlIG9mIHlvdXIgYXBwIGlzIHN0b3JlZCBpbiBhbiBvYmplY3QgdHJlZSBpbnNpZGUgYSBzaW5nbGUgc3RvcmUuXHJcbi8vIFRoZSBvbmx5IHdheSB0byBjaGFuZ2UgdGhlIHN0YXRlIHRyZWUgaXMgdG8gZW1pdCBhbiBhY3Rpb24sIGFuIG9iamVjdCBkZXNjcmliaW5nIHdoYXQgaGFwcGVuZWQuXHJcbi8vIFRvIHNwZWNpZnkgaG93IHRoZSBhY3Rpb25zIHRyYW5zZm9ybSB0aGUgc3RhdGUgdHJlZSwgeW91IHdyaXRlIHB1cmUgcmVkdWNlcnMuXHJcblxyXG5jb25zdCBzdG9yZSA9IGNvbmZpZ3VyZVN0b3JlKCk7XHJcblxyXG5zdG9yZS5kaXNwYXRjaChjb3Vyc2VBY3Rpb25zLmdldENvdXJzZXMoKSk7XHJcbnN0b3JlLmRpc3BhdGNoKGFwcEFjdGlvbnMuZ2V0VXNlcigpKTtcclxuc3RvcmUuZGlzcGF0Y2goYXBwQWN0aW9ucy5nZXRMb29rdXBzKCkpO1xyXG5cclxuc3RvcmUuc3Vic2NyaWJlKCgpID0+XHJcbiAgICBjb25zb2xlLmxvZyhzdG9yZS5nZXRTdGF0ZSgpKVxyXG4pO1xyXG5cclxuLy8gQ3JlYXRlIGFuIGVuaGFuY2VkIGhpc3RvcnkgdGhhdCBzeW5jcyBuYXZpZ2F0aW9uIGV2ZW50cyB3aXRoIHRoZSBzdG9yZVxyXG5jb25zdCBoaXN0b3J5ID0gc3luY0hpc3RvcnlXaXRoU3RvcmUoYnJvd3Nlckhpc3RvcnksIHN0b3JlKTtcclxuXHJcbnJlbmRlcihcclxuICA8UHJvdmlkZXIgc3RvcmUgPSB7IHN0b3JlIH0+XHJcbiAgICA8Um91dGVyIGhpc3RvcnkgPSB7IGhpc3RvcnkgfSByb3V0ZXMgPSB7IHJvdXRlcyB9IC8+XHJcbiAgPC9Qcm92aWRlcj4sIGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCdhcHAnKVxyXG4pO1xyXG5cblxuXG4vLyBXRUJQQUNLIEZPT1RFUiAvL1xuLy8gYXBwL2FwcC5qcyJdLCJtYXBwaW5ncyI6Ijs7QUFFQTtBQUNBOzs7QUFBQTtBQUNBO0FBQUE7QUFDQTtBQUFBO0FBQ0E7QUFBQTtBQUNBO0FBQ0E7QUFDQTs7O0FBQUE7QUFDQTs7O0FBQ0E7QUFDQTtBQURBO0FBQ0E7QUFBQTtBQUNBO0FBREE7QUFDQTtBQU1BO0FBQ0E7Ozs7O0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUF4QkE7QUFDQTtBQXdCQTtBQUNBO0FBWkE7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQVNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFBQTtBQUFBO0FBQ0E7QUFHQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQUE7QUFDQTtBQURBIiwic291cmNlUm9vdCI6IiJ9");
 
-/***/ },
+/***/ }),
 
-/***/ 714:
-/*!************************************!*\
-  !*** ./app/reducers/appReducer.js ***!
-  \************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	exports.default = appReducer;
-	
-	var _actionTypes = __webpack_require__(/*! ../actions/actionTypes */ 697);
-	
-	var types = _interopRequireWildcard(_actionTypes);
-	
-	var _initialState = __webpack_require__(/*! ../store/initialState */ 715);
-	
-	var _initialState2 = _interopRequireDefault(_initialState);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
-	
-	// - The whole state of an app is stored in an object tree inside a single store.
-	// - The only way to change the state tree is to emit an action, an object describing what happened.
-	// - To specify how actions transform the state tree, you write pure reducers.
-	// 
-	// The 'state' parameter passed in will be the 'app' property defined in the combined reducers of 'index.js'...
-	//
-	//          const rootReducer = combineReducers({
-	//                                                 ...
-	//                                                 app: appReducer
-	//                                                 ...
-	//                                             });
-	// 
-	// That is, this reducer is specifically managing that 'app' property.
-	//
-	// 'app' is currently shaped as follows:
-	//
-	//          app: {
-	//                   user:                 {},
-	//                   lookups:              {},
-	//                   isUserInitialized:    false,
-	//                   isLookupsInitialized: false,
-	//                   isAppInitialized:     false,
-	//                   ajaxCallsInProgress:  0
-	//               }
-	
-	function appReducer() {
-	    var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : _initialState2.default.app;
-	    var action = arguments[1];
-	
-	
-	    var new_state;
-	
-	    switch (action.type) {
-	
-	        case types.IS_INITIALIZED:
-	            new_state = Object.assign({}, state, action.app);
-	            return new_state;
-	
-	        case types.GET_USER_SUCCESS:
-	            new_state = Object.assign({}, state, { user: action.user });
-	            return new_state;
-	
-	        case types.GET_LOOKUPS_SUCCESS:
-	            new_state = Object.assign({}, state, { lookups: action.lookups });
-	            return new_state;
-	
-	        default:
-	            return state;
-	    }
-	}
-
-/***/ },
-
-/***/ 715:
+/***/ 178:
+/* unknown exports provided */
+/* all exports used */
 /*!***********************************!*\
   !*** ./app/store/initialState.js ***!
   \***********************************/
-/***/ function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-	"use strict";
-	
-	Object.defineProperty(exports, "__esModule", {
-	             value: true
-	});
-	
-	// The whole state of your app is stored in an object tree inside a single store.
-	// The only way to change the state tree is to emit an action - an object describing what happened.
-	// To specify how actions transform the state tree, you write pure reducers.
-	
-	// The actual 'shape' of the store is better reflected in 'reducers/index.js' which combines all of the defined reducers into a single reducer, 
-	// and 'reducers/initialState.js' which is an optional, non-redux object, intended to provide default values for each defined state object.
-	// That is, by defining initial states here, it can be helpful to provide a picture of the full object tree in the store.
-	
-	exports.default = {
-	             authors: [],
-	             courses: [],
-	             app: {
-	                          user: {},
-	                          lookups: {},
-	                          isUserInitialized: false,
-	                          isLookupsInitialized: false,
-	                          isAppInitialized: false
-	             },
-	             ajaxCallsInProgress: 0
-	};
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n             value: true\n});\n\n// The whole state of your app is stored in an object tree inside a single store.\n// The only way to change the state tree is to emit an action - an object describing what happened.\n// To specify how actions transform the state tree, you write pure reducers.\n\n// The actual 'shape' of the store is better reflected in 'reducers/index.js' which combines all of the defined reducers into a single reducer, \n// and 'reducers/initialState.js' which is an optional, non-redux object, intended to provide default values for each defined state object.\n// That is, by defining initial states here, it can be helpful to provide a picture of the full object tree in the store.\n\nexports.default = {\n             authors: [],\n             courses: [],\n             app: {\n                          user: {},\n                          lookups: {},\n                          isUserInitialized: false,\n                          isLookupsInitialized: false,\n                          isAppInitialized: false\n             },\n             ajaxCallsInProgress: 0\n};//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiMTc4LmpzIiwic291cmNlcyI6WyJ3ZWJwYWNrOi8vL2FwcC9zdG9yZS9pbml0aWFsU3RhdGUuanM/MDcyYSJdLCJzb3VyY2VzQ29udGVudCI6WyJcclxuLy8gVGhlIHdob2xlIHN0YXRlIG9mIHlvdXIgYXBwIGlzIHN0b3JlZCBpbiBhbiBvYmplY3QgdHJlZSBpbnNpZGUgYSBzaW5nbGUgc3RvcmUuXHJcbi8vIFRoZSBvbmx5IHdheSB0byBjaGFuZ2UgdGhlIHN0YXRlIHRyZWUgaXMgdG8gZW1pdCBhbiBhY3Rpb24gLSBhbiBvYmplY3QgZGVzY3JpYmluZyB3aGF0IGhhcHBlbmVkLlxyXG4vLyBUbyBzcGVjaWZ5IGhvdyBhY3Rpb25zIHRyYW5zZm9ybSB0aGUgc3RhdGUgdHJlZSwgeW91IHdyaXRlIHB1cmUgcmVkdWNlcnMuXHJcblxyXG4vLyBUaGUgYWN0dWFsICdzaGFwZScgb2YgdGhlIHN0b3JlIGlzIGJldHRlciByZWZsZWN0ZWQgaW4gJ3JlZHVjZXJzL2luZGV4LmpzJyB3aGljaCBjb21iaW5lcyBhbGwgb2YgdGhlIGRlZmluZWQgcmVkdWNlcnMgaW50byBhIHNpbmdsZSByZWR1Y2VyLCBcclxuLy8gYW5kICdyZWR1Y2Vycy9pbml0aWFsU3RhdGUuanMnIHdoaWNoIGlzIGFuIG9wdGlvbmFsLCBub24tcmVkdXggb2JqZWN0LCBpbnRlbmRlZCB0byBwcm92aWRlIGRlZmF1bHQgdmFsdWVzIGZvciBlYWNoIGRlZmluZWQgc3RhdGUgb2JqZWN0LlxyXG4vLyBUaGF0IGlzLCBieSBkZWZpbmluZyBpbml0aWFsIHN0YXRlcyBoZXJlLCBpdCBjYW4gYmUgaGVscGZ1bCB0byBwcm92aWRlIGEgcGljdHVyZSBvZiB0aGUgZnVsbCBvYmplY3QgdHJlZSBpbiB0aGUgc3RvcmUuXHJcblxyXG5leHBvcnQgZGVmYXVsdCB7XHJcbiAgICAgICAgICAgICAgICAgICBhdXRob3JzOiBbXSxcclxuICAgICAgICAgICAgICAgICAgIGNvdXJzZXM6IFtdLFxyXG4gICAgICAgICAgICAgICAgICAgYXBwOiAgICAge1xyXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHVzZXI6ICAgICAgICAgICAgICAgICB7fSxcclxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBsb29rdXBzOiAgICAgICAgICAgICAge30sXHJcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgaXNVc2VySW5pdGlhbGl6ZWQ6ICAgIGZhbHNlLCBcclxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBpc0xvb2t1cHNJbml0aWFsaXplZDogZmFsc2UsIFxyXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGlzQXBwSW5pdGlhbGl6ZWQ6ICAgICBmYWxzZVxyXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgfSwgXHJcbiAgICAgICAgICAgICAgICAgICBhamF4Q2FsbHNJblByb2dyZXNzOiAgMFxyXG4gICAgICAgICAgICAgICB9O1xuXG5cbi8vIFdFQlBBQ0sgRk9PVEVSIC8vXG4vLyBhcHAvc3RvcmUvaW5pdGlhbFN0YXRlLmpzIl0sIm1hcHBpbmdzIjoiOzs7Ozs7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBTEE7QUFPQTtBQVZBIiwic291cmNlUm9vdCI6IiJ9");
 
-/***/ },
+/***/ }),
 
-/***/ 716:
-/*!***************************************!*\
-  !*** ./app/reducers/courseReducer.js ***!
-  \***************************************/
-/***/ function(module, exports, __webpack_require__) {
+/***/ 232:
+/* unknown exports provided */
+/* all exports used */
+/*!**************************************!*\
+  !*** ./app/actions/courseActions.js ***!
+  \**************************************/
+/***/ (function(module, exports, __webpack_require__) {
 
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	exports.default = courseReducer;
-	
-	var _actionTypes = __webpack_require__(/*! ../actions/actionTypes */ 697);
-	
-	var types = _interopRequireWildcard(_actionTypes);
-	
-	var _initialState = __webpack_require__(/*! ../store/initialState */ 715);
-	
-	var _initialState2 = _interopRequireDefault(_initialState);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
-	
-	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
-	
-	// The whole state of your app is stored in an object tree inside a single store.
-	// The only way to change the state tree is to emit an action, an object describing what happened.
-	// To specify how the actions transform the state tree, you write pure reducers.
-	
-	function courseReducer() {
-	    var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : _initialState2.default.courses;
-	    var action = arguments[1];
-	
-	
-	    switch (action.type) {
-	
-	        case types.GET_COURSES_SUCCESS:
-	            return action.courses; // This will replace whatever was in our state.
-	
-	        case types.CREATE_COURSE_SUCCESS:
-	            return [].concat(_toConsumableArray(state), [Object.assign({}, action.course)]);
-	
-	        case types.UPDATE_COURSE_SUCCESS:
-	            return [].concat(_toConsumableArray(state.filter(function (course) {
-	                return course.id !== action.course.id;
-	            })), [Object.assign({}, action.course)]);
-	
-	        default:
-	            return state;
-	    }
-	}
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n    value: true\n});\nexports.getCoursesSuccess = getCoursesSuccess;\nexports.createCourseSuccess = createCourseSuccess;\nexports.updateCourseSuccess = updateCourseSuccess;\nexports.getCourses = getCourses;\nexports.saveCourse = saveCourse;\n\nvar _mockCourseApi = __webpack_require__(/*! ../api/mockCourseApi */ 713);\n\nvar _mockCourseApi2 = _interopRequireDefault(_mockCourseApi);\n\nvar _MrcApi = __webpack_require__(/*! ../api/MrcApi */ 355);\n\nvar _MrcApi2 = _interopRequireDefault(_MrcApi);\n\nvar _ajaxStatusActions = __webpack_require__(/*! ./ajaxStatusActions */ 354);\n\nvar _actionTypes = __webpack_require__(/*! ./actionTypes */ 97);\n\nvar types = _interopRequireWildcard(_actionTypes);\n\nfunction _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\n// The whole state of your app is stored in an object tree inside a single store.\n// The only way to change the state tree is to emit an action, an object describing what happened.\n// To specify how the actions transform the state tree, you write pure reducers.\n\n// -----------------------------------------------------------------------------------------------------------------------\n// Actions:\n// -----------------------------------------------------------------------------------------------------------------------\n// \n// Events happening in an app are called 'actions'. They're just plain object describing events. They must have a 'type' key. \n// The second property contains data, is optional, and can be of any type.\n// \n// An action describes user intent.\n// \n// 1) Store gets notified of action.\n// 2) Store sends action to reducers.\n// 3) Reducers accept state and return new state.\n// \n// Action Creators... returning a plain javascript object which must have a 'type' property.\n// Once an action is created, you need a function which will 'handle' that action, and that's where reducers come in.\n// Reducers are just functions which accept a state, an action, and returns a new state.\n// \n// All reducers are called when an action is dispatched.\n// \n// These ___SUCCESS actions don't fire until all the responses have been asynchronously returned by the API calls.\n// \n// -----------------------------------------------------------------------------------------------------------------------\n\n// For example, substitute it with a real api.\nfunction getCoursesSuccess(courses) {\n    return { type: types.GET_COURSES_SUCCESS, courses: courses };\n} // Only need to change this import to use a real api instead of a mocked one.\nfunction createCourseSuccess(course) {\n    return { type: types.CREATE_COURSE_SUCCESS, course: course };\n}\nfunction updateCourseSuccess(course) {\n    return { type: types.UPDATE_COURSE_SUCCESS, course: course };\n}\n\n// -----------------------------------------------------------------------------------------------------------------------\n// Thunks:\n// -----------------------------------------------------------------------------------------------------------------------\n// A thunk always returns a function that accepts a dispatch....\n// \n//      return function (dispatch) \n// \n// ... this wrapper function will exist in every thunk.\n// \n// -----------------------------------------------------------------------------------------------------------------------\n\nfunction getCourses() {\n    return function (dispatch) {\n        dispatch((0, _ajaxStatusActions.beginAjaxCall)());\n        return _MrcApi2.default.getCourses().then(function (response) {\n            dispatch(getCoursesSuccess(response));\n        }).catch(function (error) {\n            throw error;\n        });\n    };\n};\n\n// -------------------------------------------------------------------------------------------------\n\n// CourseForm > Button Click > ManageCoursePage.onSave > ManageCoursePage.saveCourse > this.props.actions.saveCourse(this.state.course)\n\nfunction saveCourse(course) {\n    return function (dispatch, getState) {\n        dispatch((0, _ajaxStatusActions.beginAjaxCall)());\n        return _mockCourseApi2.default.saveCourse(course).then(function (course) {\n            course.id ? dispatch(updateCourseSuccess(course)) : dispatch(createCourseSuccess(course));\n        }).catch(function (error) {\n            dispatch((0, _ajaxStatusActions.ajaxCallError)(error));throw error;\n        });\n    };\n};\n\n// -------------------------------------------------------------------------------------------------//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiMjMyLmpzIiwic291cmNlcyI6WyJ3ZWJwYWNrOi8vL2FwcC9hY3Rpb25zL2NvdXJzZUFjdGlvbnMuanM/OWU5ZCJdLCJzb3VyY2VzQ29udGVudCI6WyJcclxuaW1wb3J0IGNvdXJzZUFwaSAgICAgICAgICAgICAgICAgICAgICAgIGZyb20gJy4uL2FwaS9tb2NrQ291cnNlQXBpJzsgICAgLy8gT25seSBuZWVkIHRvIGNoYW5nZSB0aGlzIGltcG9ydCB0byB1c2UgYSByZWFsIGFwaSBpbnN0ZWFkIG9mIGEgbW9ja2VkIG9uZS5cclxuaW1wb3J0IE1yY0FwaSAgICAgICAgICAgICAgICAgICAgICAgICAgIGZyb20gJy4uL2FwaS9NcmNBcGknOyAgICAgICAgICAgLy8gRm9yIGV4YW1wbGUsIHN1YnN0aXR1dGUgaXQgd2l0aCBhIHJlYWwgYXBpLlxyXG5pbXBvcnQgeyBiZWdpbkFqYXhDYWxsLCBhamF4Q2FsbEVycm9yIH0gZnJvbSAnLi9hamF4U3RhdHVzQWN0aW9ucyc7XHJcbmltcG9ydCAqIGFzIHR5cGVzICAgICAgICAgICAgICAgICAgICAgICBmcm9tICcuL2FjdGlvblR5cGVzJztcclxuXHJcbi8vIFRoZSB3aG9sZSBzdGF0ZSBvZiB5b3VyIGFwcCBpcyBzdG9yZWQgaW4gYW4gb2JqZWN0IHRyZWUgaW5zaWRlIGEgc2luZ2xlIHN0b3JlLlxyXG4vLyBUaGUgb25seSB3YXkgdG8gY2hhbmdlIHRoZSBzdGF0ZSB0cmVlIGlzIHRvIGVtaXQgYW4gYWN0aW9uLCBhbiBvYmplY3QgZGVzY3JpYmluZyB3aGF0IGhhcHBlbmVkLlxyXG4vLyBUbyBzcGVjaWZ5IGhvdyB0aGUgYWN0aW9ucyB0cmFuc2Zvcm0gdGhlIHN0YXRlIHRyZWUsIHlvdSB3cml0ZSBwdXJlIHJlZHVjZXJzLlxyXG5cclxuLy8gLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS1cclxuLy8gQWN0aW9uczpcclxuLy8gLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS1cclxuLy8gXHJcbi8vIEV2ZW50cyBoYXBwZW5pbmcgaW4gYW4gYXBwIGFyZSBjYWxsZWQgJ2FjdGlvbnMnLiBUaGV5J3JlIGp1c3QgcGxhaW4gb2JqZWN0IGRlc2NyaWJpbmcgZXZlbnRzLiBUaGV5IG11c3QgaGF2ZSBhICd0eXBlJyBrZXkuIFxyXG4vLyBUaGUgc2Vjb25kIHByb3BlcnR5IGNvbnRhaW5zIGRhdGEsIGlzIG9wdGlvbmFsLCBhbmQgY2FuIGJlIG9mIGFueSB0eXBlLlxyXG4vLyBcclxuLy8gQW4gYWN0aW9uIGRlc2NyaWJlcyB1c2VyIGludGVudC5cclxuLy8gXHJcbi8vIDEpIFN0b3JlIGdldHMgbm90aWZpZWQgb2YgYWN0aW9uLlxyXG4vLyAyKSBTdG9yZSBzZW5kcyBhY3Rpb24gdG8gcmVkdWNlcnMuXHJcbi8vIDMpIFJlZHVjZXJzIGFjY2VwdCBzdGF0ZSBhbmQgcmV0dXJuIG5ldyBzdGF0ZS5cclxuLy8gXHJcbi8vIEFjdGlvbiBDcmVhdG9ycy4uLiByZXR1cm5pbmcgYSBwbGFpbiBqYXZhc2NyaXB0IG9iamVjdCB3aGljaCBtdXN0IGhhdmUgYSAndHlwZScgcHJvcGVydHkuXHJcbi8vIE9uY2UgYW4gYWN0aW9uIGlzIGNyZWF0ZWQsIHlvdSBuZWVkIGEgZnVuY3Rpb24gd2hpY2ggd2lsbCAnaGFuZGxlJyB0aGF0IGFjdGlvbiwgYW5kIHRoYXQncyB3aGVyZSByZWR1Y2VycyBjb21lIGluLlxyXG4vLyBSZWR1Y2VycyBhcmUganVzdCBmdW5jdGlvbnMgd2hpY2ggYWNjZXB0IGEgc3RhdGUsIGFuIGFjdGlvbiwgYW5kIHJldHVybnMgYSBuZXcgc3RhdGUuXHJcbi8vIFxyXG4vLyBBbGwgcmVkdWNlcnMgYXJlIGNhbGxlZCB3aGVuIGFuIGFjdGlvbiBpcyBkaXNwYXRjaGVkLlxyXG4vLyBcclxuLy8gVGhlc2UgX19fU1VDQ0VTUyBhY3Rpb25zIGRvbid0IGZpcmUgdW50aWwgYWxsIHRoZSByZXNwb25zZXMgaGF2ZSBiZWVuIGFzeW5jaHJvbm91c2x5IHJldHVybmVkIGJ5IHRoZSBBUEkgY2FsbHMuXHJcbi8vIFxyXG4vLyAtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLVxyXG5cclxuZXhwb3J0IGZ1bmN0aW9uIGdldENvdXJzZXNTdWNjZXNzKGNvdXJzZXMpICB7IHJldHVybiB7IHR5cGU6IHR5cGVzLkdFVF9DT1VSU0VTX1NVQ0NFU1MsICBjb3Vyc2VzOiBjb3Vyc2VzICB9OyB9XHJcbmV4cG9ydCBmdW5jdGlvbiBjcmVhdGVDb3Vyc2VTdWNjZXNzKGNvdXJzZSkgeyByZXR1cm4geyB0eXBlOiB0eXBlcy5DUkVBVEVfQ09VUlNFX1NVQ0NFU1MsIGNvdXJzZTogIGNvdXJzZSAgfTsgfVxyXG5leHBvcnQgZnVuY3Rpb24gdXBkYXRlQ291cnNlU3VjY2Vzcyhjb3Vyc2UpIHsgcmV0dXJuIHsgdHlwZTogdHlwZXMuVVBEQVRFX0NPVVJTRV9TVUNDRVNTLCBjb3Vyc2U6ICBjb3Vyc2UgIH07IH1cclxuXHJcbi8vIC0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tXHJcbi8vIFRodW5rczpcclxuLy8gLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS1cclxuLy8gQSB0aHVuayBhbHdheXMgcmV0dXJucyBhIGZ1bmN0aW9uIHRoYXQgYWNjZXB0cyBhIGRpc3BhdGNoLi4uLlxyXG4vLyBcclxuLy8gICAgICByZXR1cm4gZnVuY3Rpb24gKGRpc3BhdGNoKSBcclxuLy8gXHJcbi8vIC4uLiB0aGlzIHdyYXBwZXIgZnVuY3Rpb24gd2lsbCBleGlzdCBpbiBldmVyeSB0aHVuay5cclxuLy8gXHJcbi8vIC0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tXHJcblxyXG5leHBvcnQgZnVuY3Rpb24gZ2V0Q291cnNlcygpIHtcclxuICAgIHJldHVybiBmdW5jdGlvbihkaXNwYXRjaCkge1xyXG4gICAgICAgIGRpc3BhdGNoKGJlZ2luQWpheENhbGwoKSk7XHJcbiAgICAgICAgcmV0dXJuIE1yY0FwaS5nZXRDb3Vyc2VzKClcclxuICAgICAgICAgICAgICAgICAgICAgLnRoZW4ocmVzcG9uc2UgPT4geyBkaXNwYXRjaChnZXRDb3Vyc2VzU3VjY2VzcyhyZXNwb25zZSkpOyB9KVxyXG4gICAgICAgICAgICAgICAgICAgICAuY2F0Y2goZXJyb3IgICA9PiB7IHRocm93KGVycm9yKTsgfSk7IFxyXG4gICAgfTtcclxufTtcclxuXHJcbi8vIC0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS1cclxuXHJcbi8vIENvdXJzZUZvcm0gPiBCdXR0b24gQ2xpY2sgPiBNYW5hZ2VDb3Vyc2VQYWdlLm9uU2F2ZSA+IE1hbmFnZUNvdXJzZVBhZ2Uuc2F2ZUNvdXJzZSA+IHRoaXMucHJvcHMuYWN0aW9ucy5zYXZlQ291cnNlKHRoaXMuc3RhdGUuY291cnNlKVxyXG5cclxuZXhwb3J0IGZ1bmN0aW9uIHNhdmVDb3Vyc2UoY291cnNlKSB7XHJcbiAgICByZXR1cm4gZnVuY3Rpb24gKGRpc3BhdGNoLCBnZXRTdGF0ZSkge1xyXG4gICAgICAgIGRpc3BhdGNoKGJlZ2luQWpheENhbGwoKSk7XHJcbiAgICAgICAgcmV0dXJuIGNvdXJzZUFwaS5zYXZlQ291cnNlKGNvdXJzZSlcclxuICAgICAgICAgICAgICAgICAgICAgICAgLnRoZW4oY291cnNlID0+IHsgY291cnNlLmlkID8gZGlzcGF0Y2godXBkYXRlQ291cnNlU3VjY2Vzcyhjb3Vyc2UpKSA6IGRpc3BhdGNoKGNyZWF0ZUNvdXJzZVN1Y2Nlc3MoY291cnNlKSk7IH0pXHJcbiAgICAgICAgICAgICAgICAgICAgICAgIC5jYXRjaChlcnJvciA9PiB7IGRpc3BhdGNoKGFqYXhDYWxsRXJyb3IoZXJyb3IpKTsgdGhyb3coZXJyb3IpOyB9KTsgXHJcbiAgICB9O1xyXG59O1xyXG5cclxuLy8gLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLVxyXG5cclxuXG5cblxuLy8gV0VCUEFDSyBGT09URVIgLy9cbi8vIGFwcC9hY3Rpb25zL2NvdXJzZUFjdGlvbnMuanMiXSwibWFwcGluZ3MiOiI7Ozs7O0FBaUNBO0FBQ0E7QUFDQTtBQWFBO0FBYUE7QUFDQTtBQTdEQTtBQUNBOzs7QUFBQTtBQUNBOzs7QUFBQTtBQUNBO0FBQUE7QUFDQTtBQURBO0FBQ0E7Ozs7O0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBOUJBO0FBK0JBO0FBQUE7QUFBQTtBQUNBO0FBQUE7QUFBQTtBQUNBO0FBQUE7QUFBQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFBQTtBQUNBO0FBQUE7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFBQTtBQUNBO0FBQUE7QUFDQTtBQUNBO0FBQ0E7Iiwic291cmNlUm9vdCI6IiJ9");
 
-/***/ },
+/***/ }),
 
-/***/ 717:
-/*!***************************************!*\
-  !*** ./app/reducers/authorReducer.js ***!
-  \***************************************/
-/***/ function(module, exports, __webpack_require__) {
+/***/ 354:
+/* unknown exports provided */
+/* all exports used */
+/*!******************************************!*\
+  !*** ./app/actions/ajaxStatusActions.js ***!
+  \******************************************/
+/***/ (function(module, exports, __webpack_require__) {
 
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	exports.default = authorReducer;
-	
-	var _actionTypes = __webpack_require__(/*! ../actions/actionTypes */ 697);
-	
-	var types = _interopRequireWildcard(_actionTypes);
-	
-	var _initialState = __webpack_require__(/*! ../store/initialState */ 715);
-	
-	var _initialState2 = _interopRequireDefault(_initialState);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
-	
-	function authorReducer() {
-	    var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : _initialState2.default.authors;
-	    var action = arguments[1];
-	
-	
-	    switch (action.type) {
-	
-	        case types.LOAD_AUTHORS_SUCCESS:
-	            return action.authors;
-	
-	        default:
-	            return state;
-	    }
-	}
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.beginAjaxCall = beginAjaxCall;\nexports.ajaxCallError = ajaxCallError;\n\nvar _actionTypes = __webpack_require__(/*! ./actionTypes */ 97);\n\nvar types = _interopRequireWildcard(_actionTypes);\n\nfunction _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }\n\nfunction beginAjaxCall() {\n  return {\n    type: types.BEGIN_AJAX_CALL\n  };\n}\n\nfunction ajaxCallError() {\n  return {\n    type: types.AJAX_CALL_ERROR\n  };\n}//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiMzU0LmpzIiwic291cmNlcyI6WyJ3ZWJwYWNrOi8vL2FwcC9hY3Rpb25zL2FqYXhTdGF0dXNBY3Rpb25zLmpzPzQ5OTIiXSwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0ICogYXMgdHlwZXMgZnJvbSAnLi9hY3Rpb25UeXBlcyc7XHJcblxyXG5leHBvcnQgZnVuY3Rpb24gYmVnaW5BamF4Q2FsbCgpIHtcclxuICByZXR1cm4ge1xyXG4gICAgICAgICAgICAgdHlwZTogdHlwZXMuQkVHSU5fQUpBWF9DQUxMXHJcbiAgICAgICAgIH07XHJcbn1cclxuXHJcbmV4cG9ydCBmdW5jdGlvbiBhamF4Q2FsbEVycm9yKCkge1xyXG4gIHJldHVybiB7XHJcbiAgICAgICAgICAgICB0eXBlOiB0eXBlcy5BSkFYX0NBTExfRVJST1JcclxuICAgICAgICAgfTtcclxufVxyXG5cclxuXG5cblxuLy8gV0VCUEFDSyBGT09URVIgLy9cbi8vIGFwcC9hY3Rpb25zL2FqYXhTdGF0dXNBY3Rpb25zLmpzIl0sIm1hcHBpbmdzIjoiOzs7OztBQUVBO0FBTUE7QUFDQTtBQVRBO0FBQ0E7QUFEQTtBQUNBOzs7QUFDQTtBQUNBO0FBQ0E7QUFEQTtBQUdBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFEQTtBQUdBIiwic291cmNlUm9vdCI6IiJ9");
 
-/***/ },
+/***/ }),
 
-/***/ 718:
-/*!*******************************************!*\
-  !*** ./app/reducers/ajaxStatusReducer.js ***!
-  \*******************************************/
-/***/ function(module, exports, __webpack_require__) {
+/***/ 355:
+/* unknown exports provided */
+/* all exports used */
+/*!***************************!*\
+  !*** ./app/api/MrcApi.js ***!
+  \***************************/
+/***/ (function(module, exports, __webpack_require__) {
 
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	
-	var _actionTypes = __webpack_require__(/*! ../actions/actionTypes.js */ 697);
-	
-	var types = _interopRequireWildcard(_actionTypes);
-	
-	var _initialState = __webpack_require__(/*! ../store/initialState */ 715);
-	
-	var _initialState2 = _interopRequireDefault(_initialState);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
-	
-	var actionTypeEndsInSuccess = function actionTypeEndsInSuccess(type) {
-	    return type.substring(type.length - 8) === '_SUCCESS';
-	};
-	
-	var ajaxStatusReducer = function ajaxStatusReducer() {
-	    var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : _initialState2.default.ajaxCallsInProgress;
-	    var action = arguments[1];
-	
-	
-	    if (action.type === types.BEGIN_AJAX_CALL) {
-	        return state + 1;
-	    } else if (action.type === types.AJAX_CALL_ERROR || actionTypeEndsInSuccess(action.type)) {
-	        return state - 1;
-	    }
-	
-	    return state;
-	};
-	
-	exports.default = ajaxStatusReducer;
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n    value: true\n});\n\nvar _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if (\"value\" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();\n\n__webpack_require__(/*! whatwg-fetch */ 353);\n\n__webpack_require__(/*! babel-polyfill */ 176);\n\nfunction _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\"Cannot call a class as a function\"); } }\n\nvar API_HEADERS = {\n    'Content-Type': 'application/json',\n    'Accept': 'application/json, text/plain, */*'\n};\n\nvar MrcApi = function () {\n    function MrcApi() {\n        _classCallCheck(this, MrcApi);\n    }\n\n    _createClass(MrcApi, null, [{\n        key: 'getCourses',\n        value: function getCourses() {\n\n            return fetch('api/GetGourses', {\n                headers: API_HEADERS\n            }).then(function (response) {\n                return response.json();\n            });\n        }\n    }, {\n        key: 'getUser',\n        value: function getUser() {\n\n            return fetch('api/GetUserProfile', {\n                headers: API_HEADERS\n            }).then(function (response) {\n                return response.json();\n            });\n        }\n    }, {\n        key: 'getLookups',\n        value: function getLookups() {\n\n            return fetch('api/GetLookups', {\n                headers: API_HEADERS\n            }).then(function (response) {\n                return response.json();\n            });\n        }\n    }]);\n\n    return MrcApi;\n}();\n\n;\n\nexports.default = MrcApi;//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiMzU1LmpzIiwic291cmNlcyI6WyJ3ZWJwYWNrOi8vL2FwcC9hcGkvTXJjQXBpLmpzP2NlMzUiXSwic291cmNlc0NvbnRlbnQiOlsiXHJcbmltcG9ydCAnd2hhdHdnLWZldGNoJztcclxuaW1wb3J0ICdiYWJlbC1wb2x5ZmlsbCc7XHJcblxyXG5jb25zdCBBUElfSEVBREVSUyA9IHtcclxuICAgICAgICAgICAgICAgICAgICAgICAgJ0NvbnRlbnQtVHlwZSc6ICdhcHBsaWNhdGlvbi9qc29uJyxcclxuICAgICAgICAgICAgICAgICAgICAgICAgJ0FjY2VwdCc6ICdhcHBsaWNhdGlvbi9qc29uLCB0ZXh0L3BsYWluLCAqLyonIFxyXG4gICAgICAgICAgICAgICAgICAgIH1cclxuXHJcbmNsYXNzIE1yY0FwaSB7XHJcblxyXG4gICAgc3RhdGljIGdldENvdXJzZXMoKSB7XHJcblxyXG4gICAgICAgIHJldHVybiBmZXRjaCgnYXBpL0dldEdvdXJzZXMnLFxyXG4gICAgICAgICAgICAgICB7XHJcbiAgICAgICAgICAgICAgICAgICBoZWFkZXJzOiBBUElfSEVBREVSU1xyXG4gICAgICAgICAgICAgICB9KVxyXG4gICAgICAgICAgICAgICAudGhlbigocmVzcG9uc2UpID0+IHJlc3BvbnNlLmpzb24oKSk7XHJcbiAgICB9XHJcblxyXG4gICAgc3RhdGljIGdldFVzZXIoKSB7XHJcblxyXG4gICAgICAgIHJldHVybiBmZXRjaCgnYXBpL0dldFVzZXJQcm9maWxlJyxcclxuICAgICAgICAgICAgICAge1xyXG4gICAgICAgICAgICAgICAgICAgaGVhZGVyczogQVBJX0hFQURFUlNcclxuICAgICAgICAgICAgICAgfSlcclxuICAgICAgICAgICAgICAgLnRoZW4oKHJlc3BvbnNlKSA9PiByZXNwb25zZS5qc29uKCkpO1xyXG4gICAgfVxyXG5cclxuICAgIHN0YXRpYyBnZXRMb29rdXBzKCkge1xyXG5cclxuICAgICAgICByZXR1cm4gZmV0Y2goJ2FwaS9HZXRMb29rdXBzJyxcclxuICAgICAgICAgICAgICAge1xyXG4gICAgICAgICAgICAgICAgICAgaGVhZGVyczogQVBJX0hFQURFUlNcclxuICAgICAgICAgICAgICAgfSlcclxuICAgICAgICAgICAgICAgLnRoZW4oKHJlc3BvbnNlKSA9PiByZXNwb25zZS5qc29uKCkpO1xyXG4gICAgfVxyXG59O1xyXG5cclxuZXhwb3J0IGRlZmF1bHQgTXJjQXBpO1xyXG5cblxuXG4vLyBXRUJQQUNLIEZPT1RFUiAvL1xuLy8gYXBwL2FwaS9NcmNBcGkuanMiXSwibWFwcGluZ3MiOiI7Ozs7Ozs7O0FBQ0E7QUFDQTtBQUFBO0FBQ0E7OztBQUNBO0FBQ0E7QUFDQTtBQUZBO0FBQ0E7QUFJQTs7Ozs7OztBQUVBO0FBQ0E7QUFDQTtBQUVBO0FBREE7QUFHQTtBQUFBO0FBQ0E7OztBQUVBO0FBQ0E7QUFDQTtBQUVBO0FBREE7QUFHQTtBQUFBO0FBQ0E7OztBQUVBO0FBQ0E7QUFDQTtBQUVBO0FBREE7QUFHQTtBQUFBO0FBQ0E7Ozs7OztBQUNBO0FBQ0E7Iiwic291cmNlUm9vdCI6IiJ9");
 
-/***/ },
+/***/ }),
 
-/***/ 719:
+/***/ 701:
+/* unknown exports provided */
+/* all exports used */
 /*!***********************************!*\
   !*** ./app/actions/appActions.js ***!
   \***********************************/
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	exports.getLookupsSuccess = getLookupsSuccess;
-	exports.getUserSuccess = getUserSuccess;
-	exports.updateIsInitialized = updateIsInitialized;
-	exports.getLookups = getLookups;
-	exports.getUser = getUser;
-	
-	var _MrcApi = __webpack_require__(/*! ../api/MrcApi */ 398);
-	
-	var _MrcApi2 = _interopRequireDefault(_MrcApi);
-	
-	var _ajaxStatusActions = __webpack_require__(/*! ./ajaxStatusActions */ 696);
-	
-	var _actionTypes = __webpack_require__(/*! ./actionTypes */ 697);
-	
-	var types = _interopRequireWildcard(_actionTypes);
-	
-	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	// -----------------------------------------------------------------------------------------------------------------------
-	// Actions:
-	// -----------------------------------------------------------------------------------------------------------------------
-	// 
-	// Events happening in an app are called 'actions'. They're just plain objects describing events. They must have a 
-	// 'type' key. The second property contains data, is optional, and can be of any type.
-	// 
-	// Instead of mutating state directly, you specify mutations you want to happen with plain objects called 'actions'. 
-	// Then you write a special function called a 'reducer' to decide how every action transforms the entire application's state.
-	// 
-	// To specify how the state tree is transformed by actions, you write pure reducers.
-	// 
-	// Reducers are just pure functions that take the previous state and an action, and return the next state. Remember to 
-	// return NEW state objects, instead of mutating the previous state. You can start with a single reducer, and as your app 
-	// grows, split it off into smaller reducers that manage specific parts of the state tree. Because reducers are just 
-	// functions, you can control the order in which they are called, pass additional data, or even make reusable reducers for 
-	// common tasks such as pagination.
-	// 
-	// An action describes user intent.
-	// 
-	//      1) Store gets notified of action.
-	//      2) Store sends action to reducers.
-	//      3) Reducers accept state and return new state.
-	// 
-	// Once an action is created, you need a function which will 'handle' that action, and that's where reducers come in.
-	// Reducers are just functions which accept a state, an action, and returns a new state.
-	// 
-	// *ALL* reducers are called when an action is dispatched.
-	// 
-	// These ___SUCCESS actions don't fire until all the responses have been asynchronously returned by the API calls.
-	// 
-	// -----------------------------------------------------------------------------------------------------------------------
-	
-	function getLookupsSuccess(lookups) {
-	    return { type: types.GET_LOOKUPS_SUCCESS, lookups: lookups };
-	}
-	function getUserSuccess(user) {
-	    return { type: types.GET_USER_SUCCESS, user: user };
-	}
-	function updateIsInitialized(app) {
-	    return { type: types.IS_INITIALIZED, app: app };
-	}
-	
-	// -----------------------------------------------------------------------------------------------------------------------
-	// Thunks:
-	// -----------------------------------------------------------------------------------------------------------------------
-	// A thunk always returns a function that accepts a dispatch....
-	// 
-	//      return function (dispatch) 
-	// 
-	// ... this wrapper function will exist in every thunk.
-	// 
-	// -----------------------------------------------------------------------------------------------------------------------
-	
-	var isLookupsInitialized = false;
-	var isUserInitialized = false;
-	
-	function isAppInitialized(dispatch) {
-	    var isInitialized = isLookupsInitialized && isUserInitialized;
-	    if (isInitialized) {
-	        dispatch(updateIsInitialized({ isAppInitialized: true }));
-	    }
-	}
-	
-	function getLookups() {
-	    return function (dispatch) {
-	        dispatch((0, _ajaxStatusActions.beginAjaxCall)());
-	        return _MrcApi2.default.getLookups().then(function (response) {
-	            dispatch(getLookupsSuccess(response));
-	            dispatch(updateIsInitialized({ isLookupsInitialized: true }));
-	            isLookupsInitialized = true;
-	            isAppInitialized(dispatch);
-	        }).catch(function (error) {
-	            throw error;
-	        });
-	    };
-	};
-	
-	function getUser() {
-	    return function (dispatch) {
-	        dispatch((0, _ajaxStatusActions.beginAjaxCall)());
-	        return _MrcApi2.default.getUser().then(function (response) {
-	            dispatch(getUserSuccess(response));
-	            dispatch(updateIsInitialized({ isUserInitialized: true }));
-	            isUserInitialized = true;
-	            isAppInitialized(dispatch);
-	        }).catch(function (error) {
-	            throw error;
-	        });
-	    };
-	};
-	
-	// -----------------------------------------------------------------------------------------------------------------------
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n    value: true\n});\nexports.getLookupsSuccess = getLookupsSuccess;\nexports.getUserSuccess = getUserSuccess;\nexports.updateIsInitialized = updateIsInitialized;\nexports.getLookups = getLookups;\nexports.getUser = getUser;\n\nvar _MrcApi = __webpack_require__(/*! ../api/MrcApi */ 355);\n\nvar _MrcApi2 = _interopRequireDefault(_MrcApi);\n\nvar _ajaxStatusActions = __webpack_require__(/*! ./ajaxStatusActions */ 354);\n\nvar _actionTypes = __webpack_require__(/*! ./actionTypes */ 97);\n\nvar types = _interopRequireWildcard(_actionTypes);\n\nfunction _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\n// -----------------------------------------------------------------------------------------------------------------------\n// Actions:\n// -----------------------------------------------------------------------------------------------------------------------\n// \n// Events happening in an app are called 'actions'. They're just plain objects describing events. They must have a \n// 'type' key. The second property contains data, is optional, and can be of any type.\n// \n// Instead of mutating state directly, you specify mutations you want to happen with plain objects called 'actions'. \n// Then you write a special function called a 'reducer' to decide how every action transforms the entire application's state.\n// \n// To specify how the state tree is transformed by actions, you write pure reducers.\n// \n// Reducers are just pure functions that take the previous state and an action, and return the next state. Remember to \n// return NEW state objects, instead of mutating the previous state. You can start with a single reducer, and as your app \n// grows, split it off into smaller reducers that manage specific parts of the state tree. Because reducers are just \n// functions, you can control the order in which they are called, pass additional data, or even make reusable reducers for \n// common tasks such as pagination.\n// \n// An action describes user intent.\n// \n//      1) Store gets notified of action.\n//      2) Store sends action to reducers.\n//      3) Reducers accept state and return new state.\n// \n// Once an action is created, you need a function which will 'handle' that action, and that's where reducers come in.\n// Reducers are just functions which accept a state, an action, and returns a new state.\n// \n// *ALL* reducers are called when an action is dispatched.\n// \n// These ___SUCCESS actions don't fire until all the responses have been asynchronously returned by the API calls.\n// \n// -----------------------------------------------------------------------------------------------------------------------\n\nfunction getLookupsSuccess(lookups) {\n    return { type: types.GET_LOOKUPS_SUCCESS, lookups: lookups };\n}\nfunction getUserSuccess(user) {\n    return { type: types.GET_USER_SUCCESS, user: user };\n}\nfunction updateIsInitialized(app) {\n    return { type: types.IS_INITIALIZED, app: app };\n}\n\n// -----------------------------------------------------------------------------------------------------------------------\n// Thunks:\n// -----------------------------------------------------------------------------------------------------------------------\n// A thunk always returns a function that accepts a dispatch....\n// \n//      return function (dispatch) \n// \n// ... this wrapper function will exist in every thunk.\n// \n// -----------------------------------------------------------------------------------------------------------------------\n\nvar isLookupsInitialized = false;\nvar isUserInitialized = false;\n\nfunction isAppInitialized(dispatch) {\n    var isInitialized = isLookupsInitialized && isUserInitialized;\n    if (isInitialized) {\n        dispatch(updateIsInitialized({ isAppInitialized: true }));\n    }\n}\n\nfunction getLookups() {\n    return function (dispatch) {\n        dispatch((0, _ajaxStatusActions.beginAjaxCall)());\n        return _MrcApi2.default.getLookups().then(function (response) {\n            dispatch(getLookupsSuccess(response));\n            dispatch(updateIsInitialized({ isLookupsInitialized: true }));\n            isLookupsInitialized = true;\n            isAppInitialized(dispatch);\n        }).catch(function (error) {\n            throw error;\n        });\n    };\n};\n\nfunction getUser() {\n    return function (dispatch) {\n        dispatch((0, _ajaxStatusActions.beginAjaxCall)());\n        return _MrcApi2.default.getUser().then(function (response) {\n            dispatch(getUserSuccess(response));\n            dispatch(updateIsInitialized({ isUserInitialized: true }));\n            isUserInitialized = true;\n            isAppInitialized(dispatch);\n        }).catch(function (error) {\n            throw error;\n        });\n    };\n};\n\n// -----------------------------------------------------------------------------------------------------------------------//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiNzAxLmpzIiwic291cmNlcyI6WyJ3ZWJwYWNrOi8vL2FwcC9hY3Rpb25zL2FwcEFjdGlvbnMuanM/NzQwZCJdLCJzb3VyY2VzQ29udGVudCI6WyJcclxuaW1wb3J0IE1yY0FwaSAgICAgICAgICAgICAgICAgICAgICAgICAgIGZyb20gJy4uL2FwaS9NcmNBcGknO1xyXG5pbXBvcnQgeyBiZWdpbkFqYXhDYWxsLCBhamF4Q2FsbEVycm9yIH0gZnJvbSAnLi9hamF4U3RhdHVzQWN0aW9ucyc7XHJcbmltcG9ydCAqIGFzIHR5cGVzICAgICAgICAgICAgICAgICAgICAgICBmcm9tICcuL2FjdGlvblR5cGVzJztcclxuXHJcbi8vIC0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tXHJcbi8vIEFjdGlvbnM6XHJcbi8vIC0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tXHJcbi8vIFxyXG4vLyBFdmVudHMgaGFwcGVuaW5nIGluIGFuIGFwcCBhcmUgY2FsbGVkICdhY3Rpb25zJy4gVGhleSdyZSBqdXN0IHBsYWluIG9iamVjdHMgZGVzY3JpYmluZyBldmVudHMuIFRoZXkgbXVzdCBoYXZlIGEgXHJcbi8vICd0eXBlJyBrZXkuIFRoZSBzZWNvbmQgcHJvcGVydHkgY29udGFpbnMgZGF0YSwgaXMgb3B0aW9uYWwsIGFuZCBjYW4gYmUgb2YgYW55IHR5cGUuXHJcbi8vIFxyXG4vLyBJbnN0ZWFkIG9mIG11dGF0aW5nIHN0YXRlIGRpcmVjdGx5LCB5b3Ugc3BlY2lmeSBtdXRhdGlvbnMgeW91IHdhbnQgdG8gaGFwcGVuIHdpdGggcGxhaW4gb2JqZWN0cyBjYWxsZWQgJ2FjdGlvbnMnLiBcclxuLy8gVGhlbiB5b3Ugd3JpdGUgYSBzcGVjaWFsIGZ1bmN0aW9uIGNhbGxlZCBhICdyZWR1Y2VyJyB0byBkZWNpZGUgaG93IGV2ZXJ5IGFjdGlvbiB0cmFuc2Zvcm1zIHRoZSBlbnRpcmUgYXBwbGljYXRpb24ncyBzdGF0ZS5cclxuLy8gXHJcbi8vIFRvIHNwZWNpZnkgaG93IHRoZSBzdGF0ZSB0cmVlIGlzIHRyYW5zZm9ybWVkIGJ5IGFjdGlvbnMsIHlvdSB3cml0ZSBwdXJlIHJlZHVjZXJzLlxyXG4vLyBcclxuLy8gUmVkdWNlcnMgYXJlIGp1c3QgcHVyZSBmdW5jdGlvbnMgdGhhdCB0YWtlIHRoZSBwcmV2aW91cyBzdGF0ZSBhbmQgYW4gYWN0aW9uLCBhbmQgcmV0dXJuIHRoZSBuZXh0IHN0YXRlLiBSZW1lbWJlciB0byBcclxuLy8gcmV0dXJuIE5FVyBzdGF0ZSBvYmplY3RzLCBpbnN0ZWFkIG9mIG11dGF0aW5nIHRoZSBwcmV2aW91cyBzdGF0ZS4gWW91IGNhbiBzdGFydCB3aXRoIGEgc2luZ2xlIHJlZHVjZXIsIGFuZCBhcyB5b3VyIGFwcCBcclxuLy8gZ3Jvd3MsIHNwbGl0IGl0IG9mZiBpbnRvIHNtYWxsZXIgcmVkdWNlcnMgdGhhdCBtYW5hZ2Ugc3BlY2lmaWMgcGFydHMgb2YgdGhlIHN0YXRlIHRyZWUuIEJlY2F1c2UgcmVkdWNlcnMgYXJlIGp1c3QgXHJcbi8vIGZ1bmN0aW9ucywgeW91IGNhbiBjb250cm9sIHRoZSBvcmRlciBpbiB3aGljaCB0aGV5IGFyZSBjYWxsZWQsIHBhc3MgYWRkaXRpb25hbCBkYXRhLCBvciBldmVuIG1ha2UgcmV1c2FibGUgcmVkdWNlcnMgZm9yIFxyXG4vLyBjb21tb24gdGFza3Mgc3VjaCBhcyBwYWdpbmF0aW9uLlxyXG4vLyBcclxuLy8gQW4gYWN0aW9uIGRlc2NyaWJlcyB1c2VyIGludGVudC5cclxuLy8gXHJcbi8vICAgICAgMSkgU3RvcmUgZ2V0cyBub3RpZmllZCBvZiBhY3Rpb24uXHJcbi8vICAgICAgMikgU3RvcmUgc2VuZHMgYWN0aW9uIHRvIHJlZHVjZXJzLlxyXG4vLyAgICAgIDMpIFJlZHVjZXJzIGFjY2VwdCBzdGF0ZSBhbmQgcmV0dXJuIG5ldyBzdGF0ZS5cclxuLy8gXHJcbi8vIE9uY2UgYW4gYWN0aW9uIGlzIGNyZWF0ZWQsIHlvdSBuZWVkIGEgZnVuY3Rpb24gd2hpY2ggd2lsbCAnaGFuZGxlJyB0aGF0IGFjdGlvbiwgYW5kIHRoYXQncyB3aGVyZSByZWR1Y2VycyBjb21lIGluLlxyXG4vLyBSZWR1Y2VycyBhcmUganVzdCBmdW5jdGlvbnMgd2hpY2ggYWNjZXB0IGEgc3RhdGUsIGFuIGFjdGlvbiwgYW5kIHJldHVybnMgYSBuZXcgc3RhdGUuXHJcbi8vIFxyXG4vLyAqQUxMKiByZWR1Y2VycyBhcmUgY2FsbGVkIHdoZW4gYW4gYWN0aW9uIGlzIGRpc3BhdGNoZWQuXHJcbi8vIFxyXG4vLyBUaGVzZSBfX19TVUNDRVNTIGFjdGlvbnMgZG9uJ3QgZmlyZSB1bnRpbCBhbGwgdGhlIHJlc3BvbnNlcyBoYXZlIGJlZW4gYXN5bmNocm9ub3VzbHkgcmV0dXJuZWQgYnkgdGhlIEFQSSBjYWxscy5cclxuLy8gXHJcbi8vIC0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tXHJcblxyXG5leHBvcnQgZnVuY3Rpb24gZ2V0TG9va3Vwc1N1Y2Nlc3MobG9va3VwcykgeyByZXR1cm4geyB0eXBlOiB0eXBlcy5HRVRfTE9PS1VQU19TVUNDRVNTLCBsb29rdXBzOiBsb29rdXBzIH07IH1cclxuZXhwb3J0IGZ1bmN0aW9uIGdldFVzZXJTdWNjZXNzKHVzZXIpICAgICAgIHsgcmV0dXJuIHsgdHlwZTogdHlwZXMuR0VUX1VTRVJfU1VDQ0VTUywgICAgdXNlcjogICAgdXNlciAgICB9OyB9XHJcbmV4cG9ydCBmdW5jdGlvbiB1cGRhdGVJc0luaXRpYWxpemVkKGFwcCkgICB7IHJldHVybiB7IHR5cGU6IHR5cGVzLklTX0lOSVRJQUxJWkVELCAgICAgIGFwcDogICAgIGFwcCAgICAgfTsgfVxyXG5cclxuLy8gLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS1cclxuLy8gVGh1bmtzOlxyXG4vLyAtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLVxyXG4vLyBBIHRodW5rIGFsd2F5cyByZXR1cm5zIGEgZnVuY3Rpb24gdGhhdCBhY2NlcHRzIGEgZGlzcGF0Y2guLi4uXHJcbi8vIFxyXG4vLyAgICAgIHJldHVybiBmdW5jdGlvbiAoZGlzcGF0Y2gpIFxyXG4vLyBcclxuLy8gLi4uIHRoaXMgd3JhcHBlciBmdW5jdGlvbiB3aWxsIGV4aXN0IGluIGV2ZXJ5IHRodW5rLlxyXG4vLyBcclxuLy8gLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS1cclxuXHJcbmxldCBpc0xvb2t1cHNJbml0aWFsaXplZCA9IGZhbHNlO1xyXG5sZXQgaXNVc2VySW5pdGlhbGl6ZWQgPSBmYWxzZTtcclxuXHJcbmZ1bmN0aW9uIGlzQXBwSW5pdGlhbGl6ZWQoZGlzcGF0Y2gpIHtcclxuICAgIGNvbnN0IGlzSW5pdGlhbGl6ZWQgPSBpc0xvb2t1cHNJbml0aWFsaXplZCAmJiBpc1VzZXJJbml0aWFsaXplZDtcclxuICAgIGlmIChpc0luaXRpYWxpemVkKSB7XHJcbiAgICAgICAgZGlzcGF0Y2godXBkYXRlSXNJbml0aWFsaXplZCh7IGlzQXBwSW5pdGlhbGl6ZWQ6IHRydWUgfSkpO1xyXG4gICAgfVxyXG59XHJcblxyXG5leHBvcnQgZnVuY3Rpb24gZ2V0TG9va3VwcygpIHtcclxuICAgIHJldHVybiBmdW5jdGlvbihkaXNwYXRjaCkge1xyXG4gICAgICAgIGRpc3BhdGNoKGJlZ2luQWpheENhbGwoKSk7XHJcbiAgICAgICAgcmV0dXJuIE1yY0FwaS5nZXRMb29rdXBzKClcclxuICAgICAgICAgICAgICAgICAgICAgLnRoZW4ocmVzcG9uc2UgPT4ge1xyXG4gICAgICAgICAgICAgICAgICAgICAgICAgZGlzcGF0Y2goZ2V0TG9va3Vwc1N1Y2Nlc3MocmVzcG9uc2UpKTsgXHJcbiAgICAgICAgICAgICAgICAgICAgICAgICBkaXNwYXRjaCh1cGRhdGVJc0luaXRpYWxpemVkKHsgaXNMb29rdXBzSW5pdGlhbGl6ZWQ6IHRydWUgfSkpO1xyXG4gICAgICAgICAgICAgICAgICAgICAgICAgaXNMb29rdXBzSW5pdGlhbGl6ZWQgPSB0cnVlO1xyXG4gICAgICAgICAgICAgICAgICAgICAgICAgaXNBcHBJbml0aWFsaXplZChkaXNwYXRjaCk7XHJcbiAgICAgICAgICAgICAgICAgICAgIH0pXHJcbiAgICAgICAgICAgICAgICAgICAgIC5jYXRjaChlcnJvciAgID0+IHsgdGhyb3coZXJyb3IpOyB9KTsgXHJcbiAgICB9O1xyXG59O1xyXG5cclxuZXhwb3J0IGZ1bmN0aW9uIGdldFVzZXIoKSB7XHJcbiAgICByZXR1cm4gZnVuY3Rpb24oZGlzcGF0Y2gpIHtcclxuICAgICAgICBkaXNwYXRjaChiZWdpbkFqYXhDYWxsKCkpO1xyXG4gICAgICAgIHJldHVybiBNcmNBcGkuZ2V0VXNlcigpXHJcbiAgICAgICAgICAgICAgICAgICAgIC50aGVuKHJlc3BvbnNlID0+IHtcclxuICAgICAgICAgICAgICAgICAgICAgICAgIGRpc3BhdGNoKGdldFVzZXJTdWNjZXNzKHJlc3BvbnNlKSk7IFxyXG4gICAgICAgICAgICAgICAgICAgICAgICAgZGlzcGF0Y2godXBkYXRlSXNJbml0aWFsaXplZCh7IGlzVXNlckluaXRpYWxpemVkOiB0cnVlIH0pKTtcclxuICAgICAgICAgICAgICAgICAgICAgICAgIGlzVXNlckluaXRpYWxpemVkID0gdHJ1ZTtcclxuICAgICAgICAgICAgICAgICAgICAgICAgIGlzQXBwSW5pdGlhbGl6ZWQoZGlzcGF0Y2gpO1xyXG4gICAgICAgICAgICAgICAgICAgICB9KVxyXG4gICAgICAgICAgICAgICAgICAgICAuY2F0Y2goZXJyb3IgICA9PiB7IHRocm93KGVycm9yKTsgfSk7IFxyXG4gICAgfTtcclxufTtcclxuXHJcbi8vIC0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tXHJcblxuXG5cbi8vIFdFQlBBQ0sgRk9PVEVSIC8vXG4vLyBhcHAvYWN0aW9ucy9hcHBBY3Rpb25zLmpzIl0sIm1hcHBpbmdzIjoiOzs7OztBQXNDQTtBQUNBO0FBQ0E7QUF1QkE7QUFjQTtBQUNBO0FBN0VBO0FBQ0E7OztBQUFBO0FBQ0E7QUFBQTtBQUNBO0FBREE7QUFDQTs7Ozs7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUFBO0FBQUE7QUFDQTtBQUFBO0FBQUE7QUFDQTtBQUFBO0FBQUE7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBRUE7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQUE7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUVBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUFBO0FBQ0E7QUFDQTtBQUNBOyIsInNvdXJjZVJvb3QiOiIifQ==");
 
-/***/ }
+/***/ }),
 
-});
-//# sourceMappingURL=main.js.map
+/***/ 702:
+/* unknown exports provided */
+/* all exports used */
+/*!***********************!*\
+  !*** ./app/routes.js ***!
+  \***********************/
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n    value: true\n});\n\nvar _react = __webpack_require__(/*! react */ 0);\n\nvar _react2 = _interopRequireDefault(_react);\n\nvar _reactRouter = __webpack_require__(/*! react-router */ 33);\n\nvar _Shell = __webpack_require__(/*! ./components/common/Shell */ 722);\n\nvar _Shell2 = _interopRequireDefault(_Shell);\n\nvar _Home = __webpack_require__(/*! ./components/home/Home */ 730);\n\nvar _Home2 = _interopRequireDefault(_Home);\n\nvar _About = __webpack_require__(/*! ./components/about/About */ 714);\n\nvar _About2 = _interopRequireDefault(_About);\n\nvar _Admin = __webpack_require__(/*! ./components/admin/Admin */ 715);\n\nvar _Admin2 = _interopRequireDefault(_Admin);\n\nvar _Applications = __webpack_require__(/*! ./components/applications/Applications */ 716);\n\nvar _Applications2 = _interopRequireDefault(_Applications);\n\nvar _Builds = __webpack_require__(/*! ./components/builds/Builds */ 717);\n\nvar _Builds2 = _interopRequireDefault(_Builds);\n\nvar _Rfcs = __webpack_require__(/*! ./components/rfcs/Rfcs */ 731);\n\nvar _Rfcs2 = _interopRequireDefault(_Rfcs);\n\nvar _Runbooks = __webpack_require__(/*! ./components/runbooks/Runbooks */ 732);\n\nvar _Runbooks2 = _interopRequireDefault(_Runbooks);\n\nvar _Templates = __webpack_require__(/*! ./components/templates/Templates */ 733);\n\nvar _Templates2 = _interopRequireDefault(_Templates);\n\nvar _NotFound = __webpack_require__(/*! ./components/common/NotFound */ 720);\n\nvar _NotFound2 = _interopRequireDefault(_NotFound);\n\nvar _Courses = __webpack_require__(/*! ./components/demo/Courses */ 728);\n\nvar _Courses2 = _interopRequireDefault(_Courses);\n\nvar _ManageCoursePage = __webpack_require__(/*! ./components/demo/ManageCoursePage */ 729);\n\nvar _ManageCoursePage2 = _interopRequireDefault(_ManageCoursePage);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nexports.default = _react2.default.createElement(\n    _reactRouter.Route,\n    { path: '/', component: _Shell2.default },\n    _react2.default.createElement(_reactRouter.IndexRoute, { component: _Home2.default }),\n    _react2.default.createElement(_reactRouter.Route, { path: 'about', component: _About2.default }),\n    _react2.default.createElement(_reactRouter.Route, { path: 'admin', component: _Admin2.default }),\n    _react2.default.createElement(_reactRouter.Route, { path: 'applications', component: _Applications2.default }),\n    _react2.default.createElement(_reactRouter.Route, { path: 'builds', component: _Builds2.default }),\n    _react2.default.createElement(_reactRouter.Route, { path: 'rfcs', component: _Rfcs2.default }),\n    _react2.default.createElement(_reactRouter.Route, { path: 'runbooks', component: _Runbooks2.default }),\n    _react2.default.createElement(_reactRouter.Route, { path: 'templates', component: _Templates2.default }),\n    _react2.default.createElement(_reactRouter.Route, { path: 'courses', component: _Courses2.default }),\n    _react2.default.createElement(_reactRouter.Route, { path: 'course', component: _ManageCoursePage2.default }),\n    _react2.default.createElement(_reactRouter.Route, { path: 'course/:id', component: _ManageCoursePage2.default }),\n    _react2.default.createElement(_reactRouter.Route, { path: '*', component: _NotFound2.default })\n);//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiNzAyLmpzIiwic291cmNlcyI6WyJ3ZWJwYWNrOi8vL2FwcC9yb3V0ZXMuanM/NmRiOSJdLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgUmVhY3QgICAgICAgICAgICAgICAgIGZyb20gJ3JlYWN0JztcclxuaW1wb3J0IHsgUm91dGUgfSAgICAgICAgICAgICBmcm9tICdyZWFjdC1yb3V0ZXInO1xyXG5pbXBvcnQgeyBJbmRleFJvdXRlIH0gICAgICAgIGZyb20gJ3JlYWN0LXJvdXRlcic7XHJcblxyXG5pbXBvcnQgU2hlbGwgICAgICAgICAgICAgICAgIGZyb20gJy4vY29tcG9uZW50cy9jb21tb24vU2hlbGwnO1xyXG5pbXBvcnQgSG9tZSAgICAgICAgICAgICAgICAgIGZyb20gJy4vY29tcG9uZW50cy9ob21lL0hvbWUnO1xyXG5pbXBvcnQgQWJvdXQgICAgICAgICAgICAgICAgIGZyb20gJy4vY29tcG9uZW50cy9hYm91dC9BYm91dCc7XHJcblxyXG5pbXBvcnQgQWRtaW4gICAgICAgICAgICAgICAgIGZyb20gJy4vY29tcG9uZW50cy9hZG1pbi9BZG1pbic7XHJcbmltcG9ydCBBcHBsaWNhdGlvbnMgICAgICAgICAgZnJvbSAnLi9jb21wb25lbnRzL2FwcGxpY2F0aW9ucy9BcHBsaWNhdGlvbnMnO1xyXG5pbXBvcnQgQnVpbGRzICAgICAgICAgICAgICAgIGZyb20gJy4vY29tcG9uZW50cy9idWlsZHMvQnVpbGRzJztcclxuaW1wb3J0IFJmY3MgICAgICAgICAgICAgICAgICBmcm9tICcuL2NvbXBvbmVudHMvcmZjcy9SZmNzJztcclxuaW1wb3J0IFJ1bmJvb2tzICAgICAgICAgICAgICBmcm9tICcuL2NvbXBvbmVudHMvcnVuYm9va3MvUnVuYm9va3MnO1xyXG5pbXBvcnQgVGVtcGxhdGVzICAgICAgICAgICAgIGZyb20gJy4vY29tcG9uZW50cy90ZW1wbGF0ZXMvVGVtcGxhdGVzJztcclxuXHJcbmltcG9ydCBOb3RGb3VuZCAgICAgICAgICAgICAgZnJvbSAnLi9jb21wb25lbnRzL2NvbW1vbi9Ob3RGb3VuZCc7XHJcblxyXG5pbXBvcnQgQ291cnNlcyAgICAgICAgICAgICAgIGZyb20gJy4vY29tcG9uZW50cy9kZW1vL0NvdXJzZXMnO1xyXG5pbXBvcnQgTWFuYWdlQ291cnNlUGFnZSAgICAgIGZyb20gJy4vY29tcG9uZW50cy9kZW1vL01hbmFnZUNvdXJzZVBhZ2UnO1xyXG5cclxuZXhwb3J0IGRlZmF1bHQgKFxyXG4gICAgPFJvdXRlIHBhdGggPSBcIi9cIiAgICAgICAgICBjb21wb25lbnQgPSB7IFNoZWxsICAgICAgICAgICAgfT5cclxuICAgIDxJbmRleFJvdXRlICAgICAgICAgICAgICAgIGNvbXBvbmVudCA9IHsgSG9tZSAgICAgICAgICAgICB9IC8+XHJcblxyXG4gICAgPFJvdXRlIHBhdGg9XCJhYm91dFwiICAgICAgICBjb21wb25lbnQgPSB7IEFib3V0ICAgICAgICAgICAgfSAvPlxyXG4gICAgPFJvdXRlIHBhdGg9XCJhZG1pblwiICAgICAgICBjb21wb25lbnQgPSB7IEFkbWluICAgICAgICAgICAgfSAvPlxyXG4gICAgPFJvdXRlIHBhdGg9XCJhcHBsaWNhdGlvbnNcIiBjb21wb25lbnQgPSB7IEFwcGxpY2F0aW9ucyAgICAgfSAvPlxyXG4gICAgPFJvdXRlIHBhdGg9XCJidWlsZHNcIiAgICAgICBjb21wb25lbnQgPSB7IEJ1aWxkcyAgICAgICAgICAgfSAvPlxyXG4gICAgPFJvdXRlIHBhdGg9XCJyZmNzXCIgICAgICAgICBjb21wb25lbnQgPSB7IFJmY3MgICAgICAgICAgICAgfSAvPlxyXG4gICAgPFJvdXRlIHBhdGg9XCJydW5ib29rc1wiICAgICBjb21wb25lbnQgPSB7IFJ1bmJvb2tzICAgICAgICAgfSAvPlxyXG4gICAgPFJvdXRlIHBhdGg9XCJ0ZW1wbGF0ZXNcIiAgICBjb21wb25lbnQgPSB7IFRlbXBsYXRlcyAgICAgICAgfSAvPlxyXG5cclxuICAgIDxSb3V0ZSBwYXRoPVwiY291cnNlc1wiICAgICAgY29tcG9uZW50ID0geyBDb3Vyc2VzICAgICAgICAgIH0gLz5cclxuICAgIDxSb3V0ZSBwYXRoPVwiY291cnNlXCIgICAgICAgY29tcG9uZW50ID0geyBNYW5hZ2VDb3Vyc2VQYWdlIH0gLz5cclxuICAgIDxSb3V0ZSBwYXRoPVwiY291cnNlLzppZFwiICAgY29tcG9uZW50ID0geyBNYW5hZ2VDb3Vyc2VQYWdlIH0gLz5cclxuICAgIDxSb3V0ZSBwYXRoPVwiKlwiICAgICAgICAgICAgY29tcG9uZW50ID0geyBOb3RGb3VuZCAgICAgICAgIH0gLz5cclxuICAgIDwvUm91dGU+XHJcbik7XHJcblxuXG5cbi8vIFdFQlBBQ0sgRk9PVEVSIC8vXG4vLyBhcHAvcm91dGVzLmpzIl0sIm1hcHBpbmdzIjoiOzs7Ozs7QUFBQTtBQUNBOzs7QUFBQTtBQUNBO0FBRUE7QUFDQTs7O0FBQUE7QUFDQTs7O0FBQUE7QUFDQTs7O0FBQ0E7QUFDQTs7O0FBQUE7QUFDQTs7O0FBQUE7QUFDQTs7O0FBQUE7QUFDQTs7O0FBQUE7QUFDQTs7O0FBQUE7QUFDQTs7O0FBQ0E7QUFDQTs7O0FBQ0E7QUFDQTs7O0FBQUE7QUFDQTs7Ozs7QUFFQTtBQUFBO0FBQUE7QUFDQTtBQUVBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBRUE7QUFDQTtBQUNBO0FBQ0E7QUFkQSIsInNvdXJjZVJvb3QiOiIifQ==");
+
+/***/ }),
+
+/***/ 703:
+/* unknown exports provided */
+/* all exports used */
+/*!*************************************!*\
+  !*** ./app/store/configureStore.js ***!
+  \*************************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n    value: true\n});\nexports.default = configureStore;\n\nvar _reduxImmutableStateInvariant = __webpack_require__(/*! redux-immutable-state-invariant */ 1460);\n\nvar _reduxImmutableStateInvariant2 = _interopRequireDefault(_reduxImmutableStateInvariant);\n\nvar _reduxThunk = __webpack_require__(/*! redux-thunk */ 351);\n\nvar _reduxThunk2 = _interopRequireDefault(_reduxThunk);\n\nvar _redux = __webpack_require__(/*! redux */ 95);\n\nvar _reducers = __webpack_require__(/*! ../reducers */ 738);\n\nvar _reducers2 = _interopRequireDefault(_reducers);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\n// Create a Redux store holding the state of your app.\n// Its API is { subscribe, dispatch, getState }.\n\n// The whole state of your app is stored in an object tree inside a single store.\n// The only way to change the state tree is to emit an action - an object describing what happened.\n// To specify how actions transform the state tree, you write pure reducers.\n\n// The actual 'shape' of the store is better reflected in 'reducers/index.js' which combines all of the defined reducers into a single reducer, \n// and 'reducers/initialState.js' which is an optional, non-redux object, intended to provide default values for each defined state object.\n// That is, by defining initial states, it can be helpful to provide a picture of the full object tree in the store.\n\nfunction configureStore(initialState) {\n\n    return (0, _redux.createStore)(_reducers2.default, initialState, (0, _redux.compose)((0, _redux.applyMiddleware)(_reduxThunk2.default, (0, _reduxImmutableStateInvariant2.default)()), window.devToolsExtension ? window.devToolsExtension() : function (f) {\n        return f;\n    }));\n}//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiNzAzLmpzIiwic291cmNlcyI6WyJ3ZWJwYWNrOi8vL2FwcC9zdG9yZS9jb25maWd1cmVTdG9yZS5qcz9hYjdlIl0sInNvdXJjZXNDb250ZW50IjpbImltcG9ydCByZWR1eEltbXV0YWJsZVN0YXRlSW52YXJpYW50ICAgICAgICAgICAgICBmcm9tICdyZWR1eC1pbW11dGFibGUtc3RhdGUtaW52YXJpYW50JztcclxuaW1wb3J0IHRodW5rICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGZyb20gJ3JlZHV4LXRodW5rJztcclxuaW1wb3J0IHsgY3JlYXRlU3RvcmUsIGFwcGx5TWlkZGxld2FyZSwgY29tcG9zZSB9IGZyb20gJ3JlZHV4JztcclxuXHJcbmltcG9ydCByb290UmVkdWNlciAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBmcm9tICcuLi9yZWR1Y2Vycyc7XHJcblxyXG4vLyBDcmVhdGUgYSBSZWR1eCBzdG9yZSBob2xkaW5nIHRoZSBzdGF0ZSBvZiB5b3VyIGFwcC5cclxuLy8gSXRzIEFQSSBpcyB7IHN1YnNjcmliZSwgZGlzcGF0Y2gsIGdldFN0YXRlIH0uXHJcblxyXG4vLyBUaGUgd2hvbGUgc3RhdGUgb2YgeW91ciBhcHAgaXMgc3RvcmVkIGluIGFuIG9iamVjdCB0cmVlIGluc2lkZSBhIHNpbmdsZSBzdG9yZS5cclxuLy8gVGhlIG9ubHkgd2F5IHRvIGNoYW5nZSB0aGUgc3RhdGUgdHJlZSBpcyB0byBlbWl0IGFuIGFjdGlvbiAtIGFuIG9iamVjdCBkZXNjcmliaW5nIHdoYXQgaGFwcGVuZWQuXHJcbi8vIFRvIHNwZWNpZnkgaG93IGFjdGlvbnMgdHJhbnNmb3JtIHRoZSBzdGF0ZSB0cmVlLCB5b3Ugd3JpdGUgcHVyZSByZWR1Y2Vycy5cclxuXHJcbi8vIFRoZSBhY3R1YWwgJ3NoYXBlJyBvZiB0aGUgc3RvcmUgaXMgYmV0dGVyIHJlZmxlY3RlZCBpbiAncmVkdWNlcnMvaW5kZXguanMnIHdoaWNoIGNvbWJpbmVzIGFsbCBvZiB0aGUgZGVmaW5lZCByZWR1Y2VycyBpbnRvIGEgc2luZ2xlIHJlZHVjZXIsIFxyXG4vLyBhbmQgJ3JlZHVjZXJzL2luaXRpYWxTdGF0ZS5qcycgd2hpY2ggaXMgYW4gb3B0aW9uYWwsIG5vbi1yZWR1eCBvYmplY3QsIGludGVuZGVkIHRvIHByb3ZpZGUgZGVmYXVsdCB2YWx1ZXMgZm9yIGVhY2ggZGVmaW5lZCBzdGF0ZSBvYmplY3QuXHJcbi8vIFRoYXQgaXMsIGJ5IGRlZmluaW5nIGluaXRpYWwgc3RhdGVzLCBpdCBjYW4gYmUgaGVscGZ1bCB0byBwcm92aWRlIGEgcGljdHVyZSBvZiB0aGUgZnVsbCBvYmplY3QgdHJlZSBpbiB0aGUgc3RvcmUuXHJcblxyXG5leHBvcnQgZGVmYXVsdCBmdW5jdGlvbiBjb25maWd1cmVTdG9yZShpbml0aWFsU3RhdGUpIHtcclxuXHJcbiAgICByZXR1cm4gY3JlYXRlU3RvcmUocm9vdFJlZHVjZXIsIGluaXRpYWxTdGF0ZSwgY29tcG9zZSggYXBwbHlNaWRkbGV3YXJlKHRodW5rLCByZWR1eEltbXV0YWJsZVN0YXRlSW52YXJpYW50KCkpLCB3aW5kb3cuZGV2VG9vbHNFeHRlbnNpb24gPyB3aW5kb3cuZGV2VG9vbHNFeHRlbnNpb24oKSA6IGYgPT4gZikgKTtcclxufVxyXG5cclxuXG5cblxuLy8gV0VCUEFDSyBGT09URVIgLy9cbi8vIGFwcC9zdG9yZS9jb25maWd1cmVTdG9yZS5qcyJdLCJtYXBwaW5ncyI6Ijs7Ozs7QUFpQkE7QUFDQTtBQWxCQTtBQUNBOzs7QUFBQTtBQUNBOzs7QUFBQTtBQUNBO0FBQ0E7QUFDQTs7Ozs7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQUE7QUFBQTsiLCJzb3VyY2VSb290IjoiIn0=");
+
+/***/ }),
+
+/***/ 712:
+/* unknown exports provided */
+/* all exports used */
+/*!**************************!*\
+  !*** ./app/api/delay.js ***!
+  \**************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.default = 1000;//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiNzEyLmpzIiwic291cmNlcyI6WyJ3ZWJwYWNrOi8vL2FwcC9hcGkvZGVsYXkuanM/MjJhNSJdLCJzb3VyY2VzQ29udGVudCI6WyJleHBvcnQgZGVmYXVsdCAxMDAwO1xyXG5cblxuXG4vLyBXRUJQQUNLIEZPT1RFUiAvL1xuLy8gYXBwL2FwaS9kZWxheS5qcyJdLCJtYXBwaW5ncyI6Ijs7Ozs7QUFBQSIsInNvdXJjZVJvb3QiOiIifQ==");
+
+/***/ }),
+
+/***/ 713:
+/* unknown exports provided */
+/* all exports used */
+/*!**********************************!*\
+  !*** ./app/api/mockCourseApi.js ***!
+  \**********************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n    value: true\n});\n\nvar _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if (\"value\" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();\n\nvar _delay = __webpack_require__(/*! ./delay */ 712);\n\nvar _delay2 = _interopRequireDefault(_delay);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nfunction _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\"Cannot call a class as a function\"); } }\n\n// This file mocks a web API by working with the hard-coded data below. It uses setTimeout to simulate the delay of an AJAX call. All calls return promises.\nvar courses = [{\n    id: 'react-flux-building-applications',\n    title: 'Building Applications in React and Flux',\n    watchHref: 'http://www.pluralsight.com/courses/react-flux-building-applications',\n    authorId: 'cory-house',\n    length: '5:08',\n    category: 'JavaScript'\n}, {\n    id: 'clean-code',\n    title: 'Clean Code: Writing Code for Humans',\n    watchHref: 'http://www.pluralsight.com/courses/writing-clean-code-humans',\n    authorId: 'cory-house',\n    length: '3:10',\n    category: 'Software Practices'\n}, {\n    id: 'architecture',\n    title: 'Architecting Applications for the Real World',\n    watchHref: 'http://www.pluralsight.com/courses/architecting-applications-dotnet',\n    authorId: 'cory-house',\n    length: '2:52',\n    category: 'Software Architecture'\n}, {\n    id: 'career-reboot-for-developer-mind',\n    title: 'Becoming an Outlier: Reprogramming the Developer Mind',\n    watchHref: 'http://www.pluralsight.com/courses/career-reboot-for-developer-mind',\n    authorId: 'cory-house',\n    length: '2:30',\n    category: 'Career'\n}, {\n    id: 'web-components-shadow-dom',\n    title: 'Web Component Fundamentals',\n    watchHref: 'http://www.pluralsight.com/courses/web-components-shadow-dom',\n    authorId: 'cory-house',\n    length: '5:10',\n    category: 'HTML5'\n}];\n\nfunction replaceAll(str, find, replace) {\n    return str.replace(new RegExp(find, 'g'), replace);\n}\n\n// This would be performed on the server in a real app. Just stubbing in.\n\nvar generateId = function generateId(course) {\n    return replaceAll(course.title, ' ', '-');\n};\n\nvar CourseApi = function () {\n    function CourseApi() {\n        _classCallCheck(this, CourseApi);\n    }\n\n    _createClass(CourseApi, null, [{\n        key: 'getAllCourses',\n        value: function getAllCourses() {\n\n            return new Promise(function (resolve, reject) {\n                setTimeout(function () {\n                    resolve(Object.assign([], courses));\n                }, _delay2.default);\n            });\n        }\n    }, {\n        key: 'saveCourse',\n        value: function saveCourse(course) {\n\n            course = Object.assign({}, course); // to avoid manipulating object passed in.\n\n            return new Promise(function (resolve, reject) {\n\n                setTimeout(function () {\n\n                    // Simulate server-side validation\n                    var minCourseTitleLength = 1;\n                    if (course.title.length < minCourseTitleLength) {\n                        reject('Title must be at least ' + minCourseTitleLength + ' characters.');\n                    }\n\n                    if (course.id) {\n                        var existingCourseIndex = courses.findIndex(function (a) {\n                            return a.id == course.id;\n                        });\n                        courses.splice(existingCourseIndex, 1, course);\n                    } else {\n                        //Just simulating creation here.\n                        //The server would generate ids and watchHref's for new courses in a real app.\n                        //Cloning so copy returned is passed by value rather than by reference.\n                        course.id = generateId(course);\n                        course.watchHref = 'http://www.pluralsight.com/courses/' + course.id;\n                        courses.push(course);\n                    }\n\n                    resolve(course);\n                }, _delay2.default);\n            });\n        }\n    }, {\n        key: 'deleteCourse',\n        value: function deleteCourse(courseId) {\n\n            return new Promise(function (resolve, reject) {\n\n                setTimeout(function () {\n\n                    var indexOfCourseToDelete = courses.findIndex(function (course) {\n                        course.courseId == courseId;\n                    });\n\n                    courses.splice(indexOfCourseToDelete, 1);\n\n                    resolve();\n                }, _delay2.default);\n            });\n        }\n    }]);\n\n    return CourseApi;\n}();\n\nexports.default = CourseApi;//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiNzEzLmpzIiwic291cmNlcyI6WyJ3ZWJwYWNrOi8vL2FwcC9hcGkvbW9ja0NvdXJzZUFwaS5qcz81YzVkIl0sInNvdXJjZXNDb250ZW50IjpbImltcG9ydCBkZWxheSBmcm9tICcuL2RlbGF5JztcclxuXHJcbi8vIFRoaXMgZmlsZSBtb2NrcyBhIHdlYiBBUEkgYnkgd29ya2luZyB3aXRoIHRoZSBoYXJkLWNvZGVkIGRhdGEgYmVsb3cuIEl0IHVzZXMgc2V0VGltZW91dCB0byBzaW11bGF0ZSB0aGUgZGVsYXkgb2YgYW4gQUpBWCBjYWxsLiBBbGwgY2FsbHMgcmV0dXJuIHByb21pc2VzLlxyXG5jb25zdCBjb3Vyc2VzID0gW1xyXG4gICAgICAgICAgICAgICAgICB7XHJcbiAgICAgICAgICAgICAgICAgICAgICBpZDogICAgICAgICdyZWFjdC1mbHV4LWJ1aWxkaW5nLWFwcGxpY2F0aW9ucycsXHJcbiAgICAgICAgICAgICAgICAgICAgICB0aXRsZTogICAgICdCdWlsZGluZyBBcHBsaWNhdGlvbnMgaW4gUmVhY3QgYW5kIEZsdXgnLFxyXG4gICAgICAgICAgICAgICAgICAgICAgd2F0Y2hIcmVmOiAnaHR0cDovL3d3dy5wbHVyYWxzaWdodC5jb20vY291cnNlcy9yZWFjdC1mbHV4LWJ1aWxkaW5nLWFwcGxpY2F0aW9ucycsXHJcbiAgICAgICAgICAgICAgICAgICAgICBhdXRob3JJZDogICdjb3J5LWhvdXNlJyxcclxuICAgICAgICAgICAgICAgICAgICAgIGxlbmd0aDogICAgJzU6MDgnLFxyXG4gICAgICAgICAgICAgICAgICAgICAgY2F0ZWdvcnk6ICAnSmF2YVNjcmlwdCdcclxuICAgICAgICAgICAgICAgICAgfSxcclxuICAgICAgICAgICAgICAgICAge1xyXG4gICAgICAgICAgICAgICAgICAgICAgaWQ6ICAgICAgICAnY2xlYW4tY29kZScsXHJcbiAgICAgICAgICAgICAgICAgICAgICB0aXRsZTogICAgICdDbGVhbiBDb2RlOiBXcml0aW5nIENvZGUgZm9yIEh1bWFucycsXHJcbiAgICAgICAgICAgICAgICAgICAgICB3YXRjaEhyZWY6ICdodHRwOi8vd3d3LnBsdXJhbHNpZ2h0LmNvbS9jb3Vyc2VzL3dyaXRpbmctY2xlYW4tY29kZS1odW1hbnMnLFxyXG4gICAgICAgICAgICAgICAgICAgICAgYXV0aG9ySWQ6ICAnY29yeS1ob3VzZScsXHJcbiAgICAgICAgICAgICAgICAgICAgICBsZW5ndGg6ICAgICczOjEwJyxcclxuICAgICAgICAgICAgICAgICAgICAgIGNhdGVnb3J5OiAgJ1NvZnR3YXJlIFByYWN0aWNlcydcclxuICAgICAgICAgICAgICAgICAgfSxcclxuICAgICAgICAgICAgICAgICAge1xyXG4gICAgICAgICAgICAgICAgICAgICAgaWQ6ICAgICAgICAnYXJjaGl0ZWN0dXJlJyxcclxuICAgICAgICAgICAgICAgICAgICAgIHRpdGxlOiAgICAgJ0FyY2hpdGVjdGluZyBBcHBsaWNhdGlvbnMgZm9yIHRoZSBSZWFsIFdvcmxkJyxcclxuICAgICAgICAgICAgICAgICAgICAgIHdhdGNoSHJlZjogJ2h0dHA6Ly93d3cucGx1cmFsc2lnaHQuY29tL2NvdXJzZXMvYXJjaGl0ZWN0aW5nLWFwcGxpY2F0aW9ucy1kb3RuZXQnLFxyXG4gICAgICAgICAgICAgICAgICAgICAgYXV0aG9ySWQ6ICAnY29yeS1ob3VzZScsXHJcbiAgICAgICAgICAgICAgICAgICAgICBsZW5ndGg6ICAgICcyOjUyJyxcclxuICAgICAgICAgICAgICAgICAgICAgIGNhdGVnb3J5OiAgJ1NvZnR3YXJlIEFyY2hpdGVjdHVyZSdcclxuICAgICAgICAgICAgICAgICAgfSxcclxuICAgICAgICAgICAgICAgICAge1xyXG4gICAgICAgICAgICAgICAgICAgICAgaWQ6ICAgICAgICAnY2FyZWVyLXJlYm9vdC1mb3ItZGV2ZWxvcGVyLW1pbmQnLFxyXG4gICAgICAgICAgICAgICAgICAgICAgdGl0bGU6ICAgICAnQmVjb21pbmcgYW4gT3V0bGllcjogUmVwcm9ncmFtbWluZyB0aGUgRGV2ZWxvcGVyIE1pbmQnLFxyXG4gICAgICAgICAgICAgICAgICAgICAgd2F0Y2hIcmVmOiAnaHR0cDovL3d3dy5wbHVyYWxzaWdodC5jb20vY291cnNlcy9jYXJlZXItcmVib290LWZvci1kZXZlbG9wZXItbWluZCcsXHJcbiAgICAgICAgICAgICAgICAgICAgICBhdXRob3JJZDogICdjb3J5LWhvdXNlJyxcclxuICAgICAgICAgICAgICAgICAgICAgIGxlbmd0aDogICAgJzI6MzAnLFxyXG4gICAgICAgICAgICAgICAgICAgICAgY2F0ZWdvcnk6ICAnQ2FyZWVyJ1xyXG4gICAgICAgICAgICAgICAgICB9LFxyXG4gICAgICAgICAgICAgICAgICB7XHJcbiAgICAgICAgICAgICAgICAgICAgICBpZDogICAgICAgICd3ZWItY29tcG9uZW50cy1zaGFkb3ctZG9tJyxcclxuICAgICAgICAgICAgICAgICAgICAgIHRpdGxlOiAgICAgJ1dlYiBDb21wb25lbnQgRnVuZGFtZW50YWxzJyxcclxuICAgICAgICAgICAgICAgICAgICAgIHdhdGNoSHJlZjogJ2h0dHA6Ly93d3cucGx1cmFsc2lnaHQuY29tL2NvdXJzZXMvd2ViLWNvbXBvbmVudHMtc2hhZG93LWRvbScsXHJcbiAgICAgICAgICAgICAgICAgICAgICBhdXRob3JJZDogICdjb3J5LWhvdXNlJyxcclxuICAgICAgICAgICAgICAgICAgICAgIGxlbmd0aDogICAgJzU6MTAnLFxyXG4gICAgICAgICAgICAgICAgICAgICAgY2F0ZWdvcnk6ICAnSFRNTDUnXHJcbiAgICAgICAgICAgICAgICAgIH1cclxuICAgICAgICAgICAgICAgIF07XHJcblxyXG5mdW5jdGlvbiByZXBsYWNlQWxsKHN0ciwgZmluZCwgcmVwbGFjZSkge1xyXG4gICAgcmV0dXJuIHN0ci5yZXBsYWNlKG5ldyBSZWdFeHAoZmluZCwgJ2cnKSwgcmVwbGFjZSk7XHJcbn1cclxuXHJcbi8vIFRoaXMgd291bGQgYmUgcGVyZm9ybWVkIG9uIHRoZSBzZXJ2ZXIgaW4gYSByZWFsIGFwcC4gSnVzdCBzdHViYmluZyBpbi5cclxuXHJcbmNvbnN0IGdlbmVyYXRlSWQgPSAoY291cnNlKSA9PiB7XHJcbiAgICByZXR1cm4gcmVwbGFjZUFsbChjb3Vyc2UudGl0bGUsICcgJywgJy0nKTtcclxufTtcclxuXHJcbmNsYXNzIENvdXJzZUFwaSB7XHJcblxyXG4gICAgc3RhdGljIGdldEFsbENvdXJzZXMoKSB7XHJcblxyXG4gICAgICAgIHJldHVybiBuZXcgUHJvbWlzZSgocmVzb2x2ZSwgcmVqZWN0KSA9PiB7XHJcbiAgICAgICAgICAgIHNldFRpbWVvdXQoKCkgPT4ge1xyXG4gICAgICAgICAgICAgICAgcmVzb2x2ZShPYmplY3QuYXNzaWduKFtdLCBjb3Vyc2VzKSk7XHJcbiAgICAgICAgICAgIH0sIGRlbGF5KTtcclxuICAgICAgICB9KTtcclxuICAgIH1cclxuXHJcbiAgICBzdGF0aWMgc2F2ZUNvdXJzZShjb3Vyc2UpIHtcclxuXHJcbiAgICAgICAgY291cnNlID0gT2JqZWN0LmFzc2lnbih7fSwgY291cnNlKTsgLy8gdG8gYXZvaWQgbWFuaXB1bGF0aW5nIG9iamVjdCBwYXNzZWQgaW4uXHJcblxyXG4gICAgICAgIHJldHVybiBuZXcgUHJvbWlzZSgocmVzb2x2ZSwgcmVqZWN0KSA9PiB7XHJcblxyXG4gICAgICAgICAgICBzZXRUaW1lb3V0KCgpID0+IHtcclxuXHJcbiAgICAgICAgICAgICAgICAvLyBTaW11bGF0ZSBzZXJ2ZXItc2lkZSB2YWxpZGF0aW9uXHJcbiAgICAgICAgICAgICAgICBjb25zdCBtaW5Db3Vyc2VUaXRsZUxlbmd0aCA9IDE7XHJcbiAgICAgICAgICAgICAgICBpZiAoY291cnNlLnRpdGxlLmxlbmd0aCA8IG1pbkNvdXJzZVRpdGxlTGVuZ3RoKSB7XHJcbiAgICAgICAgICAgICAgICAgICAgcmVqZWN0KGBUaXRsZSBtdXN0IGJlIGF0IGxlYXN0ICR7bWluQ291cnNlVGl0bGVMZW5ndGh9IGNoYXJhY3RlcnMuYCk7XHJcbiAgICAgICAgICAgICAgICB9XHJcblxyXG4gICAgICAgICAgICAgICAgaWYgKGNvdXJzZS5pZCkge1xyXG4gICAgICAgICAgICAgICAgICAgIGNvbnN0IGV4aXN0aW5nQ291cnNlSW5kZXggPSBjb3Vyc2VzLmZpbmRJbmRleChhID0+IGEuaWQgPT0gY291cnNlLmlkKTtcclxuICAgICAgICAgICAgICAgICAgICBjb3Vyc2VzLnNwbGljZShleGlzdGluZ0NvdXJzZUluZGV4LCAxLCBjb3Vyc2UpO1xyXG4gICAgICAgICAgICAgICAgfSBlbHNlIHtcclxuICAgICAgICAgICAgICAgICAgICAvL0p1c3Qgc2ltdWxhdGluZyBjcmVhdGlvbiBoZXJlLlxyXG4gICAgICAgICAgICAgICAgICAgIC8vVGhlIHNlcnZlciB3b3VsZCBnZW5lcmF0ZSBpZHMgYW5kIHdhdGNoSHJlZidzIGZvciBuZXcgY291cnNlcyBpbiBhIHJlYWwgYXBwLlxyXG4gICAgICAgICAgICAgICAgICAgIC8vQ2xvbmluZyBzbyBjb3B5IHJldHVybmVkIGlzIHBhc3NlZCBieSB2YWx1ZSByYXRoZXIgdGhhbiBieSByZWZlcmVuY2UuXHJcbiAgICAgICAgICAgICAgICAgICAgY291cnNlLmlkID0gZ2VuZXJhdGVJZChjb3Vyc2UpO1xyXG4gICAgICAgICAgICAgICAgICAgIGNvdXJzZS53YXRjaEhyZWYgPSBgaHR0cDovL3d3dy5wbHVyYWxzaWdodC5jb20vY291cnNlcy8ke2NvdXJzZS5pZH1gO1xyXG4gICAgICAgICAgICAgICAgICAgIGNvdXJzZXMucHVzaChjb3Vyc2UpO1xyXG4gICAgICAgICAgICAgICAgfVxyXG5cclxuICAgICAgICAgICAgICAgIHJlc29sdmUoY291cnNlKTtcclxuICAgICAgICAgICAgfSwgZGVsYXkpO1xyXG4gICAgICAgIH0pO1xyXG4gICAgfVxyXG5cclxuICAgIHN0YXRpYyBkZWxldGVDb3Vyc2UoY291cnNlSWQpIHtcclxuXHJcbiAgICAgICAgcmV0dXJuIG5ldyBQcm9taXNlKChyZXNvbHZlLCByZWplY3QpID0+IHtcclxuXHJcbiAgICAgICAgICAgIHNldFRpbWVvdXQoKCkgPT4ge1xyXG5cclxuICAgICAgICAgICAgICAgIGNvbnN0IGluZGV4T2ZDb3Vyc2VUb0RlbGV0ZSA9IGNvdXJzZXMuZmluZEluZGV4KGNvdXJzZSA9PiB7XHJcbiAgICAgICAgICAgICAgICAgICAgY291cnNlLmNvdXJzZUlkID09IGNvdXJzZUlkO1xyXG4gICAgICAgICAgICAgICAgfSk7XHJcblxyXG4gICAgICAgICAgICAgICAgY291cnNlcy5zcGxpY2UoaW5kZXhPZkNvdXJzZVRvRGVsZXRlLCAxKTtcclxuICAgICAgICAgICAgICAgIFxyXG4gICAgICAgICAgICAgICAgcmVzb2x2ZSgpO1xyXG5cclxuICAgICAgICAgICAgfSwgZGVsYXkpO1xyXG4gICAgICAgIH0pO1xyXG4gICAgfVxyXG59XHJcblxyXG5leHBvcnQgZGVmYXVsdCBDb3Vyc2VBcGk7XHJcblxuXG5cbi8vIFdFQlBBQ0sgRk9PVEVSIC8vXG4vLyBhcHAvYXBpL21vY2tDb3Vyc2VBcGkuanMiXSwibWFwcGluZ3MiOiI7Ozs7Ozs7O0FBQUE7QUFDQTs7Ozs7OztBQUNBO0FBQ0E7QUFFQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFOQTtBQVNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQU5BO0FBU0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBTkE7QUFTQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFOQTtBQVNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQU5BO0FBQ0E7QUFTQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBOzs7Ozs7O0FBRUE7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTs7O0FBRUE7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFBQTtBQUFBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTs7O0FBRUE7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFFQTtBQUNBO0FBQ0E7Ozs7OztBQUdBIiwic291cmNlUm9vdCI6IiJ9");
+
+/***/ }),
+
+/***/ 714:
+/* unknown exports provided */
+/* all exports used */
+/*!***************************************!*\
+  !*** ./app/components/about/About.js ***!
+  \***************************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\n\nvar _react = __webpack_require__(/*! react */ 0);\n\nvar _react2 = _interopRequireDefault(_react);\n\nvar _reactRouter = __webpack_require__(/*! react-router */ 33);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nvar About = function About() {\n  return _react2.default.createElement(\n    'div',\n    null,\n    'ABOUT'\n  );\n};\n\nexports.default = About;//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiNzE0LmpzIiwic291cmNlcyI6WyJ3ZWJwYWNrOi8vL2FwcC9jb21wb25lbnRzL2Fib3V0L0Fib3V0LmpzPzVlMzAiXSwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IFJlYWN0ICAgIGZyb20gJ3JlYWN0JztcclxuaW1wb3J0IHsgTGluayB9IGZyb20gJ3JlYWN0LXJvdXRlcic7XHJcblxyXG5jb25zdCBBYm91dCA9ICgpID0+IHtcclxuICAgIHJldHVybiAoXHJcbiAgICAgIDxkaXY+XHJcbiAgICAgICAgQUJPVVRcclxuICAgICAgPC9kaXY+XHJcbiAgKTtcclxufTtcclxuXHJcbmV4cG9ydCBkZWZhdWx0IEFib3V0O1xyXG5cblxuXG4vLyBXRUJQQUNLIEZPT1RFUiAvL1xuLy8gYXBwL2NvbXBvbmVudHMvYWJvdXQvQWJvdXQuanMiXSwibWFwcGluZ3MiOiI7Ozs7OztBQUFBO0FBQ0E7OztBQUFBO0FBQ0E7OztBQUNBO0FBQ0E7QUFDQTtBQUFBO0FBQUE7QUFBQTtBQUlBO0FBQ0E7Iiwic291cmNlUm9vdCI6IiJ9");
+
+/***/ }),
+
+/***/ 715:
+/* unknown exports provided */
+/* all exports used */
+/*!***************************************!*\
+  !*** ./app/components/admin/Admin.js ***!
+  \***************************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\n\nvar _react = __webpack_require__(/*! react */ 0);\n\nvar _react2 = _interopRequireDefault(_react);\n\nvar _reactRouter = __webpack_require__(/*! react-router */ 33);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nvar Admin = function Admin() {\n  return _react2.default.createElement(\n    'div',\n    null,\n    'ADMIN'\n  );\n};\n\nexports.default = Admin;//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiNzE1LmpzIiwic291cmNlcyI6WyJ3ZWJwYWNrOi8vL2FwcC9jb21wb25lbnRzL2FkbWluL0FkbWluLmpzPzdiM2MiXSwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IFJlYWN0ICAgIGZyb20gJ3JlYWN0JztcclxuaW1wb3J0IHsgTGluayB9IGZyb20gJ3JlYWN0LXJvdXRlcic7XHJcblxyXG5jb25zdCBBZG1pbiA9ICgpID0+IHtcclxuICAgIHJldHVybiAoXHJcbiAgICAgIDxkaXY+XHJcbiAgICAgICAgQURNSU5cclxuICAgICAgPC9kaXY+XHJcbiAgKTtcclxufTtcclxuXHJcbmV4cG9ydCBkZWZhdWx0IEFkbWluO1xyXG5cblxuXG4vLyBXRUJQQUNLIEZPT1RFUiAvL1xuLy8gYXBwL2NvbXBvbmVudHMvYWRtaW4vQWRtaW4uanMiXSwibWFwcGluZ3MiOiI7Ozs7OztBQUFBO0FBQ0E7OztBQUFBO0FBQ0E7OztBQUNBO0FBQ0E7QUFDQTtBQUFBO0FBQUE7QUFBQTtBQUlBO0FBQ0E7Iiwic291cmNlUm9vdCI6IiJ9");
+
+/***/ }),
+
+/***/ 716:
+/* unknown exports provided */
+/* all exports used */
+/*!*****************************************************!*\
+  !*** ./app/components/applications/Applications.js ***!
+  \*****************************************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n    value: true\n});\n\nvar _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if (\"value\" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();\n\nvar _react = __webpack_require__(/*! react */ 0);\n\nvar _react2 = _interopRequireDefault(_react);\n\nvar _reactRouter = __webpack_require__(/*! react-router */ 33);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nfunction _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\"Cannot call a class as a function\"); } }\n\nfunction _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError(\"this hasn't been initialised - super() hasn't been called\"); } return call && (typeof call === \"object\" || typeof call === \"function\") ? call : self; }\n\nfunction _inherits(subClass, superClass) { if (typeof superClass !== \"function\" && superClass !== null) { throw new TypeError(\"Super expression must either be null or a function, not \" + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }\n\nvar Applications = function (_React$Component) {\n    _inherits(Applications, _React$Component);\n\n    function Applications(props, context) {\n        _classCallCheck(this, Applications);\n\n        var _this = _possibleConstructorReturn(this, (Applications.__proto__ || Object.getPrototypeOf(Applications)).call(this, props, context));\n\n        _this.state = {\n            someRandomValue: null\n        };\n        return _this;\n    }\n\n    _createClass(Applications, [{\n        key: 'render',\n        value: function render() {\n            var _this2 = this;\n\n            return _react2.default.createElement(\n                'div',\n                null,\n                _react2.default.createElement(\n                    'div',\n                    { className: 'row' },\n                    _react2.default.createElement(\n                        'div',\n                        { className: 'col-md-12 border-bottom-a-10 margin-bottom-10' },\n                        _react2.default.createElement(\n                            'div',\n                            { className: 'float-right Lato font-1-60 opacity-50' },\n                            'Application Links & Locations'\n                        ),\n                        _react2.default.createElement(\n                            'div',\n                            { className: 'mrc-forms' },\n                            _react2.default.createElement(\n                                'table',\n                                null,\n                                _react2.default.createElement(\n                                    'tbody',\n                                    null,\n                                    _react2.default.createElement(\n                                        'tr',\n                                        null,\n                                        _react2.default.createElement(\n                                            'td',\n                                            { className: 'td' },\n                                            _react2.default.createElement('input', { type: 'text', name: 'ApplicationName', placeholder: 'search...', className: 'width-100' })\n                                        ),\n                                        _react2.default.createElement(\n                                            'td',\n                                            null,\n                                            _react2.default.createElement(\n                                                'div',\n                                                { className: 'btn-group', dropdown: true, keyboardNav: 'true' },\n                                                _react2.default.createElement(\n                                                    'button',\n                                                    { id: 'simple-btn-keyboard-nav', type: 'button', className: 'btn btn-sm btn-default', dropdownToggle: true },\n                                                    'Group ',\n                                                    _react2.default.createElement('span', { className: 'caret' })\n                                                ),\n                                                _react2.default.createElement(\n                                                    'ul',\n                                                    { className: 'dropdown-menu', dropdownMenu: true, role: 'menu' },\n                                                    _react2.default.createElement(\n                                                        'li',\n                                                        { role: 'menuitem' },\n                                                        _react2.default.createElement(\n                                                            'a',\n                                                            { className: 'dropdown-item' },\n                                                            'lookup.Description'\n                                                        )\n                                                    )\n                                                )\n                                            )\n                                        ),\n                                        _react2.default.createElement(\n                                            'td',\n                                            null,\n                                            _react2.default.createElement(\n                                                'div',\n                                                { className: 'btn-group', dropdown: true, keyboardNav: 'true' },\n                                                _react2.default.createElement(\n                                                    'button',\n                                                    { id: 'simple-btn-keyboard-nav', type: 'button', className: 'btn btn-sm btn-default', dropdownToggle: true },\n                                                    'Type ',\n                                                    _react2.default.createElement('span', { className: 'caret' })\n                                                ),\n                                                _react2.default.createElement(\n                                                    'ul',\n                                                    { className: 'dropdown-menu', dropdownMenu: true, role: 'menu', 'aria-labelledby': 'simple-btn-keyboard-nav' },\n                                                    _react2.default.createElement(\n                                                        'li',\n                                                        { role: 'menuitem' },\n                                                        _react2.default.createElement(\n                                                            'a',\n                                                            { className: 'dropdown-item' },\n                                                            'lookup.Description'\n                                                        )\n                                                    )\n                                                )\n                                            )\n                                        ),\n                                        _react2.default.createElement(\n                                            'td',\n                                            null,\n                                            _react2.default.createElement(\n                                                'div',\n                                                null,\n                                                _react2.default.createElement(\n                                                    'button',\n                                                    { className: 'btn btn-sm btn-primary', onClick: function onClick() {\n                                                            return _this2.setState({ someRandomValue: 'MONKEY' });\n                                                        } },\n                                                    'Clear'\n                                                ),\n                                                ' ',\n                                                this.state.someRandomValue\n                                            )\n                                        )\n                                    )\n                                )\n                            )\n                        )\n                    )\n                ),\n                _react2.default.createElement(\n                    'div',\n                    { className: 'row' },\n                    _react2.default.createElement(\n                        'div',\n                        { className: 'col-md-4' },\n                        _react2.default.createElement(\n                            'div',\n                            null,\n                            _react2.default.createElement(\n                                'div',\n                                { className: 'float-right align-right' },\n                                'pagedApplicationLink.TotalRecordCount plural: \\'application\\' }}',\n                                _react2.default.createElement(\n                                    'div',\n                                    { className: 'small-caps opacity-50' },\n                                    _react2.default.createElement(\n                                        'span',\n                                        null,\n                                        'selectedApplicationGroup.Description'\n                                    ),\n                                    ' ',\n                                    _react2.default.createElement(\n                                        'span',\n                                        null,\n                                        'selectedApplicationType.Description'\n                                    )\n                                )\n                            ),\n                            _react2.default.createElement(\n                                'div',\n                                { className: 'fat-header' },\n                                'Application'\n                            )\n                        ),\n                        _react2.default.createElement(\n                            'table',\n                            { className: 'mrc-data-table' },\n                            _react2.default.createElement(\n                                'thead',\n                                null,\n                                _react2.default.createElement(\n                                    'tr',\n                                    null,\n                                    _react2.default.createElement(\n                                        'th',\n                                        { style: { width: '80%' } },\n                                        _react2.default.createElement(\n                                            'mrc-table-sorter',\n                                            { PropertyName: 'Name' },\n                                            'Name'\n                                        )\n                                    ),\n                                    _react2.default.createElement(\n                                        'th',\n                                        { style: { width: '19%' } },\n                                        _react2.default.createElement(\n                                            'mrc-table-sorter',\n                                            { PropertyName: 'ApplicationType.Description' },\n                                            'Type'\n                                        )\n                                    ),\n                                    _react2.default.createElement(\n                                        'th',\n                                        { style: { width: '1%' } },\n                                        ' '\n                                    )\n                                )\n                            ),\n                            _react2.default.createElement(\n                                'tbody',\n                                null,\n                                _react2.default.createElement(\n                                    'tr',\n                                    null,\n                                    _react2.default.createElement(\n                                        'td',\n                                        null,\n                                        'item.Name'\n                                    ),\n                                    _react2.default.createElement(\n                                        'td',\n                                        null,\n                                        'item.ApplicationType.Description'\n                                    ),\n                                    _react2.default.createElement(\n                                        'td',\n                                        null,\n                                        _react2.default.createElement(\n                                            'span',\n                                            { className: 'opacity-50 font-0-75 pad-right-10' },\n                                            'edit'\n                                        )\n                                    )\n                                )\n                            ),\n                            _react2.default.createElement(\n                                'tfoot',\n                                null,\n                                _react2.default.createElement(\n                                    'tr',\n                                    null,\n                                    _react2.default.createElement(\n                                        'td',\n                                        { colspan: '2' },\n                                        'mrcBootstrapPaginator'\n                                    )\n                                )\n                            )\n                        )\n                    ),\n                    _react2.default.createElement(\n                        'div',\n                        { className: 'col-md-4 align-top' },\n                        _react2.default.createElement(\n                            'div',\n                            { className: 'fat-header' },\n                            'Sites / Services'\n                        ),\n                        _react2.default.createElement(\n                            'div',\n                            null,\n                            _react2.default.createElement(\n                                'div',\n                                { className: 'row' },\n                                _react2.default.createElement(\n                                    'div',\n                                    { className: 'link-table' },\n                                    _react2.default.createElement(\n                                        'div',\n                                        { className: 'link-tr' },\n                                        _react2.default.createElement(\n                                            'div',\n                                            { className: 'link-td' },\n                                            'serviceLink.ServiceName'\n                                        )\n                                    )\n                                )\n                            )\n                        )\n                    ),\n                    _react2.default.createElement(\n                        'div',\n                        { className: 'col-md-4' },\n                        _react2.default.createElement(\n                            'div',\n                            { className: 'fat-header' },\n                            'Environments'\n                        ),\n                        _react2.default.createElement(\n                            'div',\n                            null,\n                            _react2.default.createElement(\n                                'div',\n                                { className: 'link-table' },\n                                _react2.default.createElement(\n                                    'div',\n                                    { className: 'link-tr' },\n                                    _react2.default.createElement(\n                                        'div',\n                                        { className: 'link-td align-right border-right-a-20', style: { width: '15%' } },\n                                        'environmentLink.Server.Environment.Name'\n                                    ),\n                                    _react2.default.createElement(\n                                        'div',\n                                        { className: 'link-td' },\n                                        _react2.default.createElement(\n                                            'a',\n                                            { href: 'environmentLink.Url', title: 'environmentLink.Url', target: '_blank', className: 'static-link' },\n                                            _react2.default.createElement('i', { className: 'fa fa-external-link' })\n                                        ),\n                                        ' environmentLink.Server.Name'\n                                    )\n                                )\n                            )\n                        )\n                    )\n                )\n            );\n        }\n    }]);\n\n    return Applications;\n}(_react2.default.Component);\n\nexports.default = Applications;//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiNzE2LmpzIiwic291cmNlcyI6WyJ3ZWJwYWNrOi8vL2FwcC9jb21wb25lbnRzL2FwcGxpY2F0aW9ucy9BcHBsaWNhdGlvbnMuanM/MTRiYSJdLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgUmVhY3QgICAgZnJvbSAncmVhY3QnO1xyXG5pbXBvcnQgeyBMaW5rIH0gZnJvbSAncmVhY3Qtcm91dGVyJztcclxuXHJcbmNsYXNzIEFwcGxpY2F0aW9ucyBleHRlbmRzIFJlYWN0LkNvbXBvbmVudCB7XHJcblxyXG4gICAgY29uc3RydWN0b3IocHJvcHMsIGNvbnRleHQpIHtcclxuXHJcbiAgICAgICAgc3VwZXIocHJvcHMsIGNvbnRleHQpO1xyXG5cclxuICAgICAgICB0aGlzLnN0YXRlID0ge1xyXG4gICAgICAgICAgICAgICAgICAgICAgICAgc29tZVJhbmRvbVZhbHVlOiBudWxsXHJcbiAgICAgICAgICAgICAgICAgICAgIH07XHJcbiAgICB9XHJcblxyXG4gICAgcmVuZGVyKCkge1xyXG4gICAgcmV0dXJuIChcclxuICAgICAgICA8ZGl2PlxyXG4gICAgXHJcbiAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT0ncm93Jz5cclxuICAgICAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT0nY29sLW1kLTEyIGJvcmRlci1ib3R0b20tYS0xMCBtYXJnaW4tYm90dG9tLTEwJz5cclxuICAgICAgICAgICAgICAgICAgPGRpdiBjbGFzc05hbWU9J2Zsb2F0LXJpZ2h0IExhdG8gZm9udC0xLTYwIG9wYWNpdHktNTAnPlxyXG4gICAgICAgICAgICAgICAgICAgICAgQXBwbGljYXRpb24gTGlua3MgJiBMb2NhdGlvbnNcclxuICAgICAgICAgICAgICAgICAgPC9kaXY+XHJcbiAgICAgICAgICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPSdtcmMtZm9ybXMnPlxyXG4gICAgICAgICAgICAgICAgICAgICAgPHRhYmxlPlxyXG4gICAgICAgICAgICAgICAgICAgICAgPHRib2R5PlxyXG4gICAgICAgICAgICAgICAgICAgICAgICAgIDx0cj5cclxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPHRkIGNsYXNzTmFtZT0ndGQnPlxyXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPGlucHV0IHR5cGU9J3RleHQnIG5hbWU9J0FwcGxpY2F0aW9uTmFtZScgcGxhY2Vob2xkZXI9J3NlYXJjaC4uLicgY2xhc3NOYW1lPSd3aWR0aC0xMDAnIC8+XHJcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDwvdGQ+XHJcbiAgICBcclxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPHRkPlxyXG4gICAgXHJcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT0nYnRuLWdyb3VwJyBkcm9wZG93biBrZXlib2FyZE5hdj0ndHJ1ZSc+XHJcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPGJ1dHRvbiBpZD0nc2ltcGxlLWJ0bi1rZXlib2FyZC1uYXYnIHR5cGU9J2J1dHRvbicgY2xhc3NOYW1lPSdidG4gYnRuLXNtIGJ0bi1kZWZhdWx0JyBkcm9wZG93blRvZ2dsZT5cclxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgR3JvdXAgPHNwYW4gY2xhc3NOYW1lPSdjYXJldCc+PC9zcGFuPlxyXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDwvYnV0dG9uPlxyXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDx1bCBjbGFzc05hbWU9J2Ryb3Bkb3duLW1lbnUnIGRyb3Bkb3duTWVudSByb2xlPSdtZW51Jz5cclxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPGxpIHJvbGU9J21lbnVpdGVtJz48YSBjbGFzc05hbWU9J2Ryb3Bkb3duLWl0ZW0nPmxvb2t1cC5EZXNjcmlwdGlvbjwvYT48L2xpPlxyXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDwvdWw+XHJcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8L2Rpdj5cclxuICAgIFxyXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8L3RkPlxyXG4gICAgXHJcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDx0ZD5cclxuICAgIFxyXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPGRpdiBjbGFzc05hbWU9J2J0bi1ncm91cCcgZHJvcGRvd24ga2V5Ym9hcmROYXY9J3RydWUnPlxyXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDxidXR0b24gaWQ9J3NpbXBsZS1idG4ta2V5Ym9hcmQtbmF2JyB0eXBlPSdidXR0b24nIGNsYXNzTmFtZT0nYnRuIGJ0bi1zbSBidG4tZGVmYXVsdCcgZHJvcGRvd25Ub2dnbGU+XHJcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFR5cGUgPHNwYW4gY2xhc3NOYW1lPSdjYXJldCc+PC9zcGFuPlxyXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDwvYnV0dG9uPlxyXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDx1bCBjbGFzc05hbWU9J2Ryb3Bkb3duLW1lbnUnIGRyb3Bkb3duTWVudSByb2xlPSdtZW51JyBhcmlhLWxhYmVsbGVkYnk9J3NpbXBsZS1idG4ta2V5Ym9hcmQtbmF2Jz5cclxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPGxpIHJvbGU9J21lbnVpdGVtJz48YSBjbGFzc05hbWU9J2Ryb3Bkb3duLWl0ZW0nPmxvb2t1cC5EZXNjcmlwdGlvbjwvYT48L2xpPlxyXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDwvdWw+XHJcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8L2Rpdj5cclxuICAgIFxyXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8L3RkPlxyXG4gICAgXHJcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDx0ZD5cclxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDxkaXY+XHJcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPGJ1dHRvbiBjbGFzc05hbWU9J2J0biBidG4tc20gYnRuLXByaW1hcnknIG9uQ2xpY2s9eygpID0+IHRoaXMuc2V0U3RhdGUoe3NvbWVSYW5kb21WYWx1ZTogJ01PTktFWSd9KX0+Q2xlYXI8L2J1dHRvbj4geyB0aGlzLnN0YXRlLnNvbWVSYW5kb21WYWx1ZSB9XHJcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8L2Rpdj5cclxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPC90ZD5cclxuICAgIFxyXG4gICAgICAgICAgICAgICAgICAgICAgICAgIDwvdHI+XHJcbiAgICAgICAgICAgICAgICAgICAgICA8L3Rib2R5PlxyXG4gICAgICAgICAgICAgICAgICAgICAgPC90YWJsZT5cclxuICAgICAgICAgICAgICAgICAgPC9kaXY+XHJcbiAgICAgICAgICAgICAgPC9kaXY+XHJcbiAgICAgICAgICA8L2Rpdj5cclxuICAgIFxyXG4gICAgICAgICAgPGRpdiBjbGFzc05hbWU9J3Jvdyc+XHJcbiAgICAgICAgICAgICAgPGRpdiBjbGFzc05hbWU9J2NvbC1tZC00Jz5cclxuICAgIFxyXG4gICAgICAgICAgICAgICAgICA8ZGl2PlxyXG4gICAgICAgICAgICAgICAgICAgICAgPGRpdiBjbGFzc05hbWU9J2Zsb2F0LXJpZ2h0IGFsaWduLXJpZ2h0Jz5cclxuICAgICAgICAgICAgICAgICAgICAgICAgICBwYWdlZEFwcGxpY2F0aW9uTGluay5Ub3RhbFJlY29yZENvdW50IHBsdXJhbDogJ2FwcGxpY2F0aW9uJyB9fVxyXG4gICAgICAgICAgICAgICAgICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPSdzbWFsbC1jYXBzIG9wYWNpdHktNTAnPlxyXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8c3Bhbj5zZWxlY3RlZEFwcGxpY2F0aW9uR3JvdXAuRGVzY3JpcHRpb248L3NwYW4+IDxzcGFuPnNlbGVjdGVkQXBwbGljYXRpb25UeXBlLkRlc2NyaXB0aW9uPC9zcGFuPlxyXG4gICAgICAgICAgICAgICAgICAgICAgICAgIDwvZGl2PlxyXG4gICAgICAgICAgICAgICAgICAgICAgPC9kaXY+XHJcbiAgICAgICAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT0nZmF0LWhlYWRlcic+XHJcbiAgICAgICAgICAgICAgICAgICAgICAgICAgQXBwbGljYXRpb25cclxuICAgICAgICAgICAgICAgICAgICAgIDwvZGl2PlxyXG4gICAgICAgICAgICAgICAgICA8L2Rpdj5cclxuICAgIFxyXG4gICAgICAgICAgICAgICAgICA8dGFibGUgY2xhc3NOYW1lPSdtcmMtZGF0YS10YWJsZSc+XHJcbiAgICAgICAgICAgICAgICAgICAgICA8dGhlYWQ+XHJcbiAgICAgICAgICAgICAgICAgICAgICA8dHI+XHJcbiAgICAgICAgICAgICAgICAgICAgICAgICAgPHRoIHN0eWxlPXt7d2lkdGg6ICc4MCUnfX0+PG1yYy10YWJsZS1zb3J0ZXIgUHJvcGVydHlOYW1lPSdOYW1lJz5OYW1lPC9tcmMtdGFibGUtc29ydGVyPjwvdGg+XHJcbiAgICAgICAgICAgICAgICAgICAgICAgICAgPHRoIHN0eWxlPXt7d2lkdGg6ICcxOSUnfX0+PG1yYy10YWJsZS1zb3J0ZXIgUHJvcGVydHlOYW1lPSdBcHBsaWNhdGlvblR5cGUuRGVzY3JpcHRpb24nPlR5cGU8L21yYy10YWJsZS1zb3J0ZXI+PC90aD5cclxuICAgICAgICAgICAgICAgICAgICAgICAgICA8dGggc3R5bGU9e3t3aWR0aDogJzElJyB9fT4gPC90aD5cclxuICAgICAgICAgICAgICAgICAgICAgIDwvdHI+XHJcbiAgICAgICAgICAgICAgICAgICAgICA8L3RoZWFkPlxyXG4gICAgICAgICAgICAgICAgICAgICAgPHRib2R5PlxyXG4gICAgICAgICAgICAgICAgICAgICAgPHRyPlxyXG4gICAgICAgICAgICAgICAgICAgICAgICAgIDx0ZD5pdGVtLk5hbWU8L3RkPlxyXG4gICAgICAgICAgICAgICAgICAgICAgICAgIDx0ZD5pdGVtLkFwcGxpY2F0aW9uVHlwZS5EZXNjcmlwdGlvbjwvdGQ+XHJcbiAgICAgICAgICAgICAgICAgICAgICAgICAgPHRkPjxzcGFuIGNsYXNzTmFtZT0nb3BhY2l0eS01MCBmb250LTAtNzUgcGFkLXJpZ2h0LTEwJz5lZGl0PC9zcGFuPjwvdGQ+XHJcbiAgICAgICAgICAgICAgICAgICAgICA8L3RyPlxyXG4gICAgICAgICAgICAgICAgICAgICAgPC90Ym9keT5cclxuICAgICAgICAgICAgICAgICAgICAgIDx0Zm9vdD5cclxuICAgICAgICAgICAgICAgICAgICAgIDx0cj5cclxuICAgICAgICAgICAgICAgICAgICAgICAgICA8dGQgY29sc3Bhbj0nMic+XHJcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIG1yY0Jvb3RzdHJhcFBhZ2luYXRvclxyXG4gICAgICAgICAgICAgICAgICAgICAgICAgIDwvdGQ+XHJcbiAgICAgICAgICAgICAgICAgICAgICA8L3RyPlxyXG4gICAgICAgICAgICAgICAgICAgICAgPC90Zm9vdD5cclxuICAgICAgICAgICAgICAgICAgPC90YWJsZT5cclxuICAgIFxyXG4gICAgICAgICAgICAgIDwvZGl2PlxyXG4gICAgICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPSdjb2wtbWQtNCBhbGlnbi10b3AnPlxyXG4gICAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT0nZmF0LWhlYWRlcic+XHJcbiAgICAgICAgICAgICAgICAgICAgICBTaXRlcyAvIFNlcnZpY2VzXHJcbiAgICAgICAgICAgICAgICAgIDwvZGl2PlxyXG4gICAgICAgICAgICAgICAgICA8ZGl2PlxyXG4gICAgICAgICAgICAgICAgICAgICAgPGRpdiBjbGFzc05hbWU9J3Jvdyc+XHJcbiAgICAgICAgICAgICAgICAgICAgICAgICAgPGRpdiBjbGFzc05hbWU9J2xpbmstdGFibGUnPlxyXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT0nbGluay10cic+XHJcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT0nbGluay10ZCc+XHJcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgc2VydmljZUxpbmsuU2VydmljZU5hbWVcclxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDwvZGl2PlxyXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8L2Rpdj5cclxuICAgICAgICAgICAgICAgICAgICAgICAgICA8L2Rpdj5cclxuICAgICAgICAgICAgICAgICAgICAgIDwvZGl2PlxyXG4gICAgICAgICAgICAgICAgICA8L2Rpdj5cclxuICAgICAgICAgICAgICA8L2Rpdj5cclxuICAgICAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT0nY29sLW1kLTQnPlxyXG4gICAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT0nZmF0LWhlYWRlcic+XHJcbiAgICAgICAgICAgICAgICAgICAgICBFbnZpcm9ubWVudHNcclxuICAgICAgICAgICAgICAgICAgPC9kaXY+XHJcbiAgICAgICAgICAgICAgICAgIDxkaXY+XHJcbiAgICAgICAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT0nbGluay10YWJsZSc+XHJcbiAgICAgICAgICAgICAgICAgICAgICAgICAgPGRpdiBjbGFzc05hbWU9J2xpbmstdHInPlxyXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT0nbGluay10ZCBhbGlnbi1yaWdodCBib3JkZXItcmlnaHQtYS0yMCcgc3R5bGU9e3t3aWR0aDogJzE1JSd9fT5cclxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGVudmlyb25tZW50TGluay5TZXJ2ZXIuRW52aXJvbm1lbnQuTmFtZVxyXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8L2Rpdj5cclxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPGRpdiBjbGFzc05hbWU9J2xpbmstdGQnPlxyXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPGEgaHJlZj0nZW52aXJvbm1lbnRMaW5rLlVybCcgdGl0bGU9J2Vudmlyb25tZW50TGluay5VcmwnIHRhcmdldD0nX2JsYW5rJyBjbGFzc05hbWU9J3N0YXRpYy1saW5rJz48aSBjbGFzc05hbWU9J2ZhIGZhLWV4dGVybmFsLWxpbmsnPjwvaT48L2E+IGVudmlyb25tZW50TGluay5TZXJ2ZXIuTmFtZVxyXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8L2Rpdj5cclxuICAgICAgICAgICAgICAgICAgICAgICAgICA8L2Rpdj5cclxuICAgICAgICAgICAgICAgICAgICAgIDwvZGl2PlxyXG4gICAgICAgICAgICAgICAgICA8L2Rpdj5cclxuICAgICAgICAgICAgICA8L2Rpdj5cclxuICAgICAgICAgIDwvZGl2PlxyXG4gICAgXHJcbiAgICBcclxuICAgIFxyXG4gICAgICAgIDwvZGl2PlxyXG4gICAgKTtcclxuICAgIH1cclxufVxyXG5cclxuZXhwb3J0IGRlZmF1bHQgQXBwbGljYXRpb25zO1xyXG5cblxuXG4vLyBXRUJQQUNLIEZPT1RFUiAvL1xuLy8gYXBwL2NvbXBvbmVudHMvYXBwbGljYXRpb25zL0FwcGxpY2F0aW9ucy5qcyJdLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7QUFBQTtBQUNBOzs7QUFBQTtBQUNBOzs7Ozs7Ozs7QUFDQTs7O0FBRUE7QUFBQTtBQUNBO0FBREE7QUFDQTtBQUdBO0FBQ0E7QUFEQTtBQUpBO0FBT0E7QUFDQTs7O0FBQ0E7QUFBQTtBQUNBO0FBQUE7QUFDQTtBQUFBO0FBRUE7QUFBQTtBQUFBO0FBQ0E7QUFBQTtBQUFBO0FBQ0E7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUdBO0FBQUE7QUFBQTtBQUNBO0FBQUE7QUFBQTtBQUNBO0FBQUE7QUFBQTtBQUNBO0FBQUE7QUFBQTtBQUNBO0FBQUE7QUFBQTtBQUNBO0FBREE7QUFJQTtBQUFBO0FBQUE7QUFFQTtBQUFBO0FBQUE7QUFDQTtBQUFBO0FBQUE7QUFBQTtBQUNBO0FBREE7QUFHQTtBQUFBO0FBQUE7QUFDQTtBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFEQTtBQUpBO0FBRkE7QUFhQTtBQUFBO0FBQUE7QUFFQTtBQUFBO0FBQUE7QUFDQTtBQUFBO0FBQUE7QUFBQTtBQUNBO0FBREE7QUFHQTtBQUFBO0FBQUE7QUFDQTtBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFEQTtBQUpBO0FBRkE7QUFhQTtBQUFBO0FBQUE7QUFDQTtBQUFBO0FBQUE7QUFDQTtBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQURBO0FBQ0E7QUFEQTtBQURBO0FBL0JBO0FBREE7QUFEQTtBQURBO0FBSkE7QUFEQTtBQW9EQTtBQUFBO0FBQUE7QUFDQTtBQUFBO0FBQUE7QUFFQTtBQUFBO0FBQUE7QUFDQTtBQUFBO0FBQUE7QUFBQTtBQUVBO0FBQUE7QUFBQTtBQUNBO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFEQTtBQUNBO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFEQTtBQUZBO0FBTUE7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQVBBO0FBWUE7QUFBQTtBQUFBO0FBQ0E7QUFBQTtBQUFBO0FBQ0E7QUFBQTtBQUFBO0FBQ0E7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQ0E7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQ0E7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUhBO0FBREE7QUFPQTtBQUFBO0FBQUE7QUFDQTtBQUFBO0FBQUE7QUFDQTtBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQ0E7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUNBO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUhBO0FBREE7QUFPQTtBQUFBO0FBQUE7QUFDQTtBQUFBO0FBQUE7QUFDQTtBQUFBO0FBQUE7QUFBQTtBQUFBO0FBREE7QUFEQTtBQWZBO0FBZEE7QUF1Q0E7QUFBQTtBQUFBO0FBQ0E7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUdBO0FBQUE7QUFBQTtBQUNBO0FBQUE7QUFBQTtBQUNBO0FBQUE7QUFBQTtBQUNBO0FBQUE7QUFBQTtBQUNBO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFEQTtBQURBO0FBREE7QUFEQTtBQUpBO0FBZ0JBO0FBQUE7QUFBQTtBQUNBO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFHQTtBQUFBO0FBQUE7QUFDQTtBQUFBO0FBQUE7QUFDQTtBQUFBO0FBQUE7QUFDQTtBQUFBO0FBQUE7QUFBQTtBQUFBO0FBR0E7QUFBQTtBQUFBO0FBQ0E7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQURBO0FBQUE7QUFKQTtBQURBO0FBREE7QUFKQTtBQXhEQTtBQXREQTtBQXFJQTs7OztBQWxKQTtBQUNBO0FBb0pBIiwic291cmNlUm9vdCI6IiJ9");
+
+/***/ }),
+
+/***/ 717:
+/* unknown exports provided */
+/* all exports used */
+/*!*****************************************!*\
+  !*** ./app/components/builds/Builds.js ***!
+  \*****************************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\n\nvar _react = __webpack_require__(/*! react */ 0);\n\nvar _react2 = _interopRequireDefault(_react);\n\nvar _reactRouter = __webpack_require__(/*! react-router */ 33);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nvar Builds = function Builds() {\n  return _react2.default.createElement(\n    'div',\n    null,\n    'BUILDS'\n  );\n};\n\nexports.default = Builds;//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiNzE3LmpzIiwic291cmNlcyI6WyJ3ZWJwYWNrOi8vL2FwcC9jb21wb25lbnRzL2J1aWxkcy9CdWlsZHMuanM/ZmU1OCJdLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgUmVhY3QgICAgZnJvbSAncmVhY3QnO1xyXG5pbXBvcnQgeyBMaW5rIH0gZnJvbSAncmVhY3Qtcm91dGVyJztcclxuXHJcbmNvbnN0IEJ1aWxkcyA9ICgpID0+IHtcclxuICAgIHJldHVybiAoXHJcbiAgICAgIDxkaXY+XHJcbiAgICAgICAgQlVJTERTXHJcbiAgICAgIDwvZGl2PlxyXG4gICk7XHJcbn07XHJcblxyXG5leHBvcnQgZGVmYXVsdCBCdWlsZHM7XHJcblxuXG5cbi8vIFdFQlBBQ0sgRk9PVEVSIC8vXG4vLyBhcHAvY29tcG9uZW50cy9idWlsZHMvQnVpbGRzLmpzIl0sIm1hcHBpbmdzIjoiOzs7Ozs7QUFBQTtBQUNBOzs7QUFBQTtBQUNBOzs7QUFDQTtBQUNBO0FBQ0E7QUFBQTtBQUFBO0FBQUE7QUFJQTtBQUNBOyIsInNvdXJjZVJvb3QiOiIifQ==");
+
+/***/ }),
+
+/***/ 718:
+/* unknown exports provided */
+/* all exports used */
+/*!********************************************!*\
+  !*** ./app/components/common/AppFooter.js ***!
+  \********************************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n    value: true\n});\n\nvar _react = __webpack_require__(/*! react */ 0);\n\nvar _react2 = _interopRequireDefault(_react);\n\nvar _reactRouter = __webpack_require__(/*! react-router */ 33);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nvar AppFooter = function AppFooter() {\n    return _react2.default.createElement(\n        'div',\n        null,\n        _react2.default.createElement(\n            'div',\n            { id: 'footer', className: 'footer pointer' },\n            'message'\n        )\n    );\n};\n\nexports.default = AppFooter;//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiNzE4LmpzIiwic291cmNlcyI6WyJ3ZWJwYWNrOi8vL2FwcC9jb21wb25lbnRzL2NvbW1vbi9BcHBGb290ZXIuanM/ZDQ3MCJdLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgUmVhY3QgICAgICAgICBmcm9tICdyZWFjdCc7XHJcbmltcG9ydCB7IEluZGV4TGluayB9IGZyb20gJ3JlYWN0LXJvdXRlcic7XHJcblxyXG5jb25zdCBBcHBGb290ZXIgPSAoKSA9PiB7XHJcbiAgICByZXR1cm4gKFxyXG4gICAgICAgIDxkaXY+XHJcbiAgICAgICAgICAgIDxkaXYgaWQ9XCJmb290ZXJcIiBjbGFzc05hbWU9XCJmb290ZXIgcG9pbnRlclwiPlxyXG4gICAgICAgICAgICAgIG1lc3NhZ2VcclxuICAgICAgICAgICAgPC9kaXY+XHJcbiAgICAgICAgPC9kaXY+XHJcbiAgKTtcclxufTtcclxuXHJcbmV4cG9ydCBkZWZhdWx0IEFwcEZvb3RlcjtcclxuXG5cblxuLy8gV0VCUEFDSyBGT09URVIgLy9cbi8vIGFwcC9jb21wb25lbnRzL2NvbW1vbi9BcHBGb290ZXIuanMiXSwibWFwcGluZ3MiOiI7Ozs7OztBQUFBO0FBQ0E7OztBQUFBO0FBQ0E7OztBQUNBO0FBQ0E7QUFDQTtBQUFBO0FBQ0E7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQURBO0FBTUE7QUFDQTsiLCJzb3VyY2VSb290IjoiIn0=");
+
+/***/ }),
+
+/***/ 719:
+/* unknown exports provided */
+/* all exports used */
+/*!********************************************!*\
+  !*** ./app/components/common/NavHeader.js ***!
+  \********************************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\n\nvar _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if (\"value\" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();\n\nvar _react = __webpack_require__(/*! react */ 0);\n\nvar _react2 = _interopRequireDefault(_react);\n\nvar _propTypes = __webpack_require__(/*! prop-types */ 1);\n\nvar _propTypes2 = _interopRequireDefault(_propTypes);\n\nvar _reactRouter = __webpack_require__(/*! react-router */ 33);\n\nvar _redux = __webpack_require__(/*! redux */ 95);\n\nvar _reactRedux = __webpack_require__(/*! react-redux */ 96);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nfunction _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\"Cannot call a class as a function\"); } }\n\nfunction _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError(\"this hasn't been initialised - super() hasn't been called\"); } return call && (typeof call === \"object\" || typeof call === \"function\") ? call : self; }\n\nfunction _inherits(subClass, superClass) { if (typeof superClass !== \"function\" && superClass !== null) { throw new TypeError(\"Super expression must either be null or a function, not \" + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }\n\nvar NavHeader = function (_React$Component) {\n  _inherits(NavHeader, _React$Component);\n\n  function NavHeader(props, context) {\n    _classCallCheck(this, NavHeader);\n\n    return _possibleConstructorReturn(this, (NavHeader.__proto__ || Object.getPrototypeOf(NavHeader)).call(this, props, context));\n  }\n\n  _createClass(NavHeader, [{\n    key: 'render',\n    value: function render() {\n\n      var app = this.props.app;\n\n      return _react2.default.createElement(\n        'div',\n        { className: 'navbar-root' },\n        _react2.default.createElement(\n          'div',\n          { id: 'navbar', className: 'navbar navbar-inverse navbar-fixed-top' },\n          _react2.default.createElement(\n            'div',\n            { className: 'container' },\n            _react2.default.createElement(\n              'div',\n              { className: 'navbar-header' },\n              _react2.default.createElement(\n                _reactRouter.IndexLink,\n                { className: 'navbar-brand', to: '/' },\n                'MRC'\n              )\n            ),\n            _react2.default.createElement(\n              'div',\n              { className: 'navbar-collapse collapse' },\n              _react2.default.createElement(\n                'div',\n                { className: 'float-right pad-top-15' },\n                _react2.default.createElement(\n                  'span',\n                  { className: '' },\n                  _react2.default.createElement('i', { className: 'fa fa-user-circle gray-5 font-1-10' }),\n                  ' ',\n                  _react2.default.createElement(\n                    'span',\n                    { style: { marginTop: \"-1px\" }, className: 'Lato font-1-00 opacity-60 pad-left-5 lowercase' },\n                    app.user.UserDisplayName\n                  )\n                )\n              ),\n              _react2.default.createElement(\n                'ul',\n                { className: 'nav navbar-nav' },\n                _react2.default.createElement(\n                  'li',\n                  null,\n                  _react2.default.createElement(\n                    _reactRouter.IndexLink,\n                    { activeClassName: 'active', to: '/' },\n                    'Home'\n                  )\n                ),\n                _react2.default.createElement(\n                  'li',\n                  null,\n                  _react2.default.createElement(\n                    _reactRouter.Link,\n                    { activeClassName: 'active', to: '/releases' },\n                    'Release'\n                  )\n                ),\n                _react2.default.createElement(\n                  'li',\n                  null,\n                  _react2.default.createElement(\n                    _reactRouter.Link,\n                    { activeClassName: 'active', to: '/rfcs' },\n                    'RFCs'\n                  )\n                ),\n                _react2.default.createElement(\n                  'li',\n                  null,\n                  _react2.default.createElement(\n                    _reactRouter.Link,\n                    { activeClassName: 'active', to: '/runbooks' },\n                    'Runbooks'\n                  )\n                ),\n                _react2.default.createElement(\n                  'li',\n                  null,\n                  _react2.default.createElement(\n                    _reactRouter.Link,\n                    { activeClassName: 'active', to: '/templates' },\n                    'Templates'\n                  )\n                ),\n                _react2.default.createElement(\n                  'li',\n                  null,\n                  _react2.default.createElement(\n                    _reactRouter.Link,\n                    { activeClassName: 'active', to: '/builds' },\n                    'Builds'\n                  )\n                ),\n                _react2.default.createElement(\n                  'li',\n                  null,\n                  _react2.default.createElement(\n                    _reactRouter.Link,\n                    { activeClassName: 'active', to: '/applications' },\n                    'Applications'\n                  )\n                ),\n                _react2.default.createElement(\n                  'li',\n                  null,\n                  _react2.default.createElement(\n                    _reactRouter.Link,\n                    { activeClassName: 'active', to: '/admin' },\n                    'Admin'\n                  )\n                ),\n                _react2.default.createElement(\n                  'li',\n                  null,\n                  _react2.default.createElement(\n                    _reactRouter.Link,\n                    { activeClassName: 'active', to: '/about' },\n                    'About'\n                  )\n                ),\n                _react2.default.createElement(\n                  'li',\n                  null,\n                  _react2.default.createElement(\n                    _reactRouter.Link,\n                    { activeClassName: 'active', to: '/courses' },\n                    'Courses'\n                  )\n                )\n              )\n            )\n          )\n        )\n      );\n    }\n  }]);\n\n  return NavHeader;\n}(_react2.default.Component);\n\nNavHeader.propTypes = {\n  app: _propTypes2.default.object.isRequired\n};\n\nexports.default = NavHeader;//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiNzE5LmpzIiwic291cmNlcyI6WyJ3ZWJwYWNrOi8vL2FwcC9jb21wb25lbnRzL2NvbW1vbi9OYXZIZWFkZXIuanM/OGIwYiJdLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgUmVhY3QgICAgICAgICAgICAgICAgICBmcm9tICdyZWFjdCc7XHJcbmltcG9ydCBQcm9wVHlwZXMgICAgICAgICAgICAgIGZyb20gJ3Byb3AtdHlwZXMnO1xyXG5pbXBvcnQgeyBMaW5rIH0gICAgICAgICAgICAgICBmcm9tICdyZWFjdC1yb3V0ZXInO1xyXG5pbXBvcnQgeyBJbmRleExpbmsgfSAgICAgICAgICBmcm9tICdyZWFjdC1yb3V0ZXInO1xyXG5pbXBvcnQgeyBiaW5kQWN0aW9uQ3JlYXRvcnMgfSBmcm9tICdyZWR1eCc7XHJcbmltcG9ydCB7IGNvbm5lY3QgfSAgICAgICAgICAgIGZyb20gJ3JlYWN0LXJlZHV4JztcclxuXHJcbmNsYXNzIE5hdkhlYWRlciBleHRlbmRzIFJlYWN0LkNvbXBvbmVudCB7XHJcblxyXG4gICAgY29uc3RydWN0b3IocHJvcHMsIGNvbnRleHQpIHtcclxuXHJcbiAgICAgICAgc3VwZXIocHJvcHMsIGNvbnRleHQpO1xyXG4gICAgfVxyXG5cclxuICAgIHJlbmRlcigpIHtcclxuXHJcbiAgICAgICAgY29uc3QgYXBwID0gdGhpcy5wcm9wcy5hcHA7XHJcblxyXG4gICAgICAgIHJldHVybiAoXHJcbiAgICAgICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPVwibmF2YmFyLXJvb3RcIj5cclxuICAgICAgICAgICAgICAgICAgIDxkaXYgaWQ9J25hdmJhcicgY2xhc3NOYW1lPSduYXZiYXIgbmF2YmFyLWludmVyc2UgbmF2YmFyLWZpeGVkLXRvcCc+XHJcbiAgICAgICAgICAgICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPSdjb250YWluZXInPlxyXG4gICAgICAgICAgICAgICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPSduYXZiYXItaGVhZGVyJz5cclxuICAgICAgICAgICAgICAgICAgICAgICAgIDxJbmRleExpbmsgY2xhc3NOYW1lPSduYXZiYXItYnJhbmQnIHRvPScvJz5NUkM8L0luZGV4TGluaz5cclxuICAgICAgICAgICAgICAgICAgICAgICA8L2Rpdj5cclxuICAgICAgICAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT0nbmF2YmFyLWNvbGxhcHNlIGNvbGxhcHNlJz5cclxuICAgICAgICAgICAgICAgICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPSdmbG9hdC1yaWdodCBwYWQtdG9wLTE1Jz5cclxuICAgICAgICAgICAgICAgICAgICAgICAgICAgPHNwYW4gY2xhc3NOYW1lPVwiXCI+PGkgY2xhc3NOYW1lPVwiZmEgZmEtdXNlci1jaXJjbGUgZ3JheS01IGZvbnQtMS0xMFwiIC8+IDxzcGFuIHN0eWxlPXt7bWFyZ2luVG9wOiBcIi0xcHhcIn19IGNsYXNzTmFtZT1cIkxhdG8gZm9udC0xLTAwIG9wYWNpdHktNjAgcGFkLWxlZnQtNSBsb3dlcmNhc2VcIj57IGFwcC51c2VyLlVzZXJEaXNwbGF5TmFtZSB9PC9zcGFuPjwvc3Bhbj5cclxuICAgICAgICAgICAgICAgICAgICAgICAgIDwvZGl2PlxyXG4gICAgICAgICAgICAgICAgICAgICAgICAgPHVsIGNsYXNzTmFtZT0nbmF2IG5hdmJhci1uYXYnPlxyXG4gICAgICAgICAgICAgICAgICAgICAgICAgICA8bGk+PEluZGV4TGluayBhY3RpdmVDbGFzc05hbWU9J2FjdGl2ZScgdG89Jy8nPkhvbWU8L0luZGV4TGluaz48L2xpPlxyXG4gICAgICAgICAgICAgICAgICAgICAgICAgICA8bGk+PExpbmsgYWN0aXZlQ2xhc3NOYW1lPSdhY3RpdmUnIHRvPScvcmVsZWFzZXMnPlJlbGVhc2U8L0xpbms+PC9saT5cclxuICAgICAgICAgICAgICAgICAgICAgICAgICAgPGxpPjxMaW5rIGFjdGl2ZUNsYXNzTmFtZT0nYWN0aXZlJyB0bz0nL3JmY3MnPlJGQ3M8L0xpbms+PC9saT5cclxuICAgICAgICAgICAgICAgICAgICAgICAgICAgPGxpPjxMaW5rIGFjdGl2ZUNsYXNzTmFtZT0nYWN0aXZlJyB0bz0nL3J1bmJvb2tzJz5SdW5ib29rczwvTGluaz48L2xpPlxyXG4gICAgICAgICAgICAgICAgICAgICAgICAgICA8bGk+PExpbmsgYWN0aXZlQ2xhc3NOYW1lPSdhY3RpdmUnIHRvPScvdGVtcGxhdGVzJz5UZW1wbGF0ZXM8L0xpbms+PC9saT5cclxuICAgICAgICAgICAgICAgICAgICAgICAgICAgPGxpPjxMaW5rIGFjdGl2ZUNsYXNzTmFtZT0nYWN0aXZlJyB0bz0nL2J1aWxkcyc+QnVpbGRzPC9MaW5rPjwvbGk+XHJcbiAgICAgICAgICAgICAgICAgICAgICAgICAgIDxsaT48TGluayBhY3RpdmVDbGFzc05hbWU9J2FjdGl2ZScgdG89Jy9hcHBsaWNhdGlvbnMnPkFwcGxpY2F0aW9uczwvTGluaz48L2xpPlxyXG4gICAgICAgICAgICAgICAgICAgICAgICAgICA8bGk+PExpbmsgYWN0aXZlQ2xhc3NOYW1lPSdhY3RpdmUnIHRvPScvYWRtaW4nPkFkbWluPC9MaW5rPjwvbGk+XHJcbiAgICAgICAgICAgICAgICAgICAgICAgICAgIDxsaT48TGluayBhY3RpdmVDbGFzc05hbWU9J2FjdGl2ZScgdG89Jy9hYm91dCc+QWJvdXQ8L0xpbms+PC9saT5cclxuICAgICAgICAgICAgICAgICAgICAgICAgICAgPGxpPjxMaW5rIGFjdGl2ZUNsYXNzTmFtZT0nYWN0aXZlJyB0bz0nL2NvdXJzZXMnPkNvdXJzZXM8L0xpbms+PC9saT5cclxuICAgICAgICAgICAgICAgICAgICAgICAgIDwvdWw+XHJcbiAgICAgICAgICAgICAgICAgICAgICAgPC9kaXY+XHJcbiAgICAgICAgICAgICAgICAgICAgIDwvZGl2PlxyXG4gICAgICAgICAgICAgICAgICAgPC9kaXY+XHJcbiAgICAgICAgICAgICAgIDwvZGl2PlxyXG4gICAgICAgICAgICk7XHJcbiAgICB9XHJcbn1cclxuXHJcbk5hdkhlYWRlci5wcm9wVHlwZXMgPSB7XHJcbiAgICAgICAgICAgICAgICAgICAgICAgICAgYXBwOiBQcm9wVHlwZXMub2JqZWN0LmlzUmVxdWlyZWRcclxuICAgICAgICAgICAgICAgICAgICAgIH07XHJcblxyXG5leHBvcnQgZGVmYXVsdCBOYXZIZWFkZXI7XG5cblxuLy8gV0VCUEFDSyBGT09URVIgLy9cbi8vIGFwcC9jb21wb25lbnRzL2NvbW1vbi9OYXZIZWFkZXIuanMiXSwibWFwcGluZ3MiOiI7Ozs7Ozs7O0FBQUE7QUFDQTs7O0FBQUE7QUFDQTs7O0FBQUE7QUFDQTtBQUNBO0FBQ0E7QUFBQTtBQUNBOzs7Ozs7Ozs7QUFDQTs7O0FBRUE7QUFBQTtBQUNBO0FBREE7QUFHQTtBQUNBOzs7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFBQTtBQUNBO0FBQUE7QUFBQTtBQUNBO0FBQUE7QUFBQTtBQUNBO0FBQUE7QUFBQTtBQUNBO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFEQTtBQUdBO0FBQUE7QUFBQTtBQUNBO0FBQUE7QUFBQTtBQUNBO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFEQTtBQUdBO0FBQUE7QUFBQTtBQUNBO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUNBO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUNBO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUNBO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUNBO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUNBO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUNBO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUNBO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUNBO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUNBO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQVZBO0FBSkE7QUFKQTtBQURBO0FBREE7QUEyQkE7Ozs7QUF2Q0E7QUFDQTtBQXlDQTtBQUNBO0FBREE7QUFDQTtBQUdBIiwic291cmNlUm9vdCI6IiJ9");
+
+/***/ }),
+
+/***/ 720:
+/* unknown exports provided */
+/* all exports used */
+/*!*******************************************!*\
+  !*** ./app/components/common/NotFound.js ***!
+  \*******************************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\n\nvar _react = __webpack_require__(/*! react */ 0);\n\nvar _react2 = _interopRequireDefault(_react);\n\nvar _reactRouter = __webpack_require__(/*! react-router */ 33);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nvar NotFound = function NotFound() {\n  return _react2.default.createElement(\n    'div',\n    null,\n    _react2.default.createElement(\n      'h4',\n      null,\n      '404 Page Not Found'\n    ),\n    _react2.default.createElement(\n      _reactRouter.Link,\n      { to: '/' },\n      ' Go back to homepage '\n    )\n  );\n};\n\nexports.default = NotFound;//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiNzIwLmpzIiwic291cmNlcyI6WyJ3ZWJwYWNrOi8vL2FwcC9jb21wb25lbnRzL2NvbW1vbi9Ob3RGb3VuZC5qcz8zNDgyIl0sInNvdXJjZXNDb250ZW50IjpbImltcG9ydCBSZWFjdCAgICBmcm9tICdyZWFjdCc7XHJcbmltcG9ydCB7IExpbmsgfSBmcm9tICdyZWFjdC1yb3V0ZXInO1xyXG5cclxuY29uc3QgTm90Rm91bmQgPSAoKSA9PiB7XHJcbiAgICByZXR1cm4gKFxyXG4gICAgICA8ZGl2PlxyXG4gICAgICAgIDxoND5cclxuICAgICAgICAgIDQwNCBQYWdlIE5vdCBGb3VuZFxyXG4gICAgICAgIDwvaDQ+XHJcbiAgICAgICAgPExpbmsgdG89XCIvXCI+IEdvIGJhY2sgdG8gaG9tZXBhZ2UgPC9MaW5rPlxyXG4gICAgICA8L2Rpdj5cclxuICApO1xyXG59O1xyXG5cclxuZXhwb3J0IGRlZmF1bHQgTm90Rm91bmQ7XHJcblxuXG5cbi8vIFdFQlBBQ0sgRk9PVEVSIC8vXG4vLyBhcHAvY29tcG9uZW50cy9jb21tb24vTm90Rm91bmQuanMiXSwibWFwcGluZ3MiOiI7Ozs7OztBQUFBO0FBQ0E7OztBQUFBO0FBQ0E7OztBQUNBO0FBQ0E7QUFDQTtBQUFBO0FBQ0E7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUdBO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFKQTtBQU9BO0FBQ0E7Iiwic291cmNlUm9vdCI6IiJ9");
+
+/***/ }),
+
+/***/ 721:
+/* unknown exports provided */
+/* all exports used */
+/*!**********************************************!*\
+  !*** ./app/components/common/SelectInput.js ***!
+  \**********************************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n    value: true\n});\n\nvar _react = __webpack_require__(/*! react */ 0);\n\nvar _react2 = _interopRequireDefault(_react);\n\nvar _propTypes = __webpack_require__(/*! prop-types */ 1);\n\nvar _propTypes2 = _interopRequireDefault(_propTypes);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nvar SelectInput = function SelectInput(_ref) {\n    var name = _ref.name,\n        label = _ref.label,\n        onChange = _ref.onChange,\n        defaultOption = _ref.defaultOption,\n        value = _ref.value,\n        error = _ref.error,\n        options = _ref.options;\n\n    return _react2.default.createElement(\n        'div',\n        { className: 'form-group' },\n        _react2.default.createElement(\n            'label',\n            { htmlFor: '{ name }' },\n            label\n        ),\n        _react2.default.createElement(\n            'div',\n            { className: 'field' },\n            _react2.default.createElement(\n                'select',\n                { type: 'text',\n                    className: 'form-control',\n                    name: name,\n                    value: value,\n                    onChange: onChange\n                },\n                _react2.default.createElement(\n                    'option',\n                    { value: '' },\n                    defaultOption\n                ),\n                options.map(function (option) {\n                    return _react2.default.createElement(\n                        'option',\n                        { key: option.value, value: option.value },\n                        option.text\n                    );\n                })\n            ),\n            error && _react2.default.createElement(\n                'div',\n                { className: 'alert alert-danger' },\n                'error'\n            )\n        )\n    );\n};\n\nSelectInput.propTypes = {\n    name: _propTypes2.default.string.isRequired,\n    label: _propTypes2.default.string.isRequired,\n    onChange: _propTypes2.default.func.isRequired,\n    defaultOption: _propTypes2.default.string,\n    value: _propTypes2.default.string,\n    error: _propTypes2.default.string,\n    options: _propTypes2.default.arrayOf(_propTypes2.default.object)\n};\n\nexports.default = SelectInput;//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiNzIxLmpzIiwic291cmNlcyI6WyJ3ZWJwYWNrOi8vL2FwcC9jb21wb25lbnRzL2NvbW1vbi9TZWxlY3RJbnB1dC5qcz9jOWQ5Il0sInNvdXJjZXNDb250ZW50IjpbImltcG9ydCBSZWFjdCAgICAgZnJvbSAncmVhY3QnO1xyXG5pbXBvcnQgUHJvcFR5cGVzIGZyb20gJ3Byb3AtdHlwZXMnO1xyXG5cclxuY29uc3QgU2VsZWN0SW5wdXQgPSAoeyBuYW1lLCBsYWJlbCwgb25DaGFuZ2UsIGRlZmF1bHRPcHRpb24sIHZhbHVlLCBlcnJvciwgb3B0aW9ucyB9KSA9PiB7XHJcbiAgcmV0dXJuIChcclxuICAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT0nZm9ybS1ncm91cCc+XHJcbiAgICAgICAgICAgICAgIDxsYWJlbCBodG1sRm9yPSd7IG5hbWUgfSc+eyBsYWJlbCB9PC9sYWJlbD5cclxuICAgICAgICAgICAgICAgPGRpdiBjbGFzc05hbWU9J2ZpZWxkJz5cclxuICAgICAgICAgICAgICAgICAgIDxzZWxlY3QgdHlwZSAgICAgID0gJ3RleHQnXHJcbiAgICAgICAgICAgICAgICAgICAgICAgICAgIGNsYXNzTmFtZSA9ICdmb3JtLWNvbnRyb2wnXHJcbiAgICAgICAgICAgICAgICAgICAgICAgICAgIG5hbWUgICAgICA9IHsgbmFtZSB9XHJcbiAgICAgICAgICAgICAgICAgICAgICAgICAgIHZhbHVlICAgICA9IHsgdmFsdWUgfVxyXG4gICAgICAgICAgICAgICAgICAgICAgICAgICBvbkNoYW5nZSAgPSB7IG9uQ2hhbmdlIH1cclxuICAgICAgICAgICAgICAgICAgID5cclxuICAgICAgICAgICAgICAgICAgIDxvcHRpb24gdmFsdWU9Jyc+eyBkZWZhdWx0T3B0aW9uIH08L29wdGlvbj5cclxuICAgICAgICAgICAgICAgICAgIHsgXHJcbiAgICAgICAgICAgICAgICAgICAgICAgb3B0aW9ucy5tYXAoXHJcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgKG9wdGlvbikgPT4gKDxvcHRpb24ga2V5PXtvcHRpb24udmFsdWV9IHZhbHVlPXtvcHRpb24udmFsdWV9PntvcHRpb24udGV4dH08L29wdGlvbj4pXHJcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICApXHJcbiAgICAgICAgICAgICAgICAgICB9XHJcbiAgICAgICAgICAgICAgICAgICA8L3NlbGVjdD5cclxuICAgICAgICAgICAgICAgICAgIHsgZXJyb3IgJiYgPGRpdiBjbGFzc05hbWU9J2FsZXJ0IGFsZXJ0LWRhbmdlcic+ZXJyb3I8L2Rpdj4gfVxyXG4gICAgICAgICAgICAgICA8L2Rpdj5cclxuICAgICAgICAgICA8L2Rpdj5cclxuICAgICAgICAgKTtcclxufTtcclxuXHJcblNlbGVjdElucHV0LnByb3BUeXBlcyA9IHtcclxuICAgICAgICAgICAgICAgICAgICAgICAgICAgIG5hbWU6ICAgICAgICAgIFByb3BUeXBlcy5zdHJpbmcuaXNSZXF1aXJlZCxcclxuICAgICAgICAgICAgICAgICAgICAgICAgICAgIGxhYmVsOiAgICAgICAgIFByb3BUeXBlcy5zdHJpbmcuaXNSZXF1aXJlZCxcclxuICAgICAgICAgICAgICAgICAgICAgICAgICAgIG9uQ2hhbmdlOiAgICAgIFByb3BUeXBlcy5mdW5jLmlzUmVxdWlyZWQsXHJcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICBkZWZhdWx0T3B0aW9uOiBQcm9wVHlwZXMuc3RyaW5nLFxyXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgdmFsdWU6ICAgICAgICAgUHJvcFR5cGVzLnN0cmluZyxcclxuICAgICAgICAgICAgICAgICAgICAgICAgICAgIGVycm9yOiAgICAgICAgIFByb3BUeXBlcy5zdHJpbmcsXHJcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICBvcHRpb25zOiAgICAgICBQcm9wVHlwZXMuYXJyYXlPZihQcm9wVHlwZXMub2JqZWN0KVxyXG4gICAgICAgICAgICAgICAgICAgICAgICB9O1xyXG5cclxuZXhwb3J0IGRlZmF1bHQgU2VsZWN0SW5wdXQ7XG5cblxuLy8gV0VCUEFDSyBGT09URVIgLy9cbi8vIGFwcC9jb21wb25lbnRzL2NvbW1vbi9TZWxlY3RJbnB1dC5qcyJdLCJtYXBwaW5ncyI6Ijs7Ozs7O0FBQUE7QUFDQTs7O0FBQUE7QUFDQTs7Ozs7QUFDQTtBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQ0E7QUFBQTtBQUNBO0FBQUE7QUFDQTtBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQ0E7QUFBQTtBQUFBO0FBQ0E7QUFBQTtBQUFBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFKQTtBQU1BO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFFQTtBQUNBO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQVRBO0FBYUE7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQWRBO0FBRkE7QUFvQkE7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFQQTtBQUNBO0FBU0EiLCJzb3VyY2VSb290IjoiIn0=");
+
+/***/ }),
+
+/***/ 722:
+/* unknown exports provided */
+/* all exports used */
+/*!****************************************!*\
+  !*** ./app/components/common/Shell.js ***!
+  \****************************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n    value: true\n});\n\nvar _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if (\"value\" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();\n\nvar _react = __webpack_require__(/*! react */ 0);\n\nvar _react2 = _interopRequireDefault(_react);\n\nvar _propTypes = __webpack_require__(/*! prop-types */ 1);\n\nvar _propTypes2 = _interopRequireDefault(_propTypes);\n\nvar _reactRedux = __webpack_require__(/*! react-redux */ 96);\n\nvar _NavHeader = __webpack_require__(/*! ./NavHeader */ 719);\n\nvar _NavHeader2 = _interopRequireDefault(_NavHeader);\n\nvar _AppFooter = __webpack_require__(/*! ./AppFooter */ 718);\n\nvar _AppFooter2 = _interopRequireDefault(_AppFooter);\n\nvar _Splash = __webpack_require__(/*! ./Splash */ 723);\n\nvar _Splash2 = _interopRequireDefault(_Splash);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nfunction _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\"Cannot call a class as a function\"); } }\n\nfunction _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError(\"this hasn't been initialised - super() hasn't been called\"); } return call && (typeof call === \"object\" || typeof call === \"function\") ? call : self; }\n\nfunction _inherits(subClass, superClass) { if (typeof superClass !== \"function\" && superClass !== null) { throw new TypeError(\"Super expression must either be null or a function, not \" + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }\n\nvar Shell = function (_React$Component) {\n    _inherits(Shell, _React$Component);\n\n    function Shell() {\n        _classCallCheck(this, Shell);\n\n        return _possibleConstructorReturn(this, (Shell.__proto__ || Object.getPrototypeOf(Shell)).apply(this, arguments));\n    }\n\n    _createClass(Shell, [{\n        key: 'render',\n        value: function render() {\n\n            // In this ShellComponent, 'user' and 'lookups' are intended to be available to \n            // all the child routing elements indirectly defined via the 'routes.js' file. \n            //\n            // That is, it's desirable to have some data available to the entire application \n            // rather than just an individual component; for example, 'user' and 'lookups'.\n            // \n            // Rather than treating these values separately off the root store hierarchy, \n            // an 'app' object was created with 'user' and 'lookups' properties.\n            // \n            // Ordinarily, you might wire routing up as follows in the 'container' div below...\n            // \n            //          { this.props.children }\n            // \n            // ... however, to make the 'user' and 'lookups' available to all child routing \n            // elements by default, the 'children' should be cloned. Each child component is \n            // cloned and the 'user' and 'lookups' are 'bolted' onto the cloned elements: \n            // \n            //          React.cloneElement(child, { app: app })\n            // \n            // 'user' and 'lookups' props will then be available to these child components \n            // without having to map them (e.g. 'mapStateToProps') or explicity declare them \n            // (e.g. as an attribute on a custom component).\n            // \n            // 'app' is defined here off of 'this.props' since 'this.props' would not be \n            // 'visible' inside the mapping function.\n            // \n            // Many times, props are passed to the child within the render method of the \n            // parent as an ATTRIBUTE.\n            // \n            // However, here, using REDUX, props are obtained via the 'mapStateToProps'\n            // function.\n            //\n\n            var app = this.props.app;\n\n            return _react2.default.createElement(\n                'div',\n                null,\n                _react2.default.createElement(_Splash2.default, { app: app }),\n                _react2.default.createElement(_NavHeader2.default, { app: app }),\n                _react2.default.createElement(\n                    'div',\n                    { className: 'container body-content' },\n                    _react2.default.Children.map(this.props.children, function (child) {\n                        return _react2.default.cloneElement(child, { app: app });\n                    })\n                ),\n                _react2.default.createElement(_AppFooter2.default, null)\n            );\n        }\n    }]);\n\n    return Shell;\n}(_react2.default.Component);\n\nShell.propTypes = {\n    children: _propTypes2.default.element,\n    app: _propTypes2.default.object.isRequired\n};\n\nvar mapStateToProps = function mapStateToProps(state, ownProps) {\n    return {\n        app: state.app\n    };\n};\n\nexports.default = (0, _reactRedux.connect)(mapStateToProps)(Shell);//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiNzIyLmpzIiwic291cmNlcyI6WyJ3ZWJwYWNrOi8vL2FwcC9jb21wb25lbnRzL2NvbW1vbi9TaGVsbC5qcz8zZThlIl0sInNvdXJjZXNDb250ZW50IjpbImltcG9ydCBSZWFjdCAgICAgICBmcm9tICdyZWFjdCc7XHJcbmltcG9ydCBQcm9wVHlwZXMgICBmcm9tICdwcm9wLXR5cGVzJztcclxuaW1wb3J0IHsgY29ubmVjdCB9IGZyb20gJ3JlYWN0LXJlZHV4JztcclxuXHJcbmltcG9ydCBOYXZIZWFkZXIgICBmcm9tICcuL05hdkhlYWRlcic7XHJcbmltcG9ydCBBcHBGb290ZXIgICBmcm9tICcuL0FwcEZvb3Rlcic7XHJcbmltcG9ydCBTcGxhc2ggICAgICBmcm9tICcuL1NwbGFzaCc7XHJcblxyXG5jbGFzcyBTaGVsbCBleHRlbmRzIFJlYWN0LkNvbXBvbmVudCB7XHJcblxyXG4gICAgcmVuZGVyKCkge1xyXG5cclxuICAgICAgICAvLyBJbiB0aGlzIFNoZWxsQ29tcG9uZW50LCAndXNlcicgYW5kICdsb29rdXBzJyBhcmUgaW50ZW5kZWQgdG8gYmUgYXZhaWxhYmxlIHRvIFxyXG4gICAgICAgIC8vIGFsbCB0aGUgY2hpbGQgcm91dGluZyBlbGVtZW50cyBpbmRpcmVjdGx5IGRlZmluZWQgdmlhIHRoZSAncm91dGVzLmpzJyBmaWxlLiBcclxuICAgICAgICAvL1xyXG4gICAgICAgIC8vIFRoYXQgaXMsIGl0J3MgZGVzaXJhYmxlIHRvIGhhdmUgc29tZSBkYXRhIGF2YWlsYWJsZSB0byB0aGUgZW50aXJlIGFwcGxpY2F0aW9uIFxyXG4gICAgICAgIC8vIHJhdGhlciB0aGFuIGp1c3QgYW4gaW5kaXZpZHVhbCBjb21wb25lbnQ7IGZvciBleGFtcGxlLCAndXNlcicgYW5kICdsb29rdXBzJy5cclxuICAgICAgICAvLyBcclxuICAgICAgICAvLyBSYXRoZXIgdGhhbiB0cmVhdGluZyB0aGVzZSB2YWx1ZXMgc2VwYXJhdGVseSBvZmYgdGhlIHJvb3Qgc3RvcmUgaGllcmFyY2h5LCBcclxuICAgICAgICAvLyBhbiAnYXBwJyBvYmplY3Qgd2FzIGNyZWF0ZWQgd2l0aCAndXNlcicgYW5kICdsb29rdXBzJyBwcm9wZXJ0aWVzLlxyXG4gICAgICAgIC8vIFxyXG4gICAgICAgIC8vIE9yZGluYXJpbHksIHlvdSBtaWdodCB3aXJlIHJvdXRpbmcgdXAgYXMgZm9sbG93cyBpbiB0aGUgJ2NvbnRhaW5lcicgZGl2IGJlbG93Li4uXHJcbiAgICAgICAgLy8gXHJcbiAgICAgICAgLy8gICAgICAgICAgeyB0aGlzLnByb3BzLmNoaWxkcmVuIH1cclxuICAgICAgICAvLyBcclxuICAgICAgICAvLyAuLi4gaG93ZXZlciwgdG8gbWFrZSB0aGUgJ3VzZXInIGFuZCAnbG9va3VwcycgYXZhaWxhYmxlIHRvIGFsbCBjaGlsZCByb3V0aW5nIFxyXG4gICAgICAgIC8vIGVsZW1lbnRzIGJ5IGRlZmF1bHQsIHRoZSAnY2hpbGRyZW4nIHNob3VsZCBiZSBjbG9uZWQuIEVhY2ggY2hpbGQgY29tcG9uZW50IGlzIFxyXG4gICAgICAgIC8vIGNsb25lZCBhbmQgdGhlICd1c2VyJyBhbmQgJ2xvb2t1cHMnIGFyZSAnYm9sdGVkJyBvbnRvIHRoZSBjbG9uZWQgZWxlbWVudHM6IFxyXG4gICAgICAgIC8vIFxyXG4gICAgICAgIC8vICAgICAgICAgIFJlYWN0LmNsb25lRWxlbWVudChjaGlsZCwgeyBhcHA6IGFwcCB9KVxyXG4gICAgICAgIC8vIFxyXG4gICAgICAgIC8vICd1c2VyJyBhbmQgJ2xvb2t1cHMnIHByb3BzIHdpbGwgdGhlbiBiZSBhdmFpbGFibGUgdG8gdGhlc2UgY2hpbGQgY29tcG9uZW50cyBcclxuICAgICAgICAvLyB3aXRob3V0IGhhdmluZyB0byBtYXAgdGhlbSAoZS5nLiAnbWFwU3RhdGVUb1Byb3BzJykgb3IgZXhwbGljaXR5IGRlY2xhcmUgdGhlbSBcclxuICAgICAgICAvLyAoZS5nLiBhcyBhbiBhdHRyaWJ1dGUgb24gYSBjdXN0b20gY29tcG9uZW50KS5cclxuICAgICAgICAvLyBcclxuICAgICAgICAvLyAnYXBwJyBpcyBkZWZpbmVkIGhlcmUgb2ZmIG9mICd0aGlzLnByb3BzJyBzaW5jZSAndGhpcy5wcm9wcycgd291bGQgbm90IGJlIFxyXG4gICAgICAgIC8vICd2aXNpYmxlJyBpbnNpZGUgdGhlIG1hcHBpbmcgZnVuY3Rpb24uXHJcbiAgICAgICAgLy8gXHJcbiAgICAgICAgLy8gTWFueSB0aW1lcywgcHJvcHMgYXJlIHBhc3NlZCB0byB0aGUgY2hpbGQgd2l0aGluIHRoZSByZW5kZXIgbWV0aG9kIG9mIHRoZSBcclxuICAgICAgICAvLyBwYXJlbnQgYXMgYW4gQVRUUklCVVRFLlxyXG4gICAgICAgIC8vIFxyXG4gICAgICAgIC8vIEhvd2V2ZXIsIGhlcmUsIHVzaW5nIFJFRFVYLCBwcm9wcyBhcmUgb2J0YWluZWQgdmlhIHRoZSAnbWFwU3RhdGVUb1Byb3BzJ1xyXG4gICAgICAgIC8vIGZ1bmN0aW9uLlxyXG4gICAgICAgIC8vXHJcblxyXG4gICAgICAgIGNvbnN0IGFwcCA9IHRoaXMucHJvcHMuYXBwO1xyXG5cclxuICAgICAgICByZXR1cm4gKFxyXG4gICAgICAgICAgICAgICAgICA8ZGl2PlxyXG4gICAgICAgICAgICAgICAgICAgIDxTcGxhc2ggYXBwID0geyBhcHAgfSAvPlxyXG4gICAgICAgICAgICAgICAgICAgIDxOYXZIZWFkZXIgYXBwID0geyBhcHAgfSAvPlxyXG4gICAgICAgICAgICAgICAgICAgIDxkaXYgY2xhc3NOYW1lID0gJ2NvbnRhaW5lciBib2R5LWNvbnRlbnQnPlxyXG4gICAgICAgICAgICAgICAgICAgICAgICB7XHJcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICBSZWFjdC5DaGlsZHJlbi5tYXAodGhpcy5wcm9wcy5jaGlsZHJlbiwgZnVuY3Rpb24oY2hpbGQpIHtcclxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICByZXR1cm4gUmVhY3QuY2xvbmVFbGVtZW50KGNoaWxkLCB7IGFwcDogYXBwIH0pO1xyXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgfSlcclxuICAgICAgICAgICAgICAgICAgICAgICAgfSAgICAgICAgICAgICAgICAgICAgICAgIFxyXG4gICAgICAgICAgICAgICAgICAgIDwvZGl2PlxyXG4gICAgICAgICAgICAgICAgICAgIDxBcHBGb290ZXIgLz5cclxuICAgICAgICAgICAgICAgICAgPC9kaXY+XHJcbiAgICAgICAgICAgICAgICk7XHJcbiAgICB9XHJcbn1cclxuXHJcblNoZWxsLnByb3BUeXBlcyA9IHtcclxuICAgICAgICAgICAgICAgICAgICAgIGNoaWxkcmVuOiBQcm9wVHlwZXMuZWxlbWVudCwgXHJcbiAgICAgICAgICAgICAgICAgICAgICBhcHA6ICAgICAgUHJvcFR5cGVzLm9iamVjdC5pc1JlcXVpcmVkXHJcbiAgICAgICAgICAgICAgICAgIH07XHJcblxyXG5jb25zdCBtYXBTdGF0ZVRvUHJvcHMgPSAoc3RhdGUsIG93blByb3BzKSA9PiAoe1xyXG4gICAgYXBwOiBzdGF0ZS5hcHBcclxufSk7XHJcblxyXG5leHBvcnQgZGVmYXVsdCBjb25uZWN0KG1hcFN0YXRlVG9Qcm9wcykoU2hlbGwpO1xyXG5cblxuXG4vLyBXRUJQQUNLIEZPT1RFUiAvL1xuLy8gYXBwL2NvbXBvbmVudHMvY29tbW9uL1NoZWxsLmpzIl0sIm1hcHBpbmdzIjoiOzs7Ozs7OztBQUFBO0FBQ0E7OztBQUFBO0FBQ0E7OztBQUFBO0FBQ0E7QUFDQTtBQUNBOzs7QUFBQTtBQUNBOzs7QUFBQTtBQUNBOzs7Ozs7Ozs7OztBQUNBOzs7Ozs7Ozs7OztBQUVBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUFBO0FBQ0E7QUFDQTtBQUNBO0FBQUE7QUFBQTtBQUVBO0FBQ0E7QUFDQTtBQUpBO0FBT0E7QUFWQTtBQWFBOzs7O0FBckRBO0FBQ0E7QUF1REE7QUFDQTtBQUNBO0FBRkE7QUFDQTtBQUlBO0FBQUE7QUFDQTtBQURBO0FBQUE7QUFDQTtBQUdBIiwic291cmNlUm9vdCI6IiJ9");
+
+/***/ }),
+
+/***/ 723:
+/* unknown exports provided */
+/* all exports used */
+/*!*****************************************!*\
+  !*** ./app/components/common/Splash.js ***!
+  \*****************************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n    value: true\n});\n\nvar _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if (\"value\" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();\n\nvar _react = __webpack_require__(/*! react */ 0);\n\nvar _react2 = _interopRequireDefault(_react);\n\nvar _reactRouter = __webpack_require__(/*! react-router */ 33);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nfunction _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\"Cannot call a class as a function\"); } }\n\nfunction _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError(\"this hasn't been initialised - super() hasn't been called\"); } return call && (typeof call === \"object\" || typeof call === \"function\") ? call : self; }\n\nfunction _inherits(subClass, superClass) { if (typeof superClass !== \"function\" && superClass !== null) { throw new TypeError(\"Super expression must either be null or a function, not \" + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }\n\nvar Splash = function (_React$Component) {\n    _inherits(Splash, _React$Component);\n\n    function Splash(props, context) {\n        _classCallCheck(this, Splash);\n\n        return _possibleConstructorReturn(this, (Splash.__proto__ || Object.getPrototypeOf(Splash)).call(this, props, context));\n    }\n\n    _createClass(Splash, [{\n        key: 'render',\n        value: function render() {\n\n            var app = this.props.app;\n\n            return _react2.default.createElement(\n                'div',\n                { className: app.isAppInitialized ? 'hide' : '' },\n                _react2.default.createElement(\n                    'div',\n                    { className: 'app-authenticating-box' },\n                    _react2.default.createElement(\n                        'div',\n                        { className: 'white opacity-50' },\n                        _react2.default.createElement(\n                            'div',\n                            null,\n                            _react2.default.createElement('img', { src: '../../app/images/Mega-Runbook-Creator-Button-01.png', alt: 'mega-runbook-creator' })\n                        ),\n                        _react2.default.createElement(\n                            'div',\n                            { className: 'app-authenticating bounceInLeft animated' },\n                            'authenticating'\n                        ),\n                        _react2.default.createElement('img', { src: 'app/images/running.gif', className: 'opacity-50' }),\n                        _react2.default.createElement('img', { src: 'app/images/spiro.svg', className: 'spriro-02' }),\n                        _react2.default.createElement(\n                            'div',\n                            null,\n                            app.ajaxCallsInProgress\n                        )\n                    )\n                )\n            );\n        }\n    }]);\n\n    return Splash;\n}(_react2.default.Component);\n\nexports.default = Splash;//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiNzIzLmpzIiwic291cmNlcyI6WyJ3ZWJwYWNrOi8vL2FwcC9jb21wb25lbnRzL2NvbW1vbi9TcGxhc2guanM/NDdhOSJdLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgUmVhY3QgICAgICAgICBmcm9tICdyZWFjdCc7XHJcbmltcG9ydCB7IEluZGV4TGluayB9IGZyb20gJ3JlYWN0LXJvdXRlcic7XHJcblxyXG5jbGFzcyBTcGxhc2ggZXh0ZW5kcyBSZWFjdC5Db21wb25lbnQge1xyXG5cclxuICAgIGNvbnN0cnVjdG9yKHByb3BzLCBjb250ZXh0KSB7XHJcblxyXG4gICAgICAgIHN1cGVyKHByb3BzLCBjb250ZXh0KTtcclxuICAgIH1cclxuXHJcbiAgICByZW5kZXIoKSB7XHJcblxyXG4gICAgICAgIGNvbnN0IGFwcCA9IHRoaXMucHJvcHMuYXBwO1xyXG5cclxuICAgICAgICByZXR1cm4gKFxyXG4gICAgICAgICAgICAgICAgICAgPGRpdiBjbGFzc05hbWU9eyBhcHAuaXNBcHBJbml0aWFsaXplZCA/ICdoaWRlJyA6ICcnfT5cclxuICAgICAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT0nYXBwLWF1dGhlbnRpY2F0aW5nLWJveCc+XHJcbiAgICAgICAgICAgICAgICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPSd3aGl0ZSBvcGFjaXR5LTUwJz5cclxuICAgICAgICAgICAgICAgICAgICAgICAgICAgIDxkaXY+XHJcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPGltZyBzcmM9Jy4uLy4uL2FwcC9pbWFnZXMvTWVnYS1SdW5ib29rLUNyZWF0b3ItQnV0dG9uLTAxLnBuZycgYWx0PSdtZWdhLXJ1bmJvb2stY3JlYXRvcicgLz5cclxuICAgICAgICAgICAgICAgICAgICAgICAgICAgIDwvZGl2PlxyXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgPGRpdiBjbGFzc05hbWU9J2FwcC1hdXRoZW50aWNhdGluZyBib3VuY2VJbkxlZnQgYW5pbWF0ZWQnPmF1dGhlbnRpY2F0aW5nPC9kaXY+XHJcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICA8aW1nIHNyYz0nYXBwL2ltYWdlcy9ydW5uaW5nLmdpZicgY2xhc3NOYW1lPSdvcGFjaXR5LTUwJy8+XHJcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICA8aW1nIHNyYz0nYXBwL2ltYWdlcy9zcGlyby5zdmcnIGNsYXNzTmFtZT0nc3ByaXJvLTAyJyAvPlxyXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgPGRpdj5cclxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICB7IGFwcC5hamF4Q2FsbHNJblByb2dyZXNzIH1cclxuICAgICAgICAgICAgICAgICAgICAgICAgICAgIDwvZGl2PlxyXG4gICAgICAgICAgICAgICAgICAgICAgICA8L2Rpdj5cclxuICAgICAgICAgICAgICAgICAgICA8L2Rpdj5cclxuICAgICAgICAgICAgICAgICAgIDwvZGl2PlxyXG4gICAgICAgICAgICAgICApO1xyXG4gICAgfVxyXG59XHJcblxyXG5leHBvcnQgZGVmYXVsdCBTcGxhc2g7XHJcblxuXG5cbi8vIFdFQlBBQ0sgRk9PVEVSIC8vXG4vLyBhcHAvY29tcG9uZW50cy9jb21tb24vU3BsYXNoLmpzIl0sIm1hcHBpbmdzIjoiOzs7Ozs7OztBQUFBO0FBQ0E7OztBQUFBO0FBQ0E7Ozs7Ozs7OztBQUNBOzs7QUFFQTtBQUFBO0FBQ0E7QUFEQTtBQUdBO0FBQ0E7OztBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUFBO0FBQ0E7QUFBQTtBQUFBO0FBQ0E7QUFBQTtBQUFBO0FBQ0E7QUFBQTtBQUFBO0FBQ0E7QUFEQTtBQUdBO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFDQTtBQUNBO0FBQ0E7QUFBQTtBQUFBO0FBQ0E7QUFEQTtBQVBBO0FBREE7QUFEQTtBQWdCQTs7OztBQTVCQTtBQUNBO0FBOEJBIiwic291cmNlUm9vdCI6IiJ9");
+
+/***/ }),
+
+/***/ 724:
+/* unknown exports provided */
+/* all exports used */
+/*!********************************************!*\
+  !*** ./app/components/common/TextInput.js ***!
+  \********************************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n    value: true\n});\n\nvar _react = __webpack_require__(/*! react */ 0);\n\nvar _react2 = _interopRequireDefault(_react);\n\nvar _propTypes = __webpack_require__(/*! prop-types */ 1);\n\nvar _propTypes2 = _interopRequireDefault(_propTypes);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nvar TextInput = function TextInput(_ref) {\n    var name = _ref.name,\n        label = _ref.label,\n        onChange = _ref.onChange,\n        placeholder = _ref.placeholder,\n        value = _ref.value,\n        error = _ref.error;\n\n    var wrapperClass = 'form-group';\n\n    if (error && error.length > 0) {\n        wrapperClass += ' has-error';\n    }\n\n    return _react2.default.createElement(\n        'div',\n        { className: wrapperClass },\n        _react2.default.createElement(\n            'label',\n            { htmlFor: '{ name }' },\n            label\n        ),\n        _react2.default.createElement(\n            'div',\n            { className: 'field' },\n            _react2.default.createElement('input', { type: 'text',\n                className: 'form-control',\n                name: name,\n                value: value,\n                placeholder: placeholder,\n                onChange: onChange\n            }),\n            error && _react2.default.createElement(\n                'div',\n                { className: 'alert alert-danger' },\n                'error'\n            )\n        )\n    );\n};\n\nTextInput.propTypes = {\n    name: _propTypes2.default.string.isRequired,\n    label: _propTypes2.default.string.isRequired,\n    onChange: _propTypes2.default.func.isRequired,\n    placeholder: _propTypes2.default.string,\n    value: _propTypes2.default.string,\n    error: _propTypes2.default.string\n};\n\nexports.default = TextInput;//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiNzI0LmpzIiwic291cmNlcyI6WyJ3ZWJwYWNrOi8vL2FwcC9jb21wb25lbnRzL2NvbW1vbi9UZXh0SW5wdXQuanM/ODY3MyJdLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgUmVhY3QgICAgIGZyb20gJ3JlYWN0JztcclxuaW1wb3J0IFByb3BUeXBlcyBmcm9tICdwcm9wLXR5cGVzJztcclxuXHJcbmNvbnN0IFRleHRJbnB1dCA9ICh7IG5hbWUsIGxhYmVsLCBvbkNoYW5nZSwgcGxhY2Vob2xkZXIsIHZhbHVlLCBlcnJvciB9KSA9PiB7XHJcbiAgICBsZXQgd3JhcHBlckNsYXNzID0gJ2Zvcm0tZ3JvdXAnO1xyXG5cclxuICAgIGlmIChlcnJvciAmJiBlcnJvci5sZW5ndGggPiAwKSB7XHJcbiAgICAgICAgd3JhcHBlckNsYXNzICs9ICcgaGFzLWVycm9yJztcclxuICAgIH1cclxuXHJcbiAgICByZXR1cm4gKFxyXG4gICAgICAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT17IHdyYXBwZXJDbGFzcyB9PlxyXG4gICAgICAgICAgICAgICAgICAgPGxhYmVsIGh0bWxGb3I9J3sgbmFtZSB9Jz57IGxhYmVsIH08L2xhYmVsPlxyXG4gICAgICAgICAgICAgICAgICAgPGRpdiBjbGFzc05hbWU9J2ZpZWxkJz5cclxuICAgICAgICAgICAgICAgICAgICAgICA8aW5wdXQgdHlwZSAgICAgICAgPSAndGV4dCdcclxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgY2xhc3NOYW1lICAgPSAnZm9ybS1jb250cm9sJ1xyXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICBuYW1lICAgICAgICA9IHsgbmFtZSB9XHJcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHZhbHVlICAgICAgID0geyB2YWx1ZSB9XHJcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHBsYWNlaG9sZGVyID0geyBwbGFjZWhvbGRlciB9XHJcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIG9uQ2hhbmdlICAgID0geyBvbkNoYW5nZSB9XHJcbiAgICAgICAgICAgICAgICAgICAgICAgLz5cclxuICAgICAgICAgICAgICAgICAgICAgICB7IGVycm9yICYmIDxkaXYgY2xhc3NOYW1lPSdhbGVydCBhbGVydC1kYW5nZXInPmVycm9yPC9kaXY+IH1cclxuICAgICAgICAgICAgICAgICAgIDwvZGl2PlxyXG4gICAgICAgICAgICAgICA8L2Rpdj5cclxuICAgICAgICAgICApO1xyXG59O1xyXG5cclxuVGV4dElucHV0LnByb3BUeXBlcyA9IHtcclxuICAgICAgICAgICAgICAgICAgICAgICAgICBuYW1lOiAgICAgICAgUHJvcFR5cGVzLnN0cmluZy5pc1JlcXVpcmVkLFxyXG4gICAgICAgICAgICAgICAgICAgICAgICAgIGxhYmVsOiAgICAgICBQcm9wVHlwZXMuc3RyaW5nLmlzUmVxdWlyZWQsXHJcbiAgICAgICAgICAgICAgICAgICAgICAgICAgb25DaGFuZ2U6ICAgIFByb3BUeXBlcy5mdW5jLmlzUmVxdWlyZWQsXHJcbiAgICAgICAgICAgICAgICAgICAgICAgICAgcGxhY2Vob2xkZXI6IFByb3BUeXBlcy5zdHJpbmcsXHJcbiAgICAgICAgICAgICAgICAgICAgICAgICAgdmFsdWU6ICAgICAgIFByb3BUeXBlcy5zdHJpbmcsXHJcbiAgICAgICAgICAgICAgICAgICAgICAgICAgZXJyb3I6ICAgICAgIFByb3BUeXBlcy5zdHJpbmdcclxuICAgICAgICAgICAgICAgICAgICAgIH07XHJcblxyXG5leHBvcnQgZGVmYXVsdCBUZXh0SW5wdXQ7XG5cblxuLy8gV0VCUEFDSyBGT09URVIgLy9cbi8vIGFwcC9jb21wb25lbnRzL2NvbW1vbi9UZXh0SW5wdXQuanMiXSwibWFwcGluZ3MiOiI7Ozs7OztBQUFBO0FBQ0E7OztBQUFBO0FBQ0E7Ozs7O0FBQ0E7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFDQTtBQUFBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFBQTtBQUNBO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFDQTtBQUFBO0FBQUE7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFMQTtBQU9BO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFSQTtBQUZBO0FBY0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBTkE7QUFDQTtBQVFBIiwic291cmNlUm9vdCI6IiJ9");
+
+/***/ }),
+
+/***/ 725:
+/* unknown exports provided */
+/* all exports used */
+/*!*******************************************!*\
+  !*** ./app/components/demo/CourseForm.js ***!
+  \*******************************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n      value: true\n});\n\nvar _react = __webpack_require__(/*! react */ 0);\n\nvar _react2 = _interopRequireDefault(_react);\n\nvar _propTypes = __webpack_require__(/*! prop-types */ 1);\n\nvar _propTypes2 = _interopRequireDefault(_propTypes);\n\nvar _TextInput = __webpack_require__(/*! ../common/TextInput */ 724);\n\nvar _TextInput2 = _interopRequireDefault(_TextInput);\n\nvar _SelectInput = __webpack_require__(/*! ../common/SelectInput */ 721);\n\nvar _SelectInput2 = _interopRequireDefault(_SelectInput);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nvar CourseForm = function CourseForm(_ref) {\n      var course = _ref.course,\n          allAuthors = _ref.allAuthors,\n          onSave = _ref.onSave,\n          onChange = _ref.onChange,\n          saving = _ref.saving,\n          errors = _ref.errors;\n\n      return _react2.default.createElement(\n            'form',\n            null,\n            _react2.default.createElement(\n                  'h1',\n                  null,\n                  'Manage Course'\n            ),\n            _react2.default.createElement(_TextInput2.default, { name: 'title',\n                  label: 'Title',\n                  value: course.title,\n                  onChange: onChange,\n                  error: errors.title }),\n            _react2.default.createElement(_SelectInput2.default, { name: 'authorId',\n                  label: 'Author',\n                  value: course.authorId,\n                  defaultOption: 'Select Author',\n                  options: allAuthors,\n                  onChange: onChange,\n                  error: errors.authorId }),\n            _react2.default.createElement(_TextInput2.default, { name: 'category',\n                  label: 'Category',\n                  value: course.category,\n                  onChange: onChange,\n                  error: errors.category }),\n            _react2.default.createElement(_TextInput2.default, { name: 'length',\n                  label: 'Length',\n                  value: course.length,\n                  onChange: onChange,\n                  error: errors.length }),\n            _react2.default.createElement('input', { type: 'submit',\n                  disabled: saving,\n                  value: saving ? 'Saving...' : 'Save',\n                  className: 'btn btn-primary',\n                  onClick: onSave })\n      );\n};\n\nCourseForm.propTypes = {\n      course: _react2.default.PropTypes.object.isRequired,\n      allAuthors: _react2.default.PropTypes.array,\n      onSave: _react2.default.PropTypes.func.isRequired,\n      onChange: _react2.default.PropTypes.func.isRequired,\n      saving: _react2.default.PropTypes.bool,\n      errors: _react2.default.PropTypes.object\n};\n\nexports.default = CourseForm;//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiNzI1LmpzIiwic291cmNlcyI6WyJ3ZWJwYWNrOi8vL2FwcC9jb21wb25lbnRzL2RlbW8vQ291cnNlRm9ybS5qcz9lZDdiIl0sInNvdXJjZXNDb250ZW50IjpbImltcG9ydCBSZWFjdCAgICAgICBmcm9tICdyZWFjdCc7XHJcbmltcG9ydCBQcm9wVHlwZXMgICBmcm9tICdwcm9wLXR5cGVzJztcclxuXHJcbmltcG9ydCBUZXh0SW5wdXQgICBmcm9tICcuLi9jb21tb24vVGV4dElucHV0JztcclxuaW1wb3J0IFNlbGVjdElucHV0IGZyb20gJy4uL2NvbW1vbi9TZWxlY3RJbnB1dCc7XHJcblxyXG5jb25zdCBDb3Vyc2VGb3JtID0gKHsgY291cnNlLCBhbGxBdXRob3JzLCBvblNhdmUsIG9uQ2hhbmdlLCBzYXZpbmcsIGVycm9ycyB9KSA9PiB7XHJcbiAgcmV0dXJuIChcclxuICAgIDxmb3JtPlxyXG5cclxuICAgICAgPGgxPk1hbmFnZSBDb3Vyc2U8L2gxPlxyXG5cclxuICAgICAgPFRleHRJbnB1dCAgIG5hbWUgICAgICAgICAgPSBcInRpdGxlXCJcclxuICAgICAgICAgICAgICAgICAgIGxhYmVsICAgICAgICAgPSBcIlRpdGxlXCJcclxuICAgICAgICAgICAgICAgICAgIHZhbHVlICAgICAgICAgPSB7IGNvdXJzZS50aXRsZSB9XHJcbiAgICAgICAgICAgICAgICAgICBvbkNoYW5nZSAgICAgID0geyBvbkNoYW5nZSB9XHJcbiAgICAgICAgICAgICAgICAgICBlcnJvciAgICAgICAgID0geyBlcnJvcnMudGl0bGUgfS8+XHJcblxyXG4gICAgICA8U2VsZWN0SW5wdXQgbmFtZSAgICAgICAgICA9IFwiYXV0aG9ySWRcIlxyXG4gICAgICAgICAgICAgICAgICAgbGFiZWwgICAgICAgICA9IFwiQXV0aG9yXCJcclxuICAgICAgICAgICAgICAgICAgIHZhbHVlICAgICAgICAgPSB7IGNvdXJzZS5hdXRob3JJZCB9XHJcbiAgICAgICAgICAgICAgICAgICBkZWZhdWx0T3B0aW9uID0gXCJTZWxlY3QgQXV0aG9yXCJcclxuICAgICAgICAgICAgICAgICAgIG9wdGlvbnMgICAgICAgPSB7IGFsbEF1dGhvcnMgfVxyXG4gICAgICAgICAgICAgICAgICAgb25DaGFuZ2UgICAgICA9IHsgb25DaGFuZ2UgfSBcclxuICAgICAgICAgICAgICAgICAgIGVycm9yICAgICAgICAgPSB7IGVycm9ycy5hdXRob3JJZCB9Lz5cclxuXHJcbiAgICAgIDxUZXh0SW5wdXQgICBuYW1lICAgICAgICAgID0gXCJjYXRlZ29yeVwiXHJcbiAgICAgICAgICAgICAgICAgICBsYWJlbCAgICAgICAgID0gXCJDYXRlZ29yeVwiXHJcbiAgICAgICAgICAgICAgICAgICB2YWx1ZSAgICAgICAgID0geyBjb3Vyc2UuY2F0ZWdvcnkgfVxyXG4gICAgICAgICAgICAgICAgICAgb25DaGFuZ2UgICAgICA9IHsgb25DaGFuZ2UgfVxyXG4gICAgICAgICAgICAgICAgICAgZXJyb3IgICAgICAgICA9IHsgZXJyb3JzLmNhdGVnb3J5IH0vPlxyXG5cclxuICAgICAgPFRleHRJbnB1dCAgIG5hbWUgICAgICAgICAgPSBcImxlbmd0aFwiXHJcbiAgICAgICAgICAgICAgICAgICBsYWJlbCAgICAgICAgID0gXCJMZW5ndGhcIlxyXG4gICAgICAgICAgICAgICAgICAgdmFsdWUgICAgICAgICA9IHsgY291cnNlLmxlbmd0aCB9XHJcbiAgICAgICAgICAgICAgICAgICBvbkNoYW5nZSAgICAgID0geyBvbkNoYW5nZSB9XHJcbiAgICAgICAgICAgICAgICAgICBlcnJvciAgICAgICAgID0geyBlcnJvcnMubGVuZ3RoIH0vPlxyXG5cclxuICAgICAgPGlucHV0ICAgICAgIHR5cGUgICAgICAgICAgPSBcInN1Ym1pdFwiXHJcbiAgICAgICAgICAgICAgICAgICBkaXNhYmxlZCAgICAgID0geyBzYXZpbmcgfVxyXG4gICAgICAgICAgICAgICAgICAgdmFsdWUgICAgICAgICA9IHsgc2F2aW5nID8gJ1NhdmluZy4uLicgOiAnU2F2ZScgfVxyXG4gICAgICAgICAgICAgICAgICAgY2xhc3NOYW1lICAgICA9IFwiYnRuIGJ0bi1wcmltYXJ5XCJcclxuICAgICAgICAgICAgICAgICAgIG9uQ2xpY2sgICAgICAgPSB7IG9uU2F2ZSB9Lz5cclxuICAgIDwvZm9ybT5cclxuICApO1xyXG59O1xyXG5cclxuQ291cnNlRm9ybS5wcm9wVHlwZXMgPSB7XHJcbiAgICAgICAgICAgICAgICAgICAgICAgICBjb3Vyc2U6ICAgICBSZWFjdC5Qcm9wVHlwZXMub2JqZWN0LmlzUmVxdWlyZWQsXHJcbiAgICAgICAgICAgICAgICAgICAgICAgICBhbGxBdXRob3JzOiBSZWFjdC5Qcm9wVHlwZXMuYXJyYXksXHJcbiAgICAgICAgICAgICAgICAgICAgICAgICBvblNhdmU6ICAgICBSZWFjdC5Qcm9wVHlwZXMuZnVuYy5pc1JlcXVpcmVkLFxyXG4gICAgICAgICAgICAgICAgICAgICAgICAgb25DaGFuZ2U6ICAgUmVhY3QuUHJvcFR5cGVzLmZ1bmMuaXNSZXF1aXJlZCxcclxuICAgICAgICAgICAgICAgICAgICAgICAgIHNhdmluZzogICAgIFJlYWN0LlByb3BUeXBlcy5ib29sLFxyXG4gICAgICAgICAgICAgICAgICAgICAgICAgZXJyb3JzOiAgICAgUmVhY3QuUHJvcFR5cGVzLm9iamVjdFxyXG4gICAgICAgICAgICAgICAgICAgICAgIH07XHJcblxyXG5leHBvcnQgZGVmYXVsdCBDb3Vyc2VGb3JtO1xyXG5cblxuXG4vLyBXRUJQQUNLIEZPT1RFUiAvL1xuLy8gYXBwL2NvbXBvbmVudHMvZGVtby9Db3Vyc2VGb3JtLmpzIl0sIm1hcHBpbmdzIjoiOzs7Ozs7QUFBQTtBQUNBOzs7QUFBQTtBQUNBOzs7QUFDQTtBQUNBOzs7QUFBQTtBQUNBOzs7OztBQUNBO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQ0E7QUFBQTtBQUNBO0FBQUE7QUFFQTtBQUFBO0FBQUE7QUFBQTtBQUFBO0FBRUE7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUVBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBRUE7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUVBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFFQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBbENBO0FBcUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQU5BO0FBQ0E7QUFRQSIsInNvdXJjZVJvb3QiOiIifQ==");
+
+/***/ }),
+
+/***/ 726:
+/* unknown exports provided */
+/* all exports used */
+/*!*******************************************!*\
+  !*** ./app/components/demo/CourseList.js ***!
+  \*******************************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\n\nvar _react = __webpack_require__(/*! react */ 0);\n\nvar _react2 = _interopRequireDefault(_react);\n\nvar _propTypes = __webpack_require__(/*! prop-types */ 1);\n\nvar _propTypes2 = _interopRequireDefault(_propTypes);\n\nvar _CourseListRow = __webpack_require__(/*! ./CourseListRow */ 727);\n\nvar _CourseListRow2 = _interopRequireDefault(_CourseListRow);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nvar CourseList = function CourseList(_ref) {\n  var courses = _ref.courses;\n\n  return _react2.default.createElement(\n    'table',\n    { className: 'table' },\n    _react2.default.createElement(\n      'thead',\n      null,\n      _react2.default.createElement(\n        'tr',\n        null,\n        _react2.default.createElement(\n          'th',\n          null,\n          '\\xA0'\n        ),\n        _react2.default.createElement(\n          'th',\n          null,\n          'Title'\n        ),\n        _react2.default.createElement(\n          'th',\n          null,\n          'Author'\n        ),\n        _react2.default.createElement(\n          'th',\n          null,\n          'Category'\n        ),\n        _react2.default.createElement(\n          'th',\n          null,\n          'Length'\n        )\n      )\n    ),\n    _react2.default.createElement(\n      'tbody',\n      null,\n      courses.map(function (course) {\n        return _react2.default.createElement(_CourseListRow2.default, { key: course.id, course: course });\n      })\n    )\n  );\n};\n\nCourseList.propTypes = {\n  courses: _propTypes2.default.array.isRequired\n};\n\nexports.default = CourseList;//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiNzI2LmpzIiwic291cmNlcyI6WyJ3ZWJwYWNrOi8vL2FwcC9jb21wb25lbnRzL2RlbW8vQ291cnNlTGlzdC5qcz8zNDJjIl0sInNvdXJjZXNDb250ZW50IjpbImltcG9ydCBSZWFjdCAgICAgICAgIGZyb20gJ3JlYWN0JztcclxuaW1wb3J0IFByb3BUeXBlcyAgICAgZnJvbSAncHJvcC10eXBlcyc7XHJcblxyXG5pbXBvcnQgQ291cnNlTGlzdFJvdyBmcm9tICcuL0NvdXJzZUxpc3RSb3cnO1xyXG5cclxuY29uc3QgQ291cnNlTGlzdCA9ICh7IGNvdXJzZXMgfSkgPT4ge1xyXG4gIHJldHVybiAoXHJcbiAgICA8dGFibGUgY2xhc3NOYW1lPVwidGFibGVcIj5cclxuICAgICAgPHRoZWFkPlxyXG4gICAgICA8dHI+XHJcbiAgICAgICAgPHRoPiZuYnNwOzwvdGg+XHJcbiAgICAgICAgPHRoPlRpdGxlPC90aD5cclxuICAgICAgICA8dGg+QXV0aG9yPC90aD5cclxuICAgICAgICA8dGg+Q2F0ZWdvcnk8L3RoPlxyXG4gICAgICAgIDx0aD5MZW5ndGg8L3RoPlxyXG4gICAgICA8L3RyPlxyXG4gICAgICA8L3RoZWFkPlxyXG4gICAgICA8dGJvZHk+XHJcbiAgICAgICAgeyBjb3Vyc2VzLm1hcChjb3Vyc2UgPT4gPENvdXJzZUxpc3RSb3cga2V5ID0geyBjb3Vyc2UuaWQgfSBjb3Vyc2UgPSB7IGNvdXJzZSB9Lz4pIH1cclxuICAgICAgPC90Ym9keT5cclxuICAgIDwvdGFibGU+XHJcbiAgKTtcclxufTtcclxuXHJcbkNvdXJzZUxpc3QucHJvcFR5cGVzID0ge1xyXG4gICAgICAgICAgICAgICAgICAgICAgICAgICBjb3Vyc2VzOiBQcm9wVHlwZXMuYXJyYXkuaXNSZXF1aXJlZFxyXG4gICAgICAgICAgICAgICAgICAgICAgIH07XHJcblxyXG5leHBvcnQgZGVmYXVsdCBDb3Vyc2VMaXN0O1xyXG5cblxuXG4vLyBXRUJQQUNLIEZPT1RFUiAvL1xuLy8gYXBwL2NvbXBvbmVudHMvZGVtby9Db3Vyc2VMaXN0LmpzIl0sIm1hcHBpbmdzIjoiOzs7Ozs7QUFBQTtBQUNBOzs7QUFBQTtBQUNBOzs7QUFDQTtBQUNBOzs7OztBQUNBO0FBQUE7QUFDQTtBQUFBO0FBQ0E7QUFBQTtBQUNBO0FBQUE7QUFBQTtBQUNBO0FBQUE7QUFBQTtBQUNBO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFDQTtBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQ0E7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUNBO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFDQTtBQUFBO0FBQUE7QUFBQTtBQUFBO0FBTEE7QUFEQTtBQVNBO0FBQUE7QUFBQTtBQUNBO0FBQUE7QUFBQTtBQURBO0FBVkE7QUFlQTtBQUNBO0FBQ0E7QUFDQTtBQURBO0FBQ0E7QUFHQSIsInNvdXJjZVJvb3QiOiIifQ==");
+
+/***/ }),
+
+/***/ 727:
+/* unknown exports provided */
+/* all exports used */
+/*!**********************************************!*\
+  !*** ./app/components/demo/CourseListRow.js ***!
+  \**********************************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\n\nvar _react = __webpack_require__(/*! react */ 0);\n\nvar _react2 = _interopRequireDefault(_react);\n\nvar _propTypes = __webpack_require__(/*! prop-types */ 1);\n\nvar _propTypes2 = _interopRequireDefault(_propTypes);\n\nvar _reactRouter = __webpack_require__(/*! react-router */ 33);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nvar CourseListRow = function CourseListRow(_ref) {\n  var course = _ref.course;\n\n  return _react2.default.createElement(\n    'tr',\n    null,\n    _react2.default.createElement(\n      'td',\n      null,\n      _react2.default.createElement(\n        'a',\n        { href: course.watchHref, target: '_blank' },\n        'Watch'\n      )\n    ),\n    _react2.default.createElement(\n      'td',\n      null,\n      _react2.default.createElement(\n        _reactRouter.Link,\n        { to: '/course/' + course.id },\n        course.title\n      )\n    ),\n    _react2.default.createElement(\n      'td',\n      null,\n      course.authorId\n    ),\n    _react2.default.createElement(\n      'td',\n      null,\n      course.category\n    ),\n    _react2.default.createElement(\n      'td',\n      null,\n      course.length\n    )\n  );\n};\n\nCourseListRow.propTypes = {\n  course: _propTypes2.default.object.isRequired\n};\n\nexports.default = CourseListRow;//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiNzI3LmpzIiwic291cmNlcyI6WyJ3ZWJwYWNrOi8vL2FwcC9jb21wb25lbnRzL2RlbW8vQ291cnNlTGlzdFJvdy5qcz8yZGYzIl0sInNvdXJjZXNDb250ZW50IjpbImltcG9ydCBSZWFjdCAgICAgZnJvbSAncmVhY3QnO1xyXG5pbXBvcnQgUHJvcFR5cGVzIGZyb20gJ3Byb3AtdHlwZXMnO1xyXG5pbXBvcnQgeyBMaW5rIH0gIGZyb20gJ3JlYWN0LXJvdXRlcic7XHJcblxyXG5jb25zdCBDb3Vyc2VMaXN0Um93ID0gKHsgY291cnNlIH0pID0+IHtcclxuICAgIHJldHVybiAoXHJcbiAgICAgIDx0cj5cclxuICAgICAgICA8dGQ+PGEgaHJlZiA9IHsgY291cnNlLndhdGNoSHJlZiB9IHRhcmdldD1cIl9ibGFua1wiPldhdGNoPC9hPjwvdGQ+XHJcbiAgICAgICAgPHRkPjxMaW5rIHRvID0geyAnL2NvdXJzZS8nICsgY291cnNlLmlkIH0+eyBjb3Vyc2UudGl0bGUgfTwvTGluaz48L3RkPlxyXG4gICAgICAgIDx0ZD57IGNvdXJzZS5hdXRob3JJZCB9PC90ZD5cclxuICAgICAgICA8dGQ+eyBjb3Vyc2UuY2F0ZWdvcnkgfTwvdGQ+XHJcbiAgICAgICAgPHRkPnsgY291cnNlLmxlbmd0aCAgIH08L3RkPlxyXG4gICAgICA8L3RyPlxyXG4gICk7XHJcbn07XHJcblxyXG5Db3Vyc2VMaXN0Um93LnByb3BUeXBlcyA9IHtcclxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgY291cnNlOiBQcm9wVHlwZXMub2JqZWN0LmlzUmVxdWlyZWRcclxuICAgICAgICAgICAgICAgICAgICAgICAgICB9O1xyXG5cclxuZXhwb3J0IGRlZmF1bHQgQ291cnNlTGlzdFJvdztcclxuXG5cblxuLy8gV0VCUEFDSyBGT09URVIgLy9cbi8vIGFwcC9jb21wb25lbnRzL2RlbW8vQ291cnNlTGlzdFJvdy5qcyJdLCJtYXBwaW5ncyI6Ijs7Ozs7O0FBQUE7QUFDQTs7O0FBQUE7QUFDQTs7O0FBQUE7QUFDQTs7O0FBQ0E7QUFBQTtBQUNBO0FBQUE7QUFDQTtBQUFBO0FBQ0E7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQ0E7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQ0E7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUNBO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFDQTtBQUFBO0FBQUE7QUFBQTtBQUFBO0FBTEE7QUFRQTtBQUNBO0FBQ0E7QUFDQTtBQURBO0FBQ0E7QUFHQSIsInNvdXJjZVJvb3QiOiIifQ==");
+
+/***/ }),
+
+/***/ 728:
+/* unknown exports provided */
+/* all exports used */
+/*!****************************************!*\
+  !*** ./app/components/demo/Courses.js ***!
+  \****************************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n    value: true\n});\n\nvar _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if (\"value\" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();\n\nvar _react = __webpack_require__(/*! react */ 0);\n\nvar _react2 = _interopRequireDefault(_react);\n\nvar _propTypes = __webpack_require__(/*! prop-types */ 1);\n\nvar _propTypes2 = _interopRequireDefault(_propTypes);\n\nvar _redux = __webpack_require__(/*! redux */ 95);\n\nvar _reactRedux = __webpack_require__(/*! react-redux */ 96);\n\nvar _reactRouter = __webpack_require__(/*! react-router */ 33);\n\nvar _courseActions = __webpack_require__(/*! ../../actions/courseActions */ 232);\n\nvar courseActions = _interopRequireWildcard(_courseActions);\n\nvar _CourseList = __webpack_require__(/*! ./CourseList */ 726);\n\nvar _CourseList2 = _interopRequireDefault(_CourseList);\n\nfunction _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nfunction _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\"Cannot call a class as a function\"); } }\n\nfunction _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError(\"this hasn't been initialised - super() hasn't been called\"); } return call && (typeof call === \"object\" || typeof call === \"function\") ? call : self; }\n\nfunction _inherits(subClass, superClass) { if (typeof superClass !== \"function\" && superClass !== null) { throw new TypeError(\"Super expression must either be null or a function, not \" + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }\n\nvar Courses = function (_React$Component) {\n    _inherits(Courses, _React$Component);\n\n    function Courses(props, context) {\n        _classCallCheck(this, Courses);\n\n        var _this = _possibleConstructorReturn(this, (Courses.__proto__ || Object.getPrototypeOf(Courses)).call(this, props, context));\n\n        _this.redirectToAddCoursePage = _this.redirectToAddCoursePage.bind(_this);\n        return _this;\n    }\n\n    _createClass(Courses, [{\n        key: 'courseRow',\n        value: function courseRow(course, index) {\n            return _react2.default.createElement(\n                'div',\n                { key: index },\n                course.title\n            );\n        }\n    }, {\n        key: 'redirectToAddCoursePage',\n        value: function redirectToAddCoursePage() {\n            _reactRouter.browserHistory.push('/course');\n        }\n    }, {\n        key: 'render',\n        value: function render() {\n\n            var courses = this.props.courses;\n            var user = this.props.user;\n\n            return _react2.default.createElement(\n                'div',\n                null,\n                _react2.default.createElement(\n                    'div',\n                    null,\n                    _react2.default.createElement(\n                        'div',\n                        null,\n                        user.UserDisplayName\n                    )\n                ),\n                _react2.default.createElement(\n                    'h1',\n                    null,\n                    'Courses'\n                ),\n                _react2.default.createElement('input', { type: 'submit', value: 'Add Course', className: 'btn btn-primary', onClick: this.redirectToAddCoursePage }),\n                _react2.default.createElement(_CourseList2.default, { courses: courses })\n            );\n        }\n    }]);\n\n    return Courses;\n}(_react2.default.Component);\n\nCourses.propTypes = {\n    actions: _propTypes2.default.object.isRequired,\n    courses: _propTypes2.default.array.isRequired\n};\n\n// 'mapStateToProps' defines what part of the redux store to expose to child components.\n// When you define this function, it subscribes to redux store's updates.\n// Each property defined will become a property of the component.\n// In short, it defines an object with properties exposed to the component.\n//\n//      e.g. this.props.courses...\n//\n// The 'state' parameter represents the 'state' in the redux store.\n// \n// The 'state.courses' property is determined by the choice to name the property 'courses' \n// in the 'rootReducer' of index.js. In this case, 'courses' was just an 'alias' of the \n// 'courseReducer'\n// \n// So if you wanted to expose the entire store could you just say { everything: state } ?\n//\n// 'ownProps' is useful for accessing routing-related props injected by react-router.\n//\n\nvar mapStateToProps = function mapStateToProps(state, ownProps) {\n    return {\n        courses: state.courses\n    };\n};\n\n// 'mapDispatchToProps' exposes the actions exposed to the component.\n\nvar mapDispatchToProps = function mapDispatchToProps(dispatch) {\n    return {\n        actions: (0, _redux.bindActionCreators)(courseActions, dispatch)\n    };\n};\n\n// Instead of exporting a 'plain' component...\n// .. export a component that's decorated by the react-redux connect function.\n// The connect function is used to interact with react-redux and can be referred to as 'container-components'.\n// \n// If you OMIT the 'mapDispatchToProps' parameter, the 'connect' function injects a 'dispatch' property to \n// the component. That is, this component automatically gets a 'dispatch' property attached to it.\n// The 'dispatch' function is a function which allows you to fire off the actions defined in 'courseActions.js'.\n//\n// To dispatch an action, a reference to actions is needed. e.g. courseActions.\n// \n// The 'dispatch' function could then referenced as follows... \n//\n//          this.props.dispatch(courseActions.getCourses());\n// \n// This is somewhat verbose, so an alternative would be to call the 'mapDispatchToProps' function instead.\n//\n// It's important to note that when implementing 'mapDispatchToProps', 'dispatch' is *NOT* injected.\n// \nexports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Courses);//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiNzI4LmpzIiwic291cmNlcyI6WyJ3ZWJwYWNrOi8vL2FwcC9jb21wb25lbnRzL2RlbW8vQ291cnNlcy5qcz9kYzhjIl0sInNvdXJjZXNDb250ZW50IjpbImltcG9ydCBSZWFjdCAgICAgICAgICAgICAgICAgIGZyb20gJ3JlYWN0JztcclxuaW1wb3J0IFByb3BUeXBlcyAgICAgICAgICAgICAgZnJvbSAncHJvcC10eXBlcyc7XHJcbmltcG9ydCB7IGJpbmRBY3Rpb25DcmVhdG9ycyB9IGZyb20gJ3JlZHV4JztcclxuaW1wb3J0IHsgY29ubmVjdCB9ICAgICAgICAgICAgZnJvbSAncmVhY3QtcmVkdXgnO1xyXG5pbXBvcnQgeyBicm93c2VySGlzdG9yeSB9ICAgICBmcm9tICdyZWFjdC1yb3V0ZXInO1xyXG5cclxuaW1wb3J0ICogYXMgY291cnNlQWN0aW9ucyAgICAgZnJvbSAnLi4vLi4vYWN0aW9ucy9jb3Vyc2VBY3Rpb25zJztcclxuXHJcbmltcG9ydCBDb3Vyc2VMaXN0ICAgICAgICAgICAgIGZyb20gJy4vQ291cnNlTGlzdCc7XHJcblxyXG5jbGFzcyBDb3Vyc2VzIGV4dGVuZHMgUmVhY3QuQ29tcG9uZW50IHtcclxuXHJcbiAgICBjb25zdHJ1Y3Rvcihwcm9wcywgY29udGV4dCkge1xyXG5cclxuICAgICAgICBzdXBlcihwcm9wcywgY29udGV4dCk7XHJcblxyXG4gICAgICAgIHRoaXMucmVkaXJlY3RUb0FkZENvdXJzZVBhZ2UgPSB0aGlzLnJlZGlyZWN0VG9BZGRDb3Vyc2VQYWdlLmJpbmQodGhpcyk7XHJcbiAgICB9XHJcblxyXG4gICAgY291cnNlUm93KGNvdXJzZSwgaW5kZXgpIHtcclxuICAgICAgICByZXR1cm4gKFxyXG4gICAgICAgICAgICAgICAgIDxkaXYga2V5PXsgaW5kZXggfT57IGNvdXJzZS50aXRsZSB9PC9kaXY+XHJcbiAgICAgICAgICAgICAgICk7XHJcbiAgICB9XHJcblxyXG4gICAgcmVkaXJlY3RUb0FkZENvdXJzZVBhZ2UoKSB7XHJcbiAgICAgICAgYnJvd3Nlckhpc3RvcnkucHVzaCgnL2NvdXJzZScpO1xyXG4gICAgfVxyXG5cclxuICAgIHJlbmRlcigpIHtcclxuXHJcbiAgICAgICAgY29uc3QgY291cnNlcyA9IHRoaXMucHJvcHMuY291cnNlcztcclxuICAgICAgICBjb25zdCB1c2VyID0gdGhpcy5wcm9wcy51c2VyO1xyXG5cclxuICAgICAgICByZXR1cm4gKFxyXG4gICAgICAgICAgICAgICAgICAgPGRpdj5cclxuICAgICAgICAgICAgICAgICAgICAgICA8ZGl2PlxyXG4gICAgICAgICAgICAgICAgICAgICAgICAgICA8ZGl2PlxyXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgeyB1c2VyLlVzZXJEaXNwbGF5TmFtZSB9XHJcbiAgICAgICAgICAgICAgICAgICAgICAgICAgIDwvZGl2PlxyXG4gICAgICAgICAgICAgICAgICAgICAgIDwvZGl2PlxyXG4gICAgICAgICAgICAgICAgICAgICAgIDxoMT5Db3Vyc2VzPC9oMT5cclxuICAgICAgICAgICAgICAgICAgICAgICA8aW5wdXQgdHlwZT0nc3VibWl0JyB2YWx1ZT0nQWRkIENvdXJzZScgY2xhc3NOYW1lPSdidG4gYnRuLXByaW1hcnknIG9uQ2xpY2sgPSB7IHRoaXMucmVkaXJlY3RUb0FkZENvdXJzZVBhZ2UgfSAvPlxyXG4gICAgICAgICAgICAgICAgICAgICAgIDxDb3Vyc2VMaXN0IGNvdXJzZXMgPSB7IGNvdXJzZXMgfSAvPlxyXG4gICAgICAgICAgICAgICAgICAgPC9kaXY+XHJcbiAgICAgICAgICAgICAgICk7XHJcbiAgICB9XHJcbn1cclxuXHJcbkNvdXJzZXMucHJvcFR5cGVzID0ge1xyXG4gICAgICAgICAgICAgICAgICAgICAgICBhY3Rpb25zOiBQcm9wVHlwZXMub2JqZWN0LmlzUmVxdWlyZWQsXHJcbiAgICAgICAgICAgICAgICAgICAgICAgIGNvdXJzZXM6IFByb3BUeXBlcy5hcnJheS5pc1JlcXVpcmVkXHJcbiAgICAgICAgICAgICAgICAgICAgfTtcclxuXHJcbi8vICdtYXBTdGF0ZVRvUHJvcHMnIGRlZmluZXMgd2hhdCBwYXJ0IG9mIHRoZSByZWR1eCBzdG9yZSB0byBleHBvc2UgdG8gY2hpbGQgY29tcG9uZW50cy5cclxuLy8gV2hlbiB5b3UgZGVmaW5lIHRoaXMgZnVuY3Rpb24sIGl0IHN1YnNjcmliZXMgdG8gcmVkdXggc3RvcmUncyB1cGRhdGVzLlxyXG4vLyBFYWNoIHByb3BlcnR5IGRlZmluZWQgd2lsbCBiZWNvbWUgYSBwcm9wZXJ0eSBvZiB0aGUgY29tcG9uZW50LlxyXG4vLyBJbiBzaG9ydCwgaXQgZGVmaW5lcyBhbiBvYmplY3Qgd2l0aCBwcm9wZXJ0aWVzIGV4cG9zZWQgdG8gdGhlIGNvbXBvbmVudC5cclxuLy9cclxuLy8gICAgICBlLmcuIHRoaXMucHJvcHMuY291cnNlcy4uLlxyXG4vL1xyXG4vLyBUaGUgJ3N0YXRlJyBwYXJhbWV0ZXIgcmVwcmVzZW50cyB0aGUgJ3N0YXRlJyBpbiB0aGUgcmVkdXggc3RvcmUuXHJcbi8vIFxyXG4vLyBUaGUgJ3N0YXRlLmNvdXJzZXMnIHByb3BlcnR5IGlzIGRldGVybWluZWQgYnkgdGhlIGNob2ljZSB0byBuYW1lIHRoZSBwcm9wZXJ0eSAnY291cnNlcycgXHJcbi8vIGluIHRoZSAncm9vdFJlZHVjZXInIG9mIGluZGV4LmpzLiBJbiB0aGlzIGNhc2UsICdjb3Vyc2VzJyB3YXMganVzdCBhbiAnYWxpYXMnIG9mIHRoZSBcclxuLy8gJ2NvdXJzZVJlZHVjZXInXHJcbi8vIFxyXG4vLyBTbyBpZiB5b3Ugd2FudGVkIHRvIGV4cG9zZSB0aGUgZW50aXJlIHN0b3JlIGNvdWxkIHlvdSBqdXN0IHNheSB7IGV2ZXJ5dGhpbmc6IHN0YXRlIH0gP1xyXG4vL1xyXG4vLyAnb3duUHJvcHMnIGlzIHVzZWZ1bCBmb3IgYWNjZXNzaW5nIHJvdXRpbmctcmVsYXRlZCBwcm9wcyBpbmplY3RlZCBieSByZWFjdC1yb3V0ZXIuXHJcbi8vXHJcblxyXG5jb25zdCBtYXBTdGF0ZVRvUHJvcHMgPSAoc3RhdGUsIG93blByb3BzKSA9PiAoe1xyXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBjb3Vyc2VzOiBzdGF0ZS5jb3Vyc2VzXHJcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICB9KTtcclxuXHJcbi8vICdtYXBEaXNwYXRjaFRvUHJvcHMnIGV4cG9zZXMgdGhlIGFjdGlvbnMgZXhwb3NlZCB0byB0aGUgY29tcG9uZW50LlxyXG5cclxuY29uc3QgbWFwRGlzcGF0Y2hUb1Byb3BzID0gKGRpc3BhdGNoKSA9PiB7IFxyXG4gICAgcmV0dXJuIHtcclxuICAgICAgICAgICAgICAgYWN0aW9uczogYmluZEFjdGlvbkNyZWF0b3JzKGNvdXJzZUFjdGlvbnMsIGRpc3BhdGNoKVxyXG4gICAgICAgICAgIH07XHJcbn07XHJcblxyXG4vLyBJbnN0ZWFkIG9mIGV4cG9ydGluZyBhICdwbGFpbicgY29tcG9uZW50Li4uXHJcbi8vIC4uIGV4cG9ydCBhIGNvbXBvbmVudCB0aGF0J3MgZGVjb3JhdGVkIGJ5IHRoZSByZWFjdC1yZWR1eCBjb25uZWN0IGZ1bmN0aW9uLlxyXG4vLyBUaGUgY29ubmVjdCBmdW5jdGlvbiBpcyB1c2VkIHRvIGludGVyYWN0IHdpdGggcmVhY3QtcmVkdXggYW5kIGNhbiBiZSByZWZlcnJlZCB0byBhcyAnY29udGFpbmVyLWNvbXBvbmVudHMnLlxyXG4vLyBcclxuLy8gSWYgeW91IE9NSVQgdGhlICdtYXBEaXNwYXRjaFRvUHJvcHMnIHBhcmFtZXRlciwgdGhlICdjb25uZWN0JyBmdW5jdGlvbiBpbmplY3RzIGEgJ2Rpc3BhdGNoJyBwcm9wZXJ0eSB0byBcclxuLy8gdGhlIGNvbXBvbmVudC4gVGhhdCBpcywgdGhpcyBjb21wb25lbnQgYXV0b21hdGljYWxseSBnZXRzIGEgJ2Rpc3BhdGNoJyBwcm9wZXJ0eSBhdHRhY2hlZCB0byBpdC5cclxuLy8gVGhlICdkaXNwYXRjaCcgZnVuY3Rpb24gaXMgYSBmdW5jdGlvbiB3aGljaCBhbGxvd3MgeW91IHRvIGZpcmUgb2ZmIHRoZSBhY3Rpb25zIGRlZmluZWQgaW4gJ2NvdXJzZUFjdGlvbnMuanMnLlxyXG4vL1xyXG4vLyBUbyBkaXNwYXRjaCBhbiBhY3Rpb24sIGEgcmVmZXJlbmNlIHRvIGFjdGlvbnMgaXMgbmVlZGVkLiBlLmcuIGNvdXJzZUFjdGlvbnMuXHJcbi8vIFxyXG4vLyBUaGUgJ2Rpc3BhdGNoJyBmdW5jdGlvbiBjb3VsZCB0aGVuIHJlZmVyZW5jZWQgYXMgZm9sbG93cy4uLiBcclxuLy9cclxuLy8gICAgICAgICAgdGhpcy5wcm9wcy5kaXNwYXRjaChjb3Vyc2VBY3Rpb25zLmdldENvdXJzZXMoKSk7XHJcbi8vIFxyXG4vLyBUaGlzIGlzIHNvbWV3aGF0IHZlcmJvc2UsIHNvIGFuIGFsdGVybmF0aXZlIHdvdWxkIGJlIHRvIGNhbGwgdGhlICdtYXBEaXNwYXRjaFRvUHJvcHMnIGZ1bmN0aW9uIGluc3RlYWQuXHJcbi8vXHJcbi8vIEl0J3MgaW1wb3J0YW50IHRvIG5vdGUgdGhhdCB3aGVuIGltcGxlbWVudGluZyAnbWFwRGlzcGF0Y2hUb1Byb3BzJywgJ2Rpc3BhdGNoJyBpcyAqTk9UKiBpbmplY3RlZC5cclxuLy8gXHJcbmV4cG9ydCBkZWZhdWx0IGNvbm5lY3QobWFwU3RhdGVUb1Byb3BzLCBtYXBEaXNwYXRjaFRvUHJvcHMpKENvdXJzZXMpO1xuXG5cbi8vIFdFQlBBQ0sgRk9PVEVSIC8vXG4vLyBhcHAvY29tcG9uZW50cy9kZW1vL0NvdXJzZXMuanMiXSwibWFwcGluZ3MiOiI7Ozs7Ozs7O0FBQUE7QUFDQTs7O0FBQUE7QUFDQTs7O0FBQUE7QUFDQTtBQUFBO0FBQ0E7QUFBQTtBQUNBO0FBQ0E7QUFDQTtBQURBO0FBQ0E7QUFDQTtBQUNBOzs7Ozs7Ozs7Ozs7O0FBQ0E7OztBQUVBO0FBQUE7QUFDQTtBQURBO0FBQ0E7QUFHQTtBQUpBO0FBS0E7QUFDQTs7O0FBQ0E7QUFDQTtBQUNBO0FBQUE7QUFBQTtBQUFBO0FBRUE7OztBQUVBO0FBQ0E7QUFDQTs7O0FBRUE7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFBQTtBQUNBO0FBQUE7QUFBQTtBQUNBO0FBQUE7QUFBQTtBQUNBO0FBREE7QUFEQTtBQUtBO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFDQTtBQUNBO0FBUkE7QUFXQTs7OztBQXBDQTtBQUNBO0FBc0NBO0FBQ0E7QUFDQTtBQUZBO0FBQ0E7QUFJQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUFBO0FBQ0E7QUFEQTtBQUFBO0FBQ0E7QUFHQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBREE7QUFHQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBOyIsInNvdXJjZVJvb3QiOiIifQ==");
+
+/***/ }),
+
+/***/ 729:
+/* unknown exports provided */
+/* all exports used */
+/*!*************************************************!*\
+  !*** ./app/components/demo/ManageCoursePage.js ***!
+  \*************************************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n    value: true\n});\n\nvar _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if (\"value\" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();\n\nvar _react = __webpack_require__(/*! react */ 0);\n\nvar _react2 = _interopRequireDefault(_react);\n\nvar _propTypes = __webpack_require__(/*! prop-types */ 1);\n\nvar _propTypes2 = _interopRequireDefault(_propTypes);\n\nvar _reactRedux = __webpack_require__(/*! react-redux */ 96);\n\nvar _redux = __webpack_require__(/*! redux */ 95);\n\nvar _toastr = __webpack_require__(/*! toastr */ 352);\n\nvar _toastr2 = _interopRequireDefault(_toastr);\n\nvar _courseActions = __webpack_require__(/*! ../../actions/courseActions */ 232);\n\nvar courseActions = _interopRequireWildcard(_courseActions);\n\nvar _CourseForm = __webpack_require__(/*! ./CourseForm */ 725);\n\nvar _CourseForm2 = _interopRequireDefault(_CourseForm);\n\nfunction _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nfunction _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\"Cannot call a class as a function\"); } }\n\nfunction _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError(\"this hasn't been initialised - super() hasn't been called\"); } return call && (typeof call === \"object\" || typeof call === \"function\") ? call : self; }\n\nfunction _inherits(subClass, superClass) { if (typeof superClass !== \"function\" && superClass !== null) { throw new TypeError(\"Super expression must either be null or a function, not \" + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }\n\nvar ManageCoursePage = function (_React$Component) {\n    _inherits(ManageCoursePage, _React$Component);\n\n    function ManageCoursePage(props, context) {\n        _classCallCheck(this, ManageCoursePage);\n\n        var _this = _possibleConstructorReturn(this, (ManageCoursePage.__proto__ || Object.getPrototypeOf(ManageCoursePage)).call(this, props, context));\n\n        _this.state = {\n            course: Object.assign({}, _this.props.course),\n            errors: {},\n            saving: false\n        };\n\n        _this.updateCourseState = _this.updateCourseState.bind(_this);\n        _this.saveCourse = _this.saveCourse.bind(_this);\n        return _this;\n    }\n\n    _createClass(ManageCoursePage, [{\n        key: 'componentWillMount',\n        value: function componentWillMount() {}\n    }, {\n        key: 'componentDidMount',\n        value: function componentDidMount() {}\n    }, {\n        key: 'componentWillReceiveProps',\n        value: function componentWillReceiveProps(nextProps) {\n\n            // Necessary to populate when existing course is loaded directly\n            if (this.props.course.id !== nextProps.course.id) {\n                this.setState({\n                    course: Object.assign({}, nextProps.course)\n                });\n            }\n        }\n    }, {\n        key: 'updateCourseState',\n        value: function updateCourseState(event) {\n            var field = event.target.name;\n            var course = this.state.course;\n            course[field] = event.target.value;\n            return this.setState({ course: course });\n        }\n    }, {\n        key: 'saveCourse',\n        value: function saveCourse(event) {\n            var _this2 = this;\n\n            event.preventDefault();\n            this.setState({ saving: true });\n            this.props.actions.saveCourse(this.state.course).then(function () {\n                return _this2.redirect();\n            }).catch(function (error) {\n                _toastr2.default.error(error);\n                _this2.setState({ saving: false });\n            });\n        }\n    }, {\n        key: 'redirect',\n        value: function redirect() {\n            this.setState({ saving: false });\n            _toastr2.default.success('Course saved');\n            this.context.router.push('/courses');\n        }\n    }, {\n        key: 'render',\n        value: function render() {\n            return _react2.default.createElement(_CourseForm2.default, { allAuthors: this.props.authors,\n                onChange: this.updateCourseState,\n                onSave: this.saveCourse,\n                course: this.state.course,\n                errors: this.state.errors,\n                saving: this.state.saving\n            });\n        }\n    }]);\n\n    return ManageCoursePage;\n}(_react2.default.Component);\n\nManageCoursePage.propTypes = {\n    course: _propTypes2.default.object.isRequired,\n    errors: _propTypes2.default.object,\n    authors: _propTypes2.default.array.isRequired,\n    actions: _propTypes2.default.object.isRequired\n};\n\nManageCoursePage.contextTypes = {\n    router: _propTypes2.default.object.isRequired\n};\n\nvar getCourseById = function getCourseById(courses, id) {\n    var course = courses.filter(function (course) {\n        return course.id == id;\n    });\n    if (course) return course[0];\n    return null;\n};\n\nvar mapStateToProps = function mapStateToProps(state, ownProps) {\n\n    var courseId = ownProps.params.id; // From the path '/course/:id'\n\n    var course = { id: '', watchHref: '', title: '', authorId: '', length: '', category: '' };\n\n    if (courseId && state.courses.length > 0) {\n        course = getCourseById(state.courses, courseId);\n    }\n\n    var authorsFormattedForDropdown = state.authors.map(function (author) {\n        return {\n            value: author.id,\n            text: author.firstName + ' ' + author.lastName\n        };\n    });\n\n    return {\n        course: course,\n        authors: authorsFormattedForDropdown\n    };\n};\n\nvar mapDispatchToProps = function mapDispatchToProps(dispatch) {\n    return {\n        actions: (0, _redux.bindActionCreators)(courseActions, dispatch)\n    };\n};\n\nexports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(ManageCoursePage);//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiNzI5LmpzIiwic291cmNlcyI6WyJ3ZWJwYWNrOi8vL2FwcC9jb21wb25lbnRzL2RlbW8vTWFuYWdlQ291cnNlUGFnZS5qcz9hNTIyIl0sInNvdXJjZXNDb250ZW50IjpbImltcG9ydCBSZWFjdCAgICAgICAgICAgICAgICAgIGZyb20gJ3JlYWN0JztcclxuaW1wb3J0IFByb3BUeXBlcyAgICAgICAgICAgICAgZnJvbSAncHJvcC10eXBlcyc7XHJcbmltcG9ydCB7IGNvbm5lY3QgfSAgICAgICAgICAgIGZyb20gJ3JlYWN0LXJlZHV4JztcclxuaW1wb3J0IHsgYmluZEFjdGlvbkNyZWF0b3JzIH0gZnJvbSAncmVkdXgnO1xyXG5pbXBvcnQgdG9hc3RyICAgICAgICAgICAgICAgICBmcm9tICd0b2FzdHInO1xyXG5cclxuaW1wb3J0ICogYXMgY291cnNlQWN0aW9ucyAgICAgZnJvbSAnLi4vLi4vYWN0aW9ucy9jb3Vyc2VBY3Rpb25zJztcclxuXHJcbmltcG9ydCBDb3Vyc2VGb3JtICAgICAgICAgICAgIGZyb20gJy4vQ291cnNlRm9ybSc7XHJcblxyXG5jbGFzcyBNYW5hZ2VDb3Vyc2VQYWdlIGV4dGVuZHMgUmVhY3QuQ29tcG9uZW50IHtcclxuXHJcbiAgICBjb25zdHJ1Y3Rvcihwcm9wcywgY29udGV4dCkge1xyXG5cclxuICAgICAgICBzdXBlcihwcm9wcywgY29udGV4dCk7XHJcblxyXG4gICAgICAgIHRoaXMuc3RhdGUgPSB7XHJcbiAgICAgICAgICAgICAgICAgICAgICAgICBjb3Vyc2U6IE9iamVjdC5hc3NpZ24oeyB9LCB0aGlzLnByb3BzLmNvdXJzZSksXHJcbiAgICAgICAgICAgICAgICAgICAgICAgICBlcnJvcnM6IHsgfSxcclxuICAgICAgICAgICAgICAgICAgICAgICAgIHNhdmluZzogZmFsc2VcclxuICAgICAgICAgICAgICAgICAgICAgfTtcclxuXHJcbiAgICAgICAgdGhpcy51cGRhdGVDb3Vyc2VTdGF0ZSA9IHRoaXMudXBkYXRlQ291cnNlU3RhdGUuYmluZCh0aGlzKTtcclxuICAgICAgICB0aGlzLnNhdmVDb3Vyc2UgICAgICAgID0gdGhpcy5zYXZlQ291cnNlLmJpbmQodGhpcyk7XHJcbiAgICB9XHJcblxyXG4gICAgY29tcG9uZW50V2lsbE1vdW50ICgpIHtcclxuXHJcbiAgICB9XHJcblxyXG4gICAgY29tcG9uZW50RGlkTW91bnQgKCkge1xyXG5cclxuICAgIH1cclxuXHJcbiAgICBjb21wb25lbnRXaWxsUmVjZWl2ZVByb3BzKG5leHRQcm9wcykge1xyXG5cclxuICAgICAgICAvLyBOZWNlc3NhcnkgdG8gcG9wdWxhdGUgd2hlbiBleGlzdGluZyBjb3Vyc2UgaXMgbG9hZGVkIGRpcmVjdGx5XHJcbiAgICAgICAgaWYgKHRoaXMucHJvcHMuY291cnNlLmlkICE9PSBuZXh0UHJvcHMuY291cnNlLmlkKSB7XHJcbiAgICAgICAgICAgIHRoaXMuc2V0U3RhdGUoe1xyXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgY291cnNlOiBPYmplY3QuYXNzaWduKHsgfSwgbmV4dFByb3BzLmNvdXJzZSlcclxuICAgICAgICAgICAgICAgICAgICAgICAgICB9KTtcclxuICAgICAgICB9XHJcbiAgICB9XHJcblxyXG4gICAgdXBkYXRlQ291cnNlU3RhdGUoZXZlbnQpIHtcclxuICAgICAgICBjb25zdCBmaWVsZCAgID0gZXZlbnQudGFyZ2V0Lm5hbWU7XHJcbiAgICAgICAgbGV0IGNvdXJzZSAgICA9IHRoaXMuc3RhdGUuY291cnNlO1xyXG4gICAgICAgIGNvdXJzZVtmaWVsZF0gPSBldmVudC50YXJnZXQudmFsdWU7XHJcbiAgICAgICAgcmV0dXJuIHRoaXMuc2V0U3RhdGUoeyBjb3Vyc2U6IGNvdXJzZSB9KTtcclxuICAgIH1cclxuXHJcbiAgICBzYXZlQ291cnNlKGV2ZW50KSB7XHJcbiAgICAgICAgZXZlbnQucHJldmVudERlZmF1bHQoKTtcclxuICAgICAgICB0aGlzLnNldFN0YXRlKHsgc2F2aW5nOiB0cnVlIH0pO1xyXG4gICAgICAgIHRoaXMucHJvcHMuYWN0aW9ucy5zYXZlQ291cnNlKHRoaXMuc3RhdGUuY291cnNlKVxyXG4gICAgICAgICAgICAgICAgICAgICAgICAgIC50aGVuKCgpID0+IHRoaXMucmVkaXJlY3QoKSlcclxuICAgICAgICAgICAgICAgICAgICAgICAgICAuY2F0Y2goZXJyb3IgPT4ge1xyXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICB0b2FzdHIuZXJyb3IoZXJyb3IpO1xyXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICB0aGlzLnNldFN0YXRlKHsgc2F2aW5nOiBmYWxzZSB9KTtcclxuICAgICAgICAgICAgICAgICAgICAgICAgICB9KTtcclxuICAgIH1cclxuXHJcbiAgICByZWRpcmVjdCgpIHtcclxuICAgICAgICB0aGlzLnNldFN0YXRlKHsgc2F2aW5nOiBmYWxzZSB9KTtcclxuICAgICAgICB0b2FzdHIuc3VjY2VzcygnQ291cnNlIHNhdmVkJyk7XHJcbiAgICAgICAgdGhpcy5jb250ZXh0LnJvdXRlci5wdXNoKCcvY291cnNlcycpO1xyXG4gICAgfVxyXG5cclxuICAgIHJlbmRlcigpIHtcclxuICAgICAgICByZXR1cm4gKFxyXG4gICAgICAgICAgICAgICAgICAgPENvdXJzZUZvcm0gYWxsQXV0aG9ycyA9IHsgdGhpcy5wcm9wcy5hdXRob3JzICAgICB9XHJcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBvbkNoYW5nZSAgID0geyB0aGlzLnVwZGF0ZUNvdXJzZVN0YXRlIH1cclxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIG9uU2F2ZSAgICAgPSB7IHRoaXMuc2F2ZUNvdXJzZSAgICAgICAgfVxyXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgY291cnNlICAgICA9IHsgdGhpcy5zdGF0ZS5jb3Vyc2UgICAgICB9XHJcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBlcnJvcnMgICAgID0geyB0aGlzLnN0YXRlLmVycm9ycyAgICAgIH1cclxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHNhdmluZyAgICAgPSB7IHRoaXMuc3RhdGUuc2F2aW5nICAgICAgfVxyXG4gICAgICAgICAgICAgICAgICAgLz5cclxuICAgICAgICAgICAgICAgKTtcclxuICAgIH1cclxufVxyXG5cclxuTWFuYWdlQ291cnNlUGFnZS5wcm9wVHlwZXMgPSB7XHJcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGNvdXJzZTogIFByb3BUeXBlcy5vYmplY3QuaXNSZXF1aXJlZCxcclxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgZXJyb3JzOiAgUHJvcFR5cGVzLm9iamVjdCxcclxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgYXV0aG9yczogUHJvcFR5cGVzLmFycmF5LmlzUmVxdWlyZWQsXHJcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGFjdGlvbnM6IFByb3BUeXBlcy5vYmplY3QuaXNSZXF1aXJlZFxyXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgIH07XHJcblxyXG5NYW5hZ2VDb3Vyc2VQYWdlLmNvbnRleHRUeXBlcyA9IHtcclxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgcm91dGVyOiBQcm9wVHlwZXMub2JqZWN0LmlzUmVxdWlyZWRcclxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICB9O1xyXG5cclxuY29uc3QgZ2V0Q291cnNlQnlJZCA9IChjb3Vyc2VzLCBpZCkgPT4ge1xyXG4gICAgY29uc3QgY291cnNlID0gY291cnNlcy5maWx0ZXIoY291cnNlID0+IGNvdXJzZS5pZCA9PSBpZCk7XHJcbiAgICBpZiAoY291cnNlKSByZXR1cm4gY291cnNlWzBdO1xyXG4gICAgcmV0dXJuIG51bGw7XHJcbn07XHJcblxyXG5jb25zdCBtYXBTdGF0ZVRvUHJvcHMgPSAoc3RhdGUsIG93blByb3BzKSA9PiB7XHJcbiAgXHJcbiAgICBjb25zdCBjb3Vyc2VJZCA9IG93blByb3BzLnBhcmFtcy5pZDsgLy8gRnJvbSB0aGUgcGF0aCAnL2NvdXJzZS86aWQnXHJcblxyXG4gICAgbGV0IGNvdXJzZSA9IHtpZDogJycsIHdhdGNoSHJlZjonJywgdGl0bGU6ICcnLCBhdXRob3JJZDogJycsIGxlbmd0aDogJycsIGNhdGVnb3J5OiAnJ307XHJcblxyXG4gICAgaWYgKGNvdXJzZUlkICYmIHN0YXRlLmNvdXJzZXMubGVuZ3RoID4gMCkge1xyXG4gICAgICAgIGNvdXJzZSA9IGdldENvdXJzZUJ5SWQoc3RhdGUuY291cnNlcywgY291cnNlSWQpO1xyXG4gICAgfVxyXG5cclxuICAgIGNvbnN0IGF1dGhvcnNGb3JtYXR0ZWRGb3JEcm9wZG93biA9IHN0YXRlLmF1dGhvcnMubWFwKGF1dGhvciA9PiB7XHJcbiAgICAgICAgcmV0dXJuIHtcclxuICAgICAgICAgICAgICAgICAgIHZhbHVlOiBhdXRob3IuaWQsXHJcbiAgICAgICAgICAgICAgICAgICB0ZXh0OiAgYXV0aG9yLmZpcnN0TmFtZSArICcgJyArIGF1dGhvci5sYXN0TmFtZVxyXG4gICAgICAgICAgICAgICB9O1xyXG4gICAgfSk7XHJcbiAgXHJcbiAgICByZXR1cm4geyBcclxuICAgICAgICAgICAgICAgY291cnNlOiAgY291cnNlLFxyXG4gICAgICAgICAgICAgICBhdXRob3JzOiBhdXRob3JzRm9ybWF0dGVkRm9yRHJvcGRvd25cclxuICAgICAgICAgICB9O1xyXG59O1xyXG5cclxuY29uc3QgbWFwRGlzcGF0Y2hUb1Byb3BzID0gKGRpc3BhdGNoKSA9PiB7XHJcbiAgICByZXR1cm4ge1xyXG4gICAgICAgICAgICAgICBhY3Rpb25zOiBiaW5kQWN0aW9uQ3JlYXRvcnMoY291cnNlQWN0aW9ucywgZGlzcGF0Y2gpXHJcbiAgICAgICAgICAgfTtcclxufTtcclxuXHJcbmV4cG9ydCBkZWZhdWx0IGNvbm5lY3QobWFwU3RhdGVUb1Byb3BzLCBtYXBEaXNwYXRjaFRvUHJvcHMpKE1hbmFnZUNvdXJzZVBhZ2UpO1xuXG5cbi8vIFdFQlBBQ0sgRk9PVEVSIC8vXG4vLyBhcHAvY29tcG9uZW50cy9kZW1vL01hbmFnZUNvdXJzZVBhZ2UuanMiXSwibWFwcGluZ3MiOiI7Ozs7Ozs7O0FBQUE7QUFDQTs7O0FBQUE7QUFDQTs7O0FBQUE7QUFDQTtBQUFBO0FBQ0E7QUFBQTtBQUNBOzs7QUFDQTtBQUNBO0FBREE7QUFDQTtBQUNBO0FBQ0E7Ozs7Ozs7Ozs7Ozs7QUFDQTs7O0FBRUE7QUFBQTtBQUNBO0FBREE7QUFDQTtBQUdBO0FBQ0E7QUFDQTtBQUNBO0FBSEE7QUFDQTtBQUtBO0FBQ0E7QUFYQTtBQVlBO0FBQ0E7OztBQUNBOzs7QUFJQTs7O0FBSUE7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBREE7QUFHQTtBQUNBOzs7QUFFQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7OztBQUVBO0FBQUE7QUFDQTtBQUFBO0FBQ0E7QUFDQTtBQUNBO0FBQUE7QUFFQTtBQUNBO0FBQ0E7QUFDQTs7O0FBRUE7QUFDQTtBQUNBO0FBQ0E7QUFDQTs7O0FBRUE7QUFDQTtBQUVBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFMQTtBQVFBOzs7O0FBcEVBO0FBQ0E7QUFzRUE7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUpBO0FBQ0E7QUFNQTtBQUNBO0FBREE7QUFDQTtBQUdBO0FBQ0E7QUFBQTtBQUFBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBRkE7QUFJQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBRkE7QUFJQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBREE7QUFHQTtBQUNBOyIsInNvdXJjZVJvb3QiOiIifQ==");
+
+/***/ }),
+
+/***/ 730:
+/* unknown exports provided */
+/* all exports used */
+/*!*************************************!*\
+  !*** ./app/components/home/Home.js ***!
+  \*************************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n    value: true\n});\n\nvar _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if (\"value\" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();\n\nvar _react = __webpack_require__(/*! react */ 0);\n\nvar _react2 = _interopRequireDefault(_react);\n\nvar _reactRouter = __webpack_require__(/*! react-router */ 33);\n\nvar _moment = __webpack_require__(/*! moment */ 4);\n\nvar _moment2 = _interopRequireDefault(_moment);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nfunction _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\"Cannot call a class as a function\"); } }\n\nfunction _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError(\"this hasn't been initialised - super() hasn't been called\"); } return call && (typeof call === \"object\" || typeof call === \"function\") ? call : self; }\n\nfunction _inherits(subClass, superClass) { if (typeof superClass !== \"function\" && superClass !== null) { throw new TypeError(\"Super expression must either be null or a function, not \" + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }\n\nvar Home = function (_React$Component) {\n    _inherits(Home, _React$Component);\n\n    function Home(props, context) {\n        _classCallCheck(this, Home);\n\n        return _possibleConstructorReturn(this, (Home.__proto__ || Object.getPrototypeOf(Home)).call(this, props, context));\n    }\n\n    _createClass(Home, [{\n        key: 'render',\n        value: function render() {\n\n            var formattedMomentDate = (0, _moment2.default)().format('dddd MMMM Do, YYYY');\n            var app = this.props.app;\n\n            return _react2.default.createElement(\n                'div',\n                null,\n                _react2.default.createElement(\n                    'div',\n                    { className: 'pad-20 white' },\n                    _react2.default.createElement(\n                        'div',\n                        { className: 'home-brand-button-block' },\n                        _react2.default.createElement(\n                            _reactRouter.IndexLink,\n                            { to: '/templates', className: 'no-underline' },\n                            _react2.default.createElement('img', { src: '../app/images/Mega-Runbook-Creator-Button-04.png', className: 'pointer;', title: 'Runbooks' }),\n                            _react2.default.createElement(\n                                'div',\n                                { className: 'home-date-block' },\n                                formattedMomentDate,\n                                _react2.default.createElement(\n                                    'div',\n                                    { className: 'opacity-50' },\n                                    app.user.UserDisplayName\n                                ),\n                                _react2.default.createElement(\n                                    'div',\n                                    null,\n                                    _react2.default.createElement('i', { className: 'fa fa-cog font-1-20 white opacity-10 margin-top-10 hidden' })\n                                ),\n                                _react2.default.createElement('img', { src: '../app/images/spiro.svg', className: 'spriro-03' })\n                            )\n                        )\n                    )\n                )\n            );\n        }\n    }]);\n\n    return Home;\n}(_react2.default.Component);\n\nexports.default = Home;//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiNzMwLmpzIiwic291cmNlcyI6WyJ3ZWJwYWNrOi8vL2FwcC9jb21wb25lbnRzL2hvbWUvSG9tZS5qcz9kNjEzIl0sInNvdXJjZXNDb250ZW50IjpbImltcG9ydCBSZWFjdCAgICAgICAgIGZyb20gJ3JlYWN0JztcclxuaW1wb3J0IHsgSW5kZXhMaW5rIH0gZnJvbSAncmVhY3Qtcm91dGVyJztcclxuaW1wb3J0IE1vbWVudCAgICAgICAgZnJvbSAnbW9tZW50JztcclxuXHJcbmNsYXNzIEhvbWUgZXh0ZW5kcyBSZWFjdC5Db21wb25lbnQge1xyXG5cclxuICAgIGNvbnN0cnVjdG9yKHByb3BzLCBjb250ZXh0KSB7XHJcblxyXG4gICAgICAgIHN1cGVyKHByb3BzLCBjb250ZXh0KTtcclxuICAgIH1cclxuXHJcbiAgICByZW5kZXIoKSB7XHJcblxyXG4gICAgICAgIGNvbnN0IGZvcm1hdHRlZE1vbWVudERhdGUgPSBNb21lbnQoKS5mb3JtYXQoJ2RkZGQgTU1NTSBEbywgWVlZWScpO1xyXG4gICAgICAgIGNvbnN0IGFwcCA9IHRoaXMucHJvcHMuYXBwO1xyXG5cclxuICAgICAgICByZXR1cm4gKFxyXG4gICAgICAgICAgICAgICAgICAgPGRpdj5cclxuICAgICAgICAgICAgICAgICAgICAgPGRpdiBjbGFzc05hbWU9J3BhZC0yMCB3aGl0ZSc+XHJcbiAgICAgICAgICAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT0naG9tZS1icmFuZC1idXR0b24tYmxvY2snPlxyXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgIDxJbmRleExpbmsgdG89Jy90ZW1wbGF0ZXMnIGNsYXNzTmFtZT0nbm8tdW5kZXJsaW5lJz5cclxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPGltZyBzcmM9Jy4uL2FwcC9pbWFnZXMvTWVnYS1SdW5ib29rLUNyZWF0b3ItQnV0dG9uLTA0LnBuZycgY2xhc3NOYW1lPSdwb2ludGVyOycgdGl0bGU9J1J1bmJvb2tzJy8+XHJcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPSdob21lLWRhdGUtYmxvY2snPlxyXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgeyBmb3JtYXR0ZWRNb21lbnREYXRlIH1cclxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPSdvcGFjaXR5LTUwJz57IGFwcC51c2VyLlVzZXJEaXNwbGF5TmFtZSB9PC9kaXY+XHJcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8ZGl2PlxyXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDxpIGNsYXNzTmFtZT0nZmEgZmEtY29nIGZvbnQtMS0yMCB3aGl0ZSBvcGFjaXR5LTEwIG1hcmdpbi10b3AtMTAgaGlkZGVuJz48L2k+XHJcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8L2Rpdj5cclxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDxpbWcgc3JjPScuLi9hcHAvaW1hZ2VzL3NwaXJvLnN2ZycgY2xhc3NOYW1lPSdzcHJpcm8tMDMnIC8+XHJcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDwvZGl2PlxyXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgIDwvSW5kZXhMaW5rPlxyXG4gICAgICAgICAgICAgICAgICAgICAgICAgPC9kaXY+XHJcbiAgICAgICAgICAgICAgICAgICAgIDwvZGl2PlxyXG4gICAgICAgICAgICAgICAgICAgPC9kaXY+XHJcbiAgICAgICAgICAgICAgICk7XHJcbiAgICB9XHJcbn1cclxuXHJcbmV4cG9ydCBkZWZhdWx0IEhvbWU7XHJcblxuXG5cbi8vIFdFQlBBQ0sgRk9PVEVSIC8vXG4vLyBhcHAvY29tcG9uZW50cy9ob21lL0hvbWUuanMiXSwibWFwcGluZ3MiOiI7Ozs7Ozs7O0FBQUE7QUFDQTs7O0FBQUE7QUFDQTtBQUFBO0FBQ0E7Ozs7Ozs7Ozs7O0FBQ0E7OztBQUVBO0FBQUE7QUFDQTtBQURBO0FBR0E7QUFDQTs7O0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFBQTtBQUNBO0FBQUE7QUFBQTtBQUNBO0FBQUE7QUFBQTtBQUNBO0FBQUE7QUFBQTtBQUNBO0FBQ0E7QUFBQTtBQUFBO0FBQ0E7QUFDQTtBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQ0E7QUFBQTtBQUFBO0FBQ0E7QUFEQTtBQUdBO0FBTkE7QUFGQTtBQURBO0FBREE7QUFEQTtBQWtCQTs7OztBQS9CQTtBQUNBO0FBaUNBIiwic291cmNlUm9vdCI6IiJ9");
+
+/***/ }),
+
+/***/ 731:
+/* unknown exports provided */
+/* all exports used */
+/*!*************************************!*\
+  !*** ./app/components/rfcs/Rfcs.js ***!
+  \*************************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\n\nvar _react = __webpack_require__(/*! react */ 0);\n\nvar _react2 = _interopRequireDefault(_react);\n\nvar _reactRouter = __webpack_require__(/*! react-router */ 33);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nvar Rfcs = function Rfcs() {\n  return _react2.default.createElement(\n    'div',\n    null,\n    _react2.default.createElement(\n      'h1',\n      null,\n      'RFCs'\n    )\n  );\n};\n\nexports.default = Rfcs;//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiNzMxLmpzIiwic291cmNlcyI6WyJ3ZWJwYWNrOi8vL2FwcC9jb21wb25lbnRzL3JmY3MvUmZjcy5qcz9jMDA5Il0sInNvdXJjZXNDb250ZW50IjpbImltcG9ydCBSZWFjdCAgICBmcm9tICdyZWFjdCc7XHJcbmltcG9ydCB7IExpbmsgfSBmcm9tICdyZWFjdC1yb3V0ZXInO1xyXG5cclxuY29uc3QgUmZjcyA9ICgpID0+IHtcclxuICAgIHJldHVybiAoXHJcbiAgICAgIDxkaXY+XHJcbiAgICAgICAgPGgxPlJGQ3M8L2gxPlxyXG4gICAgICA8L2Rpdj5cclxuICApO1xyXG59O1xyXG5cclxuZXhwb3J0IGRlZmF1bHQgUmZjcztcclxuXG5cblxuLy8gV0VCUEFDSyBGT09URVIgLy9cbi8vIGFwcC9jb21wb25lbnRzL3JmY3MvUmZjcy5qcyJdLCJtYXBwaW5ncyI6Ijs7Ozs7O0FBQUE7QUFDQTs7O0FBQUE7QUFDQTs7O0FBQ0E7QUFDQTtBQUNBO0FBQUE7QUFDQTtBQUFBO0FBQUE7QUFBQTtBQUFBO0FBREE7QUFJQTtBQUNBOyIsInNvdXJjZVJvb3QiOiIifQ==");
+
+/***/ }),
+
+/***/ 732:
+/* unknown exports provided */
+/* all exports used */
+/*!*********************************************!*\
+  !*** ./app/components/runbooks/Runbooks.js ***!
+  \*********************************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\n\nvar _react = __webpack_require__(/*! react */ 0);\n\nvar _react2 = _interopRequireDefault(_react);\n\nvar _reactRouter = __webpack_require__(/*! react-router */ 33);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nvar Runbooks = function Runbooks() {\n  return _react2.default.createElement(\n    'div',\n    null,\n    'RUNBOOKS'\n  );\n};\n\nexports.default = Runbooks;//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiNzMyLmpzIiwic291cmNlcyI6WyJ3ZWJwYWNrOi8vL2FwcC9jb21wb25lbnRzL3J1bmJvb2tzL1J1bmJvb2tzLmpzPzliZTYiXSwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IFJlYWN0ICAgIGZyb20gJ3JlYWN0JztcclxuaW1wb3J0IHsgTGluayB9IGZyb20gJ3JlYWN0LXJvdXRlcic7XHJcblxyXG5jb25zdCBSdW5ib29rcyA9ICgpID0+IHtcclxuICAgIHJldHVybiAoXHJcbiAgICAgIDxkaXY+XHJcbiAgICAgICAgUlVOQk9PS1NcclxuICAgICAgPC9kaXY+XHJcbiAgKTtcclxufTtcclxuXHJcbmV4cG9ydCBkZWZhdWx0IFJ1bmJvb2tzO1xyXG5cblxuXG4vLyBXRUJQQUNLIEZPT1RFUiAvL1xuLy8gYXBwL2NvbXBvbmVudHMvcnVuYm9va3MvUnVuYm9va3MuanMiXSwibWFwcGluZ3MiOiI7Ozs7OztBQUFBO0FBQ0E7OztBQUFBO0FBQ0E7OztBQUNBO0FBQ0E7QUFDQTtBQUFBO0FBQUE7QUFBQTtBQUlBO0FBQ0E7Iiwic291cmNlUm9vdCI6IiJ9");
+
+/***/ }),
+
+/***/ 733:
+/* unknown exports provided */
+/* all exports used */
+/*!***********************************************!*\
+  !*** ./app/components/templates/Templates.js ***!
+  \***********************************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\n\nvar _react = __webpack_require__(/*! react */ 0);\n\nvar _react2 = _interopRequireDefault(_react);\n\nvar _reactRouter = __webpack_require__(/*! react-router */ 33);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nvar Templates = function Templates() {\n  return _react2.default.createElement(\n    'div',\n    null,\n    'TEMPLATES'\n  );\n};\n\nexports.default = Templates;//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiNzMzLmpzIiwic291cmNlcyI6WyJ3ZWJwYWNrOi8vL2FwcC9jb21wb25lbnRzL3RlbXBsYXRlcy9UZW1wbGF0ZXMuanM/MDAzYiJdLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgUmVhY3QgICAgZnJvbSAncmVhY3QnO1xyXG5pbXBvcnQgeyBMaW5rIH0gZnJvbSAncmVhY3Qtcm91dGVyJztcclxuXHJcbmNvbnN0IFRlbXBsYXRlcyA9ICgpID0+IHtcclxuICAgIHJldHVybiAoXHJcbiAgICAgIDxkaXY+XHJcbiAgICAgICAgVEVNUExBVEVTXHJcbiAgICAgIDwvZGl2PlxyXG4gICk7XHJcbn07XHJcblxyXG5leHBvcnQgZGVmYXVsdCBUZW1wbGF0ZXM7XHJcblxuXG5cbi8vIFdFQlBBQ0sgRk9PVEVSIC8vXG4vLyBhcHAvY29tcG9uZW50cy90ZW1wbGF0ZXMvVGVtcGxhdGVzLmpzIl0sIm1hcHBpbmdzIjoiOzs7Ozs7QUFBQTtBQUNBOzs7QUFBQTtBQUNBOzs7QUFDQTtBQUNBO0FBQ0E7QUFBQTtBQUFBO0FBQUE7QUFJQTtBQUNBOyIsInNvdXJjZVJvb3QiOiIifQ==");
+
+/***/ }),
+
+/***/ 734:
+/* unknown exports provided */
+/* all exports used */
+/*!*******************************************!*\
+  !*** ./app/reducers/ajaxStatusReducer.js ***!
+  \*******************************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n    value: true\n});\n\nvar _actionTypes = __webpack_require__(/*! ../actions/actionTypes.js */ 97);\n\nvar types = _interopRequireWildcard(_actionTypes);\n\nvar _initialState = __webpack_require__(/*! ../store/initialState */ 178);\n\nvar _initialState2 = _interopRequireDefault(_initialState);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nfunction _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }\n\nvar actionTypeEndsInSuccess = function actionTypeEndsInSuccess(type) {\n    return type.substring(type.length - 8) === '_SUCCESS';\n};\n\nvar ajaxStatusReducer = function ajaxStatusReducer() {\n    var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : _initialState2.default.ajaxCallsInProgress;\n    var action = arguments[1];\n\n\n    if (action.type === types.BEGIN_AJAX_CALL) {\n        return state + 1;\n    } else if (action.type === types.AJAX_CALL_ERROR || actionTypeEndsInSuccess(action.type)) {\n        return state - 1;\n    }\n\n    return state;\n};\n\nexports.default = ajaxStatusReducer;//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiNzM0LmpzIiwic291cmNlcyI6WyJ3ZWJwYWNrOi8vL2FwcC9yZWR1Y2Vycy9hamF4U3RhdHVzUmVkdWNlci5qcz85NjU4Il0sInNvdXJjZXNDb250ZW50IjpbImltcG9ydCAqIGFzIHR5cGVzICAgZnJvbSAnLi4vYWN0aW9ucy9hY3Rpb25UeXBlcy5qcyc7XHJcbmltcG9ydCBpbml0aWFsU3RhdGUgZnJvbSAnLi4vc3RvcmUvaW5pdGlhbFN0YXRlJztcclxuXHJcbmNvbnN0IGFjdGlvblR5cGVFbmRzSW5TdWNjZXNzID0gKHR5cGUpID0+IHtcclxuICAgIHJldHVybiB0eXBlLnN1YnN0cmluZyh0eXBlLmxlbmd0aCAtIDgpID09PSAnX1NVQ0NFU1MnO1xyXG59O1xyXG5cclxuY29uc3QgYWpheFN0YXR1c1JlZHVjZXIgPSAoc3RhdGUgPSBpbml0aWFsU3RhdGUuYWpheENhbGxzSW5Qcm9ncmVzcywgYWN0aW9uKSA9PiB7XHJcblxyXG4gICAgaWYgKGFjdGlvbi50eXBlID09PSB0eXBlcy5CRUdJTl9BSkFYX0NBTEwpIHtcclxuICAgICAgICByZXR1cm4gc3RhdGUgKyAxO1xyXG4gICAgfSBlbHNlIGlmIChhY3Rpb24udHlwZSA9PT0gdHlwZXMuQUpBWF9DQUxMX0VSUk9SIHx8IGFjdGlvblR5cGVFbmRzSW5TdWNjZXNzKGFjdGlvbi50eXBlKSkge1xyXG4gICAgICAgIHJldHVybiBzdGF0ZSAtMTtcclxuICAgIH1cclxuXHJcbiAgICByZXR1cm4gc3RhdGU7XHJcbn07XHJcblxyXG5leHBvcnQgZGVmYXVsdCBhamF4U3RhdHVzUmVkdWNlcjtcblxuXG4vLyBXRUJQQUNLIEZPT1RFUiAvL1xuLy8gYXBwL3JlZHVjZXJzL2FqYXhTdGF0dXNSZWR1Y2VyLmpzIl0sIm1hcHBpbmdzIjoiOzs7Ozs7QUFBQTtBQUNBO0FBREE7QUFDQTtBQUFBO0FBQ0E7Ozs7Ozs7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQUE7QUFBQTtBQUNBO0FBQ0E7QUFBQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7Iiwic291cmNlUm9vdCI6IiJ9");
+
+/***/ }),
+
+/***/ 735:
+/* unknown exports provided */
+/* all exports used */
+/*!************************************!*\
+  !*** ./app/reducers/appReducer.js ***!
+  \************************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n    value: true\n});\nexports.default = appReducer;\n\nvar _actionTypes = __webpack_require__(/*! ../actions/actionTypes */ 97);\n\nvar types = _interopRequireWildcard(_actionTypes);\n\nvar _initialState = __webpack_require__(/*! ../store/initialState */ 178);\n\nvar _initialState2 = _interopRequireDefault(_initialState);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nfunction _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }\n\n// - The whole state of an app is stored in an object tree inside a single store.\n// - The only way to change the state tree is to emit an action, an object describing what happened.\n// - To specify how actions transform the state tree, you write pure reducers.\n// \n// The 'state' parameter passed in will be the 'app' property defined in the combined reducers of 'index.js'...\n//\n//          const rootReducer = combineReducers({\n//                                                 ...\n//                                                 app: appReducer\n//                                                 ...\n//                                             });\n// \n// That is, this reducer is specifically managing that 'app' property.\n//\n// 'app' is currently shaped as follows:\n//\n//          app: {\n//                   user:                 {},\n//                   lookups:              {},\n//                   isUserInitialized:    false,\n//                   isLookupsInitialized: false,\n//                   isAppInitialized:     false,\n//                   ajaxCallsInProgress:  0\n//               }\n\nfunction appReducer() {\n    var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : _initialState2.default.app;\n    var action = arguments[1];\n\n\n    var new_state;\n\n    switch (action.type) {\n\n        case types.IS_INITIALIZED:\n            new_state = Object.assign({}, state, action.app);\n            return new_state;\n\n        case types.GET_USER_SUCCESS:\n            new_state = Object.assign({}, state, { user: action.user });\n            return new_state;\n\n        case types.GET_LOOKUPS_SUCCESS:\n            new_state = Object.assign({}, state, { lookups: action.lookups });\n            return new_state;\n\n        default:\n            return state;\n    }\n}//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiNzM1LmpzIiwic291cmNlcyI6WyJ3ZWJwYWNrOi8vL2FwcC9yZWR1Y2Vycy9hcHBSZWR1Y2VyLmpzPzY5MWIiXSwic291cmNlc0NvbnRlbnQiOlsiXHJcbmltcG9ydCAqIGFzIHR5cGVzICAgZnJvbSAnLi4vYWN0aW9ucy9hY3Rpb25UeXBlcyc7XHJcbmltcG9ydCBpbml0aWFsU3RhdGUgZnJvbSAnLi4vc3RvcmUvaW5pdGlhbFN0YXRlJztcclxuXHJcbi8vIC0gVGhlIHdob2xlIHN0YXRlIG9mIGFuIGFwcCBpcyBzdG9yZWQgaW4gYW4gb2JqZWN0IHRyZWUgaW5zaWRlIGEgc2luZ2xlIHN0b3JlLlxyXG4vLyAtIFRoZSBvbmx5IHdheSB0byBjaGFuZ2UgdGhlIHN0YXRlIHRyZWUgaXMgdG8gZW1pdCBhbiBhY3Rpb24sIGFuIG9iamVjdCBkZXNjcmliaW5nIHdoYXQgaGFwcGVuZWQuXHJcbi8vIC0gVG8gc3BlY2lmeSBob3cgYWN0aW9ucyB0cmFuc2Zvcm0gdGhlIHN0YXRlIHRyZWUsIHlvdSB3cml0ZSBwdXJlIHJlZHVjZXJzLlxyXG4vLyBcclxuLy8gVGhlICdzdGF0ZScgcGFyYW1ldGVyIHBhc3NlZCBpbiB3aWxsIGJlIHRoZSAnYXBwJyBwcm9wZXJ0eSBkZWZpbmVkIGluIHRoZSBjb21iaW5lZCByZWR1Y2VycyBvZiAnaW5kZXguanMnLi4uXHJcbi8vXHJcbi8vICAgICAgICAgIGNvbnN0IHJvb3RSZWR1Y2VyID0gY29tYmluZVJlZHVjZXJzKHtcclxuLy8gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgLi4uXHJcbi8vICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGFwcDogYXBwUmVkdWNlclxyXG4vLyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAuLi5cclxuLy8gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICB9KTtcclxuLy8gXHJcbi8vIFRoYXQgaXMsIHRoaXMgcmVkdWNlciBpcyBzcGVjaWZpY2FsbHkgbWFuYWdpbmcgdGhhdCAnYXBwJyBwcm9wZXJ0eS5cclxuLy9cclxuLy8gJ2FwcCcgaXMgY3VycmVudGx5IHNoYXBlZCBhcyBmb2xsb3dzOlxyXG4vL1xyXG4vLyAgICAgICAgICBhcHA6IHtcclxuLy8gICAgICAgICAgICAgICAgICAgdXNlcjogICAgICAgICAgICAgICAgIHt9LFxyXG4vLyAgICAgICAgICAgICAgICAgICBsb29rdXBzOiAgICAgICAgICAgICAge30sXHJcbi8vICAgICAgICAgICAgICAgICAgIGlzVXNlckluaXRpYWxpemVkOiAgICBmYWxzZSxcclxuLy8gICAgICAgICAgICAgICAgICAgaXNMb29rdXBzSW5pdGlhbGl6ZWQ6IGZhbHNlLFxyXG4vLyAgICAgICAgICAgICAgICAgICBpc0FwcEluaXRpYWxpemVkOiAgICAgZmFsc2UsXHJcbi8vICAgICAgICAgICAgICAgICAgIGFqYXhDYWxsc0luUHJvZ3Jlc3M6ICAwXHJcbi8vICAgICAgICAgICAgICAgfVxyXG5cclxuZXhwb3J0IGRlZmF1bHQgZnVuY3Rpb24gYXBwUmVkdWNlcihzdGF0ZSA9IGluaXRpYWxTdGF0ZS5hcHAsIGFjdGlvbikge1xyXG5cclxuICAgIHZhciBuZXdfc3RhdGU7XHJcblxyXG4gICAgc3dpdGNoIChhY3Rpb24udHlwZSkge1xyXG5cclxuICAgICAgICBjYXNlIHR5cGVzLklTX0lOSVRJQUxJWkVEOlxyXG4gICAgICAgICAgICBuZXdfc3RhdGUgPSBPYmplY3QuYXNzaWduKHt9LCBzdGF0ZSwgYWN0aW9uLmFwcCk7XHJcbiAgICAgICAgICAgIHJldHVybiBuZXdfc3RhdGU7XHJcblxyXG4gICAgICAgIGNhc2UgdHlwZXMuR0VUX1VTRVJfU1VDQ0VTUzpcclxuICAgICAgICAgICAgbmV3X3N0YXRlID0gT2JqZWN0LmFzc2lnbih7fSwgc3RhdGUsIHsgdXNlcjogYWN0aW9uLnVzZXIgfSk7XHJcbiAgICAgICAgICAgIHJldHVybiBuZXdfc3RhdGU7XHJcblxyXG4gICAgICAgIGNhc2UgdHlwZXMuR0VUX0xPT0tVUFNfU1VDQ0VTUzpcclxuICAgICAgICAgICAgbmV3X3N0YXRlID0gT2JqZWN0LmFzc2lnbih7fSwgc3RhdGUsIHsgbG9va3VwczogYWN0aW9uLmxvb2t1cHMgfSk7XHJcbiAgICAgICAgICAgIHJldHVybiBuZXdfc3RhdGU7XHJcblxyXG4gICAgICAgIGRlZmF1bHQ6XHJcbiAgICAgICAgICAgIHJldHVybiBzdGF0ZTtcclxuICAgIH1cclxufVxyXG5cblxuXG4vLyBXRUJQQUNLIEZPT1RFUiAvL1xuLy8gYXBwL3JlZHVjZXJzL2FwcFJlZHVjZXIuanMiXSwibWFwcGluZ3MiOiI7Ozs7O0FBNkJBO0FBQ0E7QUE3QkE7QUFDQTtBQURBO0FBQ0E7QUFBQTtBQUNBOzs7Ozs7O0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUFBO0FBQUE7QUFDQTtBQUNBO0FBQUE7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBZkE7QUFpQkEiLCJzb3VyY2VSb290IjoiIn0=");
+
+/***/ }),
+
+/***/ 736:
+/* unknown exports provided */
+/* all exports used */
+/*!***************************************!*\
+  !*** ./app/reducers/authorReducer.js ***!
+  \***************************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n    value: true\n});\nexports.default = authorReducer;\n\nvar _actionTypes = __webpack_require__(/*! ../actions/actionTypes */ 97);\n\nvar types = _interopRequireWildcard(_actionTypes);\n\nvar _initialState = __webpack_require__(/*! ../store/initialState */ 178);\n\nvar _initialState2 = _interopRequireDefault(_initialState);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nfunction _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }\n\nfunction authorReducer() {\n    var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : _initialState2.default.authors;\n    var action = arguments[1];\n\n\n    switch (action.type) {\n\n        case types.LOAD_AUTHORS_SUCCESS:\n            return action.authors;\n\n        default:\n            return state;\n    }\n}//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiNzM2LmpzIiwic291cmNlcyI6WyJ3ZWJwYWNrOi8vL2FwcC9yZWR1Y2Vycy9hdXRob3JSZWR1Y2VyLmpzPzNlNjAiXSwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0ICogYXMgdHlwZXMgICBmcm9tICcuLi9hY3Rpb25zL2FjdGlvblR5cGVzJztcclxuaW1wb3J0IGluaXRpYWxTdGF0ZSBmcm9tICcuLi9zdG9yZS9pbml0aWFsU3RhdGUnO1xyXG5cclxuZXhwb3J0IGRlZmF1bHQgZnVuY3Rpb24gYXV0aG9yUmVkdWNlcihzdGF0ZSA9IGluaXRpYWxTdGF0ZS5hdXRob3JzLCBhY3Rpb24pIHtcclxuXHJcbiAgICBzd2l0Y2ggKGFjdGlvbi50eXBlKSB7XHJcblxyXG4gICAgICAgIGNhc2UgdHlwZXMuTE9BRF9BVVRIT1JTX1NVQ0NFU1M6XHJcbiAgICAgICAgICAgIHJldHVybiBhY3Rpb24uYXV0aG9ycztcclxuXHJcbiAgICAgICAgZGVmYXVsdDpcclxuICAgICAgICAgICAgcmV0dXJuIHN0YXRlO1xyXG4gICAgfVxyXG59XG5cblxuLy8gV0VCUEFDSyBGT09URVIgLy9cbi8vIGFwcC9yZWR1Y2Vycy9hdXRob3JSZWR1Y2VyLmpzIl0sIm1hcHBpbmdzIjoiOzs7OztBQUdBO0FBQ0E7QUFKQTtBQUNBO0FBREE7QUFDQTtBQUFBO0FBQ0E7Ozs7Ozs7QUFDQTtBQUFBO0FBQUE7QUFDQTtBQUNBO0FBQUE7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFOQTtBQVFBIiwic291cmNlUm9vdCI6IiJ9");
+
+/***/ }),
+
+/***/ 737:
+/* unknown exports provided */
+/* all exports used */
+/*!***************************************!*\
+  !*** ./app/reducers/courseReducer.js ***!
+  \***************************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n    value: true\n});\nexports.default = courseReducer;\n\nvar _actionTypes = __webpack_require__(/*! ../actions/actionTypes */ 97);\n\nvar types = _interopRequireWildcard(_actionTypes);\n\nvar _initialState = __webpack_require__(/*! ../store/initialState */ 178);\n\nvar _initialState2 = _interopRequireDefault(_initialState);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nfunction _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }\n\nfunction _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }\n\n// The whole state of your app is stored in an object tree inside a single store.\n// The only way to change the state tree is to emit an action, an object describing what happened.\n// To specify how the actions transform the state tree, you write pure reducers.\n\nfunction courseReducer() {\n    var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : _initialState2.default.courses;\n    var action = arguments[1];\n\n\n    switch (action.type) {\n\n        case types.GET_COURSES_SUCCESS:\n            return action.courses; // This will replace whatever was in our state.\n\n        case types.CREATE_COURSE_SUCCESS:\n            return [].concat(_toConsumableArray(state), [Object.assign({}, action.course)]);\n\n        case types.UPDATE_COURSE_SUCCESS:\n            return [].concat(_toConsumableArray(state.filter(function (course) {\n                return course.id !== action.course.id;\n            })), [Object.assign({}, action.course)]);\n\n        default:\n            return state;\n    }\n}//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiNzM3LmpzIiwic291cmNlcyI6WyJ3ZWJwYWNrOi8vL2FwcC9yZWR1Y2Vycy9jb3Vyc2VSZWR1Y2VyLmpzP2U1YWYiXSwic291cmNlc0NvbnRlbnQiOlsiXHJcbmltcG9ydCAqIGFzIHR5cGVzICAgZnJvbSAnLi4vYWN0aW9ucy9hY3Rpb25UeXBlcyc7XHJcbmltcG9ydCBpbml0aWFsU3RhdGUgZnJvbSAnLi4vc3RvcmUvaW5pdGlhbFN0YXRlJztcclxuXHJcbi8vIFRoZSB3aG9sZSBzdGF0ZSBvZiB5b3VyIGFwcCBpcyBzdG9yZWQgaW4gYW4gb2JqZWN0IHRyZWUgaW5zaWRlIGEgc2luZ2xlIHN0b3JlLlxyXG4vLyBUaGUgb25seSB3YXkgdG8gY2hhbmdlIHRoZSBzdGF0ZSB0cmVlIGlzIHRvIGVtaXQgYW4gYWN0aW9uLCBhbiBvYmplY3QgZGVzY3JpYmluZyB3aGF0IGhhcHBlbmVkLlxyXG4vLyBUbyBzcGVjaWZ5IGhvdyB0aGUgYWN0aW9ucyB0cmFuc2Zvcm0gdGhlIHN0YXRlIHRyZWUsIHlvdSB3cml0ZSBwdXJlIHJlZHVjZXJzLlxyXG5cclxuZXhwb3J0IGRlZmF1bHQgZnVuY3Rpb24gY291cnNlUmVkdWNlcihzdGF0ZSA9IGluaXRpYWxTdGF0ZS5jb3Vyc2VzLCBhY3Rpb24pIHtcclxuXHJcbiAgICBzd2l0Y2ggKGFjdGlvbi50eXBlKSB7XHJcblxyXG4gICAgICAgIGNhc2UgdHlwZXMuR0VUX0NPVVJTRVNfU1VDQ0VTUzpcclxuICAgICAgICAgICAgcmV0dXJuIGFjdGlvbi5jb3Vyc2VzOyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAvLyBUaGlzIHdpbGwgcmVwbGFjZSB3aGF0ZXZlciB3YXMgaW4gb3VyIHN0YXRlLlxyXG5cclxuICAgICAgICBjYXNlIHR5cGVzLkNSRUFURV9DT1VSU0VfU1VDQ0VTUzpcclxuICAgICAgICAgICAgcmV0dXJuIFsuLi5zdGF0ZSwgT2JqZWN0LmFzc2lnbih7fSwgYWN0aW9uLmNvdXJzZSldO1xyXG5cclxuICAgICAgICBjYXNlIHR5cGVzLlVQREFURV9DT1VSU0VfU1VDQ0VTUzpcclxuICAgICAgICAgICAgcmV0dXJuIFsuLi5zdGF0ZS5maWx0ZXIoY291cnNlID0+IGNvdXJzZS5pZCAhPT0gYWN0aW9uLmNvdXJzZS5pZCksIE9iamVjdC5hc3NpZ24oe30sIGFjdGlvbi5jb3Vyc2UpXTtcclxuXHJcbiAgICAgICAgZGVmYXVsdDpcclxuICAgICAgICAgICAgcmV0dXJuIHN0YXRlO1xyXG4gICAgfVxyXG59XG5cblxuLy8gV0VCUEFDSyBGT09URVIgLy9cbi8vIGFwcC9yZWR1Y2Vycy9jb3Vyc2VSZWR1Y2VyLmpzIl0sIm1hcHBpbmdzIjoiOzs7OztBQVFBO0FBQ0E7QUFSQTtBQUNBO0FBREE7QUFDQTtBQUFBO0FBQ0E7Ozs7Ozs7OztBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFBQTtBQUFBO0FBQ0E7QUFDQTtBQUFBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQUE7QUFBQTtBQUNBO0FBQ0E7QUFDQTtBQVpBO0FBY0EiLCJzb3VyY2VSb290IjoiIn0=");
+
+/***/ }),
+
+/***/ 738:
+/* unknown exports provided */
+/* all exports used */
+/*!*******************************!*\
+  !*** ./app/reducers/index.js ***!
+  \*******************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n                                        value: true\n});\n\nvar _redux = __webpack_require__(/*! redux */ 95);\n\nvar _reactRouterRedux = __webpack_require__(/*! react-router-redux */ 177);\n\nvar _appReducer = __webpack_require__(/*! ./appReducer */ 735);\n\nvar _appReducer2 = _interopRequireDefault(_appReducer);\n\nvar _courseReducer = __webpack_require__(/*! ./courseReducer */ 737);\n\nvar _courseReducer2 = _interopRequireDefault(_courseReducer);\n\nvar _authorReducer = __webpack_require__(/*! ./authorReducer */ 736);\n\nvar _authorReducer2 = _interopRequireDefault(_authorReducer);\n\nvar _ajaxStatusReducer = __webpack_require__(/*! ./ajaxStatusReducer */ 734);\n\nvar _ajaxStatusReducer2 = _interopRequireDefault(_ajaxStatusReducer);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\n// The Root Reducer where you define/name and shape the store.\n// \n// Naming is important here. Each of the 'properties' listed below become the property names on 'state'. For example, 'state.courses'.\n// \n// That is, the 'courseReducer' was aliased to 'courses' so it can be referenced // as 'state.courses' instead of 'state.courseReducer'.\n// \n// Given the following...\n//\n//              const rootReducer = combineReducers({ courses: courseReducer })\n//\n//... the 'state' parameter passed into the 'courseReducer' below will be the 'courses' property in the 'store'...\n// \n//              export default function courseReducer(state, action)\n// \n// The corresponding 'action.type' will then set 'courses' to whatever value the reducer returns, typically something like 'action.courses' \n// or potentially some other non-mutated value.\n// \n// This essentially represents the first-level hierarchy of the store. Each named property below will be set to the 'state' returned by the corresponding reducer \n// based on the action type it is passed.\n// \n// This represents first-level hierarchy because, while you could do something like this...\n//\n//              app: appReducer\n// \n// ... you would not be able to do this...\n//\n//              app.lookups: appReducer\n//\n// Note the dot-notation in 'app.lookups'. What I'm not currently certain of is if you could surround the property name in quotes, like so...\n//\n//              'app.lookups': appReducer\n//\n// Currently, 'app' here is special. 'app' is intended to be those values that are global to the entire application; for example, 'user' and 'lookups'.\n// This is accomplished by mapping 'app' to the 'props' in the 'Shell' component and then cloning any routing element and attaching 'app' as a property \n// on the child element/component.\n\nvar rootReducer = (0, _redux.combineReducers)({\n                                        routing: _reactRouterRedux.routerReducer,\n\n                                        app: _appReducer2.default,\n                                        courses: _courseReducer2.default,\n                                        authors: _authorReducer2.default,\n\n                                        ajaxCallsInProgress: _ajaxStatusReducer2.default\n});\n\nexports.default = rootReducer;//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiNzM4LmpzIiwic291cmNlcyI6WyJ3ZWJwYWNrOi8vL2FwcC9yZWR1Y2Vycy9pbmRleC5qcz82YjUzIl0sInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7IGNvbWJpbmVSZWR1Y2VycyB9IGZyb20gJ3JlZHV4JztcclxuaW1wb3J0IHsgcm91dGVyUmVkdWNlciB9ICAgZnJvbSAncmVhY3Qtcm91dGVyLXJlZHV4JztcclxuXHJcbmltcG9ydCBhcHBSZWR1Y2VyICAgICAgICAgIGZyb20gJy4vYXBwUmVkdWNlcic7XHJcbmltcG9ydCBjb3Vyc2VSZWR1Y2VyICAgICAgIGZyb20gJy4vY291cnNlUmVkdWNlcic7XHJcbmltcG9ydCBhdXRob3JSZWR1Y2VyICAgICAgIGZyb20gJy4vYXV0aG9yUmVkdWNlcic7XHJcblxyXG5pbXBvcnQgYWpheFN0YXR1c1JlZHVjZXIgICAgZnJvbSAnLi9hamF4U3RhdHVzUmVkdWNlcic7XHJcblxyXG4vLyBUaGUgUm9vdCBSZWR1Y2VyIHdoZXJlIHlvdSBkZWZpbmUvbmFtZSBhbmQgc2hhcGUgdGhlIHN0b3JlLlxyXG4vLyBcclxuLy8gTmFtaW5nIGlzIGltcG9ydGFudCBoZXJlLiBFYWNoIG9mIHRoZSAncHJvcGVydGllcycgbGlzdGVkIGJlbG93IGJlY29tZSB0aGUgcHJvcGVydHkgbmFtZXMgb24gJ3N0YXRlJy4gRm9yIGV4YW1wbGUsICdzdGF0ZS5jb3Vyc2VzJy5cclxuLy8gXHJcbi8vIFRoYXQgaXMsIHRoZSAnY291cnNlUmVkdWNlcicgd2FzIGFsaWFzZWQgdG8gJ2NvdXJzZXMnIHNvIGl0IGNhbiBiZSByZWZlcmVuY2VkIC8vIGFzICdzdGF0ZS5jb3Vyc2VzJyBpbnN0ZWFkIG9mICdzdGF0ZS5jb3Vyc2VSZWR1Y2VyJy5cclxuLy8gXHJcbi8vIEdpdmVuIHRoZSBmb2xsb3dpbmcuLi5cclxuLy9cclxuLy8gICAgICAgICAgICAgIGNvbnN0IHJvb3RSZWR1Y2VyID0gY29tYmluZVJlZHVjZXJzKHsgY291cnNlczogY291cnNlUmVkdWNlciB9KVxyXG4vL1xyXG4vLy4uLiB0aGUgJ3N0YXRlJyBwYXJhbWV0ZXIgcGFzc2VkIGludG8gdGhlICdjb3Vyc2VSZWR1Y2VyJyBiZWxvdyB3aWxsIGJlIHRoZSAnY291cnNlcycgcHJvcGVydHkgaW4gdGhlICdzdG9yZScuLi5cclxuLy8gXHJcbi8vICAgICAgICAgICAgICBleHBvcnQgZGVmYXVsdCBmdW5jdGlvbiBjb3Vyc2VSZWR1Y2VyKHN0YXRlLCBhY3Rpb24pXHJcbi8vIFxyXG4vLyBUaGUgY29ycmVzcG9uZGluZyAnYWN0aW9uLnR5cGUnIHdpbGwgdGhlbiBzZXQgJ2NvdXJzZXMnIHRvIHdoYXRldmVyIHZhbHVlIHRoZSByZWR1Y2VyIHJldHVybnMsIHR5cGljYWxseSBzb21ldGhpbmcgbGlrZSAnYWN0aW9uLmNvdXJzZXMnIFxyXG4vLyBvciBwb3RlbnRpYWxseSBzb21lIG90aGVyIG5vbi1tdXRhdGVkIHZhbHVlLlxyXG4vLyBcclxuLy8gVGhpcyBlc3NlbnRpYWxseSByZXByZXNlbnRzIHRoZSBmaXJzdC1sZXZlbCBoaWVyYXJjaHkgb2YgdGhlIHN0b3JlLiBFYWNoIG5hbWVkIHByb3BlcnR5IGJlbG93IHdpbGwgYmUgc2V0IHRvIHRoZSAnc3RhdGUnIHJldHVybmVkIGJ5IHRoZSBjb3JyZXNwb25kaW5nIHJlZHVjZXIgXHJcbi8vIGJhc2VkIG9uIHRoZSBhY3Rpb24gdHlwZSBpdCBpcyBwYXNzZWQuXHJcbi8vIFxyXG4vLyBUaGlzIHJlcHJlc2VudHMgZmlyc3QtbGV2ZWwgaGllcmFyY2h5IGJlY2F1c2UsIHdoaWxlIHlvdSBjb3VsZCBkbyBzb21ldGhpbmcgbGlrZSB0aGlzLi4uXHJcbi8vXHJcbi8vICAgICAgICAgICAgICBhcHA6IGFwcFJlZHVjZXJcclxuLy8gXHJcbi8vIC4uLiB5b3Ugd291bGQgbm90IGJlIGFibGUgdG8gZG8gdGhpcy4uLlxyXG4vL1xyXG4vLyAgICAgICAgICAgICAgYXBwLmxvb2t1cHM6IGFwcFJlZHVjZXJcclxuLy9cclxuLy8gTm90ZSB0aGUgZG90LW5vdGF0aW9uIGluICdhcHAubG9va3VwcycuIFdoYXQgSSdtIG5vdCBjdXJyZW50bHkgY2VydGFpbiBvZiBpcyBpZiB5b3UgY291bGQgc3Vycm91bmQgdGhlIHByb3BlcnR5IG5hbWUgaW4gcXVvdGVzLCBsaWtlIHNvLi4uXHJcbi8vXHJcbi8vICAgICAgICAgICAgICAnYXBwLmxvb2t1cHMnOiBhcHBSZWR1Y2VyXHJcbi8vXHJcbi8vIEN1cnJlbnRseSwgJ2FwcCcgaGVyZSBpcyBzcGVjaWFsLiAnYXBwJyBpcyBpbnRlbmRlZCB0byBiZSB0aG9zZSB2YWx1ZXMgdGhhdCBhcmUgZ2xvYmFsIHRvIHRoZSBlbnRpcmUgYXBwbGljYXRpb247IGZvciBleGFtcGxlLCAndXNlcicgYW5kICdsb29rdXBzJy5cclxuLy8gVGhpcyBpcyBhY2NvbXBsaXNoZWQgYnkgbWFwcGluZyAnYXBwJyB0byB0aGUgJ3Byb3BzJyBpbiB0aGUgJ1NoZWxsJyBjb21wb25lbnQgYW5kIHRoZW4gY2xvbmluZyBhbnkgcm91dGluZyBlbGVtZW50IGFuZCBhdHRhY2hpbmcgJ2FwcCcgYXMgYSBwcm9wZXJ0eSBcclxuLy8gb24gdGhlIGNoaWxkIGVsZW1lbnQvY29tcG9uZW50LlxyXG5cclxuY29uc3Qgcm9vdFJlZHVjZXIgPSBjb21iaW5lUmVkdWNlcnMoe1xyXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgcm91dGluZzogcm91dGVyUmVkdWNlciwgXHJcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBcclxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGFwcDogICAgIGFwcFJlZHVjZXIsXHJcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBjb3Vyc2VzOiBjb3Vyc2VSZWR1Y2VyLCBcclxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGF1dGhvcnM6IGF1dGhvclJlZHVjZXIsICBcclxuXHJcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBhamF4Q2FsbHNJblByb2dyZXNzOiBhamF4U3RhdHVzUmVkdWNlclxyXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICB9KTtcclxuXHJcbmV4cG9ydCBkZWZhdWx0IHJvb3RSZWR1Y2VyO1xuXG5cbi8vIFdFQlBBQ0sgRk9PVEVSIC8vXG4vLyBhcHAvcmVkdWNlcnMvaW5kZXguanMiXSwibWFwcGluZ3MiOiI7Ozs7OztBQUFBO0FBQ0E7QUFBQTtBQUNBO0FBQ0E7QUFDQTs7O0FBQUE7QUFDQTs7O0FBQUE7QUFDQTs7O0FBQ0E7QUFDQTs7Ozs7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBUEE7QUFDQTtBQVNBIiwic291cmNlUm9vdCI6IiJ9");
+
+/***/ }),
+
+/***/ 97:
+/* unknown exports provided */
+/* all exports used */
+/*!************************************!*\
+  !*** ./app/actions/actionTypes.js ***!
+  \************************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nvar BEGIN_AJAX_CALL = exports.BEGIN_AJAX_CALL = 'BEGIN_AJAX_CALL';\nvar AJAX_CALL_ERROR = exports.AJAX_CALL_ERROR = 'AJAX_CALL_ERROR';\n\nvar GET_COURSES_SUCCESS = exports.GET_COURSES_SUCCESS = 'GET_COURSES_SUCCESS';\nvar LOAD_AUTHORS_SUCCESS = exports.LOAD_AUTHORS_SUCCESS = 'LOAD_AUTHORS_SUCCESS';\nvar CREATE_COURSE_SUCCESS = exports.CREATE_COURSE_SUCCESS = 'CREATE_COURSE_SUCCESS';\nvar UPDATE_COURSE_SUCCESS = exports.UPDATE_COURSE_SUCCESS = 'UPDATE_COURSE_SUCCESS';\n\nvar GET_USER_SUCCESS = exports.GET_USER_SUCCESS = 'GET_USER_SUCCESS';\nvar GET_LOOKUPS_SUCCESS = exports.GET_LOOKUPS_SUCCESS = 'GET_LOOKUPS_SUCCESS';\n\nvar IS_INITIALIZED = exports.IS_INITIALIZED = 'IS_INITIALIZED';//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiOTcuanMiLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vYXBwL2FjdGlvbnMvYWN0aW9uVHlwZXMuanM/ZjMyNSJdLCJzb3VyY2VzQ29udGVudCI6WyJleHBvcnQgY29uc3QgQkVHSU5fQUpBWF9DQUxMICAgICAgID0gJ0JFR0lOX0FKQVhfQ0FMTCc7XHJcbmV4cG9ydCBjb25zdCBBSkFYX0NBTExfRVJST1IgICAgICAgPSAnQUpBWF9DQUxMX0VSUk9SJztcclxuXHJcbmV4cG9ydCBjb25zdCBHRVRfQ09VUlNFU19TVUNDRVNTICAgPSAnR0VUX0NPVVJTRVNfU1VDQ0VTUyc7XHJcbmV4cG9ydCBjb25zdCBMT0FEX0FVVEhPUlNfU1VDQ0VTUyAgPSAnTE9BRF9BVVRIT1JTX1NVQ0NFU1MnO1xyXG5leHBvcnQgY29uc3QgQ1JFQVRFX0NPVVJTRV9TVUNDRVNTID0gJ0NSRUFURV9DT1VSU0VfU1VDQ0VTUyc7XHJcbmV4cG9ydCBjb25zdCBVUERBVEVfQ09VUlNFX1NVQ0NFU1MgPSAnVVBEQVRFX0NPVVJTRV9TVUNDRVNTJztcclxuXHJcbmV4cG9ydCBjb25zdCBHRVRfVVNFUl9TVUNDRVNTICAgICAgPSAnR0VUX1VTRVJfU1VDQ0VTUyc7XHJcbmV4cG9ydCBjb25zdCBHRVRfTE9PS1VQU19TVUNDRVNTICAgPSAnR0VUX0xPT0tVUFNfU1VDQ0VTUyc7XHJcblxyXG5leHBvcnQgY29uc3QgSVNfSU5JVElBTElaRUQgICAgICAgID0gJ0lTX0lOSVRJQUxJWkVEJztcclxuXG5cblxuLy8gV0VCUEFDSyBGT09URVIgLy9cbi8vIGFwcC9hY3Rpb25zL2FjdGlvblR5cGVzLmpzIl0sIm1hcHBpbmdzIjoiOzs7OztBQUFBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7Iiwic291cmNlUm9vdCI6IiJ9");
+
+/***/ })
+
+},[1476]);

@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React     from 'react';
+import PropTypes from 'prop-types';
 
 class LoadingDots extends React.Component {
     constructor(props, context) {
@@ -33,12 +34,13 @@ class LoadingDots extends React.Component {
 }
 
 LoadingDots.defaultProps = {
-    interval: 300, dots: 3
-};
+                               interval: 300, 
+                               dots: 3
+                           };
 
 LoadingDots.propTypes = {
-    interval: PropTypes.number,
-    dots: PropTypes.number
-};
+                            interval: PropTypes.number,
+                            dots: PropTypes.number
+                        };
 
 export default LoadingDots;
