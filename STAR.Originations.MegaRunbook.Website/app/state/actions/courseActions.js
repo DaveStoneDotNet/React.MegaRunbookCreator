@@ -54,7 +54,7 @@ export function getCourses() {
         dispatch(beginAjaxCall());
         return MrcApi.getCourses()
                      .then(response => { dispatch(getCoursesSuccess(response)); })
-                     .catch(error => { throw (error); })
+                     .catch(error => { console.log('HANDLE ERROR'); })
                      .then(() => dispatch(endAjaxCall()));
     };
 };
@@ -68,8 +68,8 @@ export function saveCourse(course) {
         dispatch(beginAjaxCall());
         return courseApi.saveCourse(course)
                         .then(course => { course.id ? dispatch(updateCourseSuccess(course)) : dispatch(createCourseSuccess(course)); })
-                        .catch(error => { throw (error); })
-                        .then(() => dispatch(endAjaxCall()));
+                        .catch(error => { console.log('HANDLE ERROR'); })
+                        .then(()     => { dispatch(endAjaxCall()); });
     };
 };
 

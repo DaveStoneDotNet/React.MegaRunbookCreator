@@ -2,6 +2,7 @@ import React                  from 'react';
 import PropTypes              from 'prop-types';
 import { connect }            from 'react-redux';
 import { bindActionCreators } from 'redux';
+
 import toastr                 from 'toastr';
 
 import * as courseActions     from '../../state/actions/courseActions';
@@ -17,8 +18,10 @@ class ManageCoursePage extends React.Component {
         this.state = {
                          course: Object.assign({ }, this.props.course),
                          errors: { },
-                         saving: false
+                         isSaving: false
                      };
+
+        toastr.options.positionClass = 'toast-bottom-right';
 
         this.updateCourseState = this.updateCourseState.bind(this);
         this.saveCourse        = this.saveCourse.bind(this);
@@ -51,19 +54,19 @@ class ManageCoursePage extends React.Component {
 
     saveCourse(event) {
         event.preventDefault();
-        this.setState({ saving: true });
+        this.setState({ isSaving: true });
         this.props.actions.saveCourse(this.state.course)
                           .then(() => this.redirect())
                           .catch(error => {
                               toastr.error(error);
-                              this.setState({ saving: false });
+                              this.setState({ isSaving: false });
                           });
     }
 
     redirect() {
-        this.setState({ saving: false });
+        this.setState({ isSaving: false });
         toastr.success('Course saved');
-        this.context.router.push('/courses');
+        this.context.router.push('/demo');
     }
 
     render() {
@@ -73,7 +76,7 @@ class ManageCoursePage extends React.Component {
                                onSave     = { this.saveCourse        }
                                course     = { this.state.course      }
                                errors     = { this.state.errors      }
-                               saving     = { this.state.saving      }
+                               isSaving   = { this.state.isSaving    }
                    />
                );
     }

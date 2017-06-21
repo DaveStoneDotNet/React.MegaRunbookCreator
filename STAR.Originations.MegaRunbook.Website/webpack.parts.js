@@ -1,9 +1,10 @@
 ﻿const path               = require('path');
 const webpack            = require('webpack');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
-const ExtractTextPlugin  = require('extract-text-webpack-plugin');      // 
-const HtmlWebpackPlugin  = require('html-webpack-plugin');              // 
+const ExtractTextPlugin  = require('extract-text-webpack-plugin');
+const HtmlWebpackPlugin  = require('html-webpack-plugin');
 const NpmInstallPlugin   = require('npm-install-webpack-plugin');
+const autoprefixer       = require('autoprefixer');
 
 exports.common = function (paths, vendorPackages) {
     return {
@@ -32,7 +33,20 @@ exports.common = function (paths, vendorPackages) {
                // CommonsChunkPlugin(chunkName='vendor', filename='vendor.js')
 
                plugins:       [
-                                  new webpack.optimize.CommonsChunkPlugin('vendor')
+                                  new webpack.optimize.CommonsChunkPlugin('vendor'),
+                                  new webpack.LoaderOptionsPlugin({
+                                      minimize: false,
+                                      debug: true,
+                                      noInfo: true,
+                                      options: {
+                                          sassLoader: {
+                                              includePaths: [path.resolve(__dirname, 'app', 'scss')]
+                                          },
+                                          context: '/',
+                                          postcss: () =>[autoprefixer],
+                                      }
+                                  })
+
                               ],
 
                resolveLoader: {
@@ -80,7 +94,8 @@ exports.common = function (paths, vendorPackages) {
                                                                 name:       './images/[hash].[ext]',         // Output below the images directory
                                                                 publicPath: '../'                            // Tweak publicPath to fix CSS lookups to take the directory into account.
                                                             }
-                                               }
+                                               }, 
+                                               { test: /(\.css|\.scss|\.sass)$/, loaders: ['style-loader', 'css-loader?sourceMap', 'postcss-loader', 'sass-loader?sourceMap'] }
                                            ]
                               }
            }

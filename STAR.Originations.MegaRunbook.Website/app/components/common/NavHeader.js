@@ -24,6 +24,9 @@ class NavHeader extends React.Component {
                          <IndexLink className='navbar-brand' to='/'>MRC</IndexLink>
                        </div>
                        <div className='navbar-collapse collapse'>
+                          <div className="head-runner">
+                             <img src="../../app//images/running-01.gif" className={app.ajaxCount > 0 ? "show-working-head-runner" : "hide-working-head-runner"}/>
+                          </div>
                          <div className='float-right pad-top-15'>
                            <span className=""><i className="fa fa-user-circle gray-5 font-1-10" /> <span style={{marginTop: "-1px"}} className="Lato font-1-00 opacity-60 pad-left-5 lowercase">{ app.user.UserDisplayName }</span></span>
                          </div>
@@ -37,7 +40,7 @@ class NavHeader extends React.Component {
                            <li><Link activeClassName='active' to='/applications'>Applications</Link></li>
                            <li><Link activeClassName='active' to='/admin'>Admin</Link></li>
                            <li><Link activeClassName='active' to='/about'>About</Link></li>
-                           <li><Link activeClassName='active' to='/courses'>Courses</Link></li>
+                           <li><Link activeClassName='active' to='/demo'>Demo</Link></li>
                          </ul>
                        </div>
                      </div>

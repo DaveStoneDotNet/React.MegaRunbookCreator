@@ -244,3 +244,5 @@ ModelManifest.xml
 # FAKE - F# Make
 .fake/
 /ReactTests/README.md
+
+/STAR.Originations.MegaRunbook.Website/js/fonts

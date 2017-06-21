@@ -164,6 +164,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="app\api\mockMrcApi.js" />
+    <Content Include="app\components\demo\RandomTable.js" />
     <Content Include="app\state\actions\actionTypes.js" />
     <Content Include="app\state\actions\ajaxStatusActions.js" />
     <Content Include="app\state\actions\appActions.js" />
@@ -183,7 +185,7 @@
     <Content Include="app\components\demo\CourseForm.ReactTestUtils.test.js" />
     <Content Include="app\components\demo\CourseList.js" />
     <Content Include="app\components\demo\CourseListRow.js" />
-    <Content Include="app\components\demo\Courses.js" />
+    <Content Include="app\components\demo\Demo.js" />
     <Content Include="app\components\demo\ManageCoursePage.js" />
     <Content Include="app\components\demo\ManageCoursePage.test.js" />
     <Content Include="app\components\releases\Releases.js" />

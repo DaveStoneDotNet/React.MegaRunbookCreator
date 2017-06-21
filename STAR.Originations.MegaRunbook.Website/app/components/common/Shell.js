@@ -6,6 +6,9 @@ import NavHeader   from './NavHeader';
 import AppFooter   from './AppFooter';
 import Splash      from './Splash';
 
+import '../../../node_modules/font-awesome/css/font-awesome.min.css';
+import '../../../node_modules/toastr/build/toastr.min.css';
+
 class Shell extends React.Component {
 
     render() {
