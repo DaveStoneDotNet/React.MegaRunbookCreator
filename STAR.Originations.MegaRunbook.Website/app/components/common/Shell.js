@@ -47,8 +47,8 @@ class Shell extends React.Component {
 
         return (
                   <div>
-                    <Splash app = { app } />
-                    <NavHeader app = { app } />
+                    <Splash app={app} />
+                    <NavHeader app={app} />
                     <div className = 'container body-content'>
                         {
                             React.Children.map(this.props.children, function(child) {
@@ -56,7 +56,7 @@ class Shell extends React.Component {
                             })
                         }                        
                     </div>
-                    <AppFooter />
+                    <AppFooter app={app} />
                   </div>
                );
     }

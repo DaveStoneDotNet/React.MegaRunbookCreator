@@ -7,10 +7,10 @@ import { Router, browserHistory } from 'react-router';
 import { syncHistoryWithStore }   from 'react-router-redux';
 
 import routes                     from './routes';
-import configureStore             from './store/configureStore';
+import configureStore             from './state/store/configureStore';
 
-import * as courseActions         from './actions/courseActions';
-import * as appActions            from './actions/appActions';
+import * as courseActions         from './state/actions/courseActions';
+import * as appActions            from './state/actions/appActions';
 
 // Import babel-polyfill to support Object.assign functions for deep-cloning of immutable objects.
 // Babel does not support Object.assign by default, so a pollyfill is needed.

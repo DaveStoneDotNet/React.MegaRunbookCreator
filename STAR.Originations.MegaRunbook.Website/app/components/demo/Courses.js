@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import { connect }            from 'react-redux';
 import { browserHistory }     from 'react-router';
 
-import * as courseActions     from '../../actions/courseActions';
+import * as courseActions     from '../../state/actions/courseActions';
 
 import CourseList             from './CourseList';
 

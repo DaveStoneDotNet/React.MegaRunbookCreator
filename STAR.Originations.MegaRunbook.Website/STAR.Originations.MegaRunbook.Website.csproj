@@ -164,12 +164,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="app\actions\actionTypes.js" />
-    <Content Include="app\actions\ajaxStatusActions.js" />
-    <Content Include="app\actions\appActions.js" />
-    <Content Include="app\actions\authorActions.js" />
-    <Content Include="app\actions\courseActions.js" />
-    <Content Include="app\actions\courseActions.test.js" />
+    <Content Include="app\state\actions\actionTypes.js" />
+    <Content Include="app\state\actions\ajaxStatusActions.js" />
+    <Content Include="app\state\actions\appActions.js" />
+    <Content Include="app\state\actions\authorActions.js" />
+    <Content Include="app\state\actions\courseActions.js" />
+    <Content Include="app\state\actions\courseActions.test.js" />
     <Content Include="app\api\delay.js" />
     <Content Include="app\api\mockAuthorApi.js" />
     <Content Include="app\api\mockCourseApi.js" />
@@ -190,11 +190,14 @@
     <Content Include="app\components\rfcs\Rfcs.js" />
     <Content Include="app\components\runbooks\Runbooks.js" />
     <Content Include="app\components\templates\Templates.js" />
-    <Content Include="app\reducers\ajaxStatusReducer.js" />
-    <Content Include="app\reducers\appReducer.js" />
-    <Content Include="app\reducers\authorReducer.js" />
-    <Content Include="app\reducers\courseReducer.js" />
-    <Content Include="app\store\initialState.js" />
+    <Content Include="app\state\actions\randomDataActions.js" />
+    <Content Include="app\state\reducers\ajaxStatusReducer.js" />
+    <Content Include="app\state\reducers\appReducer.js" />
+    <Content Include="app\state\reducers\authorReducer.js" />
+    <Content Include="app\state\reducers\courseReducer.js" />
+    <Content Include="app\state\reducers\initialState.js" />
+    <Content Include="app\state\reducers\randomDataReducer.js" />
+    <Content Include="app\state\store\initialState.js" />
     <Content Include="app\components\common\Shell.js" />
     <Content Include="app\components\common\AppFooter.js" />
     <Content Include="app\components\common\Loading.js" />
@@ -219,9 +222,9 @@
     <Content Include="app\images\running.gif" />
     <Content Include="app\images\spiro.svg" />
     <Content Include="app\app.js" />
-    <Content Include="app\reducers\index.js" />
+    <Content Include="app\state\reducers\index.js" />
     <Content Include="app\routes.js" />
-    <Content Include="app\store\configureStore.js" />
+    <Content Include="app\state\store\configureStore.js" />
     <Content Include="app\styles\sass.css">
       <DependentUpon>sass.scss</DependentUpon>
     </Content>

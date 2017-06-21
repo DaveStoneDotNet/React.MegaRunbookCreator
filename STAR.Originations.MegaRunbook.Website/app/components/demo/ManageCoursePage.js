@@ -4,7 +4,7 @@ import { connect }            from 'react-redux';
 import { bindActionCreators } from 'redux';
 import toastr                 from 'toastr';
 
-import * as courseActions     from '../../actions/courseActions';
+import * as courseActions     from '../../state/actions/courseActions';
 
 import CourseForm             from './CourseForm';
 

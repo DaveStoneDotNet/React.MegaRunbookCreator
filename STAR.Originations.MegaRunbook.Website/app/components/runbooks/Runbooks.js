@@ -4,7 +4,7 @@ import { Link } from 'react-router';
 const Runbooks = () => {
     return (
       <div>
-        RUNBOOKS
+        <h1>RUNBOOKS</h1>
       </div>
   );
 };

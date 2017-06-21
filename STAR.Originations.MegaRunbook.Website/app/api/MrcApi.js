@@ -18,7 +18,7 @@ class MrcApi {
                .then((response) => response.json());
     }
 
-    static getUser() {
+    static getUserProfile() {
 
         return fetch('api/GetUserProfile',
                {
@@ -30,6 +30,15 @@ class MrcApi {
     static getLookups() {
 
         return fetch('api/GetLookups',
+               {
+                   headers: API_HEADERS
+               })
+               .then((response) => response.json());
+    }
+
+    static getData() {
+
+        return fetch('api/GetData',
                {
                    headers: API_HEADERS
                })

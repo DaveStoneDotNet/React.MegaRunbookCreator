@@ -58,11 +58,23 @@ namespace STAR.Originations.MegaRunbook.Website.Controllers
         [System.Web.Http.HttpGet]
         public async Task<JsonResult> GetLookups()
         {
+            System.Threading.Thread.Sleep(5000);
             var response = await this.MrcDataAccess.GetAppLookupsAsync();
 
             return this.Json(response);
         }
         #endregion GetLookups
+
+        #region GetData
+        [System.Web.Http.HttpGet]
+        public async Task<JsonResult> GetData()
+        {
+            System.Threading.Thread.Sleep(5000);
+            var response = await Task.Run(() => new { info = "Some Random Data" });
+
+            return this.Json(response);
+        }
+        #endregion GetData
 
         #region GetRfcs
         [System.Web.Http.HttpGet]

@@ -8,7 +8,7 @@ const NpmInstallPlugin   = require('npm-install-webpack-plugin');
 exports.common = function (paths, vendorPackages) {
     return {
 
-               devtool:       'eval-source-map',
+               devtool:       'source-map',
 
                cache:         true,
 
