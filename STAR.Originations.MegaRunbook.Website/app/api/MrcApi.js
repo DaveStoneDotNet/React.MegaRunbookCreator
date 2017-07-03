@@ -18,6 +18,17 @@ class MrcApi {
                .then((response) => response.json());
     }
 
+    static getCourse(courseId) {
+
+        return fetch('api/GetGourse',
+               {
+                   headers: API_HEADERS, 
+                   method:  'POST', 
+                   body:    JSON.stringify({ courseId: courseId })
+               })
+               .then((response) => response.json());
+    }
+
     static getUserProfile() {
 
         return fetch('api/GetUserProfile',

@@ -49,7 +49,7 @@ import * as types from './actionTypes';
 // If you typed 'monkey' instead of 'home' then nothing would get updated and no error would occur, but 
 // most importantly, 'home' would NOT be updated.
 
-export function getDataSuccess(data)       { return { type: types.GET_DATA_SUCCESS,    home: data  }; }
+export function getDataSuccess(data)       { return { type: types.GET_DATA_SUCCESS,    home: data           }; }
 
 export function getLookupsSuccess(lookups) { return { type: types.GET_LOOKUPS_SUCCESS, lookups:   lookups   }; }
 export function getUserSuccess(user)       { return { type: types.GET_USER_SUCCESS,    user:      user      }; }

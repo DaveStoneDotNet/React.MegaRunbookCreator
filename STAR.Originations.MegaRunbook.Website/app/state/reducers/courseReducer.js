@@ -6,12 +6,19 @@ import initialState from '../store/initialState';
 // The only way to change the state tree is to emit an action, an object describing what happened.
 // To specify how the actions transform the state tree, you write pure reducers.
 
-export default function courseReducer(state = initialState.courses, action) {
+export default function courseReducer(state = initialState.demo, action) {
+
+    let new_state;
 
     switch (action.type) {
 
         case types.GET_COURSES_SUCCESS:
-            return action.courses;                                  // This will replace whatever was in our state.
+            new_state = Object.assign({}, state, { courses: action.courses });
+            return new_state;
+
+        case types.GET_COURSE_SUCCESS:
+            new_state = Object.assign({}, state, { course: action.course });
+            return new_state;
 
         case types.CREATE_COURSE_SUCCESS:
             return [...state, Object.assign({}, action.course)];

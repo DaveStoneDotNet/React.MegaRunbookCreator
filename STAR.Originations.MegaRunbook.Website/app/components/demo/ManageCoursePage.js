@@ -101,7 +101,8 @@ const getCourseById = (courses, id) => {
 
 const mapStateToProps = (state, ownProps) => {
   
-    const courseId = ownProps.params.id; // From the path '/course/:id'
+    // From the path '/course/:id'
+    const courseId = ownProps.params.id;
 
     let course = {id: '', watchHref:'', title: '', authorId: '', length: '', category: ''};
 

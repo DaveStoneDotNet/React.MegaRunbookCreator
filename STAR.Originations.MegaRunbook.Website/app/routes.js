@@ -16,20 +16,20 @@ import Demo             from './components/demo/Demo';
 import ManageCoursePage from './components/demo/ManageCoursePage';
 
 export default (
-    <Route path = "/"          component = { Shell            }>
-    <IndexRoute                component = { Home             } />
-
-    <Route path="about"        component = { About            } />
-    <Route path="admin"        component = { Admin            } />
-    <Route path="applications" component = { Applications     } />
-    <Route path="builds"       component = { Builds           } />
-    <Route path="rfcs"         component = { Rfcs             } />
-    <Route path="runbooks"     component = { Runbooks         } />
-    <Route path="templates"    component = { Templates        } />
-
-    <Route path="demo"         component = { Demo          } />
-    <Route path="course"       component = { ManageCoursePage } />
-    <Route path="course/:id"   component = { ManageCoursePage } />
-    <Route path="*"            component = { NotFound         } />
+    <Route path = "/"            component = { Shell            }>
+      <IndexRoute                component = { Home             } />
+      
+      <Route path="about"        component = { About            } />
+      <Route path="admin"        component = { Admin            } />
+      <Route path="applications" component = { Applications     } />
+      <Route path="builds"       component = { Builds           } />
+      <Route path="rfcs"         component = { Rfcs             } />
+      <Route path="runbooks"     component = { Runbooks         } />
+      <Route path="templates"    component = { Templates        } />
+      
+      <Route path="demo"         component = { Demo             } />
+      <Route path="course"       component = { ManageCoursePage } />
+      <Route path="course/:id"   component = { ManageCoursePage } />
+      <Route path="*"            component = { NotFound         } />
     </Route>
 );

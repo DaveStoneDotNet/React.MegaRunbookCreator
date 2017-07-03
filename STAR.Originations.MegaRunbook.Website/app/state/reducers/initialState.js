@@ -1,30 +1,29 @@
-﻿export default {
+﻿
+// The whole state of your app is stored in an object tree inside a single store.
+// The only way to change the state tree is to emit an action - an object describing what happened.
+// To specify how actions transform the state tree, you write pure reducers.
+
+// The actual 'shape' of the store is better reflected in 'reducers/index.js' which combines all of the defined reducers into a single reducer, 
+// and 'reducers/initialState.js' which is an optional, non-redux object, intended to provide default values for each defined state object.
+// That is, by defining initial states here, it can be helpful to provide a picture of the full object tree in the store.
+
+export default {
+                   authors:     [],
+                   demo:        {
+                                    courses: [], 
+                                    course:  { }
+                   },
                    app:         {
-                                    user:                 {
-                                                            UserId:          0,
-                                                            UserInitials:    '',
-                                                            UserDisplayName: '',
-                                                            PrimaryRoleName: '',
-                                                            RoleNames:       [''],
-                                                            HasRole:         false,
-                                                            IsAdministrator: false,
-                                                            IsSuccessful:    false,
-                                                            IsAuthenticated: false
-                                                          },
-                                    lookups:              {
-                                                            MyLookups: [
-                                                                        { Code: '',  Description: '', SortOrder: 0 }, 
-                                                                        { Code: '',  Description: '', SortOrder: 0 }
-                                                                       ]
-                                                          },
+                                    user:                 {},
+                                    lookups:              {},
                                     home:                 {
-                                                             info: 'INITIAL MONKEY INFO'
+                                                              info: 'INITIAL MONKEY INFO'
                                                           }, 
                                     ajaxCount:            0, 
                                     ajaxMessage:          'Working...', 
                                     isUserInitialized:    false, 
                                     isLookupsInitialized: false, 
-                                    isAppInitialized:     false, 
+                                    isAppInitialized:     false
                                 }, 
                     randomData: {
                                     randomTableData: {
@@ -41,5 +40,6 @@
                                                         loading: false
                                                      }
                                                      
-                                }
+                                }, 
+                   ajaxCallsInProgress:  0
                };

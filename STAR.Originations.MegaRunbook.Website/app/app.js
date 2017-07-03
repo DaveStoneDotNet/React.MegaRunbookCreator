@@ -26,6 +26,7 @@ import 'babel-polyfill';
 const store = configureStore();
 
 store.dispatch(courseActions.getCourses());
+store.dispatch(courseActions.getCourse('clean-code'));
 store.dispatch(appActions.getUser());
 store.dispatch(appActions.getLookups());
 

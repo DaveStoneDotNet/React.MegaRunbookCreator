@@ -33,6 +33,15 @@ namespace STAR.Originations.MegaRunbook.Website.Controllers
         }
         #endregion GetGourses
 
+        #region GetGourse
+        [System.Web.Http.HttpPost]
+        public JsonResult GetGourse(string courseId)
+        {
+            var course = (from o in CourseData.SeedData() where o.id == courseId select o).FirstOrDefault();
+            return this.Json(course);
+        }
+        #endregion GetGourse
+
         #region GetUserProfile
         [System.Web.Http.HttpGet]
         public JsonResult GetUserProfile()

@@ -23,24 +23,60 @@ class Demo extends React.Component {
         super(props, context);
 
         this.state = {
-            course: Object.assign({ }, this.props.course),
-            errors: { },
-            isSaving: false
-        };
+                         course:   Object.assign({ }, this.props.course),
+                         errors:   { },
+                         isSaving: false
+                     };
+
+        this.lineData = [
+                             {xname: ' ', uv: 4000, pv: 2400, amt: 2400},
+                             {xname: ' ', uv: 3000, pv: 1398, amt: 2210},
+                             {xname: ' ', uv: 2000, pv: 9800, amt: 2290},
+                             {xname: ' ', uv: 2780, pv: 3908, amt: 2000},
+                             {xname: ' ', uv: 1890, pv: 4800, amt: 2181},
+                             {xname: ' ', uv: 2390, pv: 3800, amt: 2500},
+                             {xname: ' ', uv: 3490, pv: 4300, amt: 2100},
+                        ];
+
+        this.pieData = [
+                            {key: 'A', name: 'A', value: 400}, 
+                            {key: 'B', name: 'B', value: 200}
+                       ];
+                  
+        this.pieColors = ['#0088FE', '#00C49F'];
 
         toastr.options.positionClass = 'toast-bottom-right';
 
         this.redirectToAddCoursePage = this.redirectToAddCoursePage.bind(this);
-    }
-
-    courseRow(course, index) {
-        return (
-                 <div key={ index }>{ course.title }</div>
-               );
+        this.openModal               = this.openModal.bind(this);
+        this.closeModal              = this.closeModal.bind(this);
+        this.getData                 = this.getData.bind(this);
     }
 
     redirectToAddCoursePage() {
         browserHistory.push('/demo');
+    }
+
+    openModal() {
+        this.setState({ show: true });
+    }
+
+    closeModal() {
+        this.setState({ show: false });
+    }
+
+    getData() {
+        this.setState({ isSaving: true });
+        this.props.actions.appActions.getData()
+                          .then(() => {
+                              toastr.success('Loaded some random data', 'SUCCESS');
+                          })
+                          .catch((error) => { 
+                              toastr.success('error');
+                          })
+                          .then(() => {
+                              this.setState({ isSaving: false });
+                          });
     }
 
     render() {
@@ -48,53 +84,12 @@ class Demo extends React.Component {
         const courses = this.props.courses;
         const app     = this.props.app;
 
-        let openModel = () => {
-            this.setState({ show: true });
-        };
-
-        let closeModal = () => {
-            this.setState({ show: false });
-        };
-
-        let getData = () => {
-            this.setState({ isSaving: true });
-            this.props.actions.appActions.getData()
-                              .then(() => {
-                                  toastr.success('Loaded some random data', 'SUCCESS');
-                              })
-                              .catch((error) => { 
-                                  toastr.success('error');
-                              })
-                              .then(() => {
-                                  this.setState({ isSaving: false });
-                              });
-        };
-
-        // ---
-
-        const lineData = [
-                           {xname: ' ', uv: 4000, pv: 2400, amt: 2400},
-                           {xname: ' ', uv: 3000, pv: 1398, amt: 2210},
-                           {xname: ' ', uv: 2000, pv: 9800, amt: 2290},
-                           {xname: ' ', uv: 2780, pv: 3908, amt: 2000},
-                           {xname: ' ', uv: 1890, pv: 4800, amt: 2181},
-                           {xname: ' ', uv: 2390, pv: 3800, amt: 2500},
-                           {xname: ' ', uv: 3490, pv: 4300, amt: 2100},
-        ];
-
-        const pieData = [
-                          {key: 'A', name: 'A', value: 400}, 
-                          {key: 'B', name: 'B', value: 200}
-                        ];
-              
-        const pieColors = ['#0088FE', '#00C49F'];
-
         return (
                    <div>
                         <h1>Random Experiments</h1>
 
-                        <Button bsStyle="info" onClick={() => openModel()}>Modal</Button> &nbsp;
-                        <Button bsStyle="primary" disabled={this.state.isSaving} onClick={() => getData()}>{this.state.isSaving ? 'Getting...' : 'Get Data'}</Button>
+                        <Button bsStyle="info" onClick={() => this.openModal()}>Modal</Button> &nbsp;
+                        <Button bsStyle="primary" disabled={this.state.isSaving} onClick={() => this.getData()}>{this.state.isSaving ? 'Getting...' : 'Get Data'}</Button>
 
                         <div className="pad-20">
                             INFO: {app.home.info} : { this.state.isSaving.toString() }
@@ -108,7 +103,7 @@ class Demo extends React.Component {
                                 <tr>
                                   <td>
                                     <div>
-                                      <LineChart width={200} height={200} data={lineData} margin={{ top: 30, right: 20, left: 30, bottom: 0 }}>
+                                      <LineChart width={200} height={200} data={this.lineData} margin={{ top: 30, right: 20, left: 30, bottom: 0 }}>
                                     <XAxis dataKey="xname" />
                                     <Tooltip />
                                     <CartesianGrid stroke="#444444" />
@@ -120,9 +115,9 @@ class Demo extends React.Component {
                               <td>
                                 <div>
                                   <PieChart width={200} height={200} onMouseEnter={this.onPieEnter}>
-                                    <Pie data={pieData} dataKey="value" cx={100} cy={100} labelLine={false} outerRadius={80} fill="#8884d8">
+                                    <Pie data={this.pieData} dataKey="value" cx={100} cy={100} labelLine={false} outerRadius={80} fill="#8884d8">
                                     {
-                                         pieData.map((entry, index) => <Cell key={index} fill={pieColors[index % pieColors.length]}/>)
+                                         this.pieData.map((entry, index) => <Cell key={index} fill={this.pieColors[index % this.pieColors.length]}/>)
                                     }
                                     </Pie>
                                   </PieChart>
@@ -147,7 +142,7 @@ class Demo extends React.Component {
                           <RandomTable />
                        </div>
 
-                       <Modal show={this.state.show} onHide={closeModal} container={this}>
+                       <Modal show={this.state.show} onHide={() => this.closeModal()} container={this}>
                          <Modal.Body>
                            <div className="pad-20">
                              <h1>Modal</h1>
@@ -155,7 +150,7 @@ class Demo extends React.Component {
                                Elit est explicabo ipsum eaque dolorem blanditiis doloribus sed id ipsam, beatae, rem fuga id earum? Inventore et facilis obcaecati.
                              </div>
                              <div className="pad-top-40 align-right">
-                               <Button bsStyle="info" onClick={closeModal}>Close</Button>
+                               <Button bsStyle="info" onClick={() => this.closeModal()}>Close</Button>
                              </div>
                            </div>
                          </Modal.Body>
@@ -167,9 +162,9 @@ class Demo extends React.Component {
 }
 
 Demo.propTypes = {
-                        actions: PropTypes.object.isRequired,
-                        courses: PropTypes.array.isRequired
-                    };
+                     actions: PropTypes.object.isRequired,
+                     courses: PropTypes.array.isRequired
+                 };
 
 // 'mapStateToProps' defines what part of the redux store to expose to child components.
 // When you define this function, it subscribes to redux store's updates.

@@ -8,20 +8,23 @@
 // That is, by defining initial states here, it can be helpful to provide a picture of the full object tree in the store.
 
 export default {
-                   authors: [],
-                   courses: [],
-                   app:     {
-                                user:                 {},
-                                lookups:              {},
-                                home:                 {
-                                                          info: 'INITIAL MONKEY INFO'
-                                                      }, 
-                                ajaxCount:            0, 
-                                ajaxMessage:          'Working...', 
-                                isUserInitialized:    false, 
-                                isLookupsInitialized: false, 
-                                isAppInitialized:     false
-                            }, 
+                   authors:     [],
+                   demo:        {
+                                    courses: [], 
+                                    course:  { }
+                   },
+                   app:         {
+                                    user:                 {},
+                                    lookups:              {},
+                                    home:                 {
+                                                              info: 'INITIAL MONKEY INFO'
+                                                          }, 
+                                    ajaxCount:            0, 
+                                    ajaxMessage:          'Working...', 
+                                    isUserInitialized:    false, 
+                                    isLookupsInitialized: false, 
+                                    isAppInitialized:     false
+                                }, 
                     randomData: {
                                     randomTableData: {
                                                         data:    [
