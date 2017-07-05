@@ -11,7 +11,7 @@ class MrcApi {
 
     static getCourses() {
 
-        return fetch('api/GetGourses',
+        return fetch('/api/GetGourses',
                {
                    headers: API_HEADERS
                })
@@ -20,7 +20,7 @@ class MrcApi {
 
     static getCourse(courseId) {
 
-        return fetch('api/GetGourse',
+        return fetch('/api/GetGourse',
                {
                    headers: API_HEADERS, 
                    method:  'POST', 
@@ -31,7 +31,7 @@ class MrcApi {
 
     static getUserProfile() {
 
-        return fetch('api/GetUserProfile',
+        return fetch('/api/GetUserProfile',
                {
                    headers: API_HEADERS
                })
@@ -40,7 +40,7 @@ class MrcApi {
 
     static getLookups() {
 
-        return fetch('api/GetLookups',
+        return fetch('/api/GetLookups',
                {
                    headers: API_HEADERS
                })
@@ -49,7 +49,7 @@ class MrcApi {
 
     static getData() {
 
-        return fetch('api/GetData',
+        return fetch('/api/GetData',
                {
                    headers: API_HEADERS
                })

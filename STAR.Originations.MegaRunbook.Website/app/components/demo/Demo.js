@@ -81,7 +81,7 @@ class Demo extends React.Component {
 
     render() {
 
-        const courses = this.props.courses;
+        const courses = this.props.demo.courses;
         const app     = this.props.app;
 
         return (
@@ -163,7 +163,7 @@ class Demo extends React.Component {
 
 Demo.propTypes = {
                      actions: PropTypes.object.isRequired,
-                     courses: PropTypes.array.isRequired
+                     demo:    PropTypes.object.isRequired
                  };
 
 // 'mapStateToProps' defines what part of the redux store to expose to child components.
@@ -171,13 +171,13 @@ Demo.propTypes = {
 // Each property defined will become a property of the component.
 // In short, it defines an object with properties exposed to the component.
 //
-//      e.g. this.props.courses...
+//      e.g. this.props.demo.courses...
 //
 // The 'state' parameter represents the 'state' in the redux store.
 // 
-// The 'state.courses' property is determined by the choice to name the property 'courses' 
-// in the 'rootReducer' of index.js. In this case, 'courses' was just an 'alias' of the 
-// 'courseReducer'
+// The 'state.demo' property is determined by the choice to name the property 'demo' 
+// in the 'rootReducer' of index.js. In this case, 'demo' was just an 'alias' of the 
+// 'demoReducer'
 // 
 // So if you wanted to expose the entire store could you just say { everything: state } ?
 //
@@ -185,7 +185,7 @@ Demo.propTypes = {
 //
 
 const mapStateToProps = (state, ownProps) => ({
-                                                   courses: state.courses
+                                                   demo: state.demo
                                               });
 
 // 'mapDispatchToProps' exposes the actions exposed to the component.

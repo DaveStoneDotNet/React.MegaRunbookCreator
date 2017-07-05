@@ -16,33 +16,35 @@ class ManageCoursePage extends React.Component {
         super(props, context);
 
         this.state = {
-                         course: Object.assign({ }, this.props.course),
+                         course: Object.assign({ }, this.props.demo.course),
                          errors: { },
-                         isSaving: false
+                         isSaving: false, 
+                         isLoading: false
                      };
 
         toastr.options.positionClass = 'toast-bottom-right';
 
         this.updateCourseState = this.updateCourseState.bind(this);
         this.saveCourse        = this.saveCourse.bind(this);
+        this.getCourse         = this.getCourse.bind(this);
     }
 
     componentWillMount () {
-
+        const courseId = this.props.params.id;
+        this.getCourse(courseId);
     }
 
     componentDidMount () {
-
     }
 
     componentWillReceiveProps(nextProps) {
 
         // Necessary to populate when existing course is loaded directly
-        if (this.props.course.id !== nextProps.course.id) {
-            this.setState({
-                               course: Object.assign({ }, nextProps.course)
-                          });
-        }
+        //if (this.props.course.id !== nextProps.course.id) {
+        //    this.setState({
+        //                       course: Object.assign({ }, nextProps.course)
+        //                  });
+        //}
     }
 
     updateCourseState(event) {
@@ -60,6 +62,20 @@ class ManageCoursePage extends React.Component {
                           .catch(error => {
                               toastr.error(error);
                               this.setState({ isSaving: false });
+                          });
+    }
+
+    getCourse(courseId) {
+        console.log('START GET COURSE');
+        this.setState({ isLoading: true });
+        this.props.actions.getCourse(courseId)
+                          .then((res) => {
+                              console.log('THEN GET COURSE');
+                          })
+                          .catch(error => {
+                              console.log('ERROR GET COURSE');
+                              toastr.error(error);
+                              this.setState({ isLoading: false });
                           });
     }
 
@@ -83,7 +99,7 @@ class ManageCoursePage extends React.Component {
 }
 
 ManageCoursePage.propTypes = {
-                                 course:  PropTypes.object.isRequired,
+                                 demo:    PropTypes.object.isRequired,
                                  errors:  PropTypes.object,
                                  authors: PropTypes.array.isRequired,
                                  actions: PropTypes.object.isRequired
@@ -99,16 +115,32 @@ const getCourseById = (courses, id) => {
     return null;
 };
 
+//const getCourse = (state, ownProps) => {
+
+//    console.log('START GET COURSE');
+//    const courseId = 'clean-code';
+//    ownProps.actions.getCourse(courseId)
+//        .then((res) => {
+//            console.log('THEN GET COURSE');
+//        })
+//        .catch(error => {
+//            console.log('ERROR GET COURSE');
+//        });
+//};
+
 const mapStateToProps = (state, ownProps) => {
   
     // From the path '/course/:id'
     const courseId = ownProps.params.id;
 
     let course = {id: '', watchHref:'', title: '', authorId: '', length: '', category: ''};
+    //course = getCourse(state, ownProps);
 
-    if (courseId && state.courses.length > 0) {
-        course = getCourseById(state.courses, courseId);
-    }
+    //if (courseId && state.courses.length > 0) {
+    //    course = getCourseById(state.courses, courseId);
+    //}
+
+    //course = getCourse(courseId);
 
     const authorsFormattedForDropdown = state.authors.map(author => {
         return {
@@ -118,7 +150,7 @@ const mapStateToProps = (state, ownProps) => {
     });
   
     return { 
-               course:  course,
+               demo:    state.demo,
                authors: authorsFormattedForDropdown
            };
 };

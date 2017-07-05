@@ -2,7 +2,7 @@ import { combineReducers } from 'redux';
 import { routerReducer }   from 'react-router-redux';
 
 import appReducer          from './appReducer';
-import courseReducer       from './courseReducer';
+import demoReducer         from './demoReducer';
 import authorReducer       from './authorReducer';
 
 import ajaxStatusReducer   from './ajaxStatusReducer';
@@ -12,15 +12,15 @@ import randomDataReducer   from './randomDataReducer';
 // 
 // Naming is important here. Each of the 'properties' listed below become the property names on 'state'. For example, 'state.courses'.
 // 
-// That is, the 'courseReducer' was aliased to 'courses' so it can be referenced // as 'state.courses' instead of 'state.courseReducer'.
+// That is, the 'demoReducer' was aliased to 'courses' so it can be referenced // as 'state.courses' instead of 'state.demoReducer'.
 // 
 // Given the following...
 //
-//              const rootReducer = combineReducers({ courses: courseReducer })
+//              const rootReducer = combineReducers({ courses: demoReducer })
 //
-//... the 'state' parameter passed into the 'courseReducer' below will be the 'courses' property in the 'store'...
+//... the 'state' parameter passed into the 'demoReducer' below will be the 'courses' property in the 'store'...
 // 
-//              export default function courseReducer(state, action)
+//              export default function demoReducer(state, action)
 // 
 // The corresponding 'action.type' will then set 'courses' to whatever value the reducer returns, typically something like 'action.courses' 
 // or potentially some other non-mutated value.
@@ -45,15 +45,14 @@ import randomDataReducer   from './randomDataReducer';
 // on the child element/component.
 
 const rootReducer = combineReducers({
-                                        routing: routerReducer, 
+                                        routing:    routerReducer, 
                                                  
-                                        app:     appReducer,
-                                        courses: courseReducer, 
-                                        authors: authorReducer,  
+                                        app:        appReducer,
+                                        demo:       demoReducer, 
+                                        authors:    authorReducer,  
 
                                         randomData: randomDataReducer, 
                                         ajaxCount:  ajaxStatusReducer
-
                                     });
 
 export default rootReducer;

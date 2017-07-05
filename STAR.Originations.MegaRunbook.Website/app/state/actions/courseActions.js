@@ -30,10 +30,10 @@ import * as types        from './actionTypes';
 // 
 // -----------------------------------------------------------------------------------------------------------------------
 
-export function getCoursesSuccess(courses)  { return { type: types.GET_COURSES_SUCCESS,   demo: courses        }; }
-export function getCourseSuccess(course)    { return { type: types.GET_COURSE_SUCCESS,    demo: course         }; }
-export function createCourseSuccess(course) { return { type: types.CREATE_COURSE_SUCCESS, demo: course         }; }
-export function updateCourseSuccess(course) { return { type: types.UPDATE_COURSE_SUCCESS, demo: course         }; }
+export function getCoursesSuccess(courses)  { return { type: types.GET_COURSES_SUCCESS,   courses: courses     }; }
+export function getCourseSuccess(course)    { return { type: types.GET_COURSE_SUCCESS,    course: course       }; }
+export function createCourseSuccess(course) { return { type: types.CREATE_COURSE_SUCCESS, course: course       }; }
+export function updateCourseSuccess(course) { return { type: types.UPDATE_COURSE_SUCCESS, course: course       }; }
 
 export function beginAjaxCall(ajaxCount)   { return { type: types.BEGIN_AJAX_CALL,        ajaxCount: ajaxCount }; }
 export function endAjaxCall(ajaxCount)     { return { type: types.END_AJAX_CALL,          ajaxCount: ajaxCount }; }

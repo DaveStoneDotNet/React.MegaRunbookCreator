@@ -196,7 +196,7 @@
     <Content Include="app\state\reducers\ajaxStatusReducer.js" />
     <Content Include="app\state\reducers\appReducer.js" />
     <Content Include="app\state\reducers\authorReducer.js" />
-    <Content Include="app\state\reducers\courseReducer.js" />
+    <Content Include="app\state\reducers\demoReducer.js" />
     <Content Include="app\state\reducers\initialState.js" />
     <Content Include="app\state\reducers\randomDataReducer.js" />
     <Content Include="app\state\store\initialState.js" />

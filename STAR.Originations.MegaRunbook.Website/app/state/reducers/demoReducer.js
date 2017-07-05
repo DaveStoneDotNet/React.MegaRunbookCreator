@@ -6,7 +6,7 @@ import initialState from '../store/initialState';
 // The only way to change the state tree is to emit an action, an object describing what happened.
 // To specify how the actions transform the state tree, you write pure reducers.
 
-export default function courseReducer(state = initialState.demo, action) {
+export default function demoReducer(state = initialState.demo, action) {
 
     let new_state;
 
