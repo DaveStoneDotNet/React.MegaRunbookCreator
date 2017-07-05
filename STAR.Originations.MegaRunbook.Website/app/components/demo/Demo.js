@@ -15,6 +15,7 @@ import * as appActions        from '../../state/actions/appActions';
 
 import RandomTable            from './RandomTable';
 import CourseList             from './CourseList';
+import BarChart               from './BarChart';
 
 class Demo extends React.Component {
 
@@ -126,6 +127,11 @@ class Demo extends React.Component {
                             </tr>
                           </tbody>
                        </table>
+
+                       <div className="pad-20" />
+
+                       <h1>Random D3</h1>
+                       <BarChart data={[5,10,1,3]} size={[200,100]} />
 
                        <div className="pad-20" />
 

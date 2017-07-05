@@ -19,7 +19,7 @@ class MrcApi {
     }
 
     static getCourse(courseId) {
-
+        console.log('getCourse in the MrcApi..................');
         return fetch('/api/GetGourse',
                {
                    headers: API_HEADERS, 

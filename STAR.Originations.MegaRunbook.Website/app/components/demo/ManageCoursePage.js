@@ -16,9 +16,9 @@ class ManageCoursePage extends React.Component {
         super(props, context);
 
         this.state = {
-                         course: Object.assign({ }, this.props.demo.course),
-                         errors: { },
-                         isSaving: false, 
+                         course:    Object.assign({ }, this.props.demo.course),
+                         errors:    { },
+                         isSaving:  false, 
                          isLoading: false
                      };
 
@@ -66,11 +66,10 @@ class ManageCoursePage extends React.Component {
     }
 
     getCourse(courseId) {
-        console.log('START GET COURSE');
         this.setState({ isLoading: true });
         this.props.actions.getCourse(courseId)
-                          .then((res) => {
-                              console.log('THEN GET COURSE');
+                          .then((response) => {
+                              this.setState({ course: response });
                           })
                           .catch(error => {
                               console.log('ERROR GET COURSE');

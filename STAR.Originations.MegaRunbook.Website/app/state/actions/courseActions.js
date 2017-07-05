@@ -35,9 +35,9 @@ export function getCourseSuccess(course)    { return { type: types.GET_COURSE_SU
 export function createCourseSuccess(course) { return { type: types.CREATE_COURSE_SUCCESS, course: course       }; }
 export function updateCourseSuccess(course) { return { type: types.UPDATE_COURSE_SUCCESS, course: course       }; }
 
-export function beginAjaxCall(ajaxCount)   { return { type: types.BEGIN_AJAX_CALL,        ajaxCount: ajaxCount }; }
-export function endAjaxCall(ajaxCount)     { return { type: types.END_AJAX_CALL,          ajaxCount: ajaxCount }; }
-export function ajaxCallError(ajaxCount)   { return { type: types.AJAX_CALL_ERROR,        ajaxCount: ajaxCount }; }
+export function beginAjaxCall(ajaxCount)    { return { type: types.BEGIN_AJAX_CALL,       ajaxCount: ajaxCount }; }
+export function endAjaxCall(ajaxCount)      { return { type: types.END_AJAX_CALL,         ajaxCount: ajaxCount }; }
+export function ajaxCallError(ajaxCount)    { return { type: types.AJAX_CALL_ERROR,       ajaxCount: ajaxCount }; }
 
 // -----------------------------------------------------------------------------------------------------------------------
 // Thunks:
@@ -64,9 +64,9 @@ export function getCourse(courseId) {
     return function(dispatch) {
         dispatch(beginAjaxCall());
         return MrcApi.getCourse(courseId)
-                     .then(response => { dispatch(getCourseSuccess(response)); })
-                     .catch(error => { console.log('HANDLE ERROR'); })
-                     .then(() => dispatch(endAjaxCall()));
+                     .then(response => dispatch(getCourseSuccess(response)))
+                     .catch(error   => console.log('HANDLE ERROR'))
+                     .then(()       => dispatch(endAjaxCall()));
     };
 };
 
