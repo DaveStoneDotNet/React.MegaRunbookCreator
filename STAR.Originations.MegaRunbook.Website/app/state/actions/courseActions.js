@@ -2,6 +2,7 @@
 import courseApi         from '../../api/mockCourseApi';    // Only need to change this import to use a real api instead of a mocked one.
 import MrcApi            from '../../api/MrcApi';           // For example, substitute it with a real api.
 import * as types        from './actionTypes';
+import * as ajaxActions  from './ajaxStatusActions';
 
 // The whole state of your app is stored in an object tree inside a single store.
 // The only way to change the state tree is to emit an action, an object describing what happened.
@@ -30,14 +31,10 @@ import * as types        from './actionTypes';
 // 
 // -----------------------------------------------------------------------------------------------------------------------
 
-export function getCoursesSuccess(courses)  { return { type: types.GET_COURSES_SUCCESS,   courses: courses     }; }
-export function getCourseSuccess(course)    { return { type: types.GET_COURSE_SUCCESS,    course: course       }; }
-export function createCourseSuccess(course) { return { type: types.CREATE_COURSE_SUCCESS, course: course       }; }
-export function updateCourseSuccess(course) { return { type: types.UPDATE_COURSE_SUCCESS, course: course       }; }
-
-export function beginAjaxCall(ajaxCount)    { return { type: types.BEGIN_AJAX_CALL,       ajaxCount: ajaxCount }; }
-export function endAjaxCall(ajaxCount)      { return { type: types.END_AJAX_CALL,         ajaxCount: ajaxCount }; }
-export function ajaxCallError(ajaxCount)    { return { type: types.AJAX_CALL_ERROR,       ajaxCount: ajaxCount }; }
+export function getCoursesSuccess(value)   { return { type: types.GET_COURSES_SUCCESS,   courses: value  }; }
+export function getCourseSuccess(value)    { return { type: types.GET_COURSE_SUCCESS,    course: value   }; }
+export function createCourseSuccess(value) { return { type: types.CREATE_COURSE_SUCCESS, course: value   }; }
+export function updateCourseSuccess(value) { return { type: types.UPDATE_COURSE_SUCCESS, course: value   }; }
 
 // -----------------------------------------------------------------------------------------------------------------------
 // Thunks:
@@ -52,21 +49,90 @@ export function ajaxCallError(ajaxCount)    { return { type: types.AJAX_CALL_ERR
 
 export function getCourses() {
     return function(dispatch) {
-        dispatch(beginAjaxCall());
+        dispatch(ajaxActions.beginAjaxCall());
         return MrcApi.getCourses()
-                     .then(response => { dispatch(getCoursesSuccess(response)); })
-                     .catch(error => { console.log('HANDLE ERROR'); })
-                     .then(() => dispatch(endAjaxCall()));
+                     .then(response => dispatch(getCoursesSuccess(response)))
+                     .catch(error   => console.log('HANDLE ERROR'))
+                     .then(()       => dispatch(ajaxActions.endAjaxCall()));
     };
 };
 
+// It took considerable effort to orchestrate the 'begin' and 'end' ajax calls with the actual return value 
+// of the ajax call itself.
+// 
+// The final output of a Thunk function is a 'Promise' consisting of a 'PromiseStatus' and a 'PromiseValue'. 
+// The 'PromiseValue' is the ACTION defined above returning an object similar to the following: 
+//
+//          { type: 'SOME_STRING_CONSTANT', somePropertyName: somePropertyValue }
+//
+// This 'PromiseValue' is the RESPONSE returned to the calling method.
+//
+// Since the calling method receives a Promise, the calling method will require a 'then' method which will 
+// pass the RESPONSE of this call. What was confusing was the various ways to code the 'then' bits to 
+// return this action RESPONSE. In this example, we're talking about a singular 'course' returned from 
+// the database.
+// 
+// The following is *WRONG*:
+//
+//          export function getCourse(courseId) {
+//              return function(dispatch) {
+//                  dispatch(beginAjaxCall());
+//                  return MrcApi.getCourse(courseId)
+//                               .then(response => dispatch(getCourseSuccess(response)))        <-------- 1
+//                               .catch(error   => console.log('HANDLE ERROR'))
+//                               .then(()       => dispatch(endAjaxCall()));                    <-------- 2
+//              };
+// 
+// It appears that when TWO 'then' statements exist, the responses are combined to something 
+// resembling the following: 
+// 
+//          PromiseValue: {
+//                          type:   'GET_COURSE_SUCCESS', 
+//                          course: { type: 'END_AJAX_CALL', ajaxCount: '' }
+//                        }
+// 
+// Additionally, the use of curlies was confusing. You could modify the first 'then' response as 
+// shown below and enclose it in curlies. This allows you to run multiple statements, e.g. to dispatch 
+// both the 'endAjaxCall' and 'getCourseSuccess' actions, thereby eliminating the second 'then' 
+// statement shown above...
+//
+//          export function getCourse(courseId) {
+//              return function(dispatch) {
+//                  dispatch(beginAjaxCall());
+//                  return MrcApi.getCourse(courseId)
+//                               .then(response => { 
+//                                                      dispatch(getCourseSuccess(response));   <-------- 1
+//                                                      dispatch(endAjaxCall());                <-------- 2
+//                                                 })   
+//                               .catch(error   => console.log('HANDLE ERROR'));
+//              };
+// 
+// However, doing this just returns 'undefined' as the RESPONSE. The final thing to do is to actually 
+// *RETURN* the dispatch to 'getCourseSuccess'...
+//
+//          {
+//              dispatch(endAjaxCall()); 
+//              return dispatch(getCourseSuccess(response));    <-------- RIGHT, using a return statement
+//          }
+//
+// ... instead of ...
+//
+//          {          
+//              dispatch(endAjaxCall()); 
+//              dispatch(getCourseSuccess(response));           <-------- WRONG, does not use a return statement
+//          }
+
+
 export function getCourse(courseId) {
     return function(dispatch) {
-        dispatch(beginAjaxCall());
-        return MrcApi.getCourse(courseId)
-                     .then(response => dispatch(getCourseSuccess(response)))
-                     .catch(error   => console.log('HANDLE ERROR'))
-                     .then(()       => dispatch(endAjaxCall()));
+        dispatch(ajaxActions.beginAjaxCall());
+        const promise = MrcApi.getCourse(courseId)
+                              .then(response => {
+                                     dispatch(ajaxActions.endAjaxCall());
+                                     return dispatch(getCourseSuccess(response));   // This will return a Promise with a PromiseValue containing the object returned from the 'getCourseSuccess' method, e.g. { type: types.GET_COURSE_SUCCESS,    course: value   }
+                                 }
+                              );
+        return promise;
     };
 };
 
@@ -76,11 +142,11 @@ export function getCourse(courseId) {
 
 export function saveCourse(course) {
     return function (dispatch, getState) {
-        dispatch(beginAjaxCall());
+        dispatch(ajaxActions.beginAjaxCall());
         return courseApi.saveCourse(course)
                         .then(course => { course.id ? dispatch(updateCourseSuccess(course)) : dispatch(createCourseSuccess(course)); })
                         .catch(error => { console.log('HANDLE ERROR'); })
-                        .then(()     => { dispatch(endAjaxCall()); });
+                        .then(()     => { dispatch(ajaxActions.endAjaxCall()); });
     };
 };
 

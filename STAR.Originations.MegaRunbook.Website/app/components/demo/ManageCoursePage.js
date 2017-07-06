@@ -69,7 +69,7 @@ class ManageCoursePage extends React.Component {
         this.setState({ isLoading: true });
         this.props.actions.getCourse(courseId)
                           .then((response) => {
-                              this.setState({ course: response });
+                              this.setState({ course: Object.assign({ }, response.course) });
                           })
                           .catch(error => {
                               console.log('ERROR GET COURSE');
@@ -86,46 +86,33 @@ class ManageCoursePage extends React.Component {
 
     render() {
         return (
-                   <CourseForm allAuthors = { this.props.authors     }
-                               onChange   = { this.updateCourseState }
+                   <CourseForm course     = { this.state.course      }
+                               allAuthors = { this.props.authors     }
                                onSave     = { this.saveCourse        }
-                               course     = { this.state.course      }
-                               errors     = { this.state.errors      }
+                               onChange   = { this.updateCourseState }
                                isSaving   = { this.state.isSaving    }
+                               errors     = { this.state.errors      }
                    />
                );
     }
 }
 
-ManageCoursePage.propTypes = {
-                                 demo:    PropTypes.object.isRequired,
-                                 errors:  PropTypes.object,
-                                 authors: PropTypes.array.isRequired,
-                                 actions: PropTypes.object.isRequired
-                             };
+ManageCoursePage.propTypes    = {
+                                    demo:    PropTypes.object.isRequired,
+                                    errors:  PropTypes.object,
+                                    authors: PropTypes.array.isRequired,
+                                    actions: PropTypes.object.isRequired
+                                };
 
 ManageCoursePage.contextTypes = {
                                     router: PropTypes.object.isRequired
                                 };
 
 const getCourseById = (courses, id) => {
-    const course = courses.filter(course => course.id == id);
+    const course = courses.filter(course => course.id === id);
     if (course) return course[0];
     return null;
 };
-
-//const getCourse = (state, ownProps) => {
-
-//    console.log('START GET COURSE');
-//    const courseId = 'clean-code';
-//    ownProps.actions.getCourse(courseId)
-//        .then((res) => {
-//            console.log('THEN GET COURSE');
-//        })
-//        .catch(error => {
-//            console.log('ERROR GET COURSE');
-//        });
-//};
 
 const mapStateToProps = (state, ownProps) => {
   
@@ -133,7 +120,6 @@ const mapStateToProps = (state, ownProps) => {
     const courseId = ownProps.params.id;
 
     let course = {id: '', watchHref:'', title: '', authorId: '', length: '', category: ''};
-    //course = getCourse(state, ownProps);
 
     //if (courseId && state.courses.length > 0) {
     //    course = getCourseById(state.courses, courseId);

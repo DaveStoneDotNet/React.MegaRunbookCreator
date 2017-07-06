@@ -1,6 +1,7 @@
 ﻿
-import MrcApi     from '../../api/MrcApi';
-import * as types from './actionTypes';
+import MrcApi           from '../../api/MrcApi';
+import * as types       from './actionTypes';
+import * as ajaxActions from './ajaxStatusActions';
 
 // -----------------------------------------------------------------------------------------------------------------------
 // Actions:
@@ -49,15 +50,11 @@ import * as types from './actionTypes';
 // If you typed 'monkey' instead of 'home' then nothing would get updated and no error would occur, but 
 // most importantly, 'home' would NOT be updated.
 
-export function getDataSuccess(data)       { return { type: types.GET_DATA_SUCCESS,    home: data           }; }
+export function getDataSuccess(data)       { return { type: types.GET_DATA_SUCCESS,    home:      data    }; }
 
-export function getLookupsSuccess(lookups) { return { type: types.GET_LOOKUPS_SUCCESS, lookups:   lookups   }; }
-export function getUserSuccess(user)       { return { type: types.GET_USER_SUCCESS,    user:      user      }; }
-export function updateIsInitialized(app)   { return { type: types.IS_INITIALIZED,      app:       app       }; }
-
-export function beginAjaxCall(ajaxCount)   { return { type: types.BEGIN_AJAX_CALL,     ajaxCount: ajaxCount }; }
-export function endAjaxCall(ajaxCount)     { return { type: types.END_AJAX_CALL,       ajaxCount: ajaxCount }; }
-export function ajaxCallError(ajaxCount)   { return { type: types.AJAX_CALL_ERROR,     ajaxCount: ajaxCount }; }
+export function getLookupsSuccess(lookups) { return { type: types.GET_LOOKUPS_SUCCESS, lookups:   lookups }; }
+export function getUserSuccess(user)       { return { type: types.GET_USER_SUCCESS,    user:      user    }; }
+export function updateIsInitialized(app)   { return { type: types.IS_INITIALIZED,      app:       app     }; }
 
 // -----------------------------------------------------------------------------------------------------------------------
 // Thunks:
@@ -82,7 +79,7 @@ function isAppInitialized(dispatch) {
 
 export function getLookups() {
     return function (dispatch) {
-        dispatch(beginAjaxCall());
+        dispatch(ajaxActions.beginAjaxCall());
         return MrcApi.getLookups()
             .then(response => {
                 dispatch(getLookupsSuccess(response));
@@ -91,13 +88,13 @@ export function getLookups() {
                 isAppInitialized(dispatch);
             })
             .catch(error => { throw (error); })
-            .then(() => dispatch(endAjaxCall()));
+            .then(() => dispatch(ajaxActions.endAjaxCall()));
     };
 }
 
 export function getUser() {
     return function (dispatch) {
-        dispatch(beginAjaxCall());
+        dispatch(ajaxActions.beginAjaxCall());
         return MrcApi.getUserProfile()
             .then(response => {
                 dispatch(getUserSuccess(response));
@@ -106,17 +103,17 @@ export function getUser() {
                 isAppInitialized(dispatch);
             })
             .catch((error) => { throw (error); })
-            .then(() => dispatch(endAjaxCall()));
+            .then(() => dispatch(ajaxActions.endAjaxCall()));
     };
 }
 
 export function getData() {
     return function (dispatch) {
-        dispatch(beginAjaxCall());
+        dispatch(ajaxActions.beginAjaxCall());
         return MrcApi.getData()
             .then(response => dispatch(getDataSuccess(response)))
             .catch((error) => { throw (error); })
-            .then(()       => dispatch(endAjaxCall()));
+            .then(()       => dispatch(ajaxActions.endAjaxCall()));
     };
 }
 
