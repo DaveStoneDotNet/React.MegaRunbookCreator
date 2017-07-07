@@ -29,7 +29,8 @@ namespace STAR.Originations.MRC.DataAccess.Query
                 source = source.OrderBy(orderings);
             }
 
-            return source.Skip(PagingExtensions.GetSkipCount(paging)).Take(paging.RecordsPerPage);
+            var skipCount = PagingExtensions.GetSkipCount(paging);
+            return source.Skip(skipCount).Take(paging.RecordsPerPage);
         }
         #endregion TakePage
 
@@ -45,9 +46,9 @@ namespace STAR.Originations.MRC.DataAccess.Query
 
             var sanitizedPaging = new Paging
             {
-                PageNumber = Math.Max(1, unsanitizedPaging.PageNumber),
+                PageNumber     = Math.Max(1, unsanitizedPaging.PageNumber+1),
                 RecordsPerPage = unsanitizedPaging.RecordsPerPage == 0 ? defaultPageSize : Math.Max(1, unsanitizedPaging.RecordsPerPage),
-                SortInfo = (unsanitizedPaging.SortInfo != null && unsanitizedPaging.SortInfo.Any()) ? unsanitizedPaging.SortInfo.ToList() : new List<SortInfo> { new SortInfo { PropertyName = "1", SortOrder = SortOrder.Ascending } }
+                SortInfo       = (unsanitizedPaging.SortInfo != null && unsanitizedPaging.SortInfo.Any()) ? unsanitizedPaging.SortInfo.ToList() : new List<SortInfo> { new SortInfo { PropertyName = "1", SortOrder = SortOrder.Ascending } }
             };
 
             return sanitizedPaging;
@@ -65,13 +66,13 @@ namespace STAR.Originations.MRC.DataAccess.Query
             var skipCount = PagingExtensions.GetSkipCount(paging);
             var page = new Page<TSource>
             {
-                HasNext = paging != null && totalRecordCount > 0 && skipCount + paging.RecordsPerPage < totalRecordCount,
-                HasPrevious = paging != null && totalRecordCount > 0 && skipCount > 0,
-                Items = source.ToList(),
-                PageNumber = paging?.PageNumber ?? 1,
-                RecordsPerPage = paging?.RecordsPerPage ?? 0,
-                TotalPageCount = paging == null ? 1 : paging.RecordsPerPage == 0 ? 0 : (int)Math.Ceiling((float)totalRecordCount / (float)paging.RecordsPerPage),
-                TotalRecordCount = totalRecordCount
+                HasNext          = paging != null && totalRecordCount > 0 && skipCount + paging.RecordsPerPage < totalRecordCount,
+                HasPrevious      = paging != null && totalRecordCount > 0 && skipCount > 0,
+                TotalPageCount   = paging == null ? 1 : paging.RecordsPerPage == 0 ? 0 : (int)Math.Ceiling((float)totalRecordCount / (float)paging.RecordsPerPage),
+                PageNumber       = paging?.PageNumber     ?? 0,
+                RecordsPerPage   = paging?.RecordsPerPage ?? 0,
+                TotalRecordCount = totalRecordCount,
+                Items            = source.ToList(),
             };
 
             return page;

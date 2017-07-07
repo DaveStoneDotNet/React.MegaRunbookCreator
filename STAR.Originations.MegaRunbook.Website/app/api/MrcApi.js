@@ -39,10 +39,12 @@ class MrcApi {
                .then((response) => response.json());
     }
 
-    static getCourseDemos() {
+    static getCourseDemos(request) {
         return fetch('/api/GetCourseDemos',
                {
-                   headers: API_HEADERS
+                   headers: API_HEADERS, 
+                   method:  'POST', 
+                   body:    JSON.stringify(request)
                })
                .then((response) => response.json());
     }

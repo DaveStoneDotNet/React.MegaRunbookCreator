@@ -36,7 +36,7 @@ export function getCourseSuccess(value)        { return { type: types.GET_COURSE
 export function createCourseSuccess(value)     { return { type: types.CREATE_COURSE_SUCCESS,      course:         value }; }
 export function updateCourseSuccess(value)     { return { type: types.UPDATE_COURSE_SUCCESS,      course:         value }; }
                                                                                                                   
-export function getCourseDemosSuccess(value)   { return { type: types.GET_COURSE_DEMOS_SUCCESS,   courses:        value }; }
+export function getCourseDemosSuccess(value)   { return { type: types.GET_COURSE_DEMOS_SUCCESS,   response:       value }; }
 export function getCourseDemoSuccess(value)    { return { type: types.GET_COURSE_DEMO_SUCCESS,    course:         value }; }
 export function upsertCourseDemoSuccess(value) { return { type: types.UPSERT_COURSE_DEMO_SUCCESS, courseResponse: value }; }
 
@@ -156,10 +156,10 @@ export function saveCourse(course) {
 
 // -------------------------------------------------------------------------------------------------
 
-export function getCourseDemos() {
+export function getCourseDemos(request) {
     return function(dispatch) {
         dispatch(ajaxActions.beginAjaxCall());
-        return MrcApi.getCourseDemos()
+        return MrcApi.getCourseDemos(request)
                      .then(response => dispatch(getCourseDemosSuccess(response)))
                      .catch(error   => console.log('HANDLE ERROR'))
                      .then(()       => dispatch(ajaxActions.endAjaxCall()));

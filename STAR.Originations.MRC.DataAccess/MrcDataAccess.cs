@@ -58,20 +58,29 @@ namespace STAR.Originations.MRC.DataAccess
         // ----------------------------------------------------------
 
         #region GetCourseDemosAsync
-        public async Task<List<contracts::CourseDemo>> GetCourseDemosAsync()
+        public async Task<Page<contracts::CourseDemo>> GetCourseDemosAsync(contracts::CourseDemoCriteria request)
         {
             var stopwatch = DataAccessBase.StartStopwatch();
             using (var context = this.contextCreator())
             {
                 var query = context.CourseDemoes.AsQueryable();
 
-                var data = await query.Select(a => a).ToListAsync().ConfigureAwait(false);
+                var totalRecordCount = query.Count();
 
-                var mapped = Mapper.Map<List<entities::CourseDemo>, List<contracts::CourseDemo>>(data);
+                if (totalRecordCount == 0)
+                {
+                    return new Page<contracts::CourseDemo> { Items = new List<contracts::CourseDemo>(0) };
+                }
 
-                this.TraceSource.TraceEvent(TraceEventType.Information, "COMPLETE", stopwatch.Elapsed, TraceStatus.Success);
+                var sanitizedPagingInfo = request.Paging.SanitizePaging();
 
-                return mapped;
+                var data = await query.Select(QueryProjection.CourseDemo).TakePage(sanitizedPagingInfo).ToListAsync().ConfigureAwait(false);
+                var page = data.ToPage(totalRecordCount, sanitizedPagingInfo);
+
+                var message = request.UserProfile != null ? $"COMPLETE: { request.UserProfile.UserDisplayName }" : "COMPLETE";
+                this.TraceSource.TraceEvent(TraceEventType.Information, message, stopwatch.Elapsed, TraceStatus.Success, new Dictionary<String, object> { { "Search Criteria", request } });
+
+                return page;
             }
         }
         #endregion GetCourseDemosAsync

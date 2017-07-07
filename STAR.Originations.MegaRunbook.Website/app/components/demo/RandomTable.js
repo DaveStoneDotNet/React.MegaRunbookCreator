@@ -30,6 +30,8 @@ class RandomTable extends React.Component {
 
         this.setState({ loading: true });
 
+        console.log('RANDOM TABLE DATA STATE', state);
+
         this.props.actions.randomDataActions.getRandomTableData(state.pageSize, state.page, state.sorted, state.filtered)
             .then((res) => {
               toastr.success('Loaded some random data', 'SUCCESS');
@@ -114,8 +116,6 @@ class RandomTable extends React.Component {
 }
 
 function mapStateToProps(state, ownProps) {
-    console.log('MAP STATE TO PROPS IN RANDOM TABLE');
-    console.log(state);
     return {
               randomData: state.randomData
            };

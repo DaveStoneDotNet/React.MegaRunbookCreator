@@ -27,7 +27,7 @@ export default function demoReducer(state = initialState.demo, action) {
             return [...state.filter(course => course.id !== action.course.id), Object.assign({}, action.course)];
 
         case types.GET_COURSE_DEMOS_SUCCESS:
-            new_state = Object.assign({}, state, { courses: action.courses });
+            new_state = Object.assign({}, state, { courseDemos: action.response });
             return new_state;
 
         case types.GET_COURSE_DEMO_SUCCESS:

@@ -31,9 +31,9 @@ store.dispatch(appActions.getUser());
 store.dispatch(appActions.getLookups());
 store.dispatch(authorActions.getAuthorLookups());
 
-store.subscribe(() =>
-    console.log(store.getState())
-);
+//store.subscribe(() =>
+//    console.log(store.getState())
+//);
 
 // Create an enhanced history that syncs navigation events with the store
 const history = syncHistoryWithStore(browserHistory, store);

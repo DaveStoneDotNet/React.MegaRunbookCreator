@@ -165,6 +165,7 @@
   <ItemGroup>
     <Content Include="app\api\mockMrcApi.js" />
     <Content Include="app\components\demo\BarChart.js" />
+    <Content Include="app\components\demo\CourseDemoTable.js" />
     <Content Include="app\components\demo\RandomTable.js" />
     <Content Include="app\state\actions\actionTypes.js" />
     <Content Include="app\state\actions\ajaxStatusActions.js" />

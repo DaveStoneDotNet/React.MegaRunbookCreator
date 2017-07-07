@@ -14,6 +14,7 @@ using STAR.Originations.MRC.DataAccess;
 using STAR.Originations.MegaRunbook.Contracts;
 using STAR.Originations.MegaRunbook.Website.CustomAttributes;
 using STAR.Originations.MegaRunbook.Website.Models;
+
 using contracts = STAR.Originations.MegaRunbook.Contracts.Data;
 
 namespace STAR.Originations.MegaRunbook.Website.Controllers
@@ -48,9 +49,9 @@ namespace STAR.Originations.MegaRunbook.Website.Controllers
 
         #region GetCourseDemos
         [System.Web.Http.HttpGet]
-        public async Task<JsonResult> GetCourseDemos()
+        public async Task<JsonResult> GetCourseDemos(contracts::CourseDemoCriteria request)
         {
-            var response = await this.MrcDataAccess.GetCourseDemosAsync();
+            var response = await this.MrcDataAccess.GetCourseDemosAsync(request);
             return this.JsonDateResult(response);
         }
         #endregion GetCourseDemos

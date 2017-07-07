@@ -14,6 +14,7 @@ import * as courseActions     from '../../state/actions/courseActions';
 import * as appActions        from '../../state/actions/appActions';
 
 import RandomTable            from './RandomTable';
+import CourseDemoTable        from './CourseDemoTable';
 import CourseList             from './CourseList';
 import BarChart               from './BarChart';
 
@@ -146,6 +147,10 @@ class Demo extends React.Component {
                        </h1>
                        <div className="col-md-6 pad-top-20">
                           <RandomTable />
+                       </div>
+
+                       <div className="col-md-6 pad-top-20">
+                          <CourseDemoTable />
                        </div>
 
                        <Modal show={this.state.show} onHide={() => this.closeModal()} container={this}>
