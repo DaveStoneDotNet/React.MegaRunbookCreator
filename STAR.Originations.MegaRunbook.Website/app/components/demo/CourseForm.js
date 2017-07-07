@@ -5,6 +5,8 @@ import TextInput   from '../common/TextInput';
 import SelectInput from '../common/SelectInput';
 
 const CourseForm = ({ course, allAuthors, onSave, onChange, isSaving, errors }) => {
+
+    console.log('ALL AUTHORS IN THE COURSE FORM', allAuthors);
   return (
     <form>
 

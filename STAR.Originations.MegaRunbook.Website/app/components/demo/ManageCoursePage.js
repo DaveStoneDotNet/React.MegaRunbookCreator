@@ -117,11 +117,11 @@ const mapStateToProps = (state, ownProps) => {
   
     const authorsFormattedForDropdown = state.demo.authors.map(author => {
         return {
-                   value: author.id,
-                   text:  author.firstName + ' ' + author.lastName
+                   value: author.Id,
+                   text:  author.FirstName + ' ' + author.LastName
                };
     });
-  
+
     return { 
                demo:    state.demo,
                authors: authorsFormattedForDropdown
