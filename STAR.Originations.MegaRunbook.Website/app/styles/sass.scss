@@ -2064,6 +2064,11 @@ a.static-link:visited {
     background: rgba(255,255,255,0.1);
 }
 
+.ReactTable .-pagination .-pageSizeOptions select option {
+    color: #eeeeee;
+    background: $gray-3;
+}
+
 // ----------------------------------------------------------------------
 // REACT TABLE NO DATA
 // ----------------------------------------------------------------------
