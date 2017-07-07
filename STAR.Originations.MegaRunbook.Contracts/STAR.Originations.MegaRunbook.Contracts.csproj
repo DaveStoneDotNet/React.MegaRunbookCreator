@@ -47,6 +47,7 @@
     <Compile Include="Data\ApplicationType.cs" />
     <Compile Include="Data\AppLookups.cs" />
     <Compile Include="Data\Contact.cs" />
+    <Compile Include="Data\CourseDemo.cs" />
     <Compile Include="Data\Developer.cs" />
     <Compile Include="Data\Environment.cs" />
     <Compile Include="Data\EnvironmentLink.cs" />

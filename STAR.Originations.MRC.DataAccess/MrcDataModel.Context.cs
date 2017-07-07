@@ -40,5 +40,7 @@ namespace STAR.Originations.MRC.DataAccess
         public virtual DbSet<ServiceLink> ServiceLinks { get; set; }
         public virtual DbSet<ApplicationType> ApplicationTypes { get; set; }
         public virtual DbSet<Rfc> Rfcs { get; set; }
+        public virtual DbSet<CourseDemo> CourseDemoes { get; set; }
+        public virtual DbSet<TeamMember> TeamMembers { get; set; }
     }
 }

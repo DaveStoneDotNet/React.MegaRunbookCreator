@@ -24,23 +24,56 @@ namespace STAR.Originations.MegaRunbook.Website.Controllers
         private MrcDataAccess mrcDataAccess;
         public MrcDataAccess MrcDataAccess => this.mrcDataAccess ?? (this.mrcDataAccess = new MrcDataAccess());
 
-        #region GetGourses
+        // --------------------------------------------------------------------------------------------------------------------
+
+        #region GetCourses
         [System.Web.Http.HttpGet]
-        public JsonResult GetGourses()
+        public JsonResult GetCourses()
         {
             var courses = CourseData.SeedData();
             return this.Json(courses);
         }
-        #endregion GetGourses
+        #endregion GetCourses
 
-        #region GetGourse
+        #region GetCourse
         [System.Web.Http.HttpPost]
-        public JsonResult GetGourse(string courseId)
+        public JsonResult GetCourse(string courseId)
         {
             var course = (from o in CourseData.SeedData() where o.id == courseId select o).FirstOrDefault();
             return this.Json(course);
         }
-        #endregion GetGourse
+        #endregion GetCourse
+
+        // ---
+
+        #region GetCourseDemos
+        [System.Web.Http.HttpGet]
+        public async Task<JsonResult> GetCourseDemos()
+        {
+            var response = await this.MrcDataAccess.GetCourseDemosAsync();
+            return this.JsonDateResult(response);
+        }
+        #endregion GetCourseDemos
+
+        #region GetCourseDemo
+        [System.Web.Http.HttpPost]
+        public async Task<JsonResult> GetCourseDemo(int id)
+        {
+            var response = await this.MrcDataAccess.GetCourseDemoAsync(id);
+            return this.JsonDateResult(response);
+        }
+        #endregion GetCourseDemo
+
+        #region UpsertCourseDemo
+        [System.Web.Http.HttpPost]
+        public async Task<JsonResult> UpsertCourseDemo(contracts::CourseDemo courseDemo)
+        {
+            var response = await this.MrcDataAccess.UpsertCourseDemoAsync(courseDemo);
+            return this.JsonDateResult(response);
+        }
+        #endregion UpsertCourseDemo
+
+        // --------------------------------------------------------------------------------------------------------------------
 
         #region GetUserProfile
         [System.Web.Http.HttpGet]

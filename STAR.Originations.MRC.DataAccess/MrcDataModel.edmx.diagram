@@ -35,6 +35,8 @@
         <EntityTypeShape EntityType="MrcDataModel.Rfc" Width="2" PointX="0.5" PointY="5.5" />
         <AssociationConnector Association="MrcDataModel.Rfc_Contact_FK" />
         <AssociationConnector Association="MrcDataModel.RunbookStep_Rfc_FK" />
+        <EntityTypeShape EntityType="MrcDataModel.CourseDemo" Width="1.5" PointX="6.375" PointY="0.75" />
+        <EntityTypeShape EntityType="MrcDataModel.TeamMember" Width="1.5" PointX="6.375" PointY="7.75" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

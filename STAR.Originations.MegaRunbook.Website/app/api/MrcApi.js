@@ -9,9 +9,10 @@ const API_HEADERS = {
 
 class MrcApi {
 
-    static getCourses() {
+    // --------------------------------------------------------------------------------------------------------------------
 
-        return fetch('/api/GetGourses',
+    static getCourses() {
+        return fetch('/api/GetCourses',
                {
                    headers: API_HEADERS
                })
@@ -19,7 +20,7 @@ class MrcApi {
     }
 
     static getCourse(courseId) {
-        return fetch('/api/GetGourse',
+        return fetch('/api/GetCourse',
                {
                    headers: API_HEADERS, 
                    method:  'POST', 
@@ -27,6 +28,37 @@ class MrcApi {
                })
                .then((response) => response.json());
     }
+
+    // ---
+
+    static getCourseDemos() {
+        return fetch('/api/GetCourseDemos',
+               {
+                   headers: API_HEADERS
+               })
+               .then((response) => response.json());
+    }
+
+    static getCourseDemo(courseId) {
+        return fetch('/api/GetCourseDemo',
+               {
+                   headers: API_HEADERS, 
+                   method:  'POST', 
+                   body:    JSON.stringify({ courseId: courseId })
+               })
+               .then((response) => response.json());
+    }
+    static upsertCourseDemo(course) {
+        return fetch('/api/UpsertCourse',
+               {
+                   headers: API_HEADERS, 
+                   method:  'POST', 
+                   body:    JSON.stringify({ courseDemo: course })
+               })
+               .then((response) => response.json());
+    }
+
+    // --------------------------------------------------------------------------------------------------------------------
 
     static getUserProfile() {
 

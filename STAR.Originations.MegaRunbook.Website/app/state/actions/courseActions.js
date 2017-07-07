@@ -31,10 +31,14 @@ import * as ajaxActions  from './ajaxStatusActions';
 // 
 // -----------------------------------------------------------------------------------------------------------------------
 
-export function getCoursesSuccess(value)   { return { type: types.GET_COURSES_SUCCESS,   courses: value  }; }
-export function getCourseSuccess(value)    { return { type: types.GET_COURSE_SUCCESS,    course: value   }; }
-export function createCourseSuccess(value) { return { type: types.CREATE_COURSE_SUCCESS, course: value   }; }
-export function updateCourseSuccess(value) { return { type: types.UPDATE_COURSE_SUCCESS, course: value   }; }
+export function getCoursesSuccess(value)       { return { type: types.GET_COURSES_SUCCESS,        courses:        value }; }
+export function getCourseSuccess(value)        { return { type: types.GET_COURSE_SUCCESS,         course:         value }; }
+export function createCourseSuccess(value)     { return { type: types.CREATE_COURSE_SUCCESS,      course:         value }; }
+export function updateCourseSuccess(value)     { return { type: types.UPDATE_COURSE_SUCCESS,      course:         value }; }
+                                                                                                                  
+export function getCourseDemosSuccess(value)   { return { type: types.GET_COURSE_DEMOS_SUCCESS,   courses:        value }; }
+export function getCourseDemoSuccess(value)    { return { type: types.GET_COURSE_DEMO_SUCCESS,    course:         value }; }
+export function upsertCourseDemoSuccess(value) { return { type: types.UPSERT_COURSE_DEMO_SUCCESS, courseResponse: value }; }
 
 // -----------------------------------------------------------------------------------------------------------------------
 // Thunks:
@@ -152,3 +156,38 @@ export function saveCourse(course) {
 
 // -------------------------------------------------------------------------------------------------
 
+export function getCourseDemos() {
+    return function(dispatch) {
+        dispatch(ajaxActions.beginAjaxCall());
+        return MrcApi.getCourseDemos()
+                     .then(response => dispatch(getCourseDemosSuccess(response)))
+                     .catch(error   => console.log('HANDLE ERROR'))
+                     .then(()       => dispatch(ajaxActions.endAjaxCall()));
+    };
+};
+
+export function getCourseDemo(courseId) {
+    return function(dispatch) {
+        dispatch(ajaxActions.beginAjaxCall());
+        const promise = MrcApi.getCourseDemo(courseId)
+                              .then(response => {
+                                  dispatch(ajaxActions.endAjaxCall());
+                                  return dispatch(getCourseDemoSuccess(response));
+                              })
+                             .catch(error => console.log('HANDLE ERROR'));
+        return promise;
+    };
+};
+
+export function upsertCourseDemo(course) {
+    return function(dispatch) {
+        dispatch(ajaxActions.beginAjaxCall());
+        const promise = MrcApi.upsertCourseDemo(course)
+                              .then(response => {
+                                  dispatch(ajaxActions.endAjaxCall());
+                                  return dispatch(upsertCourseDemoSuccess(response));
+                              })
+                             .catch(error => console.log('HANDLE ERROR'));
+        return promise;
+    };
+};

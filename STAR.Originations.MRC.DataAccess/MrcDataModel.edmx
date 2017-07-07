@@ -5,6 +5,18 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="MrcDataModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CourseDemo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Key" Type="varchar" MaxLength="50" />
+          <Property Name="Title" Type="varchar" MaxLength="50" />
+          <Property Name="WatchHref" Type="varchar" MaxLength="150" />
+          <Property Name="AuthorId" Type="varchar" MaxLength="50" />
+          <Property Name="Length" Type="varchar" MaxLength="10" />
+          <Property Name="Category" Type="varchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="ApplicationGroup">
           <Key>
             <PropertyRef Name="Id" />
@@ -94,6 +106,16 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'C:\DATA\PROJECTS\REACT\REACT.MEGARUNBOOKCREATOR\STAR.ORIGINATIONS.MEGARUNBOOK.WEBSITE\APP_DATA\MRC.MDF.People.TeamMember' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="TeamMember">
+          <Key>
+            <PropertyRef Name="TeamId" />
+            <PropertyRef Name="ContactId" />
+          </Key>
+          <Property Name="TeamId" Type="int" Nullable="false" />
+          <Property Name="ContactId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Rfc">
           <Key>
@@ -380,6 +402,7 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="MrcDataModelStoreContainer">
+          <EntitySet Name="CourseDemo" EntityType="Self.CourseDemo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ApplicationGroup" EntityType="Self.ApplicationGroup" Schema="Links" store:Type="Tables" />
           <EntitySet Name="ApplicationLink" EntityType="Self.ApplicationLink" Schema="Links" store:Type="Tables" />
           <EntitySet Name="Environment" EntityType="Self.Environment" Schema="Links" store:Type="Tables" />
@@ -398,6 +421,12 @@
           <EntitySet Name="RunbookStepResource" EntityType="Self.RunbookStepResource" Schema="Runbook" store:Type="Tables" />
           <EntitySet Name="RunbookStepTeam" EntityType="Self.RunbookStepTeam" Schema="Runbook" store:Type="Tables" />
           <EntitySet Name="RunbookTemplate" EntityType="Self.RunbookTemplate" Schema="Runbook" store:Type="Tables" />
+          <EntitySet Name="TeamMember" EntityType="Self.TeamMember" store:Type="Tables" store:Schema="People">
+            <DefiningQuery>SELECT 
+    [TeamMember].[TeamId] AS [TeamId], 
+    [TeamMember].[ContactId] AS [ContactId]
+    FROM [People].[TeamMember] AS [TeamMember]</DefiningQuery>
+          </EntitySet>
           <AssociationSet Name="ApplicationLink_ApplicationGroup_FK" Association="Self.ApplicationLink_ApplicationGroup_FK">
             <End Role="ApplicationGroup" EntitySet="ApplicationGroup" />
             <End Role="ApplicationLink" EntitySet="ApplicationLink" />
@@ -551,6 +580,8 @@
             <End Role="Rfc" EntitySet="Rfcs" />
             <End Role="RunbookStep" EntitySet="RunbookSteps" />
           </AssociationSet>
+          <EntitySet Name="CourseDemoes" EntityType="MrcDataModel.CourseDemo" />
+          <EntitySet Name="TeamMembers" EntityType="MrcDataModel.TeamMember" />
         </EntityContainer>
         <EntityType Name="RunbookTemplate">
           <Key>
@@ -872,6 +903,26 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="CourseDemo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Key" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="WatchHref" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="AuthorId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Length" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Category" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="TeamMember">
+          <Key>
+            <PropertyRef Name="TeamId" />
+            <PropertyRef Name="ContactId" />
+          </Key>
+          <Property Name="TeamId" Type="Int32" Nullable="false" />
+          <Property Name="ContactId" Type="Int32" Nullable="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1047,6 +1098,27 @@
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Number" ColumnName="Number" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CourseDemoes">
+            <EntityTypeMapping TypeName="MrcDataModel.CourseDemo">
+              <MappingFragment StoreEntitySet="CourseDemo">
+                <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="Length" ColumnName="Length" />
+                <ScalarProperty Name="AuthorId" ColumnName="AuthorId" />
+                <ScalarProperty Name="WatchHref" ColumnName="WatchHref" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Key" ColumnName="Key" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TeamMembers">
+            <EntityTypeMapping TypeName="MrcDataModel.TeamMember">
+              <MappingFragment StoreEntitySet="TeamMember">
+                <ScalarProperty Name="ContactId" ColumnName="ContactId" />
+                <ScalarProperty Name="TeamId" ColumnName="TeamId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -90,6 +90,9 @@
     <Compile Include="Contact.cs">
       <DependentUpon>MrcDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="CourseDemo.cs">
+      <DependentUpon>MrcDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="DataAccessBase.cs" />
     <Compile Include="Environment.cs">
       <DependentUpon>MrcDataModel.tt</DependentUpon>
@@ -157,6 +160,9 @@
       <DependentUpon>MrcDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Team.cs">
+      <DependentUpon>MrcDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TeamMember.cs">
       <DependentUpon>MrcDataModel.tt</DependentUpon>
     </Compile>
   </ItemGroup>

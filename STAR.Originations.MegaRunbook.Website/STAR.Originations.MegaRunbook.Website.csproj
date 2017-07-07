@@ -159,6 +159,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\CardData.cs" />
+    <Compile Include="Models\CourseDemo.cs" />
     <Compile Include="Models\CourseData.cs" />
     <Compile Include="Models\TaskData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

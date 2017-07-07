@@ -55,6 +55,83 @@ namespace STAR.Originations.MRC.DataAccess
 
         #region Methods
 
+        // ----------------------------------------------------------
+
+        #region GetCourseDemosAsync
+        public async Task<List<contracts::CourseDemo>> GetCourseDemosAsync()
+        {
+            var stopwatch = DataAccessBase.StartStopwatch();
+            using (var context = this.contextCreator())
+            {
+                var query = context.CourseDemoes.AsQueryable();
+
+                var data = await query.Select(a => a).ToListAsync().ConfigureAwait(false);
+
+                var mapped = Mapper.Map<List<entities::CourseDemo>, List<contracts::CourseDemo>>(data);
+
+                this.TraceSource.TraceEvent(TraceEventType.Information, "COMPLETE", stopwatch.Elapsed, TraceStatus.Success);
+
+                return mapped;
+            }
+        }
+        #endregion GetCourseDemosAsync
+
+        #region GetCourseDemoAsync
+        public async Task<contracts::CourseDemo> GetCourseDemoAsync(int id)
+        {
+            var stopwatch = DataAccessBase.StartStopwatch();
+            using (var context = this.contextCreator())
+            {
+                var query = context.CourseDemoes.AsQueryable();
+
+                query = query.Where(o => o.Id == id);
+
+                var data = await query.Select(a => a).FirstOrDefaultAsync().ConfigureAwait(false);
+
+                var mapped = Mapper.Map<entities::CourseDemo, contracts::CourseDemo>(data);
+
+                this.TraceSource.TraceEvent(TraceEventType.Information, String.Format("COMPLETE: ID: {0}.", id), stopwatch.Elapsed, TraceStatus.Success);
+
+                return mapped;
+            }
+        }
+        #endregion GetCourseDemoAsync
+
+        #region UpsertCourseDemoAsync
+        public async Task<contracts::ServiceResponse> UpsertCourseDemoAsync(contracts::CourseDemo request)
+        {
+            var stopwatch = DataAccessBase.StartStopwatch();
+
+            var response = new contracts::ServiceResponse();
+
+            using (var context = this.contextCreator())
+            {
+                var item = await (from o in context.CourseDemoes where o.Id == request.Id select o).FirstOrDefaultAsync().ConfigureAwait(false);
+
+                if (item == null)
+                {
+                    item = context.CourseDemoes.Create();
+                }
+
+                item.Key       = request.Key;
+                item.Title     = request.Title;
+                item.WatchHref = request.WatchHref;
+                item.AuthorId  = request.AuthorId;
+                item.Length    = request.Length;
+                item.Category  = request.Category;
+
+                response.RecordsAffected = await context.SaveChangesAsync().ConfigureAwait(false);
+                response.IsSuccessful = true;
+
+                this.TraceSource.TraceEvent(TraceEventType.Information, "COMPLETE", stopwatch.Elapsed, TraceStatus.Success);
+
+                return response;
+            }
+        }
+        #endregion UpsertCourseDemoAsync
+
+        // ----------------------------------------------------------
+
         #region GetRunbookTemplatesAsync
         public async Task<Page<contracts::RunbookTemplate>> GetRunbookTemplatesAsync(contracts::RunbookTemplate request)
         {

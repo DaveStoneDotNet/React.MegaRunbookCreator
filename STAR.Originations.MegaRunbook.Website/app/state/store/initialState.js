@@ -10,8 +10,9 @@
 export default {
                    authors:     [],
                    demo:        {
-                                    courses: [], 
-                                    course:  { }
+                                    courses:        [], 
+                                    course:         {}, 
+                                    courseResponse: {}
                    },
                    app:         {
                                     user:                 {},
