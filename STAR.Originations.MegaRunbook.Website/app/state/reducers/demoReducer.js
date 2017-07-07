@@ -38,6 +38,10 @@ export default function demoReducer(state = initialState.demo, action) {
             new_state = Object.assign({}, state, { courseResponse: action.courseResponse });
             return new_state;
 
+        case types.GET_AUTHORS_SUCCESS:
+            new_state = Object.assign({}, state, { authors: action.authors });
+            return new_state;
+
         default:
             return state;
     }

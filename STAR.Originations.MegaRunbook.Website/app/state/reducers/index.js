@@ -3,7 +3,6 @@ import { routerReducer }   from 'react-router-redux';
 
 import appReducer          from './appReducer';
 import demoReducer         from './demoReducer';
-import authorReducer       from './authorReducer';
 
 import ajaxStatusReducer   from './ajaxStatusReducer';
 import randomDataReducer   from './randomDataReducer';
@@ -49,7 +48,6 @@ const rootReducer = combineReducers({
                                                  
                                         app:        appReducer,
                                         demo:       demoReducer, 
-                                        authors:    authorReducer,  
 
                                         randomData: randomDataReducer, 
                                         ajaxCount:  ajaxStatusReducer

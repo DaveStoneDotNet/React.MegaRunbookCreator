@@ -69,4 +69,36 @@ namespace STAR.Originations.MegaRunbook.Website.Models
             };
         }
     }
+
+    public class Author
+    {
+        public string Id { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+
+        public static List<Author> AuthorLookups()
+        {
+            return new List<Author>
+            {
+                new Author
+                {
+                    Id = "cory-house",
+                    FirstName = "Cory",
+                    LastName = "House",
+                },
+                new Author
+                {
+                    Id = "scott-allen",
+                    FirstName = "Scott",
+                    LastName = "Allen",
+                },
+                new Author
+                {
+                    Id = "dan-wahlin",
+                    FirstName = "Dan",
+                    LastName = "Wahlin",
+                }
+            };
+        }
+    }
 }

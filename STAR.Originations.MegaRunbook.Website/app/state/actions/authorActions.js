@@ -1,14 +1,19 @@
-import AuthorApi         from '../api/mockAuthorApi';
 import * as types        from './actionTypes';
-import { beginAjaxCall } from './ajaxStatusActions';
+import * as ajaxActions  from './ajaxStatusActions';
+import MrcApi            from '../../api/MrcApi';
 
-export function loadAuthorsSuccess(authors) { return { type: types.LOAD_AUTHORS_SUCCESS, authors }; }
+export function getAuthorsSuccess(value) { return { type: types.GET_AUTHORS_SUCCESS, authors: value }; }
 
-export function loadAuthors() {
-  return dispatch => {
-    dispatch(beginAjaxCall());
-    return AuthorApi.getAllAuthors()
-                    .then(authors => { dispatch(loadAuthorsSuccess(authors)); })
-                    .catch(error =>  { throw(error); });
-  };
-}
+export function getAuthorLookups() {
+    return function(dispatch) {
+        dispatch(ajaxActions.beginAjaxCall());
+        const promise = MrcApi.getAuthorLookups()
+                              .then(response => {
+                                  dispatch(ajaxActions.endAjaxCall());
+                                  return dispatch(getAuthorsSuccess(response));
+                              })
+                             .catch(error => console.log('HANDLE ERROR'));
+        return promise;
+    };
+};
+

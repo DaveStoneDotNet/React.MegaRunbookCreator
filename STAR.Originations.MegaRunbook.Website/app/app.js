@@ -10,6 +10,7 @@ import routes                     from './routes';
 import configureStore             from './state/store/configureStore';
 
 import * as courseActions         from './state/actions/courseActions';
+import * as authorActions         from './state/actions/authorActions';
 import * as appActions            from './state/actions/appActions';
 
 // Import babel-polyfill to support Object.assign functions for deep-cloning of immutable objects.
@@ -28,6 +29,7 @@ const store = configureStore();
 store.dispatch(courseActions.getCourses());
 store.dispatch(appActions.getUser());
 store.dispatch(appActions.getLookups());
+store.dispatch(authorActions.getAuthorLookups());
 
 store.subscribe(() =>
     console.log(store.getState())

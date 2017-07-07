@@ -31,6 +31,14 @@ class MrcApi {
 
     // ---
 
+    static getAuthorLookups() {
+        return fetch('/api/GetAuthorLookups',
+               {
+                   headers: API_HEADERS
+               })
+               .then((response) => response.json());
+    }
+
     static getCourseDemos() {
         return fetch('/api/GetCourseDemos',
                {

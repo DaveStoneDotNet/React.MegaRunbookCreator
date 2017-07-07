@@ -38,7 +38,6 @@ class ManageCoursePage extends React.Component {
     }
 
     componentWillReceiveProps(nextProps) {
-
         // Necessary to populate when existing course is loaded directly
         //if (this.props.course.id !== nextProps.course.id) {
         //    this.setState({
@@ -116,18 +115,7 @@ const getCourseById = (courses, id) => {
 
 const mapStateToProps = (state, ownProps) => {
   
-    // From the path '/course/:id'
-    const courseId = ownProps.params.id;
-
-    let course = {id: '', watchHref:'', title: '', authorId: '', length: '', category: ''};
-
-    //if (courseId && state.courses.length > 0) {
-    //    course = getCourseById(state.courses, courseId);
-    //}
-
-    //course = getCourse(courseId);
-
-    const authorsFormattedForDropdown = state.authors.map(author => {
+    const authorsFormattedForDropdown = state.demo.authors.map(author => {
         return {
                    value: author.id,
                    text:  author.firstName + ' ' + author.lastName

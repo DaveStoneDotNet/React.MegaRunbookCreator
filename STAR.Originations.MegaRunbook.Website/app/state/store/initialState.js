@@ -8,15 +8,46 @@
 // That is, by defining initial states here, it can be helpful to provide a picture of the full object tree in the store.
 
 export default {
-                   authors:     [],
                    demo:        {
-                                    courses:        [], 
-                                    course:         {}, 
-                                    courseResponse: {}
+                                    authors:              [{ Id: '', FirstName: '', LastName: '' }],
+                                    courses:              [{ id: '', title: '', watchHref: '', authorId: '', length: '', category: '' }], 
+                                    course:               {
+                                                              id:        '', 
+                                                              title:     '', 
+                                                              watchHref: '', 
+                                                              authorId:  '', 
+                                                              length:    '', 
+                                                              category:  ''
+                                                          }, 
+                                    courseDemos:          [{ Id: '', Title: '', WatchHref: '', AuthorId: '', Length: '', Category: '' }], 
+                                    courseDemo:           {
+                                                              Id:        '', 
+                                                              Title:     '', 
+                                                              WatchHref: '', 
+                                                              AuthorId:  '', 
+                                                              Length:    '', 
+                                                              Category:  ''
+                                                          }, 
+                                    courseResponse:       {}
                    },
                    app:         {
-                                    user:                 {},
-                                    lookups:              {},
+                                    user:                 {
+                                                              HasRole:         false, 
+                                                              IsAdministrator: false, 
+                                                              IsSuccessful:    false, 
+                                                              PrimaryRoleName: '', 
+                                                              RoleNames:       [''], 
+                                                              UserDisplayName: '', 
+                                                              UserId:          0, 
+                                                              UserInitials:    ''
+                                                          },
+                                    lookups:              {
+                                                              ApplicationGroups:   [{ Code: '', Description: '', SortOrder: 0 }], 
+                                                              ApplicationTypes:    [{ Code: '', Description: '', SortOrder: 0 }], 
+                                                              RunbookStepStatuses: [{ Code: '', Description: '', SortOrder: 0 }], 
+                                                              RunbookStepTypes:    [{ Code: '', Description: '', SortOrder: 0 }], 
+                                                              Teams:               [{ Id:   '', Name:        ''               }]
+                                                          },
                                     home:                 {
                                                               info: 'INITIAL MONKEY INFO'
                                                           }, 
@@ -27,20 +58,19 @@ export default {
                                     isAppInitialized:     false
                                 }, 
                     randomData: {
-                                    randomTableData: {
-                                                        data:    [
-                                                                  {
-                                                                    id:         0, 
-                                                                    age:        0,
-                                                                    firstName:  '',
-                                                                    lastName:   '', 
-                                                                    createDate: new Date()
-                                                                  }
-                                                                 ], 
-                                                        pages:   0, 
-                                                        loading: false
-                                                     }
+                                    randomTableData:      {
+                                                             data:    [
+                                                                       {
+                                                                         id:         0, 
+                                                                         age:        0,
+                                                                         firstName:  '',
+                                                                         lastName:   '', 
+                                                                         createDate: new Date()
+                                                                       }
+                                                                      ], 
+                                                             pages:   0, 
+                                                             loading: false
+                                                          }
                                                      
-                                }, 
-                   ajaxCallsInProgress:  0
+                                }
                };

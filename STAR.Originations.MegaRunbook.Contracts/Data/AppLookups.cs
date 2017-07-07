@@ -11,7 +11,7 @@ namespace STAR.Originations.MegaRunbook.Contracts.Data
     {
         [DataMember] public List<Lookup> ApplicationGroups { get; set; }
         [DataMember] public List<Lookup> ApplicationTypes { get; set; }
-        [DataMember] public List<Lookup> RunbookStetpTypes { get; set; }
+        [DataMember] public List<Lookup> RunbookStepTypes { get; set; }
         [DataMember] public List<Lookup> RunbookStepStatuses { get; set; }
 
         [DataMember] public List<Team> Teams { get; set; }

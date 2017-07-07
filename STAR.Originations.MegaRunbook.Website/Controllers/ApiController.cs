@@ -73,6 +73,17 @@ namespace STAR.Originations.MegaRunbook.Website.Controllers
         }
         #endregion UpsertCourseDemo
 
+        // ---
+
+        #region GetAuthorLookups
+        [System.Web.Http.HttpGet]
+        public JsonResult GetAuthorLookups()
+        {
+            var courses = Author.AuthorLookups();
+            return this.Json(courses);
+        }
+        #endregion GetAuthorLookups
+
         // --------------------------------------------------------------------------------------------------------------------
 
         #region GetUserProfile
