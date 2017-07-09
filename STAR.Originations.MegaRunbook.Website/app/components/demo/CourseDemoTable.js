@@ -133,7 +133,7 @@ class CourseDemoTable extends React.Component {
                             pages={this.props.courseDemos.TotalPageCount}   // Display the total number of pages
                             onFetchData={this.fetchData}                    // Request new data when things change
                             loading={loadingState}
-                            getTdProps={(state, rowInfo, column, instance) => { return { onClick: e => { console.log('SELECTED: '+ rowInfo.original.id + ' ' + rowInfo.original.firstName + ' ' + rowInfo.original.lastName ) } } }}
+                            getTdProps={(state, rowInfo, column, instance) => { return { onClick: e => { console.log('SELECTED: '+ rowInfo.original.Id + ' ' + rowInfo.original.Key + ' ' + rowInfo.original.Title ) } } }}
                     />
                     <div>
                         <ProgressBar active now={100} active={loadingState} className={loadingState ? 'opacity-90' : 'invisible'} style={{height: '5px'}} />

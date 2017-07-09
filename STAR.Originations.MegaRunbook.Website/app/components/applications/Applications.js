@@ -1,5 +1,4 @@
 ﻿import React    from 'react';
-import { Link } from 'react-router';
 
 class Applications extends React.Component {
 
