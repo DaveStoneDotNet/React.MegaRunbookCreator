@@ -1,0 +1,196 @@
+﻿{
+  "ReleaseDate":              "Saturday, July 09, 2017", 
+  "ScheduledReleaseStarTime": "08:00 PM", 
+  "ScheduledReleaseStopTime": "01:30 AM", 
+  "ActualReleaseStarTime":    "08:00 PM", 
+  "ActualReleaseStopTime":    "01:30 AM", 
+  "ReleaseStatus":            "Started", 
+  "ReleaseBlocks":   [
+                        {
+                          "BlockOrder":       1, 
+                          "StepsText":        "P1 - 1-5", 
+                          "BlockType":        "DBA", 
+                          "BlockName":        "DBA", 
+                          "BlockDescription": "", 
+                          "StartTime":        "08:00", 
+                          "StopTime":         "08:46", 
+                          "BlockStatus":      "Done", 
+                          "BlockUsers":       ["Tharun Mukka", "Sebastian Abraham"] 
+                        }, 
+                        {
+                          "BlockOrder":       2, 
+                          "StepsText":        "6-7", 
+                          "BlockType":        "ETL", 
+                          "BlockName":        "ETL", 
+                          "BlockDescription": "", 
+                          "StartTime":        "08:00", 
+                          "StopTime":         "08:50", 
+                          "BlockStatus":      "Done", 
+                          "BlockUsers":       ["Harish Ram"] 
+                        }, 
+                        {
+                          "BlockOrder":       3, 
+                          "StepsText":        "8-10", 
+                          "BlockType":        "EncompassAdmin", 
+                          "BlockName":        "Encompass Admin", 
+                          "BlockDescription": "", 
+                          "StartTime":        "08:00", 
+                          "StopTime":         "08:30", 
+                          "BlockStatus":      "Done", 
+                          "BlockUsers":       ["Michael Dowel"] 
+                        }, 
+                        {
+                          "BlockOrder":       4, 
+                          "StepsText":        "11-19", 
+                          "BlockType":        "EncompassAdmin", 
+                          "BlockName":        "Encompass Admin", 
+                          "BlockDescription": "", 
+                          "StartTime":        "08:00", 
+                          "StopTime":         "08:55", 
+                          "BlockStatus":      "Warning", 
+                          "BlockUsers":       ["Sara Gorrell", "Matthew Krajca"] 
+                        }, 
+                        {
+                          "BlockOrder":       5, 
+                          "StepsText":        "20-35", 
+                          "BlockType":        "DevOps", 
+                          "BlockName":        "Dev Ops", 
+                          "BlockDescription": "Deploy CMA", 
+                          "StartTime":        "08:55", 
+                          "StopTime":         "10:15", 
+                          "BlockStatus":      "Started", 
+                          "BlockUsers":       ["Matt Clark"] 
+                        }, 
+                        {
+                          "BlockOrder":       6, 
+                          "StepsText":        "36-37", 
+                          "BlockType":        "EncompassAdmin", 
+                          "BlockName":        "Encompass Admin", 
+                          "BlockDescription": "", 
+                          "StartTime":        "10:05", 
+                          "StopTime":         "10:20", 
+                          "BlockStatus":      "Done", 
+                          "BlockUsers":       ["David Lane"] 
+                        }, 
+                        {
+                          "BlockOrder":       7, 
+                          "StepsText":        "38-40", 
+                          "BlockType":        "DevOps", 
+                          "BlockName":        "Dev Ops", 
+                          "BlockDescription": "", 
+                          "StartTime":        "10:05", 
+                          "StopTime":         "10:20", 
+                          "BlockStatus":      "Done", 
+                          "BlockUsers":       ["Matt Clark"] 
+                        }, 
+                        {
+                          "BlockOrder":       8, 
+                          "StepsText":        "41", 
+                          "BlockType":        "Developer", 
+                          "BlockName":        "Developer", 
+                          "BlockDescription": "Run Scheduled Tasks", 
+                          "StartTime":        "10:05", 
+                          "StopTime":         "10:20", 
+                          "BlockStatus":      "Critical", 
+                          "BlockUsers":       ["Dave Stone"] 
+                        }
+                     ], 
+  "Activity":        [
+                        {
+                          "TimeText":          "Just Now", 
+                          "Header":            "Encompass Admin", 
+                          "SubHeader":         "David Lane", 
+                          "ShortIndicator":    "Done", 
+                          "ShortSubIndicator": "Step 37", 
+                          "FormattedTime":     "10:17 PM"
+                        }, 
+                        {
+                          "TimeText":          "10k minutes ago", 
+                          "Header":            "Dev Ops", 
+                          "SubHeader":         "Matt Clark", 
+                          "ShortIndicator":    "Done", 
+                          "ShortSubIndicator": "Step 33", 
+                          "FormattedTime":     "10:07 PM"
+                        }, 
+                        {
+                          "TimeText":          "12 minutes ago", 
+                          "Header":            "Dev Ops", 
+                          "SubHeader":         "Matt Clark", 
+                          "ShortIndicator":    "Started", 
+                          "ShortSubIndicator": "Step 32", 
+                          "FormattedTime":     "10:02 PM"
+                        }, 
+                        {
+                          "TimeText":          "33 minutes ago", 
+                          "Header":            "Dev Ops", 
+                          "SubHeader":         "Matt Clark", 
+                          "ShortIndicator":    "Done", 
+                          "ShortSubIndicator": "Step 32", 
+                          "FormattedTime":     "09:44 PM"
+                        }, 
+                        {
+                          "TimeText":          "45 minutes Ago", 
+                          "Header":            "Dev Ops", 
+                          "SubHeader":         "Matt Clark", 
+                          "ShortIndicator":    "Started", 
+                          "ShortSubIndicator": "Step 32", 
+                          "FormattedTime":     "09:32 PM"
+                        } 
+                     ], 
+    "Contacts":      [
+                        {
+                          "DisplayName":  "David Lane", 
+                          "Title":        "Encompass Admin", 
+                          "Phone":        "555-555-55555", 
+                          "ContactTypes": ["Skype", "Slack"]
+                        }, 
+                        {
+                          "DisplayName":  "Michael Dowel", 
+                          "Title":        "Encompass Admin", 
+                          "Phone":        "555-555-55555", 
+                          "ContactTypes": ["Skype", "Slack"]
+                        }, 
+                        {
+                          "DisplayName":  "Tharun Mukka", 
+                          "Title":        "Sql Dba", 
+                          "Phone":        "555-555-55555", 
+                          "ContactTypes": ["Skype", "Slack"]
+                        }, 
+                        {
+                          "DisplayName":  "Sebastian Abraham", 
+                          "Title":        "Sr. IT Analyst", 
+                          "Phone":        "555-555-55555", 
+                          "ContactTypes": ["Skype", "Slack"]
+                        }, 
+                        {
+                          "DisplayName":  "Sara Gorrell", 
+                          "Title":        "Encompass Admin", 
+                          "Phone":        "555-555-55555", 
+                          "ContactTypes": ["Skype", "Slack"]
+                        }, 
+                        {
+                          "DisplayName":  "Matthe Krajca", 
+                          "Title":        "Encompass Admin", 
+                          "Phone":        "555-555-55555", 
+                          "ContactTypes": ["Skype", "Slack"]
+                        }, 
+                        {
+                          "DisplayName":  "Mark Harada", 
+                          "Title":        "Sr. IT Analyst", 
+                          "Phone":        "555-555-55555", 
+                          "ContactTypes": ["Skype", "Slack"]
+                        }, 
+                        {
+                          "DisplayName":  "Kris Drouet", 
+                          "Title":        "VP IT", 
+                          "Phone":        "555-555-55555", 
+                          "ContactTypes": ["Skype", "Slack"]
+                        }, 
+                        {
+                          "DisplayName":  "Ranganathan Nandagopal", 
+                          "Title":        "Developer", 
+                          "Phone":        "555-555-55555", 
+                          "ContactTypes": ["Skype", "Slack"]
+                        } 
+                     ] 
+}

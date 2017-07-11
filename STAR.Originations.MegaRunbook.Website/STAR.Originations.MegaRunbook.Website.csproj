@@ -315,6 +315,7 @@
       <DependentUpon>compilerconfig.json</DependentUpon>
     </None>
     <Content Include="React-Router-Redux-4-Readm.md" />
+    <Content Include="Design\layout.json" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\STAR.Originations.MegaRunbook.Contracts\STAR.Originations.MegaRunbook.Contracts.csproj">
