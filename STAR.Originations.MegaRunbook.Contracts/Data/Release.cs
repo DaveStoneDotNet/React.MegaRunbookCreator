@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Runtime.Serialization;
 
@@ -12,11 +13,14 @@ namespace STAR.Originations.MegaRunbook.Contracts.Data
 
         [DataMember] public DateTime ReleaseDate { get; set; }
 
-        [DataMember] public string ScheduledReleaseStarTime { get; set; }
-        [DataMember] public string ScheduledReleaseStopTime { get; set; }
-        [DataMember] public string ActualReleaseStarTime { get; set; }
-        [DataMember] public string ActualReleaseStopTime { get; set; }
+        [DataMember] public string ReleaseDateText { get; set; }
+        [DataMember] public string ScheduledStartTime { get; set; }
+        [DataMember] public string ScheduledStopTime { get; set; }
+        [DataMember] public string ActualStartTime { get; set; }
+        [DataMember] public string ActualStopTime { get; set; }
         [DataMember] public string ReleaseStatus { get; set; }
+
+        [DataMember] public List<ReleaseBlock> ReleaseBlocks { get; set; }
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private string DebuggerDisplay => String.Format("ID: {0}", this.ID);

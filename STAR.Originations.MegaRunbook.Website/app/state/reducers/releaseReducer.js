@@ -12,6 +12,10 @@ export default function releaseReducer(state = initialState.release, action) {
             new_state = Object.assign({}, state, { releaseBlock: action.releaseBlock });
             return new_state;
 
+        case types.GET_RELEASE_SUCCESS:
+            new_state = Object.assign({}, state, { release: action.release });
+            return new_state;
+
         default:
             return state;
     }

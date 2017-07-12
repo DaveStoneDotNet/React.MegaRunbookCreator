@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using System.Web.Mvc;
 using System.Linq;
 using System.Collections.Generic;
@@ -28,6 +27,22 @@ namespace STAR.Originations.MegaRunbook.Website.Controllers
         public MrcDataAccess MrcDataAccess => this.mrcDataAccess ?? (this.mrcDataAccess = new MrcDataAccess());
 
         // --------------------------------------------------------------------------------------------------------------------
+
+        #region GetRelease
+        [System.Web.Http.HttpPost]
+        public async Task<JsonResult> GetRelease(contracts::ReleaseRequest request)
+        {
+            var releases = await this.LoadJson<contracts::Release>(@"release.json");
+            var release = releases.FirstOrDefault();
+
+            var mapped = Mapper.Map<contracts::Release, models::Release>(release);
+            mapped.ReleaseDateText = String.Format("{0:dddd, MMMM D, yyyy}", mapped.ReleaseDate);                   // "Saturday, July 08, 2017"
+            mapped.ReleaseBlocks.ForEach(o => o.BlockStatus = Randomize.GetRandomReleaseBlockStatus());
+            mapped.ReleaseBlocks.ForEach(o => o.BlockStatusCss = ViewLogic.GetReleaseBlockCss(o.BlockStatus));
+
+            return this.JsonDateResult(mapped);
+        }
+        #endregion GetRelease
 
         #region GetReleaseBlock
         [System.Web.Http.HttpPost]

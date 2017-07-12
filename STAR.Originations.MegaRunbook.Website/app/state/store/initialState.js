@@ -31,9 +31,19 @@ export default {
                                     courseResponse:       {}
                    },
                    release:     {
+                                    release:              {
+                                                              Id: 0, 
+                                                              ReleaseDate:        '',
+                                                              ScheduledStartTime: '',
+                                                              ScheduledStopTime:  '',
+                                                              ActualStartTime:    '',
+                                                              ActualStopTime:     '',
+                                                              ReleaseStatus:      '',
+                                                              ReleaseBlocks:      []
+                                                          }, 
                                     releaseBlock:         {
-                                                              ID:               1, 
-                                                              BlockOrder:       1, 
+                                                              Id:               0, 
+                                                              BlockOrder:       0, 
                                                               StepsText:        '', 
                                                               BlockType:        '', 
                                                               BlockName:        '', 

@@ -166,11 +166,13 @@
     </Compile>
     <Compile Include="Models\CourseDemo.cs" />
     <Compile Include="Models\CourseData.cs" />
+    <Compile Include="Models\Release.cs" />
     <Compile Include="Models\ReleaseBlock.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="app\api\mockMrcApi.js" />
+    <Content Include="app\components\releases\ReleaseBlockTable.js" />
     <Content Include="app\components\releases\ReleaseDateHeader.js" />
     <Content Include="app\components\common\DigitalClock.js" />
     <Content Include="app\components\demo\BarChart.js" />
@@ -328,6 +330,7 @@
     <Content Include="React-Router-Redux-4-Readm.md" />
     <Content Include="Design\layout.json" />
     <Content Include="Json\release-blocks.json" />
+    <Content Include="Json\release.json" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\STAR.Originations.MegaRunbook.Contracts\STAR.Originations.MegaRunbook.Contracts.csproj">

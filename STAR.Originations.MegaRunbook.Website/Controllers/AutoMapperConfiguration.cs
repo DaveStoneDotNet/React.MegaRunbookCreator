@@ -13,6 +13,7 @@ namespace STAR.Originations.MegaRunbook.Website.Controllers
             Mapper.Initialize(cfg =>
             {
                 cfg.CreateMap<contracts::ReleaseBlock, models::ReleaseBlock>();
+                cfg.CreateMap<contracts::Release,      models::Release>();
             });
         }
     }

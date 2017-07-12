@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data\Activity.cs" />
     <Compile Include="Data\AppInfo.cs" />
     <Compile Include="Data\ApplicationGroup.cs" />
     <Compile Include="Data\ApplicationType.cs" />
@@ -54,6 +55,7 @@
     <Compile Include="Data\EnvironmentLink.cs" />
     <Compile Include="Data\Release.cs" />
     <Compile Include="Data\ReleaseBlock.cs" />
+    <Compile Include="Data\ReleaseRequest.cs" />
     <Compile Include="Data\TemplateStepsRequest.cs" />
     <Compile Include="Data\RequestBase.cs" />
     <Compile Include="Data\Rfc.cs" />

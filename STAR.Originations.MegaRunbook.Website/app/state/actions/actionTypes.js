@@ -28,5 +28,6 @@ export const UPSERT_COURSE_DEMO_SUCCESS    = 'UPSERT_COURSE_DEMO_SUCCESS';
 // -------------------------------------------------------------------------------
 
 export const GET_RELEASE_BLOCK_SUCCESS    = 'GET_RELEASE_BLOCK_SUCCESS';
+export const GET_RELEASE_SUCCESS          = 'GET_RELEASE_SUCCESS';
 
 // -------------------------------------------------------------------------------

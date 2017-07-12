@@ -1,10 +1,10 @@
 ﻿{
-  "ReleaseDate":              "Saturday, July 09, 2017", 
-  "ScheduledReleaseStarTime": "08:00 PM", 
-  "ScheduledReleaseStopTime": "01:30 AM", 
-  "ActualReleaseStarTime":    "08:00 PM", 
-  "ActualReleaseStopTime":    "01:30 AM", 
-  "ReleaseStatus":            "Started", 
+  "ReleaseDate":               "Saturday, July 08, 2017", 
+  "ScheduledReleaseStartTime": "08:00 PM", 
+  "ScheduledReleaseStopTime":  "01:30 AM", 
+  "ActualReleaseStartTime":    "08:00 PM", 
+  "ActualReleaseStopTime":     "01:30 AM", 
+  "ReleaseStatus":             "Started", 
   "ReleaseBlocks":   [
                         {
                           "BlockOrder":       1, 

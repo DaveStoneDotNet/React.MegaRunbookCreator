@@ -11,6 +11,16 @@ class MrcApi {
 
     // --------------------------------------------------------------------------------------------------------------------
 
+    static getRelease(request) {
+        return fetch('/api/GetRelease',
+               {
+                   headers: API_HEADERS, 
+                   method:  'POST', 
+                   body:    JSON.stringify(request)
+               })
+               .then((response) => response.json());
+    }
+
     static getReleaseBlock(blockId) {
         return fetch('/api/GetReleaseBlock',
                {
