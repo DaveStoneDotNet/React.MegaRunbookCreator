@@ -1,0 +1,96 @@
+﻿[
+  {
+    "Id":               1, 
+    "BlockOrder":       1, 
+    "StepsText":        "P1 - 1-5", 
+    "BlockType":        "DBA", 
+    "BlockName":        "DBA", 
+    "BlockDescription": "", 
+    "StartTime":        "08:00", 
+    "StopTime":         "08:46", 
+    "BlockStatus":      "Done", 
+    "BlockUsers":       ["Tharun Mukka", "Sebastian Abraham"] 
+  }, 
+  {
+    "Id":               1, 
+    "BlockOrder":       2, 
+    "StepsText":        "6-7", 
+    "BlockType":        "ETL", 
+    "BlockName":        "ETL", 
+    "BlockDescription": "", 
+    "StartTime":        "08:00", 
+    "StopTime":         "08:50", 
+    "BlockStatus":      "Done", 
+    "BlockUsers":       ["Harish Ram"] 
+  }, 
+  {
+    "Id":               3, 
+    "BlockOrder":       3, 
+    "StepsText":        "8-10", 
+    "BlockType":        "EncompassAdmin", 
+    "BlockName":        "Encompass Admin", 
+    "BlockDescription": "", 
+    "StartTime":        "08:00", 
+    "StopTime":         "08:30", 
+    "BlockStatus":      "Done", 
+    "BlockUsers":       ["Michael Dowel"] 
+  }, 
+  {
+    "Id":               4, 
+    "BlockOrder":       4, 
+    "StepsText":        "11-19", 
+    "BlockType":        "EncompassAdmin", 
+    "BlockName":        "Encompass Admin", 
+    "BlockDescription": "", 
+    "StartTime":        "08:00", 
+    "StopTime":         "08:55", 
+    "BlockStatus":      "Warning", 
+    "BlockUsers":       ["Sara Gorrell", "Matthew Krajca"] 
+  }, 
+  {
+    "Id":               5, 
+    "BlockOrder":       5, 
+    "StepsText":        "20-35", 
+    "BlockType":        "DevOps", 
+    "BlockName":        "Dev Ops", 
+    "BlockDescription": "Deploy CMA", 
+    "StartTime":        "08:55", 
+    "StopTime":         "10:15", 
+    "BlockStatus":      "Started", 
+    "BlockUsers":       ["Matt Clark"] 
+  }, 
+  {
+    "Id":               6, 
+    "BlockOrder":       6, 
+    "StepsText":        "36-37", 
+    "BlockType":        "EncompassAdmin", 
+    "BlockName":        "Encompass Admin", 
+    "BlockDescription": "", 
+    "StartTime":        "10:05", 
+    "StopTime":         "10:20", 
+    "BlockStatus":      "Done", 
+    "BlockUsers":       ["David Lane"] 
+  }, 
+  {
+    "BlockOrder":       7, 
+    "StepsText":        "38-40", 
+    "BlockType":        "DevOps", 
+    "BlockName":        "Dev Ops", 
+    "BlockDescription": "", 
+    "StartTime":        "10:05", 
+    "StopTime":         "10:20", 
+    "BlockStatus":      "Done", 
+    "BlockUsers":       ["Matt Clark"] 
+  }, 
+  {
+    "BlockOrder":       8, 
+    "StepsText":        "41", 
+    "BlockType":        "Developer", 
+    "BlockName":        "Developer", 
+    "BlockDescription": "Run Scheduled Tasks", 
+    "StartTime":        "10:05", 
+    "StopTime":         "10:20", 
+    "BlockStatus":      "Critical", 
+    "BlockUsers":       ["Dave Stone"] 
+  }
+]

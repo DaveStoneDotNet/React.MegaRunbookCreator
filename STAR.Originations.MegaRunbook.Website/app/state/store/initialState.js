@@ -30,6 +30,20 @@ export default {
                                                           }, 
                                     courseResponse:       {}
                    },
+                   release:     {
+                                    releaseBlock:         {
+                                                              ID:               1, 
+                                                              BlockOrder:       1, 
+                                                              StepsText:        '', 
+                                                              BlockType:        '', 
+                                                              BlockName:        '', 
+                                                              BlockDescription: '', 
+                                                              StartTime:        '', 
+                                                              StopTime:         '', 
+                                                              BlockStatus:      '', 
+                                                              BlockUsers:       [''] 
+                                                          }
+                   }, 
                    app:         {
                                     user:                 {
                                                               HasRole:         false, 
@@ -47,7 +61,7 @@ export default {
                                                               RunbookStepStatuses: [{ Code: '', Description: '', SortOrder: 0 }], 
                                                               RunbookStepTypes:    [{ Code: '', Description: '', SortOrder: 0 }], 
                                                               Teams:               [{ Id:   '', Name:        ''               }]
-                                                          },
+                                                          }, 
                                     home:                 {
                                                               info: 'INITIAL MONKEY INFO'
                                                           }, 

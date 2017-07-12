@@ -40,7 +40,7 @@ namespace STAR.Originations.MRC.DataAccess
         }
         #endregion MrcDataAccess
 
-        #region PoolTradeManagementData
+        #region MrcDataAccess
         internal MrcDataAccess(Func<entities::MrcDataEntities> contextCreator)
         {
             this.traceSource = new TraceSource(MrcDataAccess.ApplicationName, SourceLevels.Information);

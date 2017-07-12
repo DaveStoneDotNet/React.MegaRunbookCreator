@@ -19,6 +19,11 @@ namespace STAR.Originations.MegaRunbook.Website.Controllers
     /// </summary>
     public class BaseController : Controller
     {
+        public BaseController()
+        {
+            AutoMapperConfiguration.Configure();
+        }
+
         #region OnAuthorization
         protected override void OnAuthorization(AuthorizationContext filterContext)
         {

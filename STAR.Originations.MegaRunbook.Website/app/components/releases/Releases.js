@@ -1,17 +1,96 @@
-﻿import React        from 'react';
-import moment       from 'moment';
+﻿import React                  from 'react';
+import moment                 from 'moment';
+import { connect }            from 'react-redux';
+import { bindActionCreators } from 'redux';
 
-import ReleaseDateHeader from './ReleaseDateHeader';
+import classNames             from 'classnames';
+import toastr                 from 'toastr';
 
-const Releases = () => {
-    return (
-      <div>
-        <div className="pad-20">
-            <ReleaseDateHeader momentHeaderDate={ moment('2017-07-09', 'YYYY-MM-DD') } startTime="08:00 PM" stopTime="01:30 AM" />
-        </div>
-        
-      </div>
-  );
+import * as releaseActions    from '../../state/actions/releaseActions';
+import ReleaseDateHeader      from './ReleaseDateHeader';
+
+class Releases extends React.Component {
+    
+    constructor(props, context) {
+
+        super(props, context);
+
+        this.state = {
+                         seconds:      0, 
+                         errors:       { },
+                         isSaving:     false, 
+                         isLoading:    false, 
+                         elementCss:   ''
+        };
+
+        this.staticCss = 'BebasNeue font-1-40 pad-10';
+    }
+
+    componentWillMount () {
+        this.getReleaseBlock(1);
+    }
+    
+    componentDidMount () {
+        this.interval = setInterval(() => {
+            this.updateComponent();
+        }, 5500);
+    }
+
+    componentWillUnmount() {
+        clearInterval(this.interval);
+    }
+
+    // ------------------------------------------------------------------------------------------------
+
+    getReleaseBlock(blockId) {
+        this.setState({ isLoading: true });
+        this.props.actions.releaseActions.getReleaseBlock(blockId)
+                                         .then((response) => {
+                                             this.setState({
+                                                               elementCss: classNames(this.staticCss, response.releaseBlock.BlockStatusCss)
+                                                           });
+                                             console.log('RELEASE BLOCK STATE', this.state);
+                                         })
+                                         .catch(error => {
+                                             console.log('ERROR GET RELEASE BLOCK');
+                                             toastr.error(error);
+                                         })
+                                         .then(() => { this.setState({ isLoading: false }); });
+    }
+
+    updateComponent() {
+        this.setState({ seconds: this.state.seconds + 1 });
+        this.getReleaseBlock(1);
+    }
+
+    render() {
+        const releaseBlock = this.props.releaseBlock;
+        return (
+                <div>
+                  <div className="pad-20">
+                      <ReleaseDateHeader momentHeaderDate={ moment('2017-07-08', 'YYYY-MM-DD') } startTime="08:00 PM" stopTime="01:30 AM" seconds={ this.state.seconds } />
+                      <div className={this.state.elementCss}>
+                          { releaseBlock.BlockStatus }
+                      </div>
+                  </div>
+                </div>
+               );
+    }
+}
+
+const mapStateToProps = (state, ownProps) => {
+  
+    return { 
+               releaseBlock: state.release.releaseBlock
+           };
 };
 
-export default Releases;
+const mapDispatchToProps = (dispatch) => { 
+    return {
+               actions: {
+                            releaseActions: bindActionCreators(releaseActions, dispatch)
+                        }
+           };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Releases);

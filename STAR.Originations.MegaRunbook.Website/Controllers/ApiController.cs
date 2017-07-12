@@ -6,16 +6,18 @@ using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
 using System.Web.Hosting;
-
+using AutoMapper;
 using Newtonsoft.Json;
 
 using STAR.Originations.MRC.DataAccess;
 
 using STAR.Originations.MegaRunbook.Contracts;
+using STAR.Originations.MegaRunbook.Website.AppCode;
 using STAR.Originations.MegaRunbook.Website.CustomAttributes;
 using STAR.Originations.MegaRunbook.Website.Models;
 
 using contracts = STAR.Originations.MegaRunbook.Contracts.Data;
+using models = STAR.Originations.MegaRunbook.Website.Models;
 
 namespace STAR.Originations.MegaRunbook.Website.Controllers
 {
@@ -26,6 +28,21 @@ namespace STAR.Originations.MegaRunbook.Website.Controllers
         public MrcDataAccess MrcDataAccess => this.mrcDataAccess ?? (this.mrcDataAccess = new MrcDataAccess());
 
         // --------------------------------------------------------------------------------------------------------------------
+
+        #region GetReleaseBlock
+        [System.Web.Http.HttpPost]
+        public async Task<JsonResult> GetReleaseBlock(int blockId)
+        {
+            var releaseBlocks = await this.LoadJson<contracts::ReleaseBlock>(@"release-blocks.json");
+            var releaseBlock = (from o in releaseBlocks where o.Id == blockId select o).FirstOrDefault();
+
+            var mapped = Mapper.Map<contracts::ReleaseBlock, models::ReleaseBlock>(releaseBlock);
+            mapped.BlockStatus    = Randomize.GetRandomReleaseBlockStatus();
+            mapped.BlockStatusCss = ViewLogic.GetReleaseBlockCss(mapped.BlockStatus);
+
+            return this.JsonDateResult(mapped);
+        }
+        #endregion GetReleaseBlock
 
         #region GetCourses
         [System.Web.Http.HttpGet]
@@ -307,7 +324,7 @@ namespace STAR.Originations.MegaRunbook.Website.Controllers
         #region LoadJson
         public async Task<List<T>> LoadJson<T>(string fileName)
         {
-            var path = HostingEnvironment.MapPath(String.Format("~/app/Json/{0}", fileName));
+            var path = HostingEnvironment.MapPath(String.Format("~/Json/{0}", fileName));
             if (!String.IsNullOrWhiteSpace(path))
             {
                 using (var streamReader = new StreamReader(path))
@@ -363,5 +380,48 @@ namespace STAR.Originations.MegaRunbook.Website.Controllers
             return this.Json(crisis);
         }
         #endregion GetCrisis
+    }
+
+    public class Randomize
+    {
+        #region GetRandomNumber
+        public static int GetRandomNumber(int minValue, int maxValue)
+        {
+            var randomSeed = DateTime.Now.Millisecond;
+            var randomLoanNumber = new Random(randomSeed).Next(minValue, maxValue);
+            return randomLoanNumber;
+        }
+        #endregion GetRandomNumber
+
+        #region GetRandomReleaseBlockStatus
+        public static string GetRandomReleaseBlockStatus()
+        {
+            var randomReleaseBlockStatus = SiteConstants.ReleaseBlockStatus.NotStarted;
+            var randomSeed = DateTime.Now.Millisecond;
+            var randomIndex = new Random(randomSeed).Next(1, 6);
+            switch (randomIndex)
+            {
+                case 1:
+                    randomReleaseBlockStatus = SiteConstants.ReleaseBlockStatus.Done;
+                    break;
+                case 2:
+                    randomReleaseBlockStatus = SiteConstants.ReleaseBlockStatus.Started;
+                    break;
+                case 3:
+                    randomReleaseBlockStatus = SiteConstants.ReleaseBlockStatus.Warning;
+                    break;
+                case 4:
+                    randomReleaseBlockStatus = SiteConstants.ReleaseBlockStatus.Critical;
+                    break;
+                case 5:
+                    randomReleaseBlockStatus = SiteConstants.ReleaseBlockStatus.Late;
+                    break;
+                case 6:
+                    randomReleaseBlockStatus = SiteConstants.ReleaseBlockStatus.NotStarted;
+                    break;
+            }
+            return randomReleaseBlockStatus;
+        }
+        #endregion GetRandomReleaseBlockStatus
     }
 }

@@ -38,7 +38,7 @@ namespace STAR.Originations.MRC.DataAccess
         protected DataAccessBase()
         {
             this.traceSource = new TraceSource(DataAccessBase.ApplicationName, SourceLevels.Information);
-            AutoMapperDataAccessConfiguration.Configure();
+            AutoMapperConfiguration.Configure();
             this.DatabaseLog = this.AppendToSqlLog;
             this.InitializeDbInterceptor();
         }
