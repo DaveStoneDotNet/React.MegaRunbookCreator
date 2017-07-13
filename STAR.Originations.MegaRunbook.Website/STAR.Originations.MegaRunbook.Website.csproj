@@ -172,12 +172,15 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="app\api\mockMrcApi.js" />
+    <Content Include="app\components\common\Icon.js" />
     <Content Include="app\components\releases\ReleaseBlockTable.js" />
+    <Content Include="app\components\releases\ReleaseBlockTableRow.js" />
     <Content Include="app\components\releases\ReleaseDateHeader.js" />
     <Content Include="app\components\common\DigitalClock.js" />
     <Content Include="app\components\demo\BarChart.js" />
     <Content Include="app\components\demo\CourseDemoTable.js" />
     <Content Include="app\components\demo\RandomTable.js" />
+    <Content Include="app\constants.js" />
     <Content Include="app\state\actions\actionTypes.js" />
     <Content Include="app\state\actions\ajaxStatusActions.js" />
     <Content Include="app\state\actions\appActions.js" />
@@ -297,7 +300,6 @@
     <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="app\constants\" />
     <Folder Include="app\containers\about\" />
     <Folder Include="app\containers\admin\" />
     <Folder Include="app\containers\applications\" />

@@ -7,6 +7,7 @@ namespace STAR.Originations.MegaRunbook.Website.AppCode
 {
     public class ViewLogic
     {
+        [Obsolete("Moved to JS", true)]
         public static string GetReleaseBlockCss(string blockStatus)
         {
             var releaseBlockCss = SiteConstants.Css.ReleaseBlockStatusColors.NotStarted;

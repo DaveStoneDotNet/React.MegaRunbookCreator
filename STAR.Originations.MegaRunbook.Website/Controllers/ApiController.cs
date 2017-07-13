@@ -3,6 +3,7 @@ using System.Web.Mvc;
 using System.Linq;
 using System.Collections.Generic;
 using System.IO;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Web.Hosting;
 using AutoMapper;
@@ -38,7 +39,6 @@ namespace STAR.Originations.MegaRunbook.Website.Controllers
             var mapped = Mapper.Map<contracts::Release, models::Release>(release);
             mapped.ReleaseDateText = String.Format("{0:dddd, MMMM D, yyyy}", mapped.ReleaseDate);                   // "Saturday, July 08, 2017"
             mapped.ReleaseBlocks.ForEach(o => o.BlockStatus = Randomize.GetRandomReleaseBlockStatus());
-            mapped.ReleaseBlocks.ForEach(o => o.BlockStatusCss = ViewLogic.GetReleaseBlockCss(o.BlockStatus));
 
             return this.JsonDateResult(mapped);
         }
@@ -53,7 +53,6 @@ namespace STAR.Originations.MegaRunbook.Website.Controllers
 
             var mapped = Mapper.Map<contracts::ReleaseBlock, models::ReleaseBlock>(releaseBlock);
             mapped.BlockStatus    = Randomize.GetRandomReleaseBlockStatus();
-            mapped.BlockStatusCss = ViewLogic.GetReleaseBlockCss(mapped.BlockStatus);
 
             return this.JsonDateResult(mapped);
         }
@@ -397,23 +396,13 @@ namespace STAR.Originations.MegaRunbook.Website.Controllers
         #endregion GetCrisis
     }
 
-    public class Randomize
+    public static class Randomize
     {
-        #region GetRandomNumber
-        public static int GetRandomNumber(int minValue, int maxValue)
-        {
-            var randomSeed = DateTime.Now.Millisecond;
-            var randomLoanNumber = new Random(randomSeed).Next(minValue, maxValue);
-            return randomLoanNumber;
-        }
-        #endregion GetRandomNumber
-
         #region GetRandomReleaseBlockStatus
         public static string GetRandomReleaseBlockStatus()
         {
             var randomReleaseBlockStatus = SiteConstants.ReleaseBlockStatus.NotStarted;
-            var randomSeed = DateTime.Now.Millisecond;
-            var randomIndex = new Random(randomSeed).Next(1, 6);
+            var randomIndex = Randomize.GetRandomNumber(1, 6);
             switch (randomIndex)
             {
                 case 1:
@@ -438,5 +427,26 @@ namespace STAR.Originations.MegaRunbook.Website.Controllers
             return randomReleaseBlockStatus;
         }
         #endregion GetRandomReleaseBlockStatus
+
+        #region GetRandomNumber
+        public static int GetRandomNumber(int minValue, int maxValue)
+        {
+            var randomSeed = Int32.Parse(Regex.Replace(Guid.NewGuid().ToString().Left(10), "\\D", ""));
+            var randomLoanNumber = new Random(randomSeed).Next(minValue, maxValue);
+            return randomLoanNumber;
+        }
+        #endregion GetRandomNumber
+
+        #region Left
+        public static string Left(this string text, int length)
+        {
+            if (string.IsNullOrEmpty(text))
+            {
+                return text;
+            }
+            length = Math.Max(length, 0);
+            return text.Length > length ? text.Substring(0, length) : text;
+        }
+        #endregion Left
     }
 }

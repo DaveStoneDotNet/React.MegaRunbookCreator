@@ -103,6 +103,17 @@
                                "StopTime":         "10:20 PM", 
                                "BlockStatus":      "Critical", 
                                "BlockUsers":       ["Dave Stone"] 
+                             }, 
+                             {
+                               "BlockOrder":       9, 
+                               "StepsText":        "-", 
+                               "BlockType":        "QA", 
+                               "BlockName":        "QA Smoke Testing", 
+                               "BlockDescription": "", 
+                               "StartTime":        "10:30", 
+                               "StopTime":         "10:45", 
+                               "BlockStatus":      "NotStarted", 
+                               "BlockUsers":       [] 
                              }
                           ]
   }

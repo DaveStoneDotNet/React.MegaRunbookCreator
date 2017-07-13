@@ -2,6 +2,8 @@
 import { bindActionCreators } from 'redux';
 import { connect }            from 'react-redux';
 
+import ReleaseBlockTableRow   from './ReleaseBlockTableRow';
+
 class ReleaseBlockTable extends React.Component {
 
     constructor(props, context) {
@@ -45,7 +47,7 @@ class ReleaseBlockTable extends React.Component {
                         </tr>
                     </thead>
                     <tbody>
-                        { release.ReleaseBlocks.map((releaseBlock) => <tr key={ releaseBlock.Id }><td colSpan="8">{ releaseBlock.Id }</td></tr>) }
+                        { release.ReleaseBlocks.map((releaseBlock) => <ReleaseBlockTableRow key={ releaseBlock.Id } releaseBlock={ releaseBlock } /> ) }
                     </tbody>
                 </table>
             </div>

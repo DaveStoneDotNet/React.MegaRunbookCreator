@@ -10,6 +10,8 @@ import * as releaseActions    from '../../state/actions/releaseActions';
 import ReleaseDateHeader      from './ReleaseDateHeader';
 import ReleaseBlockTable      from './ReleaseBlockTable';
 
+import { css }                from '../../constants';
+
 class Releases extends React.Component {
     
     constructor(props, context) {
@@ -25,6 +27,8 @@ class Releases extends React.Component {
         };
 
         this.staticCss = 'BebasNeue font-1-40 pad-10';
+
+        console.log('MONKIES MONKIES MONKIES MONKIES MONKIES MONKIES MONKIES ', css.monkey);
     }
 
     componentWillMount () {

@@ -28,6 +28,18 @@ namespace STAR.Originations.MegaRunbook.Website.AppCode
         }
         #endregion ReleaseBlockStatus
 
+        #region ReleaseBlockType
+        public static class ReleaseBlockType
+        {
+            public const string Dba            = "DBA";
+            public const string Etl            = "ETL";
+            public const string EncompassAdmin = "EncompassAdmin";
+            public const string DevOps         = "DevOps";
+            public const string Developer      = "Developer";
+            public const string Qa             = "QA";
+        }
+        #endregion ReleaseBlockType
+
         #region Css
         public static class Css
         {
