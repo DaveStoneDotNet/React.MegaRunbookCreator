@@ -68,7 +68,7 @@ class Releases extends React.Component {
                                              console.log('RELEASE RESPONSE', response);
                                          })
                                          .catch(error => {
-                                             console.log('ERROR GET RELEASE');
+                                             console.log('ERROR GET RELEASE', error);
                                              toastr.error(error);
                                          })
                                          .then(() => { this.setState({ isLoading: false }); });

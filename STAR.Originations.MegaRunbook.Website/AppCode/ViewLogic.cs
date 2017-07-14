@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using STAR.Originations.MegaRunbook.Website.Models;
 
 namespace STAR.Originations.MegaRunbook.Website.AppCode
 {
@@ -33,6 +34,46 @@ namespace STAR.Originations.MegaRunbook.Website.AppCode
                     break;
             }
             return releaseBlockCss;
+        }
+
+        public static Duration GetDuration(DateTime startTime, DateTime stopTime)
+        {
+            if (startTime > stopTime)
+            {
+                var swap = stopTime;
+                stopTime = startTime;
+                startTime = swap;
+            }
+            var d = stopTime - startTime;
+
+            return new Duration
+            {
+                Days = d.Days,
+                Hours = d.Hours,
+                Minutes = d.Minutes, 
+                Seconds = d.Seconds
+            };
+        }
+
+        public static Duration GetDuration(string startTimeText, string stopTimeText)
+        {
+            var startTime = DateTime.Parse(startTimeText);
+            var stopTime = DateTime.Parse(stopTimeText);
+            if (startTime > stopTime)
+            {
+                var swap = stopTime;
+                stopTime = startTime;
+                startTime = swap;
+            }
+            var d = stopTime - startTime;
+
+            return new Duration
+            {
+                Days = d.Days,
+                Hours = d.Hours,
+                Minutes = d.Minutes,
+                Seconds = d.Seconds
+            };
         }
     }
 }

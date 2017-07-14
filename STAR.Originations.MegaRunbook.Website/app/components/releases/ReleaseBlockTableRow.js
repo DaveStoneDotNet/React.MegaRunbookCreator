@@ -7,6 +7,8 @@ import ToggleIcon              from '../common/ToggleIcon';
 import Radio                   from '../common/Radio';
 import SimpleUserList          from '../common/SimpleUserList';
 
+import ReleaseBlockDuration    from './ReleaseBlockDuration';
+
 import { getReleaseBlockBgCss} from '../../constants';
 
 class ReleaseBlockTableRow extends React.Component {
@@ -44,7 +46,7 @@ class ReleaseBlockTableRow extends React.Component {
                         </td>
                         <td className={ 'pad-15 align-top white-a-9 border-bottom-a-50 border-right-a-10 align-center ' + bgCss }>
                             <div>
-                                <span className="BebasNeue font-2-00">46</span><span className="Lato font-0-75"> min</span>
+                                <ReleaseBlockDuration duration={ releaseBlock.Duration } />
                             </div>
                         </td>
                         <td className={ 'pad-15 align-top align-center white-a-9 border-bottom-a-50 border-right-a-10 BebasNeue font-1-40 ' + bgCss }>

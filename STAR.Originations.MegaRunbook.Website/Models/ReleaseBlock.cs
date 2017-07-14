@@ -16,6 +16,8 @@ namespace STAR.Originations.MegaRunbook.Website.Models
         public string BlockStatus { get; set; }
         public string BlockStatusCss { get; set; }
 
+        public Duration Duration { get; set; }
+
         public List<Contact> BlockUsers { get; set; }
     }
 }

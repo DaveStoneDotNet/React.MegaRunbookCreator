@@ -167,6 +167,7 @@
     <Compile Include="Models\Contact.cs" />
     <Compile Include="Models\CourseDemo.cs" />
     <Compile Include="Models\CourseData.cs" />
+    <Compile Include="Models\Duration.cs" />
     <Compile Include="Models\Release.cs" />
     <Compile Include="Models\ReleaseBlock.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -177,6 +178,7 @@
     <Content Include="app\components\common\Radio.js" />
     <Content Include="app\components\common\SimpleUserList.js" />
     <Content Include="app\components\common\ToggleIcon.js" />
+    <Content Include="app\components\releases\ReleaseBlockDuration.js" />
     <Content Include="app\components\releases\ReleaseBlockTable.js" />
     <Content Include="app\components\releases\ReleaseBlockTableRow.js" />
     <Content Include="app\components\releases\ReleaseDateHeader.js" />
