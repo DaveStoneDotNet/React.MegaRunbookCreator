@@ -402,7 +402,7 @@ namespace STAR.Originations.MegaRunbook.Website.Controllers
         public static string GetRandomReleaseBlockStatus()
         {
             var randomReleaseBlockStatus = SiteConstants.ReleaseBlockStatus.NotStarted;
-            var randomIndex = Randomize.GetRandomNumber(1, 6);
+            var randomIndex = Randomize.GetRandomNumber(1, 7);
             switch (randomIndex)
             {
                 case 1:
@@ -431,7 +431,8 @@ namespace STAR.Originations.MegaRunbook.Website.Controllers
         #region GetRandomNumber
         public static int GetRandomNumber(int minValue, int maxValue)
         {
-            var randomSeed = Int32.Parse(Regex.Replace(Guid.NewGuid().ToString().Left(10), "\\D", ""));
+            var randomSeed = DateTime.Now.Millisecond;
+            var parsed = Int32.TryParse(Regex.Replace(Guid.NewGuid().ToString().Left(10), "\\D", ""), out randomSeed);
             var randomLoanNumber = new Random(randomSeed).Next(minValue, maxValue);
             return randomLoanNumber;
         }

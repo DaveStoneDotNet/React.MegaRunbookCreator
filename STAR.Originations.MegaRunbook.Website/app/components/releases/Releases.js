@@ -39,7 +39,7 @@ class Releases extends React.Component {
     componentDidMount () {
         this.interval = setInterval(() => {
             this.updateComponent();
-        }, 5500);
+        }, 10500);
     }
 
     componentWillUnmount() {
@@ -80,7 +80,8 @@ class Releases extends React.Component {
 
     updateComponent() {
         this.setState({ seconds: this.state.seconds + 1 });
-        this.getReleaseBlock(1);
+        //this.getReleaseBlock(1);
+        this.getRelease();
     }
 
     render() {
@@ -92,10 +93,6 @@ class Releases extends React.Component {
                       <ReleaseDateHeader momentHeaderDate={ moment('2017-07-08', 'YYYY-MM-DD') } startTime="08:00 PM" stopTime="01:30 AM" seconds={ this.state.seconds } />
 
                       <ReleaseBlockTable />
-
-                      <div className={this.state.elementCss}>
-                            { releaseBlock.BlockStatus }
-                      </div>
 
                   </div>
                 </div>

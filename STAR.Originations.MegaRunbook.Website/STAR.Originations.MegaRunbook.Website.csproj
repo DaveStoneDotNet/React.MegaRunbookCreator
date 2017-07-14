@@ -173,6 +173,8 @@
   <ItemGroup>
     <Content Include="app\api\mockMrcApi.js" />
     <Content Include="app\components\common\Icon.js" />
+    <Content Include="app\components\common\Radio.js" />
+    <Content Include="app\components\common\ToggleIcon.js" />
     <Content Include="app\components\releases\ReleaseBlockTable.js" />
     <Content Include="app\components\releases\ReleaseBlockTableRow.js" />
     <Content Include="app\components\releases\ReleaseDateHeader.js" />

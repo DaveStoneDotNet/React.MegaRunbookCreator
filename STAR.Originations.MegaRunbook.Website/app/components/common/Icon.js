@@ -7,16 +7,16 @@ class Icon extends React.Component {
         super(props, context);
 
         this.state = {
-                        type:         props.type         ? props.type         : 'NotStarted', 
                         staticStyles: props.staticStyles ? props.staticStyles : 'BebasNeue White' 
                      };
     }
 
     render() {
+        const iconCss = getIconCss(this.props.type);
         const staticStyles = this.state.staticStyles;
         return (
                     <div className={ staticStyles }>
-                        <i className={ getIconCss(this.state.type) } />
+                        <i className={ iconCss } />
                     </div>
                );
     }
