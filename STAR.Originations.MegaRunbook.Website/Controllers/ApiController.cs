@@ -37,7 +37,7 @@ namespace STAR.Originations.MegaRunbook.Website.Controllers
             var release = releases.FirstOrDefault();
 
             var mapped = Mapper.Map<contracts::Release, models::Release>(release);
-            mapped.ReleaseDateText = String.Format("{0:dddd, MMMM D, yyyy}", mapped.ReleaseDate);                   // "Saturday, July 08, 2017"
+            mapped.ReleaseDateText = String.Format("{0:dddd, MMMM dd, yyyy}", mapped.ReleaseDate);                   // "Saturday, July 08, 2017"
             mapped.ReleaseStatus = Randomize.GetRandomReleaseBlockStatus();
             mapped.ReleaseBlocks.ForEach(o => o.BlockStatus = Randomize.GetRandomReleaseBlockStatus());
             mapped.ReleaseBlocks.ForEach(o => o.Duration = ViewLogic.GetDuration(o.StartTime, o.StopTime));

@@ -2,6 +2,8 @@
 import { bindActionCreators }   from 'redux';
 import { connect }              from 'react-redux';
 
+import moment                   from 'moment';
+
 import Icon                     from '../common/Icon';
 import ToggleIcon               from '../common/ToggleIcon';
 import Radio                    from '../common/Radio';
@@ -23,7 +25,11 @@ class ReleaseBlockTableRow extends React.Component {
         const releaseBlock = this.props.releaseBlock;
         const bgCss = getReleaseBlockBgCss(releaseBlock.BlockStatus);
 
+        const startTime = moment(releaseBlock.StartTime, 'MM/DD/YYYY HH:mm:ss').format('hh:mm A');
+        const stopTime   = moment(releaseBlock.StopTime, 'MM/DD/YYYY HH:mm:ss').format('hh:mm A');
+
         console.log('RELEASE TABLE ROW', this.props);
+        console.log('RELEASE TABLE ROW MOMENT', startTime);
 
         return (
                    <tr>
@@ -52,12 +58,12 @@ class ReleaseBlockTableRow extends React.Component {
                         </td>
                         <td className={ 'pad-15 align-top align-center white-a-9 border-bottom-a-50 border-right-a-10 BebasNeue font-1-40 ' + bgCss }>
                             <div className="nowrap">
-                            { releaseBlock.StartTime }
+                            { startTime }
                             </div>
                         </td>
                         <td className={ 'pad-15 align-top align-center white-a-9 border-bottom-a-50 border-right-a-10 BebasNeue font-1-40 ' + bgCss }>
                             <div className="nowrap">
-                            { releaseBlock.StopTime }
+                            { stopTime }
                             </div>
                         </td>
                         <td className={ 'pad-10 align-top align-center white-a-9 border-bottom-a-50 border-right-a-10 ' + bgCss  }>

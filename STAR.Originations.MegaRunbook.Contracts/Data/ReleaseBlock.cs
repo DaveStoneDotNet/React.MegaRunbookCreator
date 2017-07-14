@@ -16,9 +16,10 @@ namespace STAR.Originations.MegaRunbook.Contracts.Data
         [DataMember] public string BlockType { get; set; }
         [DataMember] public string BlockName { get; set; }
         [DataMember] public string BlockDescription { get; set; }
-        [DataMember] public string StartTime { get; set; }
-        [DataMember] public string StopTime { get; set; }
         [DataMember] public string BlockStatus { get; set; }
+
+        [DataMember] public DateTime StartTime { get; set; }
+        [DataMember] public DateTime StopTime { get; set; }
 
         [DataMember] public List<Contact> BlockUsers { get; set; }
 

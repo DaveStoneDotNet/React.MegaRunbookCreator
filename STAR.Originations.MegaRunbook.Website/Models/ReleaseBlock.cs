@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace STAR.Originations.MegaRunbook.Website.Models
 {
@@ -11,10 +12,11 @@ namespace STAR.Originations.MegaRunbook.Website.Models
         public string BlockType { get; set; }
         public string BlockName { get; set; }
         public string BlockDescription { get; set; }
-        public string StartTime { get; set; }
-        public string StopTime { get; set; }
         public string BlockStatus { get; set; }
         public string BlockStatusCss { get; set; }
+
+        public DateTime StartTime { get; set; }
+        public DateTime StopTime { get; set; }
 
         public Duration Duration { get; set; }
 
