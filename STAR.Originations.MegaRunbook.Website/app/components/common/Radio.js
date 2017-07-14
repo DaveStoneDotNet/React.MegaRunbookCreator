@@ -1,20 +1,24 @@
 ﻿import React from 'react';
 
+import toastr from 'toastr';
+
 class Radio extends React.Component {
     constructor(props, context) {
         super(props, context);
 
         this.state = {
                          isSelected:   props.isSelected   ? props.isSelected   : false, 
-                         someProp:     props.isSelected   ? 'MONKEY'           : 'BANANA', 
                          staticStyles: props.staticStyles ? props.staticStyles : 'White' 
                      };
 
         this.handleClick = this.handleClick.bind(this);
+
+        toastr.options.positionClass = 'toast-bottom-right';
     }
 
     handleClick () {
         this.setState((prevState) => ({ isSelected: !prevState.isSelected }));
+        toastr.warning('not implemented yet');
     }
 
     render() {

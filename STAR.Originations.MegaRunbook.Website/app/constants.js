@@ -45,6 +45,31 @@ export const getReleaseBlockBgCss = (blockStatus) => {
     return css;
 };
 
+export const getReleaseBlockButtonText = (blockStatus) => {
+    let css = 'white-a-3-bg';
+    switch (blockStatus) {
+        case ReleaseBlockStatus.NotStarted:
+            css = 'start';
+            break;
+        case ReleaseBlockStatus.Started:
+            css = 'finish';
+            break;
+        case ReleaseBlockStatus.Late:
+            css = 'start';
+            break;
+        case ReleaseBlockStatus.Warning:
+            css = 'continue';
+            break;
+        case ReleaseBlockStatus.Critical:
+            css = 'continue';
+            break;
+        case ReleaseBlockStatus.Done:
+            css = 'comment';
+            break;
+    }
+    return css;
+};
+
 export const getIconCss = (type) => {
     let icon = 'fa';
     switch (type) {

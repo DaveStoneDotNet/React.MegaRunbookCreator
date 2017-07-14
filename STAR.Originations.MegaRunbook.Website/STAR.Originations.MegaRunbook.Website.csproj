@@ -179,6 +179,7 @@
     <Content Include="app\components\common\SimpleUserList.js" />
     <Content Include="app\components\common\ToggleIcon.js" />
     <Content Include="app\components\releases\ReleaseBlockDuration.js" />
+    <Content Include="app\components\releases\ReleaseBlockStatusButton.js" />
     <Content Include="app\components\releases\ReleaseBlockTable.js" />
     <Content Include="app\components\releases\ReleaseBlockTableRow.js" />
     <Content Include="app\components\releases\ReleaseDateHeader.js" />

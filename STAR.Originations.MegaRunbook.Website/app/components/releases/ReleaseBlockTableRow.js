@@ -1,15 +1,16 @@
-﻿import React                   from 'react';
-import { bindActionCreators }  from 'redux';
-import { connect }             from 'react-redux';
+﻿import React                    from 'react';
+import { bindActionCreators }   from 'redux';
+import { connect }              from 'react-redux';
 
-import Icon                    from '../common/Icon';
-import ToggleIcon              from '../common/ToggleIcon';
-import Radio                   from '../common/Radio';
-import SimpleUserList          from '../common/SimpleUserList';
+import Icon                     from '../common/Icon';
+import ToggleIcon               from '../common/ToggleIcon';
+import Radio                    from '../common/Radio';
+import SimpleUserList           from '../common/SimpleUserList';
 
-import ReleaseBlockDuration    from './ReleaseBlockDuration';
+import ReleaseBlockDuration     from './ReleaseBlockDuration';
+import ReleaseBlockStatusButton from './ReleaseBlockStatusButton';
 
-import { getReleaseBlockBgCss} from '../../constants';
+import { getReleaseBlockBgCss}  from '../../constants';
 
 class ReleaseBlockTableRow extends React.Component {
 
@@ -81,7 +82,7 @@ class ReleaseBlockTableRow extends React.Component {
                                 <table>
                                     <tr>
                                         <td>
-                                            <div className="pointer border-a-30 margin-right-5 pad-left-10 pad-right-10 pad-top-5 pad-bottom-5 white white-a-1-bg font-0-75 Lato align-center">comment</div>
+                                            <ReleaseBlockStatusButton status={ releaseBlock.BlockStatus } />
                                         </td>
                                     </tr>
                                 </table>

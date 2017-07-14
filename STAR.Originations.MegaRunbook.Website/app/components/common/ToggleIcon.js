@@ -1,5 +1,7 @@
 ﻿import React from 'react';
 
+import toastr from 'toastr';
+
 class ToggleIcon extends React.Component {
     constructor(props, context) {
         super(props, context);
@@ -10,10 +12,13 @@ class ToggleIcon extends React.Component {
                      };
 
         this.handleClick = this.handleClick.bind(this);
+
+        toastr.options.positionClass = 'toast-bottom-right';
     }
 
     handleClick () {
         this.setState((prevState) => ({ isUp: !prevState.isUp }));
+        toastr.warning('not implemented yet');
     }
 
     render() {
