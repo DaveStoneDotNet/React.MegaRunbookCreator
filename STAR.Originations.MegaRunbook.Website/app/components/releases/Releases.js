@@ -3,12 +3,13 @@ import moment                 from 'moment';
 import { connect }            from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import classNames             from 'classnames';
 import toastr                 from 'toastr';
 
 import * as releaseActions    from '../../state/actions/releaseActions';
+
 import ReleaseDateHeader      from './ReleaseDateHeader';
 import ReleaseBlockTable      from './ReleaseBlockTable';
+import ReleaseStatusHeader    from './ReleaseStatusHeader';
 
 class Releases extends React.Component {
     
@@ -28,7 +29,6 @@ class Releases extends React.Component {
     }
 
     componentWillMount () {
-        this.getReleaseBlock(1);
         this.getRelease();
     }
     
@@ -43,23 +43,6 @@ class Releases extends React.Component {
     }
 
     // ------------------------------------------------------------------------------------------------
-
-    getReleaseBlock(blockId) {
-        this.setState({ isLoading: true });
-        this.props.actions.releaseActions.getReleaseBlock(blockId)
-                                         .then((response) => {
-                                             this.setState({
-                                                               elementCss: classNames(this.staticCss, response.releaseBlock.BlockStatusCss)
-                                                           });
-                                             console.log('RELEASE BLOCK RESPONSE', this.state);
-                                             console.log('RELEASE BLOCK STATE', this.state);
-                                         })
-                                         .catch(error => {
-                                             console.log('ERROR GET RELEASE BLOCK', error);
-                                             toastr.error('ERROR');
-                                         })
-                                         .then(() => { this.setState({ isLoading: false }); });
-    }
 
     getRelease(request) {
         this.setState({ isLoading: true });
@@ -76,20 +59,25 @@ class Releases extends React.Component {
 
     updateComponent() {
         this.setState({ seconds: this.state.seconds + 1 });
-        //this.getReleaseBlock(1);
         this.getRelease();
     }
 
     render() {
-        const releaseBlock = this.props.releaseBlock;
+        const release = this.props.release;
         return (
                 <div>
                   <div className="pad-20">
 
                       <ReleaseDateHeader momentHeaderDate={ moment('2017-07-08', 'YYYY-MM-DD') } startTime="08:00 PM" stopTime="01:30 AM" seconds={ this.state.seconds } />
 
-                      <ReleaseBlockTable />
-
+                      <div id="main-release-container" className="row">
+                          <div className="col-md-9">
+                                <ReleaseBlockTable />
+                          </div>
+                          <div className="col-md-3">
+                              <ReleaseStatusHeader releaseStatus={ release.ReleaseStatus } />
+                          </div>
+                      </div>
                   </div>
                 </div>
                );
@@ -99,7 +87,7 @@ class Releases extends React.Component {
 const mapStateToProps = (state, ownProps) => {
   
     return { 
-               releaseBlock: state.release.releaseBlock
+               release: state.release.release
            };
 };
 

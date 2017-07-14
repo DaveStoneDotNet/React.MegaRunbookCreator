@@ -177,6 +177,7 @@
     <Content Include="app\components\common\Icon.js" />
     <Content Include="app\components\common\Radio.js" />
     <Content Include="app\components\common\SimpleUserList.js" />
+    <Content Include="app\components\common\ToggleHeader.js" />
     <Content Include="app\components\common\ToggleIcon.js" />
     <Content Include="app\components\releases\ReleaseBlockDuration.js" />
     <Content Include="app\components\releases\ReleaseBlockStatusButton.js" />
@@ -187,6 +188,7 @@
     <Content Include="app\components\demo\BarChart.js" />
     <Content Include="app\components\demo\CourseDemoTable.js" />
     <Content Include="app\components\demo\RandomTable.js" />
+    <Content Include="app\components\releases\ReleaseStatusHeader.js" />
     <Content Include="app\constants.js" />
     <Content Include="app\state\actions\actionTypes.js" />
     <Content Include="app\state\actions\ajaxStatusActions.js" />
