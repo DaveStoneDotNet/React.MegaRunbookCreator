@@ -18,7 +18,18 @@
                                "StartTime":        "08:00 PM", 
                                "StopTime":         "08:46 PM", 
                                "BlockStatus":      "Done", 
-                               "BlockUsers":       ["Tharun Mukka", "Sebastian Abraham"] 
+                               "BlockUsers":       [
+                                                      { 
+                                                        "Id":           1, 
+                                                        "UserId":       76836, 
+                                                        "DisplayName":  "Tharun Mukka" 
+                                                      }, 
+                                                      { 
+                                                        "Id":           2, 
+                                                        "UserId":       51833, 
+                                                        "DisplayName":  "Sebastian Abraham" 
+                                                      }
+                                                   ] 
                              }, 
                              {
                                "Id":               2, 
@@ -30,7 +41,13 @@
                                "StartTime":        "08:00 PM", 
                                "StopTime":         "08:50 PM", 
                                "BlockStatus":      "Done", 
-                               "BlockUsers":       ["Harish Ram"] 
+                               "BlockUsers":       [
+                                                      { 
+                                                        "Id":           3, 
+                                                        "UserId":       0, 
+                                                        "DisplayName":  "Harish Ram" 
+                                                      }
+                                                   ] 
                              }, 
                              {
                                "Id":               3, 
@@ -42,7 +59,13 @@
                                "StartTime":        "08:00 PM", 
                                "StopTime":         "08:30 PM", 
                                "BlockStatus":      "Done", 
-                               "BlockUsers":       ["Michael Dowel"] 
+                               "BlockUsers":       [
+                                                      { 
+                                                        "Id":           4, 
+                                                        "UserId":       42847, 
+                                                        "DisplayName":  "Michael Dowell" 
+                                                      }
+                                                   ] 
                              }, 
                              {
                                "Id":               4, 
@@ -54,7 +77,18 @@
                                "StartTime":        "08:00 PM", 
                                "StopTime":         "08:55 PM", 
                                "BlockStatus":      "Warning", 
-                               "BlockUsers":       ["Sara Gorrell", "Matthew Krajca"] 
+                               "BlockUsers":       [
+                                                      { 
+                                                        "Id":           5, 
+                                                        "UserId":       3140, 
+                                                        "DisplayName":  "Sara Gorrell" 
+                                                      }, 
+                                                      { 
+                                                        "Id":           6, 
+                                                        "UserId":       23563, 
+                                                        "DisplayName":  "Matthew Krajca" 
+                                                      }
+                                                   ] 
                              }, 
                              {
                                "Id":               5, 
@@ -66,7 +100,13 @@
                                "StartTime":        "08:55 PM", 
                                "StopTime":         "10:15 PM", 
                                "BlockStatus":      "Started", 
-                               "BlockUsers":       ["Matt Clark"] 
+                               "BlockUsers":       [
+                                                      { 
+                                                        "Id":           7, 
+                                                        "UserId":       68612, 
+                                                        "DisplayName":  "Matt Clark" 
+                                                      }
+                                                   ] 
                              }, 
                              {
                                "Id":               6, 
@@ -78,7 +118,13 @@
                                "StartTime":        "10:05 PM", 
                                "StopTime":         "10:20 PM", 
                                "BlockStatus":      "Done", 
-                               "BlockUsers":       ["David Lane"] 
+                               "BlockUsers":       [
+                                                      { 
+                                                        "Id":           8, 
+                                                        "UserId":       43457, 
+                                                        "DisplayName":  "David Lane" 
+                                                      }
+                                                   ] 
                              }, 
                              {
                                "Id":               7, 
@@ -90,7 +136,13 @@
                                "StartTime":        "10:05 PM", 
                                "StopTime":         "10:20 PM", 
                                "BlockStatus":      "Done", 
-                               "BlockUsers":       ["Matt Clark"] 
+                               "BlockUsers":       [
+                                                      { 
+                                                        "Id":           7, 
+                                                        "UserId":       68612, 
+                                                        "DisplayName":  "Matt Clark" 
+                                                      }
+                                                   ] 
                              }, 
                              {
                                "Id":               8, 
@@ -102,7 +154,13 @@
                                "StartTime":        "10:05 PM", 
                                "StopTime":         "10:20 PM", 
                                "BlockStatus":      "Critical", 
-                               "BlockUsers":       ["Dave Stone"] 
+                               "BlockUsers":       [
+                                                      { 
+                                                        "Id":           9, 
+                                                        "UserId":       21981, 
+                                                        "DisplayName":  "Dave Stone" 
+                                                      }
+                                                   ] 
                              }, 
                              {
                                "BlockOrder":       9, 

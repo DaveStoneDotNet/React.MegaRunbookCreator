@@ -164,6 +164,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Contact.cs" />
     <Compile Include="Models\CourseDemo.cs" />
     <Compile Include="Models\CourseData.cs" />
     <Compile Include="Models\Release.cs" />
@@ -174,6 +175,7 @@
     <Content Include="app\api\mockMrcApi.js" />
     <Content Include="app\components\common\Icon.js" />
     <Content Include="app\components\common\Radio.js" />
+    <Content Include="app\components\common\SimpleUserList.js" />
     <Content Include="app\components\common\ToggleIcon.js" />
     <Content Include="app\components\releases\ReleaseBlockTable.js" />
     <Content Include="app\components\releases\ReleaseBlockTableRow.js" />

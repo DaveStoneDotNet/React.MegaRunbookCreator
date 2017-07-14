@@ -28,8 +28,8 @@ namespace STAR.Originations.MegaRunbook.Website.AppCode
         }
         #endregion ReleaseBlockStatus
 
-        #region ReleaseBlockType
-        public static class ReleaseBlockType
+        #region UserRole
+        public static class UserRole
         {
             public const string Dba            = "DBA";
             public const string Etl            = "ETL";
@@ -38,7 +38,7 @@ namespace STAR.Originations.MegaRunbook.Website.AppCode
             public const string Developer      = "Developer";
             public const string Qa             = "QA";
         }
-        #endregion ReleaseBlockType
+        #endregion UserRole
 
         #region Css
         public static class Css

@@ -20,7 +20,7 @@ namespace STAR.Originations.MegaRunbook.Contracts.Data
         [DataMember] public string StopTime { get; set; }
         [DataMember] public string BlockStatus { get; set; }
 
-        [DataMember] public List<string> BlockUsers { get; set; }
+        [DataMember] public List<Contact> BlockUsers { get; set; }
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private string DebuggerDisplay => String.Format("Id: {0}", this.Id);

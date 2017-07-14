@@ -5,6 +5,7 @@ import { connect }             from 'react-redux';
 import Icon                    from '../common/Icon';
 import ToggleIcon              from '../common/ToggleIcon';
 import Radio                   from '../common/Radio';
+import SimpleUserList          from '../common/SimpleUserList';
 
 import { getReleaseBlockBgCss} from '../../constants';
 
@@ -38,18 +39,7 @@ class ReleaseBlockTableRow extends React.Component {
                             <div className="BebasNeue font-1-60">{ releaseBlock.BlockName }</div>
                             <div className="Lato font-1-00">{ releaseBlock.BlockDescription }</div>
                             <div className="pad-top-5 pad-left-20">
-                                <div>
-                                    <div className="float-left pad-5">
-                                        <i className="fa fa-user-o"></i>
-                                    </div>
-                                    <div className="pad-5">Tharun Mukka</div>
-                                </div>
-                                <div>
-                                    <div className="float-left pad-5">
-                                        <i className="fa fa-user-o"></i>
-                                    </div>
-                                    <div className="pad-5">Sebastian Abraham</div>
-                                </div>
+                                <SimpleUserList users={ releaseBlock.BlockUsers }/>
                             </div>
                         </td>
                         <td className={ 'pad-15 align-top white-a-9 border-bottom-a-50 border-right-a-10 align-center ' + bgCss }>
