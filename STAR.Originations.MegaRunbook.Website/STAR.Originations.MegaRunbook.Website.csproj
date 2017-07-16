@@ -174,6 +174,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="app\api\mockMrcApi.js" />
+    <Content Include="app\components\common\TimerProgressBar.js" />
     <Content Include="app\components\common\TimeSpan.js" />
     <Content Include="app\components\common\Icon.js" />
     <Content Include="app\components\common\Radio.js" />

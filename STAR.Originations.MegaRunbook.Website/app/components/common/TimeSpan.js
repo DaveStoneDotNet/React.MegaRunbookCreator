@@ -19,11 +19,33 @@ class TimeSpan extends React.Component {
     }
 
     getDurationText (duration) {
-        const days    = duration.days    > 0 ? padZero(duration.days)  + ' d ' : '';
-        const hours   = duration.hours   > 0 ? padZero(duration.hours) + ' h '  : '';
-        const minutes = padZero(duration.minutes) + ' m ';
-        const seconds = padZero(duration.seconds) + ' s ';
-        return days + hours + minutes + seconds;
+
+        let shouldCalc = false;
+        let durationText = '0 m 0 s';
+
+        switch (this.props.timeSpanMode) {
+            case TimeSpanMode.Elapsed:
+                if (duration.value > 0) {
+                    shouldCalc = true;
+                }
+                break;
+            
+            case TimeSpanMode.Remaining:
+                if (duration.value < 0) {
+                    shouldCalc = true;
+                }
+                break;
+        }
+
+        if (shouldCalc) {
+            const days    = duration.days > 0 ? padZero(duration.days) + ' d ' : '';
+            const hours   = duration.hours > 0 ? padZero(duration.hours) + ' h ' : '';
+            const minutes = padZero(duration.minutes) + ' m ';
+            const seconds = padZero(duration.seconds) + ' s ';
+            durationText  = days + hours + minutes + seconds;
+        }
+
+        return durationText;
     }
 
     updateComponent() {

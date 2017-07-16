@@ -1,18 +1,21 @@
-﻿import React                  from 'react';
-import { connect }            from 'react-redux';
-import { bindActionCreators } from 'redux';
+﻿import React                    from 'react';
+import { connect }              from 'react-redux';
+import { bindActionCreators }   from 'redux';
 
-import toastr                 from 'toastr';
+import toastr                   from 'toastr';
 
-import * as releaseActions    from '../../state/actions/releaseActions';
+import * as releaseActions      from '../../state/actions/releaseActions';
 
-import { TimeSpanMode }       from '../../constants';
-import { DateFormats }        from '../../constants';
+import { TimeSpanMode }         from '../../constants';
+import { DateFormats }          from '../../constants';
+import { getReleaseBlockBgCss } from '../../constants';
 
-import ReleaseDateHeader      from './ReleaseDateHeader';
-import ReleaseBlockTable      from './ReleaseBlockTable';
-import ReleaseStatusHeader    from './ReleaseStatusHeader';
-import ReleaseProgressTimers  from './ReleaseProgressTimers';
+import TimerProgressBar         from '../common/TimerProgressBar';
+
+import ReleaseDateHeader        from './ReleaseDateHeader';
+import ReleaseBlockTable        from './ReleaseBlockTable';
+import ReleaseStatusHeader      from './ReleaseStatusHeader';
+import ReleaseProgressTimers    from './ReleaseProgressTimers';
 
 class Releases extends React.Component {
     
@@ -67,6 +70,7 @@ class Releases extends React.Component {
 
     render() {
         const release = this.props.release;
+        const bgClass = getReleaseBlockBgCss(release.ReleaseStatus);
         return (
                 <div>
                   <div className="pad-20">
@@ -83,6 +87,7 @@ class Releases extends React.Component {
 
                               <ReleaseProgressTimers release={ release} />
 
+                              <TimerProgressBar startTime={release.ScheduledStartTime} stopTime={release.ScheduledStopTime} bgClass={ bgClass } height="20" />
                           </div>
                       </div>
                   </div>
