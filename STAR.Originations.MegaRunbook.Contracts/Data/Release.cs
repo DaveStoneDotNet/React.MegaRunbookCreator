@@ -14,11 +14,12 @@ namespace STAR.Originations.MegaRunbook.Contracts.Data
         [DataMember] public DateTime ReleaseDate { get; set; }
 
         [DataMember] public string ReleaseDateText { get; set; }
-        [DataMember] public string ScheduledStartTime { get; set; }
-        [DataMember] public string ScheduledStopTime { get; set; }
-        [DataMember] public string ActualStartTime { get; set; }
-        [DataMember] public string ActualStopTime { get; set; }
         [DataMember] public string ReleaseStatus { get; set; }
+
+        [DataMember] public DateTime ScheduledStartTime { get; set; }
+        [DataMember] public DateTime ScheduledStopTime { get; set; }
+        [DataMember] public DateTime ActualStartTime { get; set; }
+        [DataMember] public DateTime ActualStopTime { get; set; }
 
         [DataMember] public List<ReleaseBlock> ReleaseBlocks { get; set; }
 

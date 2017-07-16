@@ -24,7 +24,7 @@ namespace STAR.Originations.MegaRunbook.Website.AppCode
             public const string Warning    = "Warning";
             public const string Critical   = "Critical";
             public const string Late       = "Late";
-            public const string NotStarted = "NotStarted";
+            public const string NotStarted = "Not-Started";
         }
         #endregion ReleaseBlockStatus
 

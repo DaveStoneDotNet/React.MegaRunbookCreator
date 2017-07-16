@@ -1,11 +1,23 @@
 ﻿
+export const DateFormats =               {
+                                            DefaultDateTime: 'MM/DD/YYYY hh:mm A', 
+                                            DefaultDate:     'MM/DD/YYYY', 
+                                            DefaultTime:     'hh:mm A', 
+                                            LongDateFormat:  'dddd MMMM DD, YYYY'
+                                         }
+
+export const TimeSpanMode =              {
+                                            Elapsed:         'Elapsed',
+                                            Remaining:       'Remaining'
+}
+
 export const ReleaseBlockStatus =        {
                                              Done:           'Done', 
                                              Started:        'Started',
                                              Warning:        'Warning',
                                              Critical:       'Critical',
                                              Late:           'Late',
-                                             NotStarted:     'NotStarted'
+                                             NotStarted:     'Not-Started'
                                          };  
                                          
 export const UserRole =          {

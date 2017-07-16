@@ -23,3 +23,10 @@ export const throttle = (func, wait) => {
         return result;
     };
 };
+
+export const padZero = num => {
+    if (num <= 9 && num >= 0) {
+        num = '0' + num;
+    }
+    return num;
+};
