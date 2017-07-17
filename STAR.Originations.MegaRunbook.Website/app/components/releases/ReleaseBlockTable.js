@@ -17,6 +17,22 @@ class ReleaseBlockTable extends React.Component {
 
         return (
             <div>
+                <div className="width-100 border pad-5 margin-bottom-1">
+                    <div className="btn-group" role="group">
+                        <button type="button" className="btn btn-sm btn-primary">All</button>
+                        <button type="button" className="btn btn-sm btn-primary">Mine</button>
+                        <button type="button" className="btn btn-sm btn-primary">Selected</button>
+                        <button type="button" className="btn btn-sm btn-info">In Progress</button>
+                        <button type="button" className="btn btn-sm btn-info">Not Started</button>
+                        <button type="button" className="btn btn-sm btn-info">Warning</button>
+                        <button type="button" className="btn btn-sm btn-info">Critical</button>
+                    </div>
+                    <div className="float-right">
+                        <div className="border">
+                            <input type="text" className="white-a-1-bg pad-5" style={{ border: 'none' }} /> <i className="fa fa-search pad-left-5 pad-right-5"></i>
+                        </div>
+                    </div>
+                </div>
                 <table className="font-0-90 width-100">
                     <thead>
                         <tr>
