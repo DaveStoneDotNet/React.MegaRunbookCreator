@@ -32,7 +32,7 @@ export default {
                    },
                    release:     {
                                     release:              {
-                                                              Id: 0, 
+                                                              Id:                 0, 
                                                               ReleaseDate:        '',
                                                               ScheduledStartTime: '',
                                                               ScheduledStopTime:  '',
@@ -41,17 +41,28 @@ export default {
                                                               ReleaseStatus:      '',
                                                               ReleaseBlocks:      []
                                                           }, 
+                                    activities:           [
+                                                            {
+                                                                Id:                0, 
+                                                                TimeText:          '',
+                                                                Header:            'No Activity',
+                                                                SubHeader:         '',
+                                                                ShortIndicator:    '',
+                                                                ShortSubIndicator: '',
+                                                                ActivityDate:      ''
+                                                            }
+                                                          ], 
                                     releaseBlock:         {
-                                                              Id:               0, 
-                                                              BlockOrder:       0, 
-                                                              StepsText:        '', 
-                                                              BlockType:        '', 
-                                                              BlockName:        '', 
-                                                              BlockDescription: '', 
-                                                              StartTime:        '', 
-                                                              StopTime:         '', 
-                                                              BlockStatus:      '', 
-                                                              BlockUsers:       [''] 
+                                                              Id:                  0, 
+                                                              BlockOrder:          0, 
+                                                              StepsText:           '', 
+                                                              BlockType:           '', 
+                                                              BlockName:           '', 
+                                                              BlockDescription:    '', 
+                                                              StartTime:           '', 
+                                                              StopTime:            '', 
+                                                              BlockStatus:         '', 
+                                                              BlockUsers:          [''] 
                                                           }
                    }, 
                    app:         {

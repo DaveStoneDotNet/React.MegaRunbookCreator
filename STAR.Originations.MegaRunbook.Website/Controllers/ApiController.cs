@@ -73,6 +73,26 @@ namespace STAR.Originations.MegaRunbook.Website.Controllers
         }
         #endregion GetReleaseBlock
 
+        #region GetActivities
+        [System.Web.Http.HttpPost]
+        public async Task<JsonResult> GetActivities(contracts::ActivityRequest request)
+        {
+            var activities = await this.LoadJson<contracts::Activity>(@"activity.json");
+            var mapped = Mapper.Map<List<contracts::Activity>, List<models::Activity>>(activities);
+
+            // ---
+
+            var now = DateTime.Now;
+            foreach (var activity in mapped)
+            {
+                now = now.AddMinutes(-3);
+                activity.ActivityDate = now;
+            }
+
+            return this.JsonDateResult(mapped);
+        }
+        #endregion GetActivities
+
         #region GetCourses
         [System.Web.Http.HttpGet]
         public JsonResult GetCourses()

@@ -15,6 +15,7 @@ namespace STAR.Originations.MegaRunbook.Website.Controllers
                 cfg.CreateMap<contracts::ReleaseBlock, models::ReleaseBlock>();
                 cfg.CreateMap<contracts::Release,      models::Release>();
                 cfg.CreateMap<contracts::Contact,      models::Contact>();
+                cfg.CreateMap<contracts::Activity,     models::Activity>();
             });
         }
     }

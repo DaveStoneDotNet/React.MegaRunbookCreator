@@ -164,6 +164,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Activity.cs" />
     <Compile Include="Models\Contact.cs" />
     <Compile Include="Models\CourseDemo.cs" />
     <Compile Include="Models\CourseData.cs" />
@@ -181,6 +182,9 @@
     <Content Include="app\components\common\SimpleUserList.js" />
     <Content Include="app\components\common\ToggleHeader.js" />
     <Content Include="app\components\common\ToggleIcon.js" />
+    <Content Include="app\components\releases\ReleaseActivity.js" />
+    <Content Include="app\components\releases\ReleaseActivityList.js" />
+    <Content Include="app\components\releases\ReleaseActivityListItem.js" />
     <Content Include="app\components\releases\ReleaseBlockDuration.js" />
     <Content Include="app\components\releases\ReleaseBlockStatusButton.js" />
     <Content Include="app\components\releases\ReleaseBlockTable.js" />
@@ -345,6 +349,7 @@
     <Content Include="Design\layout.json" />
     <Content Include="Json\release-blocks.json" />
     <Content Include="Json\release.json" />
+    <Content Include="Json\Activity.json" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\STAR.Originations.MegaRunbook.Contracts\STAR.Originations.MegaRunbook.Contracts.csproj">

@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Data\Activity.cs" />
+    <Compile Include="Data\ActivityRequest.cs" />
     <Compile Include="Data\AppInfo.cs" />
     <Compile Include="Data\ApplicationGroup.cs" />
     <Compile Include="Data\ApplicationType.cs" />

@@ -7,8 +7,7 @@ class ToggleHeader extends React.Component {
         super(props, context);
 
         this.state = {
-                         isUp:         props.isUp         ? props.isUp         : true, 
-                         staticStyles: props.staticStyles ? props.staticStyles : 'White' 
+                         isUp: props.isUp ? props.isUp : true
                      };
 
         this.handleClick = this.handleClick.bind(this);
@@ -22,7 +21,6 @@ class ToggleHeader extends React.Component {
     }
 
     render() {
-        const staticStyles = this.state.staticStyles;
         return (
                     <div>
                         <div className="float-right pad-top-10 pad-right-20 white-a-3 font-2-00" onClick={ this.handleClick }>

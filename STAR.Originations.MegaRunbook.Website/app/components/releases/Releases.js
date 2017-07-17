@@ -16,6 +16,7 @@ import ReleaseDateHeader        from './ReleaseDateHeader';
 import ReleaseBlockTable        from './ReleaseBlockTable';
 import ReleaseStatusHeader      from './ReleaseStatusHeader';
 import ReleaseProgressTimers    from './ReleaseProgressTimers';
+import ReleaseActivity          from './ReleaseActivity';
 
 class Releases extends React.Component {
     
@@ -63,14 +64,29 @@ class Releases extends React.Component {
                                          .then(() => { this.setState({ isLoading: false }); });
     }
 
+    getActivities(request) {
+        this.setState({ isLoading: true });
+        this.props.actions.releaseActions.getActivities(request)
+                                         .then((response) => {
+                                             console.log('ACTIVITIES RESPONSE', response);
+                                         })
+                                         .catch(error => {
+                                             console.log('ERROR GET ACTIVITIES', error);
+                                             toastr.error(error);
+                                         })
+                                         .then(() => { this.setState({ isLoading: false }); });
+    }
+
     updateComponent() {
         this.setState({ seconds: this.state.seconds + 1 });
         this.getRelease();
+        this.getActivities({ });
     }
 
     render() {
-        const release = this.props.release;
-        const bgClass = getReleaseBlockBgCss(release.ReleaseStatus);
+        const release    = this.props.release;
+        const activities = this.props.activities;
+        const bgClass    = getReleaseBlockBgCss(release.ReleaseStatus);
         return (
                 <div>
                   <div className="pad-20">
@@ -88,6 +104,11 @@ class Releases extends React.Component {
                               <ReleaseProgressTimers release={ release} />
 
                               <TimerProgressBar startTime={release.ScheduledStartTime} stopTime={release.ScheduledStopTime} bgClass={ bgClass } height="20" />
+
+                              <div className="pad-top-10">
+                                <ReleaseActivity releaseStatus={ release.ReleaseStatus } activities={ activities } />
+                              </div>
+
                           </div>
                       </div>
                   </div>
@@ -99,7 +120,8 @@ class Releases extends React.Component {
 const mapStateToProps = (state, ownProps) => {
   
     return { 
-               release: state.release.release
+               release:    state.release.release, 
+               activities: state.release.activities
            };
 };
 

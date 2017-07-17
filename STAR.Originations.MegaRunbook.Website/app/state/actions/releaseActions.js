@@ -5,6 +5,7 @@ import * as ajaxActions  from './ajaxStatusActions';
 
 export function getReleaseBlockSuccess(value) { return { type: types.GET_RELEASE_BLOCK_SUCCESS, releaseBlock: value }; }
 export function getReleaseSuccess(value)      { return { type: types.GET_RELEASE_SUCCESS,       release:      value }; }
+export function getActivitiesSuccess(value)   { return { type: types.GET_ACTIVITIES_SUCCESS,    activities:   value }; }
 
 export function getRelease(request) {
     return function(dispatch) {
@@ -13,6 +14,19 @@ export function getRelease(request) {
                               .then(response => {
                                   dispatch(ajaxActions.endAjaxCall());
                                   return dispatch(getReleaseSuccess(response));
+                              }
+                              );
+        return promise;
+    };
+};
+
+export function getActivities(request) {
+    return function(dispatch) {
+        dispatch(ajaxActions.beginAjaxCall());
+        const promise = MrcApi.getActivities(request)
+                              .then(response => {
+                                  dispatch(ajaxActions.endAjaxCall());
+                                  return dispatch(getActivitiesSuccess(response));
                               }
                               );
         return promise;

@@ -1,6 +1,6 @@
-﻿import React     from 'react';
-import moment    from 'moment';
-import countdown from 'countdown';
+﻿import React                    from 'react';
+import moment                   from 'moment';
+import countdown                from 'countdown';
 
 import { DateFormats }          from '../../constants';
 import { getReleaseBlockBgCss } from '../../constants';
@@ -11,20 +11,20 @@ class TimerProgressBar extends React.Component {
         super(props, context);
 
         this.state = {
-            momentDate:      moment(), 
-            momentFormat:    props.momentFormat ? props.momentFormat        : 'hh:mm:ss A', 
-            containerHeight: props.height       ? props.height + 'px'       : '10px', 
-            barHeight:       props.height       ? (props.height - 2) + 'px' : '8px', 
-            bgClass:         props.bgClass      ? props.bgClass             : 'white-a-1-bg', 
-            isFixed:         props.width > 0
-        };
+                         momentDate:      moment(), 
+                         momentFormat:    props.momentFormat ? props.momentFormat        : 'hh:mm:ss A', 
+                         containerHeight: props.height       ? props.height + 'px'       : '10px', 
+                         barHeight:       props.height       ? (props.height - 2) + 'px' : '8px', 
+                         bgClass:         props.bgClass      ? props.bgClass             : 'white-a-1-bg', 
+                         isFixed:         props.width > 0
+                     };
     }
 
     updateComponent() {
 
         this.setState({ 
-            momentDate: this.state.momentDate.add(1, 'seconds')
-        });
+                          momentDate: this.state.momentDate.add(1, 'seconds')
+                      });
     }
 
     componentDidMount () {
@@ -40,8 +40,6 @@ class TimerProgressBar extends React.Component {
 
     getBarStyle () {
 
-        const bgCss            = this.props.bgClass ? this.props.bgClass : 'white-a-1-bg';
-
         const startTime        = moment(this.props.startTime, DateFormats.DefaultDateTime).toDate();
         const stopTime         = moment(this.props.stopTime, DateFormats.DefaultDateTime).toDate();
         const nowTime          = new Date();
@@ -54,9 +52,6 @@ class TimerProgressBar extends React.Component {
         const canCountDown     = this.props.canCountDown ? this.props.canCountDown : false;
         const hasStarted       = canCountDown ? true : nowTime > startTime;
         
-        const countDownPercent = currentDuration.value ? (currentValue / totalValue) : (currentValue > 0 ? currentValue / totalValue : 0);
-        const normalPercent    = currentDuration.value > 0 ? currentValue / totalValue : 0;
-
         let percent = 0;
 
         // 'canCountDown' indicates if the progress bar can 'shrink' as the current time approaches the start time...
@@ -97,7 +92,7 @@ class TimerProgressBar extends React.Component {
         const barStyle = this.getBarStyle();
 
         // Set the container to the pixel width provided by the 'width' prop, otherwise, just set it to '100%'...
-        let conainerStyle  = { width: this.state.isFixed ? this.props.width + 'px' : '100%', height: this.state.containerHeight };
+        const conainerStyle  = { width: this.state.isFixed ? this.props.width + 'px' : '100%', height: this.state.containerHeight };
 
         return (
                     <div name="time-progress-bar">
