@@ -1,7 +1,8 @@
 ﻿import React                    from 'react';
 import toastr                   from 'toastr';
 
-import { getReleaseBlockBgCss}  from '../../constants';
+import { getReleaseBlockBgCss } from '../../constants';
+import { ReleaseBlockStatus }   from '../../constants';
 
 import ToggleHeader             from '../common/ToggleHeader';
 
@@ -25,7 +26,7 @@ class ReleaseStatusHeader extends React.Component {
     }
 
     render() {
-        const releaseStatus = this.props.releaseStatus;
+        const releaseStatus = this.props.releaseStatus ? this.props.releaseStatus : ReleaseBlockStatus.NotStarted;
         const bgCss = getReleaseBlockBgCss(releaseStatus);
 
         return (

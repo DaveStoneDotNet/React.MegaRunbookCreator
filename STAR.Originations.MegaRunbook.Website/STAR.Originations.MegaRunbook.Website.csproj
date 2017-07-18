@@ -184,6 +184,7 @@
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\CardsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\SignalRelay.cs" />
     <Compile Include="CustomAttributes\JsonRequestBehaviorAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

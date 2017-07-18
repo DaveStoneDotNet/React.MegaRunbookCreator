@@ -21,13 +21,15 @@ class ToggleHeader extends React.Component {
     }
 
     render() {
+
+        const header = this.props.header ? this.props.header : '\u00a0';
         return (
                     <div>
                         <div className="float-right pad-top-10 pad-right-20 white-a-3 font-2-00" onClick={ this.handleClick }>
                             <i className={ this.state.isUp ? 'fa fa-angle-up' : 'fa fa-angle-down' } />
                         </div>
                         <div className="align-center pad-top-10 pad-right-10 pad-bottom-10 pad-left-40 BebasNeue font-2-00 width-100 white-a-9">
-                            { this.props.header }
+                            { header }
                         </div>
                     </div>
                );

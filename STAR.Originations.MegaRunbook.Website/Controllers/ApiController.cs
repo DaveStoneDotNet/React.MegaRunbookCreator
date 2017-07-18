@@ -6,8 +6,8 @@ using System.IO;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Web.Hosting;
+
 using AutoMapper;
-using Microsoft.AspNet.SignalR;
 using Newtonsoft.Json;
 
 using STAR.Originations.MRC.DataAccess;
@@ -25,6 +25,8 @@ namespace STAR.Originations.MegaRunbook.Website.Controllers
     [JsonRequestBehavior]
     public class ApiController : BaseController
     {
+        // --------------------------------------------------------------------------------------------------------------------
+
         private MrcDataAccess mrcDataAccess;
         public MrcDataAccess MrcDataAccess => this.mrcDataAccess ?? (this.mrcDataAccess = new MrcDataAccess());
 
@@ -54,11 +56,13 @@ namespace STAR.Originations.MegaRunbook.Website.Controllers
             mapped.ReleaseBlocks.ForEach(o => o.BlockStatus = Randomize.GetRandomReleaseBlockStatus());
             mapped.ReleaseBlocks.ForEach(o => o.Duration = ViewLogic.GetDuration(o.StartTime, o.StopTime));
 
-            // ---
+            SignalRelay.Send(mapped.ReleaseStatus);
 
             return this.JsonDateResult(mapped);
         }
         #endregion GetRelease
+
+        public static SignalRelay SignalRelay = SignalRelay.Instance;
 
         #region GetReleaseBlock
         [System.Web.Http.HttpPost]

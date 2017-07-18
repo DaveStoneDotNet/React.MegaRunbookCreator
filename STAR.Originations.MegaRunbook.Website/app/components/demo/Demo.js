@@ -13,6 +13,8 @@ import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, PieChart
 import * as courseActions     from '../../state/actions/courseActions';
 import * as appActions        from '../../state/actions/appActions';
 
+import ReleaseStatusHeader    from '../releases/ReleaseStatusHeader';
+
 import RandomTable            from './RandomTable';
 import CourseDemoTable        from './CourseDemoTable';
 import CourseList             from './CourseList';
@@ -47,7 +49,8 @@ class Demo extends React.Component {
                          pieData:  [
                                       {key: 'A', name: 'A', value: 400}, 
                                       {key: 'B', name: 'B', value: 200}
-                                   ]
+                                   ], 
+                        message:   ''
                      };
 
         this.pieColors = ['#0088FE', '#00C49F'];
@@ -69,7 +72,7 @@ class Demo extends React.Component {
 
         this.hub.client.broadcastMessage = function (message) {
             console.log('BROADCAST MESSAGE', message);
-            self.setState({ lineData: message.LineData, pieData: message.PieData });
+            self.setState({ lineData: message.LineData, pieData: message.PieData, message: message.Message });
         };
 
         this.hub.client.updateStatus = (data) => {
@@ -145,12 +148,9 @@ class Demo extends React.Component {
                             INFO: {app.home.info} : { this.state.isSaving.toString() }
                         </div>
 
-                            <div>
-                              Random Graphs
-                            </div>
-                            <table className="border">
-                              <tbody>
-                                <tr>
+                        <table className="border">
+                          <tbody>
+                            <tr>
                                   <td>
                                     <div>
                                       <LineChart width={200} height={200} data={this.state.lineData} margin={{ top: 30, right: 20, left: 30, bottom: 0 }}>
@@ -176,6 +176,10 @@ class Demo extends React.Component {
                             </tr>
                           </tbody>
                        </table>
+
+                       <div style={{ width: '402px' }} className="pad-top-20">
+                           <ReleaseStatusHeader releaseStatus={ this.state.message } />
+                       </div>
 
                        <div className="pad-20" />
 
