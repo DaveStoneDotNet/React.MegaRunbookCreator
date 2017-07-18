@@ -13,7 +13,6 @@ class ReleaseBlockTable extends React.Component {
     render() {
 
         const release = this.props.release;
-        console.log('RELEASE TABLE', this.props);
 
         return (
             <div>

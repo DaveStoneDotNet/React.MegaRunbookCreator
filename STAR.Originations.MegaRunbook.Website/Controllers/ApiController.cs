@@ -7,6 +7,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Web.Hosting;
 using AutoMapper;
+using Microsoft.AspNet.SignalR;
 using Newtonsoft.Json;
 
 using STAR.Originations.MRC.DataAccess;
@@ -185,12 +186,23 @@ namespace STAR.Originations.MegaRunbook.Website.Controllers
         }
         #endregion GetLookups
 
+
+        //private readonly static Lazy<ApiController> _instance = new Lazy<ApiController>(() => new ApiController(GlobalHost.ConnectionManager.GetHubContext<ReleaseHub>()));
+
         #region GetData
         [System.Web.Http.HttpGet]
         public async Task<JsonResult> GetData()
         {
             System.Threading.Thread.Sleep(5000);
             var response = await Task.Run(() => new { info = "Some Random Data" });
+
+
+            // FAILED ATTEMPT...
+            //var context = GlobalHost.ConnectionManager.GetHubContext<ReleaseHub>();
+            //context.Clients.All.Send("API MESSAGE");
+
+
+
 
             return this.Json(response);
         }

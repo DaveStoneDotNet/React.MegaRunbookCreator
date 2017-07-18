@@ -24,6 +24,25 @@ class Demo extends React.Component {
 
         super(props, context);
 
+        // ----------------------------------------------------------------------------------------------------
+
+        this.hub = $.connection.releaseHub;
+
+        this.hub.client.broadcastMessage = function (message) {
+            console.log('BROADCAST MESSAGE', message);
+        };
+
+        this.hub.client.updateStatus = (data) => {
+            console.log('UPDATE STATUS', data);
+        };
+
+        this.hub.client.hello = function () {
+            console.log('SIGNAL R SERVER SAYS HELLO');
+        };
+
+        // ----------------------------------------------------------------------------------------------------
+
+
         this.state = {
                          course:   Object.assign({ }, this.props.course),
                          errors:   { },
@@ -55,6 +74,32 @@ class Demo extends React.Component {
         this.getData                 = this.getData.bind(this);
     }
 
+    componentWillMount () {
+    }
+
+    componentDidMount () {
+
+        $.connection.hub.start()
+            .done(() => {
+
+                console.log('DEMO CONNECTED');
+
+                this.hub.connection.socket.onopen    = (m) => { console.log('CONNECTION OPENED')};
+                this.hub.connection.socket.onmessage = (m) => { console.log('CONNECTION MESSAGE: ', m)};
+                this.hub.connection.socket.onclose   = (m) => { console.log('CONNECTION CLOSED')};
+            })
+            .fail(() => {
+                 console.log('FAILED');
+            });
+    }
+
+    signal() {
+
+        console.log('SIGNAL Calling UpdateStatus from DEMO .......');
+
+        this.hub.server.send('BANANA');
+    }
+
     redirectToAddCoursePage() {
         browserHistory.push('/demo');
     }
@@ -72,9 +117,11 @@ class Demo extends React.Component {
         this.props.actions.appActions.getData()
                           .then(() => {
                               toastr.success('Loaded some random data', 'SUCCESS');
+                              this.signal();
                           })
                           .catch((error) => { 
-                              toastr.success('error');
+                              console.log('error');
+                              toastr.error('error', error);
                           })
                           .then(() => {
                               this.setState({ isSaving: false });

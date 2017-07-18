@@ -28,9 +28,6 @@ class ReleaseBlockTableRow extends React.Component {
         const startTime = moment(releaseBlock.StartTime, 'MM/DD/YYYY HH:mm:ss').format('hh:mm A');
         const stopTime   = moment(releaseBlock.StopTime, 'MM/DD/YYYY HH:mm:ss').format('hh:mm A');
 
-        console.log('RELEASE TABLE ROW', this.props);
-        console.log('RELEASE TABLE ROW MOMENT', startTime);
-
         return (
                    <tr>
                         <td className={ 'pad-10 align-top white-a-5 border-bottom-a-50 border-right-a-10 align-center align-middle ' + bgCss }>

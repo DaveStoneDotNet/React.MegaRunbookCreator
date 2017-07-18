@@ -51,11 +51,24 @@ class Releases extends React.Component {
 
     // ------------------------------------------------------------------------------------------------
 
+    //signal() {
+    //    var hub = $.connection.releaseHub;
+    //    $.connection.hub.start()
+    //        .done(() => {
+    //            console.log('SIGNAL CONNECTED - Calling UpdateStatus from RELEASE .......');
+    //            hub.server.updateStatus();
+    //        })
+    //        .fail(() => {
+    //            console.log('SIGNAL FAILED');
+    //        });
+    //}
+
     getRelease(request) {
         this.setState({ isLoading: true });
         this.props.actions.releaseActions.getRelease(request)
                                          .then((response) => {
                                              console.log('RELEASE RESPONSE', response);
+                                             //this.signal();
                                          })
                                          .catch(error => {
                                              console.log('ERROR GET RELEASE', error);
