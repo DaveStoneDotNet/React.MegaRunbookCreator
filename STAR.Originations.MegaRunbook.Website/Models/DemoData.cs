@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
+﻿
 namespace STAR.Originations.MegaRunbook.Website.Models
 {
     public class LineData

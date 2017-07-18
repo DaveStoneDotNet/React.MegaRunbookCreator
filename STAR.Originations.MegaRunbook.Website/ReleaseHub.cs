@@ -1,8 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Collections.Generic;
+
 using Microsoft.AspNet.SignalR;
+
+using STAR.Originations.MegaRunbook.Website.Controllers;
 using STAR.Originations.MegaRunbook.Website.Models;
 
 namespace STAR.Originations.MegaRunbook.Website
@@ -21,21 +21,23 @@ namespace STAR.Originations.MegaRunbook.Website
         {
             ReleaseHub.counter = ReleaseHub.counter + 1;
 
+            var p = Randomize.GetRandomNumber(1000, 9999);
+
             var lineData = new List<LineData>
             {
-                new LineData { xname = " ", uv = 4000, pv = 2400, amt = 2400 },
-                new LineData { xname = " ", uv = 3000, pv = 1398, amt = 2210 },
-                new LineData { xname = " ", uv = 2000, pv = 9800, amt = 2290 },
-                new LineData { xname = " ", uv = 2780, pv = 3908, amt = 2000 },
-                new LineData { xname = " ", uv = 1890, pv = 4800, amt = 2181 },
-                new LineData { xname = " ", uv = 2390, pv = 3800, amt = 2500 },
-                new LineData { xname = " ", uv = 3490, pv = 4300, amt = 2100 },
+                new LineData { xname = " ", uv = Randomize.GetRandomNumber(1000, 9999), pv = Randomize.GetRandomNumber(1000, 9999), amt = Randomize.GetRandomNumber(1000, 9999) }, // 3
+                new LineData { xname = " ", uv = Randomize.GetRandomNumber(1000, 9999), pv = Randomize.GetRandomNumber(1000, 9999), amt = Randomize.GetRandomNumber(1000, 9999) }, // 1
+                new LineData { xname = " ", uv = Randomize.GetRandomNumber(1000, 9999), pv = Randomize.GetRandomNumber(1000, 9999), amt = Randomize.GetRandomNumber(1000, 9999) }, // 5
+                new LineData { xname = " ", uv = Randomize.GetRandomNumber(1000, 9999), pv = Randomize.GetRandomNumber(1000, 9999), amt = Randomize.GetRandomNumber(1000, 9999) }, // 2
+                new LineData { xname = " ", uv = Randomize.GetRandomNumber(1000, 9999), pv = Randomize.GetRandomNumber(1000, 9999), amt = Randomize.GetRandomNumber(1000, 9999) }, // 4
+                new LineData { xname = " ", uv = Randomize.GetRandomNumber(1000, 9999), pv = Randomize.GetRandomNumber(1000, 9999), amt = Randomize.GetRandomNumber(1000, 9999) }, // 7
+                new LineData { xname = " ", uv = Randomize.GetRandomNumber(1000, 9999), pv = Randomize.GetRandomNumber(1000, 9999), amt = Randomize.GetRandomNumber(1000, 9999) }, // 6
             };
 
             var pieData = new List<PieData>
             {
-                new PieData { key = "A", name = "A", value = 400 },
-                new PieData { key = "B", name = "B", value = 200 },
+                new PieData { key = "A", name = "A", value = Randomize.GetRandomNumber(100, 400) },
+                new PieData { key = "B", name = "B", value = Randomize.GetRandomNumber(100, 400) },
             };
 
             this.Clients.All.broadcastMessage(new { Message = message, Count = ReleaseHub.counter, LineData = lineData, PieData = pieData });

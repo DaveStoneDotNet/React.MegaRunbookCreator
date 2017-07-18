@@ -28,42 +28,28 @@ class Demo extends React.Component {
 
         this.hub = $.connection.releaseHub;
 
-        this.hub.client.broadcastMessage = function (message) {
-            console.log('BROADCAST MESSAGE', message);
-        };
-
-        this.hub.client.updateStatus = (data) => {
-            console.log('UPDATE STATUS', data);
-        };
-
-        this.hub.client.hello = function () {
-            console.log('SIGNAL R SERVER SAYS HELLO');
-        };
-
         // ----------------------------------------------------------------------------------------------------
 
 
         this.state = {
                          course:   Object.assign({ }, this.props.course),
                          errors:   { },
-                         isSaving: false
+                         isSaving: false, 
+                         lineData: [
+                                       {xname: ' ', uv: 4000, pv: 2400, amt: 2400},
+                                       {xname: ' ', uv: 3000, pv: 1398, amt: 2210},
+                                       {xname: ' ', uv: 2000, pv: 9800, amt: 2290},
+                                       {xname: ' ', uv: 2780, pv: 3908, amt: 2000},
+                                       {xname: ' ', uv: 1890, pv: 4800, amt: 2181},
+                                       {xname: ' ', uv: 2390, pv: 3800, amt: 2500},
+                                       {xname: ' ', uv: 3490, pv: 4300, amt: 2100}
+                                   ], 
+                         pieData:  [
+                                      {key: 'A', name: 'A', value: 400}, 
+                                      {key: 'B', name: 'B', value: 200}
+                                   ]
                      };
 
-        this.lineData = [
-                             {xname: ' ', uv: 4000, pv: 2400, amt: 2400},
-                             {xname: ' ', uv: 3000, pv: 1398, amt: 2210},
-                             {xname: ' ', uv: 2000, pv: 9800, amt: 2290},
-                             {xname: ' ', uv: 2780, pv: 3908, amt: 2000},
-                             {xname: ' ', uv: 1890, pv: 4800, amt: 2181},
-                             {xname: ' ', uv: 2390, pv: 3800, amt: 2500},
-                             {xname: ' ', uv: 3490, pv: 4300, amt: 2100},
-                        ];
-
-        this.pieData = [
-                            {key: 'A', name: 'A', value: 400}, 
-                            {key: 'B', name: 'B', value: 200}
-                       ];
-                  
         this.pieColors = ['#0088FE', '#00C49F'];
 
         toastr.options.positionClass = 'toast-bottom-right';
@@ -78,6 +64,21 @@ class Demo extends React.Component {
     }
 
     componentDidMount () {
+
+        const self = this;
+
+        this.hub.client.broadcastMessage = function (message) {
+            console.log('BROADCAST MESSAGE', message);
+            self.setState({ lineData: message.LineData, pieData: message.PieData });
+        };
+
+        this.hub.client.updateStatus = (data) => {
+            console.log('UPDATE STATUS', data);
+        };
+
+        this.hub.client.hello = function () {
+            console.log('SIGNAL R SERVER SAYS HELLO');
+        };
 
         $.connection.hub.start()
             .done(() => {
@@ -152,7 +153,7 @@ class Demo extends React.Component {
                                 <tr>
                                   <td>
                                     <div>
-                                      <LineChart width={200} height={200} data={this.lineData} margin={{ top: 30, right: 20, left: 30, bottom: 0 }}>
+                                      <LineChart width={200} height={200} data={this.state.lineData} margin={{ top: 30, right: 20, left: 30, bottom: 0 }}>
                                     <XAxis dataKey="xname" />
                                     <Tooltip />
                                     <CartesianGrid stroke="#444444" />
@@ -164,9 +165,9 @@ class Demo extends React.Component {
                               <td>
                                 <div>
                                   <PieChart width={200} height={200} onMouseEnter={this.onPieEnter}>
-                                    <Pie data={this.pieData} dataKey="value" cx={100} cy={100} labelLine={false} outerRadius={80} fill="#8884d8">
+                                    <Pie data={this.state.pieData} dataKey="value" cx={100} cy={100} labelLine={false} outerRadius={80} fill="#8884d8">
                                     {
-                                         this.pieData.map((entry, index) => <Cell key={index} fill={this.pieColors[index % this.pieColors.length]}/>)
+                                         this.state.pieData.map((entry, index) => <Cell key={index} fill={this.pieColors[index % this.pieColors.length]}/>)
                                     }
                                     </Pie>
                                   </PieChart>
