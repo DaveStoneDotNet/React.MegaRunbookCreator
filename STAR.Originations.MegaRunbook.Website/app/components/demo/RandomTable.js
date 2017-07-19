@@ -8,8 +8,6 @@ import toastr                 from 'toastr';
 
 import * as randomDataActions from '../../state/actions/randomDataActions';
 
-import MrcApi                 from '../../api/mockMrcApi';
-
 class RandomTable extends React.Component {
 
     constructor() {
@@ -29,8 +27,6 @@ class RandomTable extends React.Component {
     fetchData(state, instance) {
 
         this.setState({ loading: true });
-
-        console.log('RANDOM TABLE DATA STATE', state);
 
         this.props.actions.randomDataActions.getRandomTableData(state.pageSize, state.page, state.sorted, state.filtered)
             .then((res) => {

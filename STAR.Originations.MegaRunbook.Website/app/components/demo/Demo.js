@@ -49,10 +49,15 @@ class Demo extends React.Component {
         this.getData                 = this.getData.bind(this);
     }
 
-    componentWillMount () {
+    componentWillMount() {
     }
 
-    componentDidMount () {
+    componentWillUnmount() {
+        $.connection.hub.stop();
+        console.log('DEMO COMPONENT UN-MOUNTED - SIGNAL R CONNECTION STOPPED');
+    }
+
+    componentDidMount() {
 
         const self = this;
 
@@ -60,6 +65,7 @@ class Demo extends React.Component {
             console.log('BROADCAST MESSAGE', message);
             self.props.actions.dispatch(self.props.actions.demoActions.signalrLineDataReceived(message.LineData));
             self.props.actions.dispatch(self.props.actions.demoActions.signalrPieDataReceived(message.PieData));
+            self.setState({ message: message.Message });
         };
 
         this.hub.client.updateStatus = (data) => {
@@ -73,14 +79,17 @@ class Demo extends React.Component {
         $.connection.hub.start()
             .done(() => {
 
-                console.log('DEMO CONNECTED');
+                console.log('SIGNALR CONNECTED VIA ', $.connection.hub.transport.name);
 
-                this.hub.connection.socket.onopen    = (m) => { console.log('CONNECTION OPENED')};
-                this.hub.connection.socket.onmessage = (m) => { console.log('CONNECTION MESSAGE: ', m)};
-                this.hub.connection.socket.onclose   = (m) => { console.log('CONNECTION CLOSED')};
+                if (this.hub.connection.socket) {
+                    this.hub.connection.socket.onopen    = (m) => { console.log('CONNECTION OPENED')};
+                    this.hub.connection.socket.onmessage = (m) => { console.log('CONNECTION MESSAGE: ', m)};
+                    this.hub.connection.socket.onclose   = (m) => { console.log('CONNECTION CLOSED')};
+                }
+
             })
             .fail(() => {
-                 console.log('FAILED');
+                 console.log('START SIGNALR CONNECTION FAILED');
             });
     }
 

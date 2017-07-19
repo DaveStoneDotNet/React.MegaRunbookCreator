@@ -52,12 +52,9 @@ class CourseDemoTable extends React.Component {
                                     }
                         };
 
-        console.log('COURSE DEMO TABLE STATE  ', state.page);
-        console.log('COURSE DEMO TABLE REQUEST', request.Paging.PageNumber);
-
         this.props.actions.demoActions.getCourseDemos(request)
             .then((response) => {
-                console.log('GET COURSE DEMO RESPONSE', response);
+
             })
             .catch((error) => { 
                 toastr.error('ERROR');
