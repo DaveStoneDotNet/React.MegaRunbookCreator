@@ -10,7 +10,7 @@ import { Modal }              from 'react-bootstrap';
 
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, PieChart, Pie, Sector, Cell } from 'recharts';
 
-import * as courseActions     from '../../state/actions/courseActions';
+import * as demoActions       from '../../state/actions/demoActions';
 import * as appActions        from '../../state/actions/appActions';
 
 import ReleaseStatusHeader    from '../releases/ReleaseStatusHeader';
@@ -256,8 +256,8 @@ const mapStateToProps = (state, ownProps) => ({
 const mapDispatchToProps = (dispatch) => { 
     return {
                actions: {
-                            courseActions: bindActionCreators(courseActions, dispatch), 
-                            appActions:    bindActionCreators(appActions, dispatch)
+                            demoActions: bindActionCreators(demoActions, dispatch), 
+                            appActions:  bindActionCreators(appActions, dispatch)
                         }
            };
 };
@@ -268,13 +268,13 @@ const mapDispatchToProps = (dispatch) => {
 // 
 // If you OMIT the 'mapDispatchToProps' parameter, the 'connect' function injects a 'dispatch' property to 
 // the component. That is, this component automatically gets a 'dispatch' property attached to it.
-// The 'dispatch' function is a function which allows you to fire off the actions defined in 'courseActions.js'.
+// The 'dispatch' function is a function which allows you to fire off the actions defined in 'demoActions.js'.
 //
-// To dispatch an action, a reference to actions is needed. e.g. courseActions.
+// To dispatch an action, a reference to actions is needed. e.g. demoActions.
 // 
 // The 'dispatch' function could then referenced as follows... 
 //
-//          this.props.dispatch(courseActions.getCourses());
+//          this.props.dispatch(demoActions.getCourses());
 // 
 // This is somewhat verbose, so an alternative would be to call the 'mapDispatchToProps' function instead.
 //

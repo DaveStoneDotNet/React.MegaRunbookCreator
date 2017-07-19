@@ -9,7 +9,7 @@ import { syncHistoryWithStore }   from 'react-router-redux';
 import routes                     from './routes';
 import configureStore             from './state/store/configureStore';
 
-import * as courseActions         from './state/actions/courseActions';
+import * as demoActions           from './state/actions/demoActions';
 import * as authorActions         from './state/actions/authorActions';
 import * as appActions            from './state/actions/appActions';
 
@@ -26,7 +26,7 @@ import 'babel-polyfill';
 
 const store = configureStore();
 
-store.dispatch(courseActions.getCourses());
+store.dispatch(demoActions.getCourses());
 store.dispatch(appActions.getUser());
 store.dispatch(appActions.getLookups());
 store.dispatch(authorActions.getAuthorLookups());

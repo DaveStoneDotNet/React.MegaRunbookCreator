@@ -3,7 +3,7 @@ import nock               from 'nock';
 import thunk              from 'redux-thunk';
 import configureMockStore from 'redux-mock-store';
 
-import * as courseActions from './courseActions';
+import * as demoActions   from './demoActions';
 import * as types         from './actionTypes';
 
 // Test a sync action
@@ -18,7 +18,7 @@ describe('Course Actions', () => {
             };
 
             //act
-            const action = courseActions.createCourseSuccess(course);
+            const action = demoActions.createCourseSuccess(course);
 
             //assert
             expect(action).toEqual(expectedAction);
@@ -47,7 +47,7 @@ describe('Async Actions', () => {
         ];
 
         const store = mockStore({courses: []}, expectedActions, done);
-        store.dispatch(courseActions.getCourses()).then(() => {
+        store.dispatch(demoActions.getCourses()).then(() => {
             const actions = store.getActions();
             expect(actions[0].type).toEqual(types.BEGIN_AJAX_CALL);
             expect(actions[1].type).toEqual(types.GET_COURSES_SUCCESS);

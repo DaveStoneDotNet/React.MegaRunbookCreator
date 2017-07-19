@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux';
 
 import toastr                 from 'toastr';
 
-import * as courseActions     from '../../state/actions/courseActions';
+import * as demoActions       from '../../state/actions/demoActions';
 
 import CourseForm             from './CourseForm';
 
@@ -130,7 +130,7 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-               actions: bindActionCreators(courseActions, dispatch)
+               actions: bindActionCreators(demoActions, dispatch)
            };
 };
 

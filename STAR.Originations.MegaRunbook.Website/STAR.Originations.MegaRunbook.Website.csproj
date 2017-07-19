@@ -229,8 +229,8 @@
     <Content Include="app\state\actions\ajaxStatusActions.js" />
     <Content Include="app\state\actions\appActions.js" />
     <Content Include="app\state\actions\authorActions.js" />
-    <Content Include="app\state\actions\courseActions.js" />
-    <Content Include="app\state\actions\courseActions.test.js" />
+    <Content Include="app\state\actions\demoActions.js" />
+    <Content Include="app\state\actions\demoActions.test.js" />
     <Content Include="app\api\delay.js" />
     <Content Include="app\api\mockAuthorApi.js" />
     <Content Include="app\api\mockCourseApi.js" />
