@@ -34,26 +34,12 @@ class Demo extends React.Component {
 
 
         this.state = {
-                         course:   Object.assign({ }, this.props.course),
-                         errors:   { },
-                         isSaving: false, 
-                         lineData: [
-                                       {xname: ' ', uv: 4000, pv: 2400, amt: 2400},
-                                       {xname: ' ', uv: 3000, pv: 1398, amt: 2210},
-                                       {xname: ' ', uv: 2000, pv: 9800, amt: 2290},
-                                       {xname: ' ', uv: 2780, pv: 3908, amt: 2000},
-                                       {xname: ' ', uv: 1890, pv: 4800, amt: 2181},
-                                       {xname: ' ', uv: 2390, pv: 3800, amt: 2500},
-                                       {xname: ' ', uv: 3490, pv: 4300, amt: 2100}
-                                   ], 
-                         pieData:  [
-                                      {key: 'A', name: 'A', value: 400}, 
-                                      {key: 'B', name: 'B', value: 200}
-                                   ], 
-                        message:   ''
+                         course:    Object.assign({ }, this.props.course),
+                         errors:    { },
+                         isSaving:  false, 
+                         message:   '', 
+                         pieColors: ['#0088FE', '#00C49F']
                      };
-
-        this.pieColors = ['#0088FE', '#00C49F'];
 
         toastr.options.positionClass = 'toast-bottom-right';
 
@@ -72,7 +58,8 @@ class Demo extends React.Component {
 
         this.hub.client.broadcastMessage = function (message) {
             console.log('BROADCAST MESSAGE', message);
-            self.setState({ lineData: message.LineData, pieData: message.PieData, message: message.Message });
+            self.props.actions.dispatch(self.props.actions.demoActions.signalrLineDataReceived(message.LineData));
+            self.props.actions.dispatch(self.props.actions.demoActions.signalrPieDataReceived(message.PieData));
         };
 
         this.hub.client.updateStatus = (data) => {
@@ -134,8 +121,11 @@ class Demo extends React.Component {
 
     render() {
 
-        const courses = this.props.demo.courses;
-        const app     = this.props.app;
+        const courses   = this.props.demo.courses;
+        const app       = this.props.app;
+        const lineData  = this.props.demo.lineData;
+        const pieData   = this.props.demo.pieData;
+        const pieColors = this.state.pieColors;
 
         return (
                    <div>
@@ -153,7 +143,7 @@ class Demo extends React.Component {
                             <tr>
                                   <td>
                                     <div>
-                                      <LineChart width={200} height={200} data={this.state.lineData} margin={{ top: 30, right: 20, left: 30, bottom: 0 }}>
+                                      <LineChart width={200} height={200} data={lineData} margin={{ top: 30, right: 20, left: 30, bottom: 0 }}>
                                     <XAxis dataKey="xname" />
                                     <Tooltip />
                                     <CartesianGrid stroke="#444444" />
@@ -165,9 +155,9 @@ class Demo extends React.Component {
                               <td>
                                 <div>
                                   <PieChart width={200} height={200} onMouseEnter={this.onPieEnter}>
-                                    <Pie data={this.state.pieData} dataKey="value" cx={100} cy={100} labelLine={false} outerRadius={80} fill="#8884d8">
+                                    <Pie data={pieData} dataKey="value" cx={100} cy={100} labelLine={false} outerRadius={80} fill="#8884d8">
                                     {
-                                         this.state.pieData.map((entry, index) => <Cell key={index} fill={this.pieColors[index % this.pieColors.length]}/>)
+                                         pieData.map((entry, index) => <Cell key={index} fill={pieColors[index % pieColors.length]}/>)
                                     }
                                     </Pie>
                                   </PieChart>
@@ -256,6 +246,7 @@ const mapStateToProps = (state, ownProps) => ({
 const mapDispatchToProps = (dispatch) => { 
     return {
                actions: {
+                            dispatch:    dispatch,
                             demoActions: bindActionCreators(demoActions, dispatch), 
                             appActions:  bindActionCreators(appActions, dispatch)
                         }

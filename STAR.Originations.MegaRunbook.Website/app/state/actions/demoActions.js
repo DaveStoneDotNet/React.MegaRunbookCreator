@@ -40,6 +40,9 @@ export function getCourseDemosSuccess(value)   { return { type: types.GET_COURSE
 export function getCourseDemoSuccess(value)    { return { type: types.GET_COURSE_DEMO_SUCCESS,    course:         value }; }
 export function upsertCourseDemoSuccess(value) { return { type: types.UPSERT_COURSE_DEMO_SUCCESS, courseResponse: value }; }
 
+export function signalrLineDataReceived(value) { return { type: types.SIGNALR_LINE_DATA_RECEIVED, lineData:       value }; }
+export function signalrPieDataReceived(value)  { return { type: types.SIGNALR_PIE_DATA_RECEIVED,  pieData:        value }; }
+
 // -----------------------------------------------------------------------------------------------------------------------
 // Thunks:
 // -----------------------------------------------------------------------------------------------------------------------
@@ -191,3 +194,4 @@ export function upsertCourseDemo(course) {
         return promise;
     };
 };
+

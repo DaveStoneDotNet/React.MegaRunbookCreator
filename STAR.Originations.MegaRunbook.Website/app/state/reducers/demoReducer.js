@@ -42,6 +42,14 @@ export default function demoReducer(state = initialState.demo, action) {
             new_state = Object.assign({}, state, { authors: action.authors });
             return new_state;
 
+        case types.SIGNALR_LINE_DATA_RECEIVED:
+            new_state = Object.assign({}, state, { lineData: action.lineData });
+            return new_state;
+
+        case types.SIGNALR_PIE_DATA_RECEIVED:
+            new_state = Object.assign({}, state, { pieData: action.pieData });
+            return new_state;
+
         default:
             return state;
     }
