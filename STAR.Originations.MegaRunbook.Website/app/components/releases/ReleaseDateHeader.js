@@ -1,8 +1,8 @@
-﻿import React  from 'react';
-import moment from 'moment';
+﻿import React           from 'react';
+import moment          from 'moment';
 
-import DigitalClock     from '../common/DigitalClock';
-import { DateFormats }  from '../../constants';
+import DigitalClock    from '../common/DigitalClock';
+import { DateFormats } from '../../constants';
 
 class DateHeader extends React.Component {
     constructor(props, context) {
@@ -21,9 +21,9 @@ class DateHeader extends React.Component {
 
     render() {
 
-        const headerText    = this.props.releaseDate ? moment(this.props.releaseDate).format(this.state.momentFormat) : 'not provided';
-        const startTimeText = this.props.startTime   ? moment(this.props.startTime).format(DateFormats.DefaultTime)   : ' ';
-        const stopTimeText  = this.props.stopTime    ? moment(this.props.stopTime).format(DateFormats.DefaultTime)    : ' ';
+        const headerText    = this.props.releaseDate ? moment(this.props.releaseDate, DateFormats.DefaultTime).format(DateFormats.DefaultTime) : 'not provided';
+        const startTimeText = this.props.startTime   ? moment(this.props.startTime,   DateFormats.DefaultTime).format(DateFormats.DefaultTime) : ' ';
+        const stopTimeText  = this.props.stopTime    ? moment(this.props.stopTime,    DateFormats.DefaultTime).format(DateFormats.DefaultTime) : ' ';
 
         return (
                     <div>

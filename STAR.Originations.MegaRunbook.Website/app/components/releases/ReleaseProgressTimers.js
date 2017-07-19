@@ -22,8 +22,8 @@ class ReleaseProgressTimers extends React.Component {
 
         const release = this.props.release;
 
-        const startTimeText = moment(release.ScheduledStartTime).format(DateFormats.DefaultTime);
-        const stopTimeText  = moment(release.ScheduledStopTime).format(DateFormats.DefaultTime);
+        const startTimeText = moment(release.ScheduledStartTime, DateFormats.DefaultTime).format(DateFormats.DefaultTime);
+        const stopTimeText  = moment(release.ScheduledStopTime,  DateFormats.DefaultTime).format(DateFormats.DefaultTime);
 
         return (
                     <div className="width-100 white-a-6 font-1-20 Lato">
