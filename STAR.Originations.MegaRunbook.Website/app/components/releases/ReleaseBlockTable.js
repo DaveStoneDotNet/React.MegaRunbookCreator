@@ -19,8 +19,13 @@ class ReleaseBlockTable extends React.Component {
         this.handleStatusBarButtonClick = this.handleStatusBarButtonClick.bind(this);
         this.onInputChange              = this.onInputChange.bind(this);
         this.clearOpenQueryClick        = this.clearOpenQueryClick.bind(this);
+        this.setNextReleaseBlockStatus  = this.setNextReleaseBlockStatus.bind(this);
 
         this.getRelease = props.getRelease;
+    }
+
+    setNextReleaseBlockStatus(blockStatus) {
+        console.log('UPDATE RELEASE BLOCK STATUS ALL THE WAY UP IN THE TABLE', blockStatus);
     }
 
     getRequest() {
@@ -114,7 +119,7 @@ class ReleaseBlockTable extends React.Component {
                         </tr>
                     </thead>
                     <tbody>
-                        { release.ReleaseBlocks.map((releaseBlock) => <ReleaseBlockTableRow key={ releaseBlock.Id } releaseBlock={ releaseBlock } /> ) }
+                            { release.ReleaseBlocks.map((releaseBlock) => <ReleaseBlockTableRow key={ releaseBlock.Id } releaseBlock={ releaseBlock } setNextReleaseBlockStatus={ this.setNextReleaseBlockStatus } /> ) }
                     </tbody>
                 </table>
             </div>

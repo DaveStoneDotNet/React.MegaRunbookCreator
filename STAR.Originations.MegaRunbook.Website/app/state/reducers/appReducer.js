@@ -41,6 +41,10 @@ export default function appReducer(state = initialState.app, action) {
             new_state = Object.assign({}, state, action.app);
             return new_state;
 
+        case types.GET_CONFIG_SUCCESS:
+            new_state = Object.assign({}, state, { config: action.config });
+            return new_state;
+
         case types.GET_USER_SUCCESS:
             new_state = Object.assign({}, state, { user: action.user });
             return new_state;

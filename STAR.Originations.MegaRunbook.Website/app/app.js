@@ -27,6 +27,7 @@ import 'babel-polyfill';
 const store = configureStore();
 
 store.dispatch(demoActions.getCourses());
+store.dispatch(appActions.getConfig());
 store.dispatch(appActions.getUser());
 store.dispatch(appActions.getLookups());
 store.dispatch(authorActions.getAuthorLookups());

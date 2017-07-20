@@ -82,6 +82,9 @@ export default {
                                                           }
                    }, 
                    app:         {
+                                    config:               {
+                                                              SlackWebhookUrl: ''
+                                                          }, 
                                     user:                 {
                                                               HasRole:         false, 
                                                               IsAdministrator: false, 

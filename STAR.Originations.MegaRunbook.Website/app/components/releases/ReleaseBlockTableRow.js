@@ -18,6 +18,8 @@ class ReleaseBlockTableRow extends React.Component {
 
     constructor(props, context) {
         super(props, context);
+
+        this.setNextReleaseBlockStatus = props.setNextReleaseBlockStatus;
     }
 
     render() {
@@ -26,7 +28,7 @@ class ReleaseBlockTableRow extends React.Component {
         const bgCss = getReleaseBlockBgCss(releaseBlock.BlockStatus);
 
         const startTime = moment(releaseBlock.StartTime, 'MM/DD/YYYY HH:mm:ss').format('hh:mm A');
-        const stopTime   = moment(releaseBlock.StopTime, 'MM/DD/YYYY HH:mm:ss').format('hh:mm A');
+        const stopTime  = moment(releaseBlock.StopTime,  'MM/DD/YYYY HH:mm:ss').format('hh:mm A');
 
         return (
                    <tr>
@@ -85,7 +87,7 @@ class ReleaseBlockTableRow extends React.Component {
                                 <table>
                                     <tr>
                                         <td>
-                                            <ReleaseBlockStatusButton status={ releaseBlock.BlockStatus } />
+                                            <ReleaseBlockStatusButton status={ releaseBlock.BlockStatus } setNextReleaseBlockStatus={ this.setNextReleaseBlockStatus } />
                                         </td>
                                     </tr>
                                 </table>

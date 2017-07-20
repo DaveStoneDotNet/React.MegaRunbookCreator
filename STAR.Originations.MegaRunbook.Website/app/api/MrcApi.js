@@ -88,6 +88,7 @@ class MrcApi {
                })
                .then((response) => response.json());
     }
+
     static upsertCourseDemo(course) {
         return fetch('/api/UpsertCourse',
                {
@@ -138,14 +139,35 @@ class MrcApi {
                             }, 
                    method:  'POST'
                })
-               .then((response, access_token) => {
-                    console.log('MRC API BING RESPONSE', response);
-                    console.log('MRC API BING access_token', access_token);
+               .then((response) => {
                     return response;
                 }
                );
     }
 
+    // --------------------------------------------------------------------------------------------------------------------
+
+    static getConfig() {
+
+        return fetch('/api/GetConfig',
+               {
+                   headers: API_HEADERS
+               })
+               .then((response) => response.json());
+    }
+
+    static postSlackMessage(webhookurl, message) {
+        return fetch(webhookurl,
+               {
+                   headers: API_HEADERS, 
+                   method:  'POST', 
+                   body:    JSON.stringify({ text: message })
+               })
+               .then((response) => {
+                   return response;
+               }
+              );
+    }
 };
 
 export default MrcApi;

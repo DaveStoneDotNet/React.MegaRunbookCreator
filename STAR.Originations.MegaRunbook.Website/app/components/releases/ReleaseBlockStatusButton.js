@@ -10,6 +10,8 @@ class ReleaseBlockStatusButton extends React.Component {
 
         this.handleClick = this.handleClick.bind(this);
 
+        this.setNextReleaseBlockStatus = props.setNextReleaseBlockStatus;
+
         toastr.options.positionClass = 'toast-bottom-right';
     }
 
@@ -20,7 +22,7 @@ class ReleaseBlockStatusButton extends React.Component {
     }
 
     handleClick () {
-        toastr.warning('not implemented yet');
+        this.setNextReleaseBlockStatus(this.props.status);
     }
 
     render() {

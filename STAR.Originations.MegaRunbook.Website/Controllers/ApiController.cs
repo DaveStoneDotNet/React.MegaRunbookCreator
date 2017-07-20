@@ -32,6 +32,17 @@ namespace STAR.Originations.MegaRunbook.Website.Controllers
 
         // --------------------------------------------------------------------------------------------------------------------
 
+        #region GetConfig
+        [System.Web.Http.HttpPost]
+        public async Task<JsonResult> GetConfig()
+        {
+            var configs = await this.LoadJson<contracts::Config>(@"private.json");
+            var config = configs.FirstOrDefault();
+
+            return this.JsonDateResult(config);
+        }
+        #endregion GetConfig
+
         #region GetRelease
         [System.Web.Http.HttpPost]
         public async Task<JsonResult> GetRelease(contracts::ReleaseRequest request)

@@ -50,6 +50,7 @@ import * as ajaxActions from './ajaxStatusActions';
 // If you typed 'monkey' instead of 'home' then nothing would get updated and no error would occur, but 
 // most importantly, 'home' would NOT be updated.
 
+export function getConfigSuccess(data)     { return { type: types.GET_CONFIG_SUCCESS,  config:    data    }; }
 export function getDataSuccess(data)       { return { type: types.GET_DATA_SUCCESS,    home:      data    }; }
 
 export function getLookupsSuccess(lookups) { return { type: types.GET_LOOKUPS_SUCCESS, lookups:   lookups }; }
@@ -104,6 +105,17 @@ export function getUser() {
             })
             .catch((error) => { throw (error); })
             .then(() => dispatch(ajaxActions.endAjaxCall()));
+    };
+}
+
+
+export function getConfig() {
+    return function (dispatch) {
+        dispatch(ajaxActions.beginAjaxCall());
+        return MrcApi.getConfig()
+            .then(response => dispatch(getConfigSuccess(response)))
+            .catch((error) => { throw (error); })
+            .then(()       => dispatch(ajaxActions.endAjaxCall()));
     };
 }
 
