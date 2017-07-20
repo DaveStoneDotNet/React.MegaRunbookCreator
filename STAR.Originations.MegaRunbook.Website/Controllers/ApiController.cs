@@ -58,6 +58,23 @@ namespace STAR.Originations.MegaRunbook.Website.Controllers
 
             SignalRelay.Send(mapped.ReleaseStatus);
 
+            if (!String.IsNullOrWhiteSpace(request.BlockStatus))
+            {
+                mapped.ReleaseBlocks = (from o in mapped.ReleaseBlocks where o.BlockStatus.Equals(request.BlockStatus) select o).ToList();
+            }
+
+            if (!String.IsNullOrWhiteSpace(request.OpenQuery))
+            {
+                var openQuery = request.OpenQuery.Trim().ToLower();
+                mapped.ReleaseBlocks = (from o in mapped.ReleaseBlocks
+                                       where o.StepsText.ToLower().Contains(openQuery)
+                                          || o.BlockType.ToLower().Contains(openQuery)
+                                          || o.BlockName.ToLower().Contains(openQuery)
+                                          || o.BlockDescription.ToLower().Contains(openQuery)
+                                          || o.BlockUsers.Any(u => u.DisplayName.ToLower().Contains(openQuery))
+                                      select o).ToList();
+            }
+
             return this.JsonDateResult(mapped);
         }
         #endregion GetRelease

@@ -21,9 +21,9 @@ class DateHeader extends React.Component {
 
     render() {
 
-        const headerText    = this.props.releaseDate ? moment(this.props.releaseDate, DateFormats.DefaultTime).format(DateFormats.DefaultTime) : 'not provided';
-        const startTimeText = this.props.startTime   ? moment(this.props.startTime,   DateFormats.DefaultTime).format(DateFormats.DefaultTime) : ' ';
-        const stopTimeText  = this.props.stopTime    ? moment(this.props.stopTime,    DateFormats.DefaultTime).format(DateFormats.DefaultTime) : ' ';
+        const headerText    = this.props.releaseDate ? moment(this.props.releaseDate, DateFormats.DefaultDateTime).format(DateFormats.LongDateFormat) : 'not provided';
+        const startTimeText = this.props.startTime   ? moment(this.props.startTime,   DateFormats.DefaultDateTime).format(DateFormats.DefaultTime)    : ' ';
+        const stopTimeText  = this.props.stopTime    ? moment(this.props.stopTime,    DateFormats.DefaultDateTime).format(DateFormats.DefaultTime)    : ' ';
 
         return (
                     <div>
