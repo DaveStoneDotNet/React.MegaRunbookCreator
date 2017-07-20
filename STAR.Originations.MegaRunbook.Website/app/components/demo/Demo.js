@@ -12,6 +12,7 @@ import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, PieChart
 
 import * as demoActions       from '../../state/actions/demoActions';
 import * as appActions        from '../../state/actions/appActions';
+import * as bingApiActions    from '../../state/actions/bingApiActions';
 
 import ReleaseStatusHeader    from '../releases/ReleaseStatusHeader';
 
@@ -47,6 +48,8 @@ class Demo extends React.Component {
         this.openModal               = this.openModal.bind(this);
         this.closeModal              = this.closeModal.bind(this);
         this.getData                 = this.getData.bind(this);
+
+        this.getBingAuthorizationToken = this.getBingAuthorizationToken.bind(this);
     }
 
     componentWillMount() {
@@ -115,6 +118,22 @@ class Demo extends React.Component {
     getData() {
         this.setState({ isSaving: true });
         this.props.actions.appActions.getData()
+                          .then(() => {
+                              toastr.success('Loaded some random data', 'SUCCESS');
+                              this.signal();
+                          })
+                          .catch((error) => { 
+                              console.log('error');
+                              toastr.error('error', error);
+                          })
+                          .then(() => {
+                              this.setState({ isSaving: false });
+                          });
+    }
+
+    getBingAuthorizationToken() {
+        this.setState({ isSaving: true });
+        this.props.actions.bingApiActions.getBingAuthorizationToken('')
                           .then(() => {
                               toastr.success('Loaded some random data', 'SUCCESS');
                               this.signal();
@@ -255,10 +274,11 @@ const mapStateToProps = (state, ownProps) => ({
 const mapDispatchToProps = (dispatch) => { 
     return {
                actions: {
-                            dispatch:    dispatch,
-                            demoActions: bindActionCreators(demoActions, dispatch), 
-                            appActions:  bindActionCreators(appActions, dispatch)
-                        }
+                            dispatch:       dispatch,
+                            demoActions:    bindActionCreators(demoActions, dispatch), 
+                            appActions:     bindActionCreators(appActions, dispatch), 
+                            bingApiActions: bindActionCreators(bingApiActions, dispatch)
+               }
            };
 };
 

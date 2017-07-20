@@ -43,6 +43,9 @@ export default {
                                                               { key: 'B', name: 'B', value: 200 }
                                                           ]
                                 },
+                   bingApiData: {
+                                    authorizationToken:   ''
+                                }, 
                    release:     {
                                     release:              {
                                                               Id:                 0, 

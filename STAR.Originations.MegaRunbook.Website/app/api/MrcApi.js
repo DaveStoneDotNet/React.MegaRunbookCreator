@@ -126,6 +126,26 @@ class MrcApi {
                })
                .then((response) => response.json());
     }
+
+    // --------------------------------------------------------------------------------------------------------------------
+
+    static getBingAuthorizationToken(apiKey) {
+        return fetch('https://api.cognitive.microsoft.com/sts/v1.0/issueToken',
+               {
+                   headers: {
+                                'Content-Length': '0',
+                                'Ocp-Apim-Subscription-Key': apiKey
+                            }, 
+                   method:  'POST'
+               })
+               .then((response, access_token) => {
+                    console.log('MRC API BING RESPONSE', response);
+                    console.log('MRC API BING access_token', access_token);
+                    return response;
+                }
+               );
+    }
+
 };
 
 export default MrcApi;

@@ -7,6 +7,7 @@ import demoReducer         from './demoReducer';
 
 import ajaxStatusReducer   from './ajaxStatusReducer';
 import randomDataReducer   from './randomDataReducer';
+import bingApiReducer      from './bingApiReducer';
 
 // The Root Reducer where you define/name and shape the store.
 // 
@@ -45,14 +46,15 @@ import randomDataReducer   from './randomDataReducer';
 // on the child element/component.
 
 const rootReducer = combineReducers({
-                                        routing:    routerReducer, 
+                                        routing:        routerReducer, 
                                                  
-                                        app:        appReducer,
-                                        release:    releaseReducer,
-                                        demo:       demoReducer, 
+                                        app:            appReducer,
+                                        release:        releaseReducer,
+                                        demo:           demoReducer, 
+                                        bingApiReducer: bingApiReducer, 
 
-                                        randomData: randomDataReducer, 
-                                        ajaxCount:  ajaxStatusReducer
+                                        randomData:     randomDataReducer, 
+                                        ajaxCount:      ajaxStatusReducer
                                     });
 
 export default rootReducer;

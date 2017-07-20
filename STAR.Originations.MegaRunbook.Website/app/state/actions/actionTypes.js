@@ -36,3 +36,9 @@ export const GET_ACTIVITIES_SUCCESS       = 'GET_ACTIVITIES_SUCCESS';
 
 export const SIGNALR_LINE_DATA_RECEIVED   = 'SIGNALR_LINE_DATA_RECEIVED';
 export const SIGNALR_PIE_DATA_RECEIVED    = 'SIGNALR_PIE_DATA_RECEIVED';
+
+// -------------------------------------------------------------------------------
+
+export const GET_BING_AUTHORIZATION_TOKEN_SUCCESS = 'GET_BING_AUTHORIZATION_TOKEN_SUCCESS';
+
+

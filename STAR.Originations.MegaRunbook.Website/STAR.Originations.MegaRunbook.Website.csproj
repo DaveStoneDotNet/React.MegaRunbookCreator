@@ -229,6 +229,7 @@
     <Content Include="app\state\actions\ajaxStatusActions.js" />
     <Content Include="app\state\actions\appActions.js" />
     <Content Include="app\state\actions\authorActions.js" />
+    <Content Include="app\state\actions\bingApiActions.js" />
     <Content Include="app\state\actions\demoActions.js" />
     <Content Include="app\state\actions\demoActions.test.js" />
     <Content Include="app\api\delay.js" />
@@ -256,6 +257,7 @@
     <Content Include="app\state\reducers\ajaxStatusReducer.js" />
     <Content Include="app\state\reducers\appReducer.js" />
     <Content Include="app\state\reducers\authorReducer.js" />
+    <Content Include="app\state\reducers\bingApiReducer.js" />
     <Content Include="app\state\reducers\demoReducer.js" />
     <Content Include="app\state\reducers\initialState.js" />
     <Content Include="app\state\reducers\randomDataReducer.js" />
@@ -380,6 +382,7 @@
     <Content Include="Json\release-blocks.json" />
     <Content Include="Json\release.json" />
     <Content Include="Json\Activity.json" />
+    <Content Include="Json\bing-api.json" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\STAR.Originations.MegaRunbook.Contracts\STAR.Originations.MegaRunbook.Contracts.csproj">
