@@ -156,12 +156,15 @@ class MrcApi {
                .then((response) => response.json());
     }
 
-    static postSlackMessage(webhookurl, message) {
-        return fetch(webhookurl,
+    static postSlackMessage(request) {
+        return fetch(request.webhookurl,
                {
-                   headers: API_HEADERS, 
+                   mode:    'no-cors',
+                   headers: {
+                                'Content-Type': 'application/json'
+                            }, 
                    method:  'POST', 
-                   body:    JSON.stringify({ text: message })
+                   body:    JSON.stringify({ text: 'Testing. Please ignore. ' + request.message })
                })
                .then((response) => {
                    return response;

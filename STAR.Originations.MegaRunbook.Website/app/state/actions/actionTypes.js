@@ -41,6 +41,9 @@ export const SIGNALR_PIE_DATA_RECEIVED    = 'SIGNALR_PIE_DATA_RECEIVED';
 
 // -------------------------------------------------------------------------------
 
-export const GET_BING_AUTHORIZATION_TOKEN_SUCCESS = 'GET_BING_AUTHORIZATION_TOKEN_SUCCESS';
+export const POST_SLACK_MESSAGE          = 'POST_SLACK_MESSAGE';
 
+// -------------------------------------------------------------------------------
+
+export const GET_BING_AUTHORIZATION_TOKEN_SUCCESS = 'GET_BING_AUTHORIZATION_TOKEN_SUCCESS';
 

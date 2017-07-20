@@ -130,3 +130,14 @@ export function getData() {
 }
 
 // -----------------------------------------------------------------------------------------------------------------------
+
+export function postSlackMessage(request) {
+    return function (dispatch) {
+        dispatch(ajaxActions.beginAjaxCall());
+        return MrcApi.postSlackMessage(request)
+            .then(() => dispatch(ajaxActions.endAjaxCall()))
+            .catch((error) => { throw (error); });
+    };
+};
+
+

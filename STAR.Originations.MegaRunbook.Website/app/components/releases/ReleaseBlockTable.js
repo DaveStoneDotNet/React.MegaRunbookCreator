@@ -2,8 +2,10 @@
 import { bindActionCreators } from 'redux';
 import { connect }            from 'react-redux';
 
-import ReleaseBlockTableRow   from './ReleaseBlockTableRow';
 import { ReleaseBlockStatus}  from '../../constants';
+import * as appActions        from '../../state/actions/appActions';
+
+import ReleaseBlockTableRow   from './ReleaseBlockTableRow';
 
 class ReleaseBlockTable extends React.Component {
 
@@ -25,7 +27,12 @@ class ReleaseBlockTable extends React.Component {
     }
 
     setNextReleaseBlockStatus(blockStatus) {
-        console.log('UPDATE RELEASE BLOCK STATUS ALL THE WAY UP IN THE TABLE', blockStatus);
+        const request = {
+                            webhookurl: this.props.config.SlackWebhookUrl, 
+                            message:    blockStatus
+                        };
+        console.log('UPDATE RELEASE BLOCK STATUS ALL THE WAY UP IN THE TABLE', request);
+        this.props.actions.appActions.postSlackMessage(request);
     }
 
     getRequest() {
@@ -129,16 +136,18 @@ class ReleaseBlockTable extends React.Component {
 
 function mapStateToProps(state, ownProps) {
     return { 
+               config:  state.app.config,
                release: state.release.release
            };
 }
 
-function mapDispatchToProps(dispatch) {
+const mapDispatchToProps = (dispatch) => { 
     return {
-               actions: {
-                            
-                        }
-           };
-}
+        actions: {
+            dispatch:   dispatch,
+            appActions: bindActionCreators(appActions, dispatch), 
+        }
+    };
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(ReleaseBlockTable);
