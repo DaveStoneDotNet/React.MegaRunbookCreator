@@ -17,6 +17,9 @@ class ReleaseBlockTable extends React.Component {
         this.state = {
                          isWorking:           false, 
                          isPlaying:           false,
+                         canSlack:            true,
+                         canSkype:            false,
+                         audioSource:         'pop_01.mp3', 
                          selectedBlockStatus: '', 
                          openQuery:           ''
                      };
@@ -26,8 +29,18 @@ class ReleaseBlockTable extends React.Component {
         this.clearOpenQueryClick        = this.clearOpenQueryClick.bind(this);
         this.setNextReleaseBlockStatus  = this.setNextReleaseBlockStatus.bind(this);
         this.stopPlaying                = this.stopPlaying.bind(this);
+        this.toggleSlack                = this.toggleSlack.bind(this);
+        this.toggleSkype                = this.toggleSkype.bind(this);
 
         this.getRelease = props.getRelease;
+    }
+
+    toggleSlack() {
+        this.setState({ canSlack: !this.state.canSlack });
+    }
+
+    toggleSkype() {
+        this.setState({ canSkype: !this.state.canSkype });
     }
 
     startPlaying() {
@@ -44,10 +57,42 @@ class ReleaseBlockTable extends React.Component {
         const request = {
                             webhookurl: this.props.config.SlackWebhookUrl, 
                             message:    blockStatus
-                        };
-        console.log('UPDATE RELEASE BLOCK STATUS ALL THE WAY UP IN THE TABLE', request);
-        this.props.actions.appActions.postSlackMessage(request);
-        this.startPlaying();
+        };
+
+        console.log('SET NEXT RELEASE BLOCK STATUS', request);
+
+        if (this.state.canSlack) {
+            this.props.actions.appActions.postSlackMessage(request);
+        }
+
+        let src = 'pop_01.mp3';
+
+        switch (blockStatus) {
+            case ReleaseBlockStatus.Done:
+                src = 'done_01.mp3';
+                break;
+            case ReleaseBlockStatus.Started:
+                src = 'started_01.mp3';
+                break;
+            case ReleaseBlockStatus.Warning:
+                src = 'warning_01.mp3';
+                break;
+            case ReleaseBlockStatus.Critical:
+                src = 'critical_01.mp3';
+                break;
+            case ReleaseBlockStatus.Late:
+                src = 'late_01.mp3';
+                break;
+            case ReleaseBlockStatus.NotStarted:
+                //src = 'not_started_01.mp3';
+                break;
+            default:
+                src = 'pop_01.mp3';
+                break;
+        }
+
+        this.setState({ audioSource: src }, () => { this.startPlaying(); });
+        this.getRelease(this.getRequest());
     }
 
     getRequest() {
@@ -83,10 +128,14 @@ class ReleaseBlockTable extends React.Component {
 
     render() {
 
-        const release    = this.props.release;
-        const openQuery  = this.state.openQuery;
-        const searchIcon = this.state.openQuery.length > 0 ? 'fa-times' : 'fa-search';
-        const isPlaying  = this.state.isPlaying;
+        const release       = this.props.release;
+        const openQuery     = this.state.openQuery;
+        const searchIcon    = this.state.openQuery.length > 0 ? 'fa-times' : 'fa-search';
+        const isPlaying     = this.state.isPlaying;
+        const audioSource   = this.state.audioSource;
+        const canSlack      = this.state.canSlack;
+        const canSkype      = this.state.canSkype;
+
         return (
             <div>
                 <div className="width-100 border pad-5 margin-bottom-1">
@@ -144,7 +193,10 @@ class ReleaseBlockTable extends React.Component {
                             { release.ReleaseBlocks.map((releaseBlock) => <ReleaseBlockTableRow key={ releaseBlock.Id } releaseBlock={ releaseBlock } setNextReleaseBlockStatus={ this.setNextReleaseBlockStatus } /> ) }
                     </tbody>
                 </table>
-                <ReactHowler src='app/audio/started_01.mp3' playing={isPlaying} preload={true} onEnd={ this.stopPlaying } />
+                <div className="pad-10 font-1-40">
+                    <i className={ 'fa fa-cog pointer fa-slack ' + (canSlack ? 'white' : 'white-a-1') } onClick={ this.toggleSlack }/> <i className={ 'fa fa-cog pointer fa-skype ' + (canSkype ? 'white' : 'white-a-1') } onClick={ this.toggleSkype }/>
+                </div>
+                <ReactHowler src={'app/audio/' + audioSource } playing={isPlaying} preload={true} onEnd={ this.stopPlaying } />
             </div>
         );
     }
@@ -159,11 +211,11 @@ function mapStateToProps(state, ownProps) {
 
 const mapDispatchToProps = (dispatch) => { 
     return {
-        actions: {
-            dispatch:   dispatch,
-            appActions: bindActionCreators(appActions, dispatch), 
-        }
-    };
+               actions: {
+                            dispatch:   dispatch,
+                            appActions: bindActionCreators(appActions, dispatch)
+                        }
+           };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ReleaseBlockTable);

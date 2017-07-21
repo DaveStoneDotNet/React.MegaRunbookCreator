@@ -25,16 +25,18 @@ class Releases extends React.Component {
         super(props, context);
 
         this.state = {
-                         seconds:    0, 
-                         errors:     { },
-                         isSaving:   false, 
-                         isLoading:  false, 
-                         elementCss: ''
-        };
+                         seconds:       0, 
+                         errors:        { },
+                         isRandomizing: true,
+                         isSaving:      false, 
+                         isLoading:     false, 
+                         elementCss:    ''
+                     };
 
         this.staticCss = 'BebasNeue font-1-40 pad-10';
 
-        this.getRelease = this.getRelease.bind(this);
+        this.getRelease         = this.getRelease.bind(this);
+        this.toggleRandomizing  = this.toggleRandomizing.bind(this);
     }
 
     componentWillMount () {
@@ -42,16 +44,35 @@ class Releases extends React.Component {
     }
     
     componentDidMount () {
+        this.startInterval();
+    }
+
+    componentWillUnmount() {
+        this.stopInterval();
+    }
+
+
+    // ------------------------------------------------------------------------------------------------
+
+    startInterval() {
         this.interval = setInterval(() => {
             this.updateComponent();
         }, 10500);
     }
 
-    componentWillUnmount() {
+    stopInterval() {
         clearInterval(this.interval);
     }
 
-    // ------------------------------------------------------------------------------------------------
+    toggleRandomizing() {
+        const isRandomizing = !this.state.isRandomizing;
+        this.setState({ isRandomizing: isRandomizing });
+        if (isRandomizing) {
+            this.startInterval();
+        } else {
+            this.stopInterval();
+        }
+    }
 
     getRelease(request) {
         this.setState({ isLoading: true });
@@ -86,13 +107,19 @@ class Releases extends React.Component {
     }
 
     render() {
-        const release    = this.props.release;
-        const activities = this.props.activities;
-        const bgClass    = getReleaseBlockBgCss(release.ReleaseStatus);
+
+        const release       = this.props.release;
+        const activities    = this.props.activities;
+        const bgClass       = getReleaseBlockBgCss(release.ReleaseStatus);
+        const isRandomizing = this.state.isRandomizing;
+
         return (
                 <div>
                   <div className="pad-20">
 
+                      <div className="pad-top-20 pad-left-10 pad-right-10 font-1-00 float-right">
+                          <i className={ 'fa fa-circle-o-notch pointer white-a-1 ' + (isRandomizing ? 'fa-spin' : '') } onClick={ this.toggleRandomizing }/>
+                      </div>
                       <ReleaseDateHeader releaseDate={ release.ReleaseDate } startTime={ release.ScheduledStartTime } stopTime={ release.ScheduledStopTime } seconds={ this.state.seconds } />
 
                       <div id="main-release-container" className="row">
