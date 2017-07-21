@@ -50,6 +50,7 @@
     <Compile Include="Data\AppLookups.cs" />
     <Compile Include="Data\Config.cs" />
     <Compile Include="Data\Contact.cs" />
+    <Compile Include="Data\ContactRequest.cs" />
     <Compile Include="Data\CourseDemo.cs" />
     <Compile Include="Data\CourseDemoCriteria.cs" />
     <Compile Include="Data\Developer.cs" />

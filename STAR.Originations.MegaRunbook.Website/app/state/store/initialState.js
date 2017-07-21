@@ -68,19 +68,21 @@ export default {
                                                                 ActivityDate:      ''
                                                             }
                                                           ], 
-                                    releaseBlock:         {
-                                                              Id:                  0, 
-                                                              BlockOrder:          0, 
-                                                              StepsText:           '', 
-                                                              BlockType:           '', 
-                                                              BlockName:           '', 
-                                                              BlockDescription:    '', 
-                                                              StartTime:           '', 
-                                                              StopTime:            '', 
-                                                              BlockStatus:         '', 
-                                                              BlockUsers:          [''] 
-                                                          }
-                   }, 
+                                    contacts:             [
+                                                            {
+                                                                Id:                  0, 
+                                                                BlockOrder:          0, 
+                                                                StepsText:           '', 
+                                                                BlockType:           '', 
+                                                                BlockName:           '', 
+                                                                BlockDescription:    '', 
+                                                                StartTime:           '', 
+                                                                StopTime:            '', 
+                                                                BlockStatus:         '', 
+                                                                BlockUsers:          [''] 
+                                                            }
+                                                          ]
+                                }, 
                    app:         {
                                     config:               {
                                                               SlackWebhookUrl: ''

@@ -33,6 +33,7 @@ export const GET_RELEASE_BLOCK_SUCCESS    = 'GET_RELEASE_BLOCK_SUCCESS';
 export const GET_RELEASE_SUCCESS          = 'GET_RELEASE_SUCCESS';
 
 export const GET_ACTIVITIES_SUCCESS       = 'GET_ACTIVITIES_SUCCESS';
+export const GET_RELEASE_CONTACTS_SUCCESS = 'GET_RELEASE_CONTACTS_SUCCESS';
 
 // -------------------------------------------------------------------------------
 

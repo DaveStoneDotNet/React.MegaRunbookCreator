@@ -210,6 +210,8 @@
     <Content Include="app\audio\pop_01.mp3" />
     <Content Include="app\audio\started_01.mp3" />
     <Content Include="app\audio\warning_01.mp3" />
+    <Content Include="app\components\common\CompactContactList.js" />
+    <Content Include="app\components\common\CompactContactListItem.js" />
     <Content Include="app\components\common\TimerProgressBar.js" />
     <Content Include="app\components\common\TimeSpan.js" />
     <Content Include="app\components\common\Icon.js" />
@@ -388,8 +390,8 @@
     <Content Include="Design\layout.json" />
     <Content Include="Json\release-blocks.json" />
     <Content Include="Json\release.json" />
-    <Content Include="Json\Activity.json" />
-    <Content Include="Json\bing-api.json" />
+    <Content Include="Json\activity.json" />
+    <Content Include="Json\release-contacts.json" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\STAR.Originations.MegaRunbook.Contracts\STAR.Originations.MegaRunbook.Contracts.csproj">

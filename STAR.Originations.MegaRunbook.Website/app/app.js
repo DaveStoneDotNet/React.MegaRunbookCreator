@@ -12,6 +12,7 @@ import configureStore             from './state/store/configureStore';
 import * as demoActions           from './state/actions/demoActions';
 import * as authorActions         from './state/actions/authorActions';
 import * as appActions            from './state/actions/appActions';
+import * as releaseActions        from './state/actions/releaseActions';
 
 // Import babel-polyfill to support Object.assign functions for deep-cloning of immutable objects.
 // Babel does not support Object.assign by default, so a pollyfill is needed.
@@ -31,6 +32,7 @@ store.dispatch(appActions.getConfig());
 store.dispatch(appActions.getUser());
 store.dispatch(appActions.getLookups());
 store.dispatch(authorActions.getAuthorLookups());
+store.dispatch(releaseActions.getReleaseContacts({ }));
 
 //store.subscribe(() =>
 //    console.log(store.getState())

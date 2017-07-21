@@ -1,0 +1,92 @@
+﻿[
+  {
+    "Id":           1, 
+    "UserId" :      21981, 
+    "DisplayName":  "Dave Stone", 
+    "PhoneNumber":  "555-555-5555", 
+    "Availability": "slack, skype", 
+    "BlockType":    "Developer", 
+    "UserRole":     "Engineer II"
+  }, 
+  {
+    "Id":           2, 
+    "UserId" :      43457, 
+    "DisplayName":  "David Lane", 
+    "PhoneNumber":  "555-555-5555", 
+    "Availability": "slack, skype", 
+    "BlockType":    "Encompass Admin", 
+    "UserRole":     "IT Administrator II"
+  }, 
+  {
+    "Id":           3, 
+    "UserId" :      42847, 
+    "DisplayName":  "Michael Dowell", 
+    "PhoneNumber":  "555-555-5555", 
+    "Availability": "slack, skype", 
+    "BlockType":    "Encompass Admin", 
+    "UserRole":     "Sr. IT Administator"
+  }, 
+  {
+    "Id":           4, 
+    "UserId" :      76836, 
+    "DisplayName":  "Tharun Mukka", 
+    "PhoneNumber":  "555-555-5555", 
+    "Availability": "slack, skype", 
+    "BlockType":    "SQL DBA", 
+    "UserRole":     "Software Engineer Trainee"
+  }, 
+  {
+    "Id":           5, 
+    "UserId" :      51831, 
+    "DisplayName":  "Sebastian Abraham", 
+    "PhoneNumber":  "555-555-5555", 
+    "Availability": "slack, skype", 
+    "BlockType":    "", 
+    "UserRole":     "IT Analyst Sr"
+  }, 
+  {
+    "Id":           6, 
+    "UserId" :      3140, 
+    "DisplayName":  "Sara Gorrell", 
+    "PhoneNumber":  "555-555-5555", 
+    "Availability": "slack, skype", 
+    "BlockType":    "Encompass Admin", 
+    "UserRole":     "IT Administrator II"
+  }, 
+  {
+    "Id":           7, 
+    "UserId" :      23563, 
+    "DisplayName":  "Matthew Krajca", 
+    "PhoneNumber":  "555-555-5555", 
+    "Availability": "slack, skype", 
+    "BlockType":    "Encompass Admin", 
+    "UserRole":     "IT Administrator II"
+  }, 
+  {
+    "Id":           8, 
+    "UserId" :      57862, 
+    "DisplayName":  "Mark Harada", 
+    "PhoneNumber":  "555-555-5555", 
+    "Availability": "slack, skype", 
+    "BlockType":    "Encompass Admin", 
+    "UserRole":     "Sr. IT Analyst"
+  }, 
+  {
+    "Id":           9, 
+    "UserId" :      61382, 
+    "DisplayName":  "Kris Drouet", 
+    "PhoneNumber":  "555-555-5555", 
+    "Availability": "slack, skype", 
+    "BlockType":    "", 
+    "UserRole":     "VP IT" 
+  }, 
+  {
+    "Id":           10, 
+    "UserId" :      75669, 
+    "DisplayName":  "Ranganathan Nandagopal", 
+    "PhoneNumber":  "555-555-5555", 
+    "Availability": "slack, skype", 
+    "BlockType":    "Encompass Admin", 
+    "UserRole":     "Developer Sr"
+  }
+]

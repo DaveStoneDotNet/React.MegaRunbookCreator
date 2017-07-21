@@ -20,6 +20,10 @@ export default function releaseReducer(state = initialState.release, action) {
             new_state = Object.assign({}, state, { activities: action.activities });
             return new_state;
 
+        case types.GET_RELEASE_CONTACTS_SUCCESS:
+            new_state = Object.assign({}, state, { contacts: action.contacts });
+            return new_state;
+
         default:
             return state;
     }

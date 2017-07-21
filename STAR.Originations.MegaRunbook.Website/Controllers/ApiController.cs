@@ -126,6 +126,17 @@ namespace STAR.Originations.MegaRunbook.Website.Controllers
         }
         #endregion GetActivities
 
+        #region GetReleaseContacts
+        [System.Web.Http.HttpPost]
+        public async Task<JsonResult> GetReleaseContacts(contracts::ContactRequest request)
+        {
+            var activities = await this.LoadJson<contracts::Contact>(@"release-contacts.json");
+            var mapped = Mapper.Map<List<contracts::Contact>, List<models::Contact>>(activities);
+
+            return this.JsonDateResult(mapped);
+        }
+        #endregion GetReleaseContacts
+
         #region GetCourses
         [System.Web.Http.HttpGet]
         public JsonResult GetCourses()

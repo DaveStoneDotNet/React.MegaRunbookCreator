@@ -11,6 +11,7 @@ import { DateFormats }          from '../../constants';
 import { getReleaseBlockBgCss } from '../../constants';
 
 import TimerProgressBar         from '../common/TimerProgressBar';
+import CompactContactList       from '../common/CompactContactList';
 
 import ReleaseDateHeader        from './ReleaseDateHeader';
 import ReleaseBlockTable        from './ReleaseBlockTable';
@@ -110,8 +111,12 @@ class Releases extends React.Component {
 
         const release       = this.props.release;
         const activities    = this.props.activities;
+        const contacts      = this.props.contacts;
         const bgClass       = getReleaseBlockBgCss(release.ReleaseStatus);
         const isRandomizing = this.state.isRandomizing;
+
+        console.log('RELEASE - PROPS', this.props);
+        console.log('RELEASE - RELEASE CONTACTS', contacts);
 
         return (
                 <div>
@@ -137,6 +142,9 @@ class Releases extends React.Component {
                               <div className="pad-top-10">
                                 <ReleaseActivity releaseStatus={ release.ReleaseStatus } activities={ activities } />
                               </div>
+                              <div className="pad-top-10">
+                                <CompactContactList contacts={ contacts } />
+                              </div>
 
                           </div>
                       </div>
@@ -150,7 +158,8 @@ const mapStateToProps = (state, ownProps) => {
   
     return { 
                release:    state.release.release, 
-               activities: state.release.activities
+               activities: state.release.activities, 
+               contacts:   state.release.contacts
            };
 };
 
