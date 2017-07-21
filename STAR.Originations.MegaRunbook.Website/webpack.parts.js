@@ -87,6 +87,15 @@ exports.common = function (paths, vendorPackages) {
                                                             }
                                                }, 
                                                {
+                                                   test:    /\.mp3$/,                                        // AUDIO
+                                                   loader:  'file-loader',
+                                                   options: {
+                                                                limit:      50000,
+                                                                name:       './audio/[hash].[ext]',          // Output below the audiox directory
+                                                                publicPath: '../'                            // Tweak publicPath to fix CSS lookups to take the directory into account.
+                                                            }
+                                               }, 
+                                               {
                                                    test:    /\.(jpe?g|png|gif)$/i,                           // IMAGES 
                                                    loader:  'url-loader',
                                                    options: {

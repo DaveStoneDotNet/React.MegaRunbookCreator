@@ -203,6 +203,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="app\api\mockMrcApi.js" />
+    <Content Include="app\audio\pop_01.mp3" />
+    <Content Include="app\audio\started_01.mp3" />
     <Content Include="app\components\common\TimerProgressBar.js" />
     <Content Include="app\components\common\TimeSpan.js" />
     <Content Include="app\components\common\Icon.js" />

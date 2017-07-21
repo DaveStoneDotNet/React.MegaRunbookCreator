@@ -2,6 +2,8 @@
 import { bindActionCreators } from 'redux';
 import { connect }            from 'react-redux';
 
+import ReactHowler            from 'react-howler'
+
 import { ReleaseBlockStatus}  from '../../constants';
 import * as appActions        from '../../state/actions/appActions';
 
@@ -14,6 +16,7 @@ class ReleaseBlockTable extends React.Component {
 
         this.state = {
                          isWorking:           false, 
+                         isPlaying:           false,
                          selectedBlockStatus: '', 
                          openQuery:           ''
                      };
@@ -22,8 +25,19 @@ class ReleaseBlockTable extends React.Component {
         this.onInputChange              = this.onInputChange.bind(this);
         this.clearOpenQueryClick        = this.clearOpenQueryClick.bind(this);
         this.setNextReleaseBlockStatus  = this.setNextReleaseBlockStatus.bind(this);
+        this.stopPlaying                = this.stopPlaying.bind(this);
 
         this.getRelease = props.getRelease;
+    }
+
+    startPlaying() {
+        this.setState({ isPlaying: true });
+        console.log('START PLAYING');
+    }
+
+    stopPlaying() {
+        this.setState({ isPlaying: false });
+        console.log('STOP PLAYING');
     }
 
     setNextReleaseBlockStatus(blockStatus) {
@@ -33,6 +47,7 @@ class ReleaseBlockTable extends React.Component {
                         };
         console.log('UPDATE RELEASE BLOCK STATUS ALL THE WAY UP IN THE TABLE', request);
         this.props.actions.appActions.postSlackMessage(request);
+        this.startPlaying();
     }
 
     getRequest() {
@@ -71,7 +86,7 @@ class ReleaseBlockTable extends React.Component {
         const release    = this.props.release;
         const openQuery  = this.state.openQuery;
         const searchIcon = this.state.openQuery.length > 0 ? 'fa-times' : 'fa-search';
-
+        const isPlaying  = this.state.isPlaying;
         return (
             <div>
                 <div className="width-100 border pad-5 margin-bottom-1">
@@ -129,6 +144,7 @@ class ReleaseBlockTable extends React.Component {
                             { release.ReleaseBlocks.map((releaseBlock) => <ReleaseBlockTableRow key={ releaseBlock.Id } releaseBlock={ releaseBlock } setNextReleaseBlockStatus={ this.setNextReleaseBlockStatus } /> ) }
                     </tbody>
                 </table>
+                <ReactHowler src='app/audio/started_01.mp3' playing={isPlaying} preload={true} onEnd={ this.stopPlaying } />
             </div>
         );
     }
