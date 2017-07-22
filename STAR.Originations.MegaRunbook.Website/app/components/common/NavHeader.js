@@ -24,12 +24,19 @@ class NavHeader extends React.Component {
             <div className="navbar-root">
                 
                 <Navbar inverse fixedTop collapseOnSelect>
-                    <Navbar.Header>
+                    <div className="container-fluid">
+                         <div className="head-runner">
+                            <img src="../../app//images/running-01.gif" className={app.ajaxCount > 0 ? "show-working-head-runner" : "hide-working-head-runner"} alt="working" />
+                        </div>
+                        <div className="float-right pad-top-15">
+                            <span className=""><i className="fa fa-user-circle gray-5 font-1-10" /> <span style={{ marginTop: "-1px" }} className="Lato font-1-00 opacity-60 pad-left-5 lowercase">{app.user.UserDisplayName}</span></span>
+                        </div>
+                        <Navbar.Header>
+                            <Navbar.Toggle className="navbar-toggle collapsed" data-toggle="collapse" data-target="#mainNavbar" />
                         <Navbar.Brand>
-                            <Link to='/' className="navbar-brand">MRC</Link>
+                            <Link to='/'>MRC</Link>
                         </Navbar.Brand>
-                        <Navbar.Toggle />
-                        <Nav>
+                        <Nav id="mainNavbar" className="navbar-collapse collapse">
                             <LinkContainer to="/" onlyActiveOnIndex><NavItem>Home</NavItem></LinkContainer>
                             <LinkContainer to="/releases"><NavItem>Release</NavItem></LinkContainer>
                             <LinkContainer to="/rfcs"><NavItem>RFCs</NavItem></LinkContainer>
@@ -41,12 +48,13 @@ class NavHeader extends React.Component {
                             <LinkContainer to="/about"><NavItem>About</NavItem></LinkContainer>
                             <NavDropdown title="Demo" id="basic-nav-dropdown">
                                 <LinkContainer to="/demo"><MenuItem>Demo</MenuItem></LinkContainer>
-                                <LinkContainer to=""><MenuItem>Design</MenuItem></LinkContainer>
+                                <LinkContainer to="/tba_01"><MenuItem>Design</MenuItem></LinkContainer>
                                 <LinkContainer to=""><MenuItem divider /></LinkContainer>
-                                <LinkContainer to=""><MenuItem>React</MenuItem></LinkContainer>
+                                <LinkContainer to="/tba_02"><MenuItem>React</MenuItem></LinkContainer>
                             </NavDropdown>
                         </Nav>
                     </Navbar.Header>
+                    </div>
                 </Navbar>
                </div>
            );
