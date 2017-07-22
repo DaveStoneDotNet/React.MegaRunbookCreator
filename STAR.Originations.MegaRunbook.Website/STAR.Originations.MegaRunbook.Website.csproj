@@ -279,8 +279,6 @@
     <Content Include="app\components\home\Home.js" />
     <Content Include="app\components\about\About.js" />
     <Content Include="app\components\common\NotFound.js" />
-    <Content Include="app\containers\DevTools.js" />
-    <Content Include="app\containers\Home.js" />
     <Content Include="app\fonts\bebasneue-webfont.svg" />
     <Content Include="app\fonts\fontawesome-webfont.svg" />
     <Content Include="app\fonts\glyphicons-halflings-regular.svg" />
@@ -357,17 +355,6 @@
     <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="app\containers\about\" />
-    <Folder Include="app\containers\admin\" />
-    <Folder Include="app\containers\applications\" />
-    <Folder Include="app\containers\builds\" />
-    <Folder Include="app\containers\common\" />
-    <Folder Include="app\containers\demo\" />
-    <Folder Include="app\containers\home\" />
-    <Folder Include="app\containers\releases\" />
-    <Folder Include="app\containers\rfcs\" />
-    <Folder Include="app\containers\runbooks\" />
-    <Folder Include="app\containers\templates\" />
     <Folder Include="App_Data\" />
     <Folder Include="Content\" />
     <Folder Include="js\" />
