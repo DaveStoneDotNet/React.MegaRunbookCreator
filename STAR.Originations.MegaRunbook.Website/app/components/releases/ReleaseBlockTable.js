@@ -17,7 +17,7 @@ class ReleaseBlockTable extends React.Component {
         this.state = {
                          isWorking:           false, 
                          isPlaying:           false,
-                         canSlack:            true,
+                         canSlack:            false,
                          canSkype:            false,
                          audioSource:         'pop_01.mp3', 
                          selectedBlockStatus: '', 

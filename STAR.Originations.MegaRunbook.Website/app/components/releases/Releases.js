@@ -39,7 +39,7 @@ class Releases extends React.Component {
     }
 
     componentWillMount () {
-        this.getRelease();
+        this.getRelease({ });
     }
     
     componentDidMount () {
@@ -74,6 +74,7 @@ class Releases extends React.Component {
     }
 
     getRelease(request) {
+        request.IsRandomizing = this.state.isRandomizing;
         this.setState({ isLoading: true });
         this.props.actions.releaseActions.getRelease(request)
                                          .then((response) => {
@@ -101,7 +102,7 @@ class Releases extends React.Component {
 
     updateComponent() {
         this.setState({ seconds: this.state.seconds + 1 });
-        this.getRelease();
+        this.getRelease({ });
         this.getActivities({ });
     }
 

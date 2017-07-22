@@ -63,9 +63,17 @@ namespace STAR.Originations.MegaRunbook.Website.Controllers
             mapped.ScheduledStopTime = new DateTime(now.Year, now.Month, now.Day, nextHour, 0, 0);
 
             mapped.ReleaseDateText = String.Format("{0:dddd, MMMM dd, yyyy}", mapped.ReleaseDate);                   // "Saturday, July 08, 2017"
-            mapped.ReleaseStatus = Randomize.GetRandomReleaseBlockStatus();
-            mapped.ReleaseBlocks.ForEach(o => o.BlockStatus = Randomize.GetRandomReleaseBlockStatus());
             mapped.ReleaseBlocks.ForEach(o => o.Duration = ViewLogic.GetDuration(o.StartTime, o.StopTime));
+            mapped.ReleaseStatus = Randomize.GetRandomReleaseBlockStatus();
+
+            // ---
+
+            if (request.IsRandomizing)
+            {
+                mapped.ReleaseBlocks.ForEach(o => o.BlockStatus = Randomize.GetRandomReleaseBlockStatus());
+            }
+
+            // ---
 
             SignalRelay.Send(mapped.ReleaseStatus);
 

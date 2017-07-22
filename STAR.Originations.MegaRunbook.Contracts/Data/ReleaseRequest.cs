@@ -21,6 +21,8 @@ namespace STAR.Originations.MegaRunbook.Contracts.Data
         [DataMember] public string BlockStatus { get; set; }
         [DataMember] public string OpenQuery { get; set; }
 
+        [DataMember] public bool IsRandomizing { get; set; }
+
         [DataMember] public List<string> BlockUsers { get; set; }
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
