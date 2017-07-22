@@ -1,9 +1,8 @@
-﻿import React                    from 'react';
-import moment                   from 'moment';
-import countdown                from 'countdown';
+﻿import React           from 'react';
+import moment          from 'moment';
+import countdown       from 'countdown';
 
-import { DateFormats }          from '../../constants';
-import { getReleaseBlockBgCss } from '../../constants';
+import { DateFormats } from '../../constants';
 
 class TimerProgressBar extends React.Component {
 
@@ -20,13 +19,6 @@ class TimerProgressBar extends React.Component {
                      };
     }
 
-    updateComponent() {
-
-        this.setState({ 
-                          momentDate: this.state.momentDate.add(1, 'seconds')
-                      });
-    }
-
     componentDidMount () {
 
         this.interval = setInterval(() => {
@@ -36,6 +28,13 @@ class TimerProgressBar extends React.Component {
 
     componentWillUnmount() {
         clearInterval(this.interval);
+    }
+
+    updateComponent() {
+
+        this.setState({ 
+                          momentDate: this.state.momentDate.add(1, 'seconds')
+                      });
     }
 
     getBarStyle () {
@@ -97,8 +96,7 @@ class TimerProgressBar extends React.Component {
         return (
                     <div name="time-progress-bar">
                         <div style={ conainerStyle } className="border-a-50">
-                            <div style={ barStyle } className={ 'opacity-30 ' + bgCss }>
-                            </div>
+                            <div style={ barStyle } className={ 'opacity-30 ' + bgCss } />
                         </div>
                     </div>
                );

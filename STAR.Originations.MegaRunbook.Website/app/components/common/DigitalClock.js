@@ -11,12 +11,6 @@ class DigitalClock extends React.Component {
                      };
     }
 
-    updateComponent() {
-        this.setState({ 
-                          momentDate: this.state.momentDate.add(1, 'seconds')
-                      });
-    }
-
     componentDidMount () {
 
         this.interval = setInterval(() => {
@@ -28,9 +22,15 @@ class DigitalClock extends React.Component {
         clearInterval(this.interval);
     }
 
+    updateComponent() {
+        this.setState({ 
+                          momentDate: this.state.momentDate.add(1, 'seconds')
+                      });
+    }
+
     render() {
         return (
-                    <div className='BebasNeue font-3-00 white-a-9'>
+                    <div className="BebasNeue font-3-00 white-a-9">
                         { this.state.momentDate.format(this.state.momentFormat) }
                     </div>
                );

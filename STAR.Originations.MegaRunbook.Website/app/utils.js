@@ -81,4 +81,4 @@ export const getTimeText = (targetDate) => {
     }
 
     return '';
-}
+};

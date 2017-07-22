@@ -3,23 +3,23 @@ import PropTypes from 'prop-types';
 
 const SelectInput = ({ name, label, onChange, defaultOption, value, error, options }) => {
   return (
-           <div className='form-group'>
-               <label htmlFor='{ name }'>{ label }</label>
-               <div className='field'>
-                   <select type      = 'text'
-                           className = 'form-control'
+           <div className="form-group">
+               <label htmlFor={ name }>{ label }</label>
+               <div className="field">
+                   <select type      = "text"
+                           className = "form-control"
                            name      = { name }
                            value     = { value }
                            onChange  = { onChange }
                    >
-                   <option value=''>{ defaultOption }</option>
+                   <option value="">{ defaultOption }</option>
                    { 
                        options.map(
                                       (option) => (<option key={option.value} value={option.value}>{option.text}</option>)
                                   )
                    }
                    </select>
-                   { error && <div className='alert alert-danger'>error</div> }
+                   { error && <div className="alert alert-danger">error</div> }
                </div>
            </div>
          );

@@ -9,7 +9,7 @@ const SimpleUserList = ({ users }) => {
                   
                   <div key={ user.Id }>
                       <div className="float-left pad-5">
-                          <i className="fa fa-user-o"></i>
+                          <i className="fa fa-user-o" />
                       </div>
                       <div className="pad-5">
                           { user.DisplayName }

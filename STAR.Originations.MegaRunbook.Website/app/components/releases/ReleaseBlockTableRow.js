@@ -1,5 +1,4 @@
 ﻿import React                    from 'react';
-import { bindActionCreators }   from 'redux';
 import { connect }              from 'react-redux';
 
 import moment                   from 'moment';
@@ -77,9 +76,7 @@ class ReleaseBlockTableRow extends React.Component {
                             <div className="pad-top-5">
                                 <div style={{ width: '125px', height: '10px' }} className="border-a-50">
                                     <div style={{ width: '125px', height: '8px' }} className="white-a-3-bg">
-                                        <div style={{ width: '100px', height: '8px' }} className="progress-tick">
-
-                                        </div>
+                                        <div style={{ width: '100px', height: '8px' }} className="progress-tick" />
                                     </div>
                                 </div>
                             </div>
@@ -101,18 +98,18 @@ class ReleaseBlockTableRow extends React.Component {
 }
 }
 
-function mapStateToProps(state, ownProps) {
+function mapStateToProps(state) {
     return { 
-        release: state.release.release
-    };
+               release: state.release.release
+           };
 }
 
-function mapDispatchToProps(dispatch) {
+function mapDispatchToProps() {
     return {
-        actions: {
-                                   
-        }
-    };
+               actions: {
+                                                   
+                        }
+           };
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ReleaseBlockTableRow);

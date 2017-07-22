@@ -7,7 +7,8 @@
   "scripts":         {
                        "dev-build":  "webpack -d --config webpack.config.js --colors",
                        "dev-watch":  "webpack -d --config webpack.config.js --watch --colors",
-                       "prod-build": "SET NODE_ENV=production&&webpack -p --config webpack.config.js --colors"
+                       "prod-build": "SET NODE_ENV=production&&webpack -p --config webpack.config.js --colors", 
+                       "lint":       "esw webpack.config.* app --color"
                      },
   "dependencies":    {
                        "babel-polyfill":     "6.23.0", 
@@ -74,7 +75,7 @@
                        "eslint":                                         "3.12.2",
                        "eslint-plugin-import":                           "2.2.0",
                        "eslint-plugin-react":                            "6.8.0",
-                       "eslint-watch":                                   "2.1.14",
+                       "eslint-watch":                                   "3.1.2",
                        "extract-text-webpack-plugin":                    "2.1.0",
                        "file-loader":                                    "0.9.0",
                        "html-webpack-plugin":                            "2.24.1",
@@ -111,19 +112,7 @@
                        "webpack-validator":                              "3.0.0"
                      }, 
   "keywords":        [
-                       "react",
-                       "reactjs",
-                       "react-router",
-                       "hot",
-                       "reload",
-                       "hmr",
-                       "live",
-                       "edit",
-                       "webpack",
-                       "redux",
-                       "flux",
-                       "boilerplate",
-                       "starter"
+                       "react"
                      ],
   "repository":      {
                        "type": "git",
@@ -202,7 +191,7 @@
                                          "import/no-duplicates":               0,
                                          "jsx-quotes":                         1,
                                          "no-alert":                           0,
-                                         "no-console":                         1,
+                                         "no-console":                         0,
                                          "no-debugger":                        1,
                                          "no-lone-blocks":                     0,
                                          "no-trailing-spaces":                 0,
@@ -213,7 +202,7 @@
                                          "react/forbid-prop-types":            [1, { "forbid": ["any"] }],
                                          "react/jsx-boolean-value":            0,
                                          "react/jsx-closing-bracket-location": 0,
-                                         "react/jsx-curly-spacing":            1,
+                                         "react/jsx-curly-spacing":            0,
                                          "react/jsx-indent-props":             0,
                                          "react/jsx-key":                      1,
                                          "react/jsx-max-props-per-line":       0,
@@ -235,7 +224,7 @@
                                          "react/no-set-state":                 0,
                                          "react/no-unknown-property":          1,
                                          "react/prefer-es6-class":             1,
-                                         "react/prop-types":                   1,
+                                         "react/prop-types":                   0,
                                          "react/react-in-jsx-scope":           1,
                                          "react/self-closing-comp":            1,
                                          "react/sort-comp":                    1, 

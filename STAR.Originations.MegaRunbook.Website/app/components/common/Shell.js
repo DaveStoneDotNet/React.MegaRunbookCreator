@@ -52,7 +52,7 @@ class Shell extends React.Component {
                   <div>
                     <Splash app={app} />
                     <NavHeader app={app} />
-                    <div className='container body-content'>
+                    <div className="container body-content">
                         {
                             React.Children.map(this.props.children, function(child) {
                                 return React.cloneElement(child, { app: app });
@@ -70,7 +70,7 @@ Shell.propTypes = {
                       app:      PropTypes.object.isRequired
                   };
 
-const mapStateToProps = (state, ownProps) => ({
+const mapStateToProps = (state) => ({
     app: state.app
 });
 

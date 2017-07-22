@@ -138,6 +138,4 @@ export function postSlackMessage(request) {
             .then(() => dispatch(ajaxActions.endAjaxCall()))
             .catch((error) => { throw (error); });
     };
-};
-
-
+}

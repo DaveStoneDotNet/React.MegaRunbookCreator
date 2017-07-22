@@ -5,7 +5,7 @@ import 'babel-polyfill';
 const API_HEADERS = {
                         'Content-Type': 'application/json',
                         'Accept': 'application/json, text/plain, */*' 
-                    }
+                    };
 
 class MrcApi {
 
@@ -181,6 +181,6 @@ class MrcApi {
                }
               );
     }
-};
+}
 
 export default MrcApi;

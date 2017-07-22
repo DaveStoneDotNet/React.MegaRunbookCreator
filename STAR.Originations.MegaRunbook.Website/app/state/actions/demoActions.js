@@ -59,10 +59,10 @@ export function getCourses() {
         dispatch(ajaxActions.beginAjaxCall());
         return MrcApi.getCourses()
                      .then(response => dispatch(getCoursesSuccess(response)))
-                     .catch(error   => console.log('HANDLE ERROR'))
+                     .catch(error   => console.log('HANDLE ERROR', error))
                      .then(()       => dispatch(ajaxActions.endAjaxCall()));
     };
-};
+}
 
 // It took considerable effort to orchestrate the 'begin' and 'end' ajax calls with the actual return value 
 // of the ajax call itself.
@@ -141,21 +141,21 @@ export function getCourse(courseId) {
                               );
         return promise;
     };
-};
+}
 
 // -------------------------------------------------------------------------------------------------
 
 // CourseForm > Button Click > ManageCoursePage.onSave > ManageCoursePage.saveCourse > this.props.actions.saveCourse(this.state.course)
 
 export function saveCourse(course) {
-    return function (dispatch, getState) {
+    return function (dispatch) {
         dispatch(ajaxActions.beginAjaxCall());
         return courseApi.saveCourse(course)
                         .then(course => { course.id ? dispatch(updateCourseSuccess(course)) : dispatch(createCourseSuccess(course)); })
-                        .catch(error => { console.log('HANDLE ERROR'); })
+                        .catch(error => { console.log('HANDLE ERROR', error); })
                         .then(()     => { dispatch(ajaxActions.endAjaxCall()); });
     };
-};
+}
 
 // -------------------------------------------------------------------------------------------------
 
@@ -164,10 +164,10 @@ export function getCourseDemos(request) {
         dispatch(ajaxActions.beginAjaxCall());
         return MrcApi.getCourseDemos(request)
                      .then(response => dispatch(getCourseDemosSuccess(response)))
-                     .catch(error   => console.log('HANDLE ERROR'))
+                     .catch(error   => console.log('HANDLE ERROR', error))
                      .then(()       => dispatch(ajaxActions.endAjaxCall()));
     };
-};
+}
 
 export function getCourseDemo(courseId) {
     return function(dispatch) {
@@ -177,10 +177,10 @@ export function getCourseDemo(courseId) {
                                   dispatch(ajaxActions.endAjaxCall());
                                   return dispatch(getCourseDemoSuccess(response));
                               })
-                             .catch(error => console.log('HANDLE ERROR'));
+                             .catch(error => console.log('HANDLE ERROR', error));
         return promise;
     };
-};
+}
 
 export function upsertCourseDemo(course) {
     return function(dispatch) {
@@ -190,8 +190,8 @@ export function upsertCourseDemo(course) {
                                   dispatch(ajaxActions.endAjaxCall());
                                   return dispatch(upsertCourseDemoSuccess(response));
                               })
-                             .catch(error => console.log('HANDLE ERROR'));
+                             .catch(error => console.log('HANDLE ERROR', error));
         return promise;
     };
-};
+}
 

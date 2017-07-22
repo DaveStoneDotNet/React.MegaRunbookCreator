@@ -2,7 +2,7 @@
 import { bindActionCreators } from 'redux';
 import { connect }            from 'react-redux';
 
-import ReactHowler            from 'react-howler'
+import ReactHowler            from 'react-howler';
 
 import { ReleaseBlockStatus}  from '../../constants';
 import * as appActions        from '../../state/actions/appActions';
@@ -129,7 +129,6 @@ class ReleaseBlockTable extends React.Component {
     render() {
 
         const release       = this.props.release;
-        const openQuery     = this.state.openQuery;
         const searchIcon    = this.state.openQuery.length > 0 ? 'fa-times' : 'fa-search';
         const isPlaying     = this.state.isPlaying;
         const audioSource   = this.state.audioSource;
@@ -151,7 +150,7 @@ class ReleaseBlockTable extends React.Component {
                     </div>
                     <div className="float-right">
                         <div className="border">
-                            <input autoFocus type="text" ref={(element) => { this.openQueryInputElement = element; }} className="white-a-1-bg pad-5" style={{ border: 'none' }} onChange={ this.onInputChange } value={ this.state.openQuery } /> <i className={ 'fa pad-left-5 pad-right-10 pointer ' + searchIcon } onClick={() => this.clearOpenQueryClick()} ></i>
+                            <input autoFocus type="text" ref={(element) => { this.openQueryInputElement = element; }} className="white-a-1-bg pad-5" style={{ border: 'none' }} onChange={ this.onInputChange } value={ this.state.openQuery } /> <i className={ 'fa pad-left-5 pad-right-10 pointer ' + searchIcon } onClick={() => this.clearOpenQueryClick()} />
                         </div>
                     </div>
                     <div className="float-right">
@@ -202,7 +201,7 @@ class ReleaseBlockTable extends React.Component {
     }
 }
 
-function mapStateToProps(state, ownProps) {
+function mapStateToProps(state) {
     return { 
                config:  state.app.config,
                release: state.release.release

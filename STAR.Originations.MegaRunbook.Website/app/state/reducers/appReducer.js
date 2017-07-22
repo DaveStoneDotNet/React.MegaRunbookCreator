@@ -27,9 +27,9 @@ import initialState from '../store/initialState';
 //                   ajaxCount:            0
 //               }
 
-const actionTypeEndsInSuccess = (type) => {
-    return type.substring(type.length - 8) === '_SUCCESS';
-};
+// const actionTypeEndsInSuccess = (type) => {
+//     return type.substring(type.length - 8) === '_SUCCESS';
+// };
 
 export default function appReducer(state = initialState.app, action) {
 

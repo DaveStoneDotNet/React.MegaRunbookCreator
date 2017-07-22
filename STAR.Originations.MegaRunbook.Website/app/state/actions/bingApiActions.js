@@ -21,5 +21,4 @@ export function getBingAuthorizationToken(apiKey) {
                              .catch((error) => console.log('BING API ERROR', error));
         return promise;
     };
-};
-
+}

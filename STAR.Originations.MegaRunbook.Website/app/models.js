@@ -5,7 +5,7 @@ class Course {
         return this;
     }
 
-    var title = '';
+    title = '';
 }
 
 export default Course;

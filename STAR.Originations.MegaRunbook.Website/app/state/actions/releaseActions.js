@@ -19,7 +19,7 @@ export function getRelease(request) {
                               );
         return promise;
     };
-};
+}
 
 export function getActivities(request) {
     return function(dispatch) {
@@ -32,7 +32,7 @@ export function getActivities(request) {
                               );
         return promise;
     };
-};
+}
 
 export function getReleaseContacts(request) {
     return function(dispatch) {
@@ -45,7 +45,7 @@ export function getReleaseContacts(request) {
                               );
         return promise;
     };
-};
+}
 
 export function getReleaseBlock(blockId) {
     return function(dispatch) {
@@ -58,4 +58,4 @@ export function getReleaseBlock(blockId) {
                               );
         return promise;
     };
-};
+}

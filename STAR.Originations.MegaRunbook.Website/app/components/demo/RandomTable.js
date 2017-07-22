@@ -24,7 +24,7 @@ class RandomTable extends React.Component {
     // The 'fetchData' method gets called whenever the table model changes, or the user sorts or changes pages.
     // You can set the 'loading' prop of the table to true to use the built-in one or show you're own loading bar if you want.
 
-    fetchData(state, instance) {
+    fetchData(state) {
 
         this.setState({ loading: true });
 
@@ -100,10 +100,10 @@ class RandomTable extends React.Component {
                                 pages={this.props.randomData.randomTableData.pages}  // Display the total number of pages
                                 onFetchData={this.fetchData}                         // Request new data when things change
                                 loading={loadingState}
-                                getTdProps={(state, rowInfo, column, instance) => { return { onClick: e => { console.log('SELECTED: '+ rowInfo.original.id + ' ' + rowInfo.original.firstName + ' ' + rowInfo.original.lastName ) } } }}
+                                getTdProps={(state, rowInfo) => { return { onClick: () => { console.log('SELECTED: '+ rowInfo.original.id + ' ' + rowInfo.original.firstName + ' ' + rowInfo.original.lastName ); } }; } }
                     />
                     <div>
-                        <ProgressBar active now={100} active={loadingState} className={loadingState ? 'opacity-90' : 'invisible'} style={{height: '5px'}} />
+                        <ProgressBar now={100} active={loadingState} className={loadingState ? 'opacity-90' : 'invisible'} style={{height: '5px'}} />
                     </div>
                 </div>
             </div>
@@ -111,7 +111,7 @@ class RandomTable extends React.Component {
     }
 }
 
-function mapStateToProps(state, ownProps) {
+function mapStateToProps(state) {
     return {
               randomData: state.randomData
            };

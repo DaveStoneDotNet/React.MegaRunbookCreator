@@ -6,8 +6,6 @@ import toastr                   from 'toastr';
 
 import * as releaseActions      from '../../state/actions/releaseActions';
 
-import { TimeSpanMode }         from '../../constants';
-import { DateFormats }          from '../../constants';
 import { getReleaseBlockBgCss } from '../../constants';
 
 import TimerProgressBar         from '../common/TimerProgressBar';
@@ -154,7 +152,7 @@ class Releases extends React.Component {
     }
 }
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = (state) => {
   
     return { 
                release:    state.release.release, 

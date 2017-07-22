@@ -37,14 +37,14 @@ class ManageCoursePage extends React.Component {
     componentDidMount () {
     }
 
-    componentWillReceiveProps(nextProps) {
-        // Necessary to populate when existing course is loaded directly
-        //if (this.props.course.id !== nextProps.course.id) {
-        //    this.setState({
-        //                       course: Object.assign({ }, nextProps.course)
-        //                  });
-        //}
-    }
+    // componentWillReceiveProps(nextProps) {
+    //     // Necessary to populate when existing course is loaded directly
+    //     if (this.props.course.id !== nextProps.course.id) {
+    //        this.setState({
+    //                           course: Object.assign({ }, nextProps.course)
+    //                      });
+    //     }
+    // }
 
     updateCourseState(event) {
         const field   = event.target.name;
@@ -107,13 +107,13 @@ ManageCoursePage.contextTypes = {
                                     router: PropTypes.object.isRequired
                                 };
 
-const getCourseById = (courses, id) => {
-    const course = courses.filter(course => course.id === id);
-    if (course) return course[0];
-    return null;
-};
+// const getCourseById = (courses, id) => {
+//     const course = courses.filter(course => course.id === id);
+//     if (course) return course[0];
+//     return null;
+// };
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = (state) => {
   
     const authorsFormattedForDropdown = state.demo.authors.map(author => {
         return {

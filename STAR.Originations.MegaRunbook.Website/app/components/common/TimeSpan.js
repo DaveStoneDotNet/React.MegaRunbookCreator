@@ -18,6 +18,17 @@ class TimeSpan extends React.Component {
                      };
     }
 
+    componentDidMount () {
+
+        this.interval = setInterval(() => {
+            this.updateComponent();
+        }, 1000);
+    }
+
+    componentWillUnmount() {
+        clearInterval(this.interval);
+    }
+
     getDurationText (duration) {
 
         let shouldCalc = false;
@@ -58,20 +69,9 @@ class TimeSpan extends React.Component {
                       });
     }
 
-    componentDidMount () {
-
-        this.interval = setInterval(() => {
-            this.updateComponent();
-        }, 1000);
-    }
-
-    componentWillUnmount() {
-        clearInterval(this.interval);
-    }
-
     render() {
         return (
-                    <div className='Lato font-1-00 white-a-9'>
+                    <div className="Lato font-1-00 white-a-9">
                         { this.state.durationText }
                     </div>
                );

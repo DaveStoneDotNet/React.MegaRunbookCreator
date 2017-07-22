@@ -1,8 +1,7 @@
-﻿import React           from 'react';
-import toastr          from 'toastr';
+﻿import React  from 'react';
+import toastr from 'toastr';
 
-import Icon            from '../common/Icon';
-import { getTimeText } from '../../utils';
+import Icon   from '../common/Icon';
 
 class CompactContactListItem extends React.Component {
     constructor(props, context) {
@@ -25,12 +24,11 @@ class CompactContactListItem extends React.Component {
 
         const contact  = this.props.contact;
         const index    = this.props.index;
-        const bgClss   = index % 2 === 0 ? '' : 'white-a-1-bg';
-        const timeText = getTimeText(contact.ActivityDate);
+        const bgCss   = index % 2 === 0 ? '' : 'white-a-1-bg';
         return (
                     <tr>
                         <td className="align-center border-bottom-a-10 pad-left-5">
-                            <i className="fa fa-user font-3-00 white-a-1"></i>
+                            <i className="fa fa-user font-3-00 white-a-1" />
                         </td>
                         <td className="border-bottom-a-10">
                             <div className="pad-10">
@@ -50,7 +48,7 @@ class CompactContactListItem extends React.Component {
                         </td>
                         <td className="border-bottom-a-10 align-center align-top pad-10">
                             <div>
-                                <i className="fa fa-sliders font-1-20 white-a-3 pad-top-10"></i>
+                                <i className="fa fa-sliders font-1-20 white-a-3 pad-top-10" />
                             </div>
                         </td>
 

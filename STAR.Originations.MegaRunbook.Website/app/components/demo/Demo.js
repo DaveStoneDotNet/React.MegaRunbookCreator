@@ -8,7 +8,7 @@ import toastr                 from 'toastr';
 import { Button }             from 'react-bootstrap';
 import { Modal }              from 'react-bootstrap';
 
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, PieChart, Pie, Sector, Cell } from 'recharts';
+import { LineChart, Line, XAxis, CartesianGrid, Tooltip, PieChart, Pie, Cell } from 'recharts';
 
 import * as demoActions       from '../../state/actions/demoActions';
 import * as appActions        from '../../state/actions/appActions';
@@ -55,11 +55,6 @@ class Demo extends React.Component {
     componentWillMount() {
     }
 
-    componentWillUnmount() {
-        $.connection.hub.stop();
-        console.log('DEMO COMPONENT UN-MOUNTED - SIGNAL R CONNECTION STOPPED');
-    }
-
     componentDidMount() {
 
         const self = this;
@@ -85,15 +80,20 @@ class Demo extends React.Component {
                 console.log('SIGNALR CONNECTED VIA ', $.connection.hub.transport.name);
 
                 if (this.hub.connection.socket) {
-                    this.hub.connection.socket.onopen    = (m) => { console.log('CONNECTION OPENED')};
-                    this.hub.connection.socket.onmessage = (m) => { console.log('CONNECTION MESSAGE: ', m)};
-                    this.hub.connection.socket.onclose   = (m) => { console.log('CONNECTION CLOSED')};
+                    this.hub.connection.socket.onopen    = ()  => { console.log('CONNECTION OPENED'); };
+                    this.hub.connection.socket.onmessage = (m) => { console.log('CONNECTION MESSAGE: ', m); };
+                    this.hub.connection.socket.onclose   = ()  => { console.log('CONNECTION CLOSED'); };
                 }
 
             })
             .fail(() => {
                  console.log('START SIGNALR CONNECTION FAILED');
             });
+    }
+
+    componentWillUnmount() {
+        $.connection.hub.stop();
+        console.log('DEMO COMPONENT UN-MOUNTED - SIGNAL R CONNECTION STOPPED');
     }
 
     signal() {
@@ -207,7 +207,7 @@ class Demo extends React.Component {
                        <div className="pad-20" />
 
                        <h1>Random Grid</h1>
-                       <input type='submit' value='Add Grid Item' className='btn btn-primary' onClick = { this.redirectToAddCoursePage } />
+                       <input type="submit" value="Add Grid Item" className="btn btn-primary" onClick = { this.redirectToAddCoursePage } />
                        <CourseList courses = { courses } />
 
                        <div className="pad-20" />
@@ -265,9 +265,9 @@ Demo.propTypes = {
 // 'ownProps' is useful for accessing routing-related props injected by react-router.
 //
 
-const mapStateToProps = (state, ownProps) => ({
-                                                   demo: state.demo
-                                              });
+const mapStateToProps = (state) => ({
+                                         demo: state.demo
+                                    });
 
 // 'mapDispatchToProps' exposes the actions exposed to the component.
 

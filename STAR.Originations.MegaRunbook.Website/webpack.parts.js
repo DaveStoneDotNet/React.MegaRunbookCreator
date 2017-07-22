@@ -1,10 +1,10 @@
 ﻿const path               = require('path');
 const webpack            = require('webpack');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
-const ExtractTextPlugin  = require('extract-text-webpack-plugin');
-const HtmlWebpackPlugin  = require('html-webpack-plugin');
-const NpmInstallPlugin   = require('npm-install-webpack-plugin');
-const autoprefixer       = require('autoprefixer');
+const CleanWebpackPlugin = require('clean-webpack-plugin');         // A webpack plugin to remove/clean your build folder(s) before building
+const ExtractTextPlugin  = require('extract-text-webpack-plugin');  // Extract text from a bundle, or bundles, into a separate file.
+const HtmlWebpackPlugin  = require('html-webpack-plugin');          // Simplifies creation of HTML files to serve webpack bundles. i.e. Let the plugin generate an HTML file for you, or supply your own template. Not particularly relevant in this MVC app.
+const NpmInstallPlugin   = require('npm-install-webpack-plugin');   // Allows npm install to happen automatically and install missing dependencies while you work.
+const autoprefixer       = require('autoprefixer');                 // Parse CSS and add vendor prefixes to CSS rules using values from the 'Can I Use' website
 
 exports.common = function (paths, vendorPackages) {
     return {

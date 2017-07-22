@@ -82,7 +82,7 @@ class MockMrcApi {
 
     static getRandomTableData (pageSize, page, sorted, filtered) {
 
-        return new Promise((resolve, reject) => {
+        return new Promise((resolve) => {
 
             // On the server, you'll likely use SQL or noSQL or some other query language to do this.
             // For this mock, we'll just use lodash...
