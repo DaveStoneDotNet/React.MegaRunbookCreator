@@ -21,13 +21,22 @@ export const ReleaseBlockStatus = {
                                   };
 
 export const UserRole =           {
-                                      Dba:            'DBA', 
-                                      Etl:            'ETL', 
-                                      EncompassAdmin: 'EncompassAdmin', 
-                                      DevOps:         'DevOps', 
-                                      Developer:      'Developer', 
-                                      Qa:             'QA', 
-                                      Generic:        'Generic'
+                                      Dba:                     'DBA', 
+                                      Etl:                     'ETL', 
+                                      EncompassAdmin:          'EncompassAdmin', 
+                                      DevOps:                  'DevOps', 
+                                      Developer:               'Developer', 
+                                      DeveloperSr:             'DeveloperSr', 
+                                      Qa:                      'QA', 
+                                      EngineerII:              'EngineerII', 
+                                      ITAdministratorII:       'ITAdministratorII', 
+                                      SrITAdministator:        'SrITAdministator', 
+                                      SoftwareEngineerTrainee: 'SoftwareEngineerTrainee', 
+                                      ITAnalystSr:             'ITAnalystSr', 
+                                      SrITAnalyst:             'SrITAnalyst', 
+                                      VPIT:                    'VPIT', 
+                                      Leader:                  'Leader', 
+                                      Generic:                 'Generic'
                                   };
                                          
 // ---
@@ -104,6 +113,9 @@ export const getIconCss = (type) => {
             icon = 'fa fa-clock-o';
             break;
 
+        case UserRole.Leader:
+            icon = 'fa fa-star';
+            break;
         case UserRole.Dba:
             icon = 'fa fa-database';
             break;
@@ -116,11 +128,25 @@ export const getIconCss = (type) => {
         case UserRole.DevOps:
             icon = 'fa fa-cogs';
             break;
+        case UserRole.Qa:
+            icon = 'fa fa-thermometer';
+            break;
         case UserRole.Developer:
             icon = 'fa fa-terminal';
             break;
-        case UserRole.Qa:
-            icon = 'fa fa-thermometer';
+        case UserRole.DeveloperSr:
+        case UserRole.EngineerII:
+        case UserRole.SoftwareEngineerTrainee:
+        case UserRole.ITAdministratorII:
+        case UserRole.SrITAdministator:
+        case UserRole.ITAnalystSr:
+            icon = 'fa fa-user';
+            break;
+        case UserRole.SrITAnalyst:
+            icon = 'fa fa-user-circle-o';
+            break;
+        case UserRole.VPIT:
+            icon = 'fa fa-id-card';
             break;
 
         case UserRole.Generic:

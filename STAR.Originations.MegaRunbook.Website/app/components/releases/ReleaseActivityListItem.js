@@ -23,17 +23,17 @@ class ReleaseActivityListItem extends React.Component {
 
     render() {
 
-        const activity     = this.props.activity;
-        const index        = this.props.index;
-        const bgClss       = index % 2 === 0 ? '' : 'white-a-1-bg';
-        const timeText     = getTimeText(activity.ActivityDate);
+        const activity = this.props.activity;
+        const index    = this.props.index;
+        const bgCss    = index % 2 === 0 ? '' : 'white-a-1-bg';
+        const timeText = getTimeText(activity.ActivityDate);
         return (
                     <tr>
 
-                        <td className={ 'align-center border-bottom-a-10 pad-left-5 ' + bgClss }>
+                        <td className={ 'align-center border-bottom-a-10 pad-left-5 ' + bgCss }>
                             <Icon type={ activity.ShortIndicator } staticStyles="white-a-1 font-3-00" />
                         </td>
-                        <td className={ 'border-bottom-a-10 ' + bgClss }>
+                        <td className={ 'border-bottom-a-10 ' + bgCss }>
                             <div className="pad-10">
                                 <div className="BebasNeue font-1-60">
                                     { timeText }
@@ -49,7 +49,7 @@ class ReleaseActivityListItem extends React.Component {
                                 </div>
                             </div>
                         </td>
-                        <td className={ 'border-bottom-a-10 align-center align-top pad-10 ' + bgClss }>
+                        <td className={ 'border-bottom-a-10 align-center align-top pad-10 ' + bgCss }>
                             <div className="BebasNeue font-1-40">
                                 { activity.ShortIndicator }
                             </div>

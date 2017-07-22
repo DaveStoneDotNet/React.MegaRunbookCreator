@@ -10,5 +10,6 @@ namespace STAR.Originations.MegaRunbook.Website.Models
         public string Availability { get; set; }
         public string BlockType { get; set; }
         public string UserRole { get; set; }
+        public string UserRoleDescription { get; set; }
     }
 }

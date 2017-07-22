@@ -22,21 +22,22 @@ class CompactContactListItem extends React.Component {
 
     render() {
 
-        const contact  = this.props.contact;
-        const index    = this.props.index;
-        const bgCss   = index % 2 === 0 ? '' : 'white-a-1-bg';
+        const contact = this.props.contact;
+        const index   = this.props.index;
+        const bgCss = index % 2 === 0 ? '' : 'white-a-1-bg';
+
         return (
                     <tr>
-                        <td className="align-center border-bottom-a-10 pad-left-5">
-                            <i className="fa fa-user font-3-00 white-a-1" />
+                        <td className={ 'align-center border-bottom-a-10 pad-left-5 ' + bgCss }>
+                            <Icon type={contact.UserRole} staticStyles="white-a-1 font-3-00" />
                         </td>
-                        <td className="border-bottom-a-10">
+                        <td className={ 'border-bottom-a-10 ' + bgCss }>
                             <div className="pad-10">
                                 <div className="BebasNeue font-1-60">
                                     { contact.DisplayName }
                                 </div>
                                 <div className="font-1-20">
-                                    { contact.UserRole }
+                                    { contact.UserRoleDescription }
                                 </div>
                                 <div className="Lato font-0-75 pad-top-5">
                                     { contact.PhoneNumber }
@@ -46,9 +47,9 @@ class CompactContactListItem extends React.Component {
                                 </div>
                             </div>
                         </td>
-                        <td className="border-bottom-a-10 align-center align-top pad-10">
+                        <td className={ 'border-bottom-a-10 align-center align-top pad-10 ' + bgCss }>
                             <div>
-                                <i className="fa fa-sliders font-1-20 white-a-3 pad-top-10" />
+                                <Icon type={contact.BlockType} staticStyles="font-1-20 white-a-3 pad-top-10" />
                             </div>
                         </td>
 
