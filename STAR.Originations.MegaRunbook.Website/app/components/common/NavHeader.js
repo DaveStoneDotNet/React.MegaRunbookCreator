@@ -26,7 +26,7 @@ class NavHeader extends React.Component {
                 <Navbar inverse fixedTop collapseOnSelect>
                     <Navbar.Header>
                         <Navbar.Brand>
-                            <a href="/">MRC</a>
+                            <Link to='/' className="navbar-brand">MRC</Link>
                         </Navbar.Brand>
                         <Navbar.Toggle />
                         <Nav>
