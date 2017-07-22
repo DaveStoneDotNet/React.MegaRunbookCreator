@@ -731,8 +731,9 @@ textarea {
     padding: 14px !important;
 }
 
-.navbar-nav > li > a.active {
+.navbar-nav > li.active > a {
     color: $pure-white !important;
+    background-color: transparent !important;
     border-bottom: solid 2px $primary-orange !important;
     padding: 14px !important;
 }

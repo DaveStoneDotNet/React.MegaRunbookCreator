@@ -1,7 +1,13 @@
-﻿import React         from 'react';
-import PropTypes     from 'prop-types';
-import { Link }      from 'react-router';
-import { IndexLink } from 'react-router';
+﻿import React             from 'react';
+import PropTypes         from 'prop-types';
+import { Navbar }        from 'react-bootstrap';
+import { Nav }           from 'react-bootstrap';
+import { NavItem }       from 'react-bootstrap';
+import { NavDropdown }   from 'react-bootstrap';
+import { MenuItem }      from 'react-bootstrap';
+import { LinkContainer } from 'react-router-bootstrap';
+import { Link }          from 'react-router';
+import { IndexLink }     from 'react-router';
 
 class NavHeader extends React.Component {
 
@@ -15,40 +21,33 @@ class NavHeader extends React.Component {
         const app = this.props.app;
 
         return (
-               <div className="navbar-root">
-                   <div id="navbar" className="navbar navbar-inverse navbar-fixed-top">
-                     <div className="container-fluid">
-                       <div className="navbar-header">
-                         <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#mainNavbar">
-                           <span className="sr-only">Toggle navigation</span>
-                           <span className="icon-bar" />
-                           <span className="icon-bar" />
-                           <span className="icon-bar" />
-                         </button>
-                         <IndexLink className="navbar-brand" to="/">MRC</IndexLink>
-                       </div>
-                       <div id="mainNavbar" className="navbar-collapse collapse">
-                          <div className="head-runner">
-                             <img src="../../app//images/running-01.gif" className={app.ajaxCount > 0 ? "show-working-head-runner" : "hide-working-head-runner"} alt="working"/>
-                          </div>
-                         <div className="float-right pad-top-15">
-                           <span className=""><i className="fa fa-user-circle gray-5 font-1-10" /> <span style={{marginTop: "-1px"}} className="Lato font-1-00 opacity-60 pad-left-5 lowercase">{ app.user.UserDisplayName }</span></span>
-                         </div>
-                         <ul className="nav navbar-nav">
-                           <li><IndexLink activeClassName="active" to="/">Home</IndexLink></li>
-                           <li><Link activeClassName="active" to="/releases">Release</Link></li>
-                           <li><Link activeClassName="active" to="/rfcs">RFCs</Link></li>
-                           <li><Link activeClassName="active" to="/runbooks">Runbooks</Link></li>
-                           <li><Link activeClassName="active" to="/templates">Templates</Link></li>
-                           <li><Link activeClassName="active" to="/builds">Builds</Link></li>
-                           <li><Link activeClassName="active" to="/applications">Applications</Link></li>
-                           <li><Link activeClassName="active" to="/admin">Admin</Link></li>
-                           <li><Link activeClassName="active" to="/about">About</Link></li>
-                           <li><Link activeClassName="active" to="/demo">Demo</Link></li>
-                         </ul>
-                       </div>
-                     </div>
-                   </div>
+            <div className="navbar-root">
+                
+                <Navbar inverse fixedTop collapseOnSelect>
+                    <Navbar.Header>
+                        <Navbar.Brand>
+                            <a href="/">MRC</a>
+                        </Navbar.Brand>
+                        <Navbar.Toggle />
+                        <Nav>
+                            <LinkContainer to="/home"><NavItem eventKey={1}>Home</NavItem></LinkContainer>
+                            <LinkContainer to="/releases"><NavItem eventKey={2}>Release</NavItem></LinkContainer>
+                            <LinkContainer to="/rfcs"><NavItem eventKey={3}>RFCs</NavItem></LinkContainer>
+                            <LinkContainer to="/runbooks"><NavItem eventKey={4}>Runbooks</NavItem></LinkContainer>
+                            <LinkContainer to="/templates"><NavItem eventKey={5}>Templates</NavItem></LinkContainer>
+                            <LinkContainer to="/builds"><NavItem eventKey={6}>Builds</NavItem></LinkContainer>
+                            <LinkContainer to="/applications"><NavItem eventKey={7}>Applications</NavItem></LinkContainer>
+                            <LinkContainer to="/admin"><NavItem eventKey={8}>Admin</NavItem></LinkContainer>
+                            <LinkContainer to="/about"><NavItem eventKey={9}>About</NavItem></LinkContainer>
+                            <NavDropdown eventKey={10} title="Demo" id="basic-nav-dropdown">
+                                <LinkContainer to="/demo"><MenuItem eventKey={10.1}>Demo</MenuItem></LinkContainer>
+                                <LinkContainer to=""><MenuItem eventKey={10.2}>Design</MenuItem></LinkContainer>
+                                <LinkContainer to=""><MenuItem divider /></LinkContainer>
+                                <LinkContainer to=""><MenuItem eventKey={10.4}>React</MenuItem></LinkContainer>
+                            </NavDropdown>
+                        </Nav>
+                    </Navbar.Header>
+                </Navbar>
                </div>
            );
     }

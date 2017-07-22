@@ -1104,8 +1104,9 @@ textarea {
   border-bottom: solid 2px #2d2d30;
   padding: 14px !important; }
 
-.navbar-nav > li > a.active {
+.navbar-nav > li.active > a {
   color: #ffffff !important;
+  background-color: transparent !important;
   border-bottom: solid 2px #eb8428 !important;
   padding: 14px !important; }
 

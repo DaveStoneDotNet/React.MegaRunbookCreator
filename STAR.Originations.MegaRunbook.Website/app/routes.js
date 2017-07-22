@@ -20,6 +20,7 @@ export default (
     <Route path = "/"            component = { Shell            }>
       <IndexRoute                component = { Home             } />
       
+      <Route path="home"         component = { Home             } />
       <Route path="about"        component = { About            } />
       <Route path="admin"        component = { Admin            } />
       <Route path="applications" component = { Applications     } />
