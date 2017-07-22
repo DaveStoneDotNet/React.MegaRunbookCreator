@@ -30,20 +30,20 @@ class NavHeader extends React.Component {
                         </Navbar.Brand>
                         <Navbar.Toggle />
                         <Nav>
-                            <LinkContainer to="/home"><NavItem eventKey={1}>Home</NavItem></LinkContainer>
-                            <LinkContainer to="/releases"><NavItem eventKey={2}>Release</NavItem></LinkContainer>
-                            <LinkContainer to="/rfcs"><NavItem eventKey={3}>RFCs</NavItem></LinkContainer>
-                            <LinkContainer to="/runbooks"><NavItem eventKey={4}>Runbooks</NavItem></LinkContainer>
-                            <LinkContainer to="/templates"><NavItem eventKey={5}>Templates</NavItem></LinkContainer>
-                            <LinkContainer to="/builds"><NavItem eventKey={6}>Builds</NavItem></LinkContainer>
+                            <LinkContainer to="/" onlyActiveOnIndex><NavItem>Home</NavItem></LinkContainer>
+                            <LinkContainer to="/releases"><NavItem>Release</NavItem></LinkContainer>
+                            <LinkContainer to="/rfcs"><NavItem>RFCs</NavItem></LinkContainer>
+                            <LinkContainer to="/runbooks"><NavItem>Runbooks</NavItem></LinkContainer>
+                            <LinkContainer to="/templates"><NavItem>Templates</NavItem></LinkContainer>
+                            <LinkContainer to="/builds"><NavItem>Builds</NavItem></LinkContainer>
                             <LinkContainer to="/applications"><NavItem eventKey={7}>Applications</NavItem></LinkContainer>
-                            <LinkContainer to="/admin"><NavItem eventKey={8}>Admin</NavItem></LinkContainer>
-                            <LinkContainer to="/about"><NavItem eventKey={9}>About</NavItem></LinkContainer>
-                            <NavDropdown eventKey={10} title="Demo" id="basic-nav-dropdown">
-                                <LinkContainer to="/demo"><MenuItem eventKey={10.1}>Demo</MenuItem></LinkContainer>
-                                <LinkContainer to=""><MenuItem eventKey={10.2}>Design</MenuItem></LinkContainer>
+                            <LinkContainer to="/admin"><NavItem>Admin</NavItem></LinkContainer>
+                            <LinkContainer to="/about"><NavItem>About</NavItem></LinkContainer>
+                            <NavDropdown title="Demo" id="basic-nav-dropdown">
+                                <LinkContainer to="/demo"><MenuItem>Demo</MenuItem></LinkContainer>
+                                <LinkContainer to=""><MenuItem>Design</MenuItem></LinkContainer>
                                 <LinkContainer to=""><MenuItem divider /></LinkContainer>
-                                <LinkContainer to=""><MenuItem eventKey={10.4}>React</MenuItem></LinkContainer>
+                                <LinkContainer to=""><MenuItem>React</MenuItem></LinkContainer>
                             </NavDropdown>
                         </Nav>
                     </Navbar.Header>
