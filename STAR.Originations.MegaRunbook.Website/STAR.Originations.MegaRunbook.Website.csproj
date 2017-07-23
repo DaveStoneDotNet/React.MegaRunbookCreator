@@ -379,6 +379,7 @@
     <Content Include="Json\release.json" />
     <Content Include="Json\activity.json" />
     <Content Include="Json\release-contacts.json" />
+    <Content Include="IIS-Express.md" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\STAR.Originations.MegaRunbook.Contracts\STAR.Originations.MegaRunbook.Contracts.csproj">
