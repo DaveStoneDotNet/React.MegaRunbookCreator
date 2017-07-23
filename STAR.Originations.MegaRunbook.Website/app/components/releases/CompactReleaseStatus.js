@@ -1,22 +1,23 @@
-﻿import React from 'react';
-import PropTypes from 'prop-types';
+﻿import React                  from 'react';
+import PropTypes              from 'prop-types';
 import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
+import { connect }            from 'react-redux';
 
-import ReactHowler from 'react-howler';
+import ReactHowler            from 'react-howler';
 
-import toastr from 'toastr';
+import toastr                 from 'toastr';
 
 import { LineChart, Line, XAxis, CartesianGrid, Tooltip, PieChart, Pie, Cell } from 'recharts';
 
 import { ReleaseBlockStatus } from '../../constants';
 
-import * as demoActions from '../../state/actions/demoActions';
-import * as appActions from '../../state/actions/appActions';
-import * as bingApiActions from '../../state/actions/bingApiActions';
+import * as demoActions       from '../../state/actions/demoActions';
+import * as releaseActions    from '../../state/actions/releaseActions';
+import * as appActions        from '../../state/actions/appActions';
+import * as bingApiActions    from '../../state/actions/bingApiActions';
 
-import ReleaseStatusHeader from '../releases/ReleaseStatusHeader';
-import ReleaseActivity from '../releases/ReleaseActivity';
+import ReleaseStatusHeader    from '../releases/ReleaseStatusHeader';
+import ReleaseActivity        from '../releases/ReleaseActivity';
 
 class CompactReleaseStatus extends React.Component {
 
@@ -31,12 +32,12 @@ class CompactReleaseStatus extends React.Component {
         // ----------------------------------------------------------------------------------------------------
 
         this.state = {
-            errors: {},
-            isPlaying: false,
-            audioSource: 'pop_01.mp3',
-            message: '',
-            pieColors: ['#0088FE', '#00C49F']
-        };
+                         errors:      {},
+                         isPlaying:   false,
+                         audioSource: 'pop_01.mp3', 
+                         message:     '',
+                         pieColors:   ['#0088FE', '#00C49F']
+                     };
 
         toastr.options.positionClass = 'toast-bottom-right';
 
@@ -55,6 +56,7 @@ class CompactReleaseStatus extends React.Component {
             console.log('BROADCAST MESSAGE', message);
             self.props.actions.dispatch(self.props.actions.demoActions.signalrLineDataReceived(message.LineData));
             self.props.actions.dispatch(self.props.actions.demoActions.signalrPieDataReceived(message.PieData));
+            self.props.actions.dispatch(self.props.actions.releaseActions.getActivitiesSuccess(message.Activities));
             self.setState({ message: message.Message });
 
             // SPEAK HERE
@@ -75,9 +77,9 @@ class CompactReleaseStatus extends React.Component {
                 console.log('SIGNALR CONNECTED VIA ', $.connection.hub.transport.name);
 
                 if (this.hub.connection.socket) {
-                    this.hub.connection.socket.onopen = () => { console.log('CONNECTION OPENED'); };
+                    this.hub.connection.socket.onopen    = ()  => { console.log('CONNECTION OPENED'); };
                     this.hub.connection.socket.onmessage = (m) => { console.log('CONNECTION MESSAGE: ', m); };
-                    this.hub.connection.socket.onclose = () => { console.log('CONNECTION CLOSED'); };
+                    this.hub.connection.socket.onclose   = ()  => { console.log('CONNECTION CLOSED'); };
                 }
 
             })
@@ -156,10 +158,12 @@ class CompactReleaseStatus extends React.Component {
 
     render() {
 
-        const lineData = this.props.demo.lineData;
-        const pieData = this.props.demo.pieData;
-        const pieColors = this.state.pieColors;
-        const isPlaying = this.state.isPlaying;
+        const release     = this.props.release.release;
+        const activities  = this.props.release.activities;
+        const lineData    = this.props.demo.lineData;
+        const pieData     = this.props.demo.pieData;
+        const pieColors   = this.state.pieColors;
+        const isPlaying   = this.state.isPlaying;
         const audioSource = this.state.audioSource;
 
         return (
@@ -198,12 +202,15 @@ class CompactReleaseStatus extends React.Component {
                                 </div>
                             </td>
                         </tr>
+                        <tr>
+                            <td colSpan="2">
+                                <div className="pad-top-10">
+                                    <ReleaseActivity releaseStatus={release.ReleaseStatus} activities={activities} />
+                                </div>
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
-
-                <div className="pad-top-10">
-                    <ReleaseActivity releaseStatus={release.ReleaseStatus} activities={activities} />
-                </div>
 
                 <ReactHowler src={'app/audio/' + audioSource} playing={isPlaying} preload={true} onEnd={this.stopPlaying} />
 
@@ -213,22 +220,24 @@ class CompactReleaseStatus extends React.Component {
 }
 
 CompactReleaseStatus.propTypes = {
-    actions: PropTypes.object.isRequired,
-    demo: PropTypes.object.isRequired
-};
+                                     actions: PropTypes.object.isRequired,
+                                     demo:    PropTypes.object.isRequired
+                                 };
 
 const mapStateToProps = (state) => ({
-    demo: state.demo
-});
+                                        demo:    state.demo, 
+                                        release: state.release
+                                    });
 
 const mapDispatchToProps = (dispatch) => {
     return {
         actions: {
-            dispatch: dispatch,
-            demoActions: bindActionCreators(demoActions, dispatch),
-            appActions: bindActionCreators(appActions, dispatch),
-            bingApiActions: bindActionCreators(bingApiActions, dispatch)
-        }
+                     dispatch:       dispatch,
+                     demoActions:    bindActionCreators(demoActions,    dispatch),
+                     releaseActions: bindActionCreators(releaseActions, dispatch),
+                     appActions:     bindActionCreators(appActions,     dispatch),
+                     bingApiActions: bindActionCreators(bingApiActions, dispatch)
+                 }
     };
 };
 

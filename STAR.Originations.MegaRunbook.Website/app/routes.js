@@ -9,12 +9,12 @@ import Admin                from './components/admin/Admin';
 import Applications         from './components/applications/Applications';
 import Builds               from './components/builds/Builds';
 import Releases             from './components/releases/Releases';
+import CompactReleaseStatus from './components/releases/CompactReleaseStatus';
 import Rfcs                 from './components/rfcs/Rfcs';
 import Runbooks             from './components/runbooks/Runbooks';
 import Templates            from './components/templates/Templates';
 import NotFound             from './components/common/NotFound';
 import Demo                 from './components/demo/Demo';
-import CompactReleaseStatus from './components/demo/CompactReleaseStatus';
 import ManageCoursePage     from './components/demo/ManageCoursePage';
 
 export default (

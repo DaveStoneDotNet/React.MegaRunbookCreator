@@ -197,6 +197,7 @@
     <Compile Include="Models\Duration.cs" />
     <Compile Include="Models\Release.cs" />
     <Compile Include="Models\ReleaseBlock.cs" />
+    <Compile Include="Models\ReleaseMessage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReleaseHub.cs" />
     <Compile Include="Startup.cs" />
@@ -219,7 +220,7 @@
     <Content Include="app\components\common\SimpleUserList.js" />
     <Content Include="app\components\common\ToggleHeader.js" />
     <Content Include="app\components\common\ToggleIcon.js" />
-    <Content Include="app\components\demo\CompactReleaseStatus.js" />
+    <Content Include="app\components\releases\CompactReleaseStatus.js" />
     <Content Include="app\components\releases\ReleaseActivity.js" />
     <Content Include="app\components\releases\ReleaseActivityList.js" />
     <Content Include="app\components\releases\ReleaseActivityListItem.js" />
