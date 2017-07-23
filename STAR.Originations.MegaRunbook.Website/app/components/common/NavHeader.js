@@ -40,7 +40,10 @@ class NavHeader extends React.Component {
                             </Navbar.Brand>
                             <Nav id="mainNavbar" className="navbar-collapse collapse">
                                 <LinkContainer to="/" onlyActiveOnIndex><NavItem>Home</NavItem></LinkContainer>
-                                <LinkContainer to="/releases"><NavItem>Release</NavItem></LinkContainer>
+                                <NavDropdown title="Release" id="basic-nav-dropdown">
+                                    <LinkContainer to="/releases"><MenuItem>Manage</MenuItem></LinkContainer>
+                                    <LinkContainer to="/compact"><MenuItem>Status</MenuItem></LinkContainer>
+                                </NavDropdown>
                                 <LinkContainer to="/rfcs"><NavItem>RFCs</NavItem></LinkContainer>
                                 <LinkContainer to="/runbooks"><NavItem>Runbooks</NavItem></LinkContainer>
                                 <LinkContainer to="/templates"><NavItem>Templates</NavItem></LinkContainer>
