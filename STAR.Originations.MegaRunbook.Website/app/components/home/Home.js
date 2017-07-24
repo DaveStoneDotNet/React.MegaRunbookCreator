@@ -13,7 +13,7 @@ class Home extends React.Component {
     render() {
 
         const appDimensions = this.props.app.appDimensions;
-        console.log('HOME', appDimensions);
+
         return (
                     <div className="align-center">
                         <HomeButton appDimensions={appDimensions} />

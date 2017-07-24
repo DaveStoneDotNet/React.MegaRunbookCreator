@@ -133,7 +133,6 @@ export function getData() {
 // -----------------------------------------------------------------------------------------------------------------------
 
 export function updateDimensions(appDimensions) {
-    console.log('APPDIMENSIONS', appDimensions)
     return function (dispatch) {
         return dispatch(updateAppDimensions(appDimensions));
     };

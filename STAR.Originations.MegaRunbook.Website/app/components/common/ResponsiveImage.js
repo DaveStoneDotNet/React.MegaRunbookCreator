@@ -64,7 +64,7 @@ class ResponsiveImage extends React.Component {
                                width:       appWidth < max ? appWidth / 1.5 : imageWidth, 
                                marginLeft:  'auto', 
                                marginRight: 'auto', 
-                               marginTop:   top
+                               marginTop:   top ? top : 50
                            };
 
         return (
