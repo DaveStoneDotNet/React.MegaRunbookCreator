@@ -107,6 +107,10 @@ export default {
                                     home:                 {
                                                               info: 'INITIAL MONKEY INFO'
                                                           }, 
+                                    appDimensions:        {
+                                                              width:  0,
+                                                              height: 0
+                                                          }, 
                                     ajaxCount:            0, 
                                     ajaxMessage:          'Working...', 
                                     isUserInitialized:    false, 

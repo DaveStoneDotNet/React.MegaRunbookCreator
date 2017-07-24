@@ -50,12 +50,13 @@ import * as ajaxActions from './ajaxStatusActions';
 // If you typed 'monkey' instead of 'home' then nothing would get updated and no error would occur, but 
 // most importantly, 'home' would NOT be updated.
 
-export function getConfigSuccess(data)     { return { type: types.GET_CONFIG_SUCCESS,  config:    data    }; }
-export function getDataSuccess(data)       { return { type: types.GET_DATA_SUCCESS,    home:      data    }; }
+export function getConfigSuccess(data)     { return { type: types.GET_CONFIG_SUCCESS,    config:        data    }; }
+export function getDataSuccess(data)       { return { type: types.GET_DATA_SUCCESS,      home:          data    }; }
 
-export function getLookupsSuccess(lookups) { return { type: types.GET_LOOKUPS_SUCCESS, lookups:   lookups }; }
-export function getUserSuccess(user)       { return { type: types.GET_USER_SUCCESS,    user:      user    }; }
-export function updateIsInitialized(app)   { return { type: types.IS_INITIALIZED,      app:       app     }; }
+export function getLookupsSuccess(lookups) { return { type: types.GET_LOOKUPS_SUCCESS,   lookups:       lookups }; }
+export function getUserSuccess(user)       { return { type: types.GET_USER_SUCCESS,      user:          user    }; }
+export function updateIsInitialized(app)   { return { type: types.IS_INITIALIZED,        app:           app     }; }
+export function updateAppDimensions(data)  { return { type: types.UPDATE_APP_DIMENSIONS, appDimensions: data    }; }
 
 // -----------------------------------------------------------------------------------------------------------------------
 // Thunks:
@@ -130,6 +131,13 @@ export function getData() {
 }
 
 // -----------------------------------------------------------------------------------------------------------------------
+
+export function updateDimensions(appDimensions) {
+    console.log('APPDIMENSIONS', appDimensions)
+    return function (dispatch) {
+        return dispatch(updateAppDimensions(appDimensions));
+    };
+}
 
 export function postSlackMessage(request) {
     return function (dispatch) {

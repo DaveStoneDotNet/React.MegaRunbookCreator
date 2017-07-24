@@ -1,10 +1,11 @@
-﻿import React       from 'react';
-import PropTypes   from 'prop-types';
-import { connect } from 'react-redux';
+﻿import React         from 'react';
+import PropTypes     from 'prop-types';
+import { connect }   from 'react-redux';
 
-import NavHeader   from './NavHeader';
-import AppFooter   from './AppFooter';
-import Splash      from './Splash';
+import NavHeader     from './NavHeader';
+import AppFooter     from './AppFooter';
+import Splash        from './Splash';
+import ResponsiveApp from './ResponsiveApp';
 
 import '../../../node_modules/font-awesome/css/font-awesome.min.css';
 import '../../../node_modules/toastr/build/toastr.min.css';
@@ -60,6 +61,7 @@ class Shell extends React.Component {
                         }                        
                     </div>
                     <AppFooter app={app} />
+                    <ResponsiveApp appDimensions={app.appDimensions} />
                   </div>
                );
     }

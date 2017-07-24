@@ -16,6 +16,7 @@ import Templates            from './components/templates/Templates';
 import NotFound             from './components/common/NotFound';
 import Demo                 from './components/demo/Demo';
 import ManageCoursePage     from './components/demo/ManageCoursePage';
+import ResponsiveDemos      from './components/demo/ResponsiveDemos';
 
 export default (
     <Route path = "/"            component = { Shell                }>
@@ -32,6 +33,7 @@ export default (
       <Route path="templates"    component = { Templates            } />
       
       <Route path="demo"         component = { Demo                 } />
+      <Route path="responsive"   component = { ResponsiveDemos      } />
       <Route path="compact"      component = { CompactReleaseStatus } />
       <Route path="course"       component = { ManageCoursePage     } />
       <Route path="course/:id"   component = { ManageCoursePage     } />
