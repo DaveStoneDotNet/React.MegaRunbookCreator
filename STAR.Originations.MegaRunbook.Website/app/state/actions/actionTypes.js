@@ -15,6 +15,8 @@ export const GET_DATA_SUCCESS              = 'GET_DATA_SUCCESS';
 export const GET_RANDOM_TABLE_DATA_SUCCESS = 'GET_RANDOM_TABLE_DATA_SUCCESS';
 export const GET_RANDOM_TABLE_DATA         = 'GET_RANDOM_TABLE_DATA';
 
+export const UPDATE_APP_DIMENSIONS         = 'UPDATE_APP_DIMENSIONS';
+
 // -------------------------------------------------------------------------------
 
 export const GET_COURSES_SUCCESS           = 'GET_COURSES_SUCCESS';

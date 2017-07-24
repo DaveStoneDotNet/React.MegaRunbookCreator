@@ -17,6 +17,8 @@ namespace STAR.Originations.MegaRunbook.Contracts.Data
         [DataMember] public string UserRole { get; set; }
         [DataMember] public string UserRoleDescription { get; set; }
 
+        [DataMember] public bool IsOnline { get; set; }
+
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private string DebuggerDisplay => String.Format("Id: {0}. UserId: {1}. DisplayName: {2}. ", this.Id, this.UserId, this.DisplayName);
     }

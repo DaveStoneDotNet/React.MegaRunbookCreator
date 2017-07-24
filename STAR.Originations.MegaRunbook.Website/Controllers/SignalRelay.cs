@@ -41,26 +41,9 @@ namespace STAR.Originations.MegaRunbook.Website.Controllers
         #region Methods
 
         #region Send
-        public static void Send(string message)
+        public static void Send(ReleaseMessage releaseMessage)
         {
-            var lineData = new List<LineData>
-            {
-                new LineData { xname = " ", uv = Randomize.GetRandomNumber(1000, 9999), pv = Randomize.GetRandomNumber(1000, 9999), amt = Randomize.GetRandomNumber(1000, 9999) }, // 3
-                new LineData { xname = " ", uv = Randomize.GetRandomNumber(1000, 9999), pv = Randomize.GetRandomNumber(1000, 9999), amt = Randomize.GetRandomNumber(1000, 9999) }, // 1
-                new LineData { xname = " ", uv = Randomize.GetRandomNumber(1000, 9999), pv = Randomize.GetRandomNumber(1000, 9999), amt = Randomize.GetRandomNumber(1000, 9999) }, // 5
-                new LineData { xname = " ", uv = Randomize.GetRandomNumber(1000, 9999), pv = Randomize.GetRandomNumber(1000, 9999), amt = Randomize.GetRandomNumber(1000, 9999) }, // 2
-                new LineData { xname = " ", uv = Randomize.GetRandomNumber(1000, 9999), pv = Randomize.GetRandomNumber(1000, 9999), amt = Randomize.GetRandomNumber(1000, 9999) }, // 4
-                new LineData { xname = " ", uv = Randomize.GetRandomNumber(1000, 9999), pv = Randomize.GetRandomNumber(1000, 9999), amt = Randomize.GetRandomNumber(1000, 9999) }, // 7
-                new LineData { xname = " ", uv = Randomize.GetRandomNumber(1000, 9999), pv = Randomize.GetRandomNumber(1000, 9999), amt = Randomize.GetRandomNumber(1000, 9999) }, // 6
-            };
-
-            var pieData = new List<PieData>
-            {
-                new PieData { key = "A", name = "A", value = Randomize.GetRandomNumber(100, 400) },
-                new PieData { key = "B", name = "B", value = Randomize.GetRandomNumber(100, 400) },
-            };
-
-            SignalRelay.Clients.All.broadcastMessage(new { Message = message, LineData = lineData, PieData = pieData });
+            SignalRelay.Clients.All.broadcastMessage(releaseMessage);
         }
         #endregion Send
 

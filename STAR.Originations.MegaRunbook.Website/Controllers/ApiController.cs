@@ -75,8 +75,6 @@ namespace STAR.Originations.MegaRunbook.Website.Controllers
 
             // ---
 
-            SignalRelay.Send(mapped.ReleaseStatus);
-
             if (!String.IsNullOrWhiteSpace(request.BlockStatus))
             {
                 mapped.ReleaseBlocks = (from o in mapped.ReleaseBlocks where o.BlockStatus.Equals(request.BlockStatus) select o).ToList();
@@ -94,11 +92,46 @@ namespace STAR.Originations.MegaRunbook.Website.Controllers
                                       select o).ToList();
             }
 
+            var activities = await this.LoadJson<contracts::Activity>(@"activity.json");
+            var mappedActivities = Mapper.Map<List<contracts::Activity>, List<models::Activity>>(activities);
+
+            var releaseMessage = new ReleaseMessage {
+                                                        Message    = mapped.ReleaseStatus,
+                                                        Release    = mapped,
+                                                        Activities = mappedActivities,
+                                                        LineData   = ApiController.GetRandomLineData(),
+                                                        PieData    = ApiController.GetRandomPieData()
+                                                    };
+            SignalRelay.Send(releaseMessage);
+
             return this.JsonDateResult(mapped);
         }
         #endregion GetRelease
 
         public static SignalRelay SignalRelay = SignalRelay.Instance;
+
+        public static List<LineData> GetRandomLineData()
+        {
+            return new List<LineData>
+            {
+                new LineData { xname = " ", uv = Randomize.GetRandomNumber(1000, 9999), pv = Randomize.GetRandomNumber(1000, 9999), amt = Randomize.GetRandomNumber(1000, 9999) }, // 3
+                new LineData { xname = " ", uv = Randomize.GetRandomNumber(1000, 9999), pv = Randomize.GetRandomNumber(1000, 9999), amt = Randomize.GetRandomNumber(1000, 9999) }, // 1
+                new LineData { xname = " ", uv = Randomize.GetRandomNumber(1000, 9999), pv = Randomize.GetRandomNumber(1000, 9999), amt = Randomize.GetRandomNumber(1000, 9999) }, // 5
+                new LineData { xname = " ", uv = Randomize.GetRandomNumber(1000, 9999), pv = Randomize.GetRandomNumber(1000, 9999), amt = Randomize.GetRandomNumber(1000, 9999) }, // 2
+                new LineData { xname = " ", uv = Randomize.GetRandomNumber(1000, 9999), pv = Randomize.GetRandomNumber(1000, 9999), amt = Randomize.GetRandomNumber(1000, 9999) }, // 4
+                new LineData { xname = " ", uv = Randomize.GetRandomNumber(1000, 9999), pv = Randomize.GetRandomNumber(1000, 9999), amt = Randomize.GetRandomNumber(1000, 9999) }, // 7
+                new LineData { xname = " ", uv = Randomize.GetRandomNumber(1000, 9999), pv = Randomize.GetRandomNumber(1000, 9999), amt = Randomize.GetRandomNumber(1000, 9999) }, // 6
+            };
+        }
+
+        public static List<PieData> GetRandomPieData()
+        {
+            return new List<PieData>
+            {
+                new PieData { key = "A", name = "A", value = Randomize.GetRandomNumber(100, 400) },
+                new PieData { key = "B", name = "B", value = Randomize.GetRandomNumber(100, 400) },
+            };
+        }
 
         #region GetReleaseBlock
         [System.Web.Http.HttpPost]

@@ -49,6 +49,10 @@ export default function appReducer(state = initialState.app, action) {
             new_state = Object.assign({}, state, { user: action.user });
             return new_state;
 
+        case types.UPDATE_APP_DIMENSIONS:
+            new_state = Object.assign({}, state, { appDimensions: action.appDimensions });
+            return new_state;
+
         case types.GET_LOOKUPS_SUCCESS:
             new_state = Object.assign({}, state, { lookups: action.lookups });
             return new_state;

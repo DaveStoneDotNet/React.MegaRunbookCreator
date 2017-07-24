@@ -197,6 +197,7 @@
     <Compile Include="Models\Duration.cs" />
     <Compile Include="Models\Release.cs" />
     <Compile Include="Models\ReleaseBlock.cs" />
+    <Compile Include="Models\ReleaseMessage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReleaseHub.cs" />
     <Compile Include="Startup.cs" />
@@ -212,6 +213,8 @@
     <Content Include="app\audio\warning_01.mp3" />
     <Content Include="app\components\common\CompactContactList.js" />
     <Content Include="app\components\common\CompactContactListItem.js" />
+    <Content Include="app\components\common\ResponsiveApp.js" />
+    <Content Include="app\components\common\ResponsiveImage.js" />
     <Content Include="app\components\common\TimerProgressBar.js" />
     <Content Include="app\components\common\TimeSpan.js" />
     <Content Include="app\components\common\Icon.js" />
@@ -219,6 +222,9 @@
     <Content Include="app\components\common\SimpleUserList.js" />
     <Content Include="app\components\common\ToggleHeader.js" />
     <Content Include="app\components\common\ToggleIcon.js" />
+    <Content Include="app\components\demo\ResponsiveDemos.js" />
+    <Content Include="app\components\home\HomeButton.js" />
+    <Content Include="app\components\releases\CompactReleaseStatus.js" />
     <Content Include="app\components\releases\ReleaseActivity.js" />
     <Content Include="app\components\releases\ReleaseActivityList.js" />
     <Content Include="app\components\releases\ReleaseActivityListItem.js" />
@@ -312,7 +318,7 @@
     <Content Include="app\utils.js" />
     <Content Include="Design\flipclock.css" />
     <Content Include="Design\flipclock.min.js" />
-    <Content Include="Design\layout.html" />
+    <Content Include="Design\release-status.html" />
     <Content Include="Design\styles.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -379,6 +385,7 @@
     <Content Include="Json\release.json" />
     <Content Include="Json\activity.json" />
     <Content Include="Json\release-contacts.json" />
+    <Content Include="IIS-Express.md" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\STAR.Originations.MegaRunbook.Contracts\STAR.Originations.MegaRunbook.Contracts.csproj">
