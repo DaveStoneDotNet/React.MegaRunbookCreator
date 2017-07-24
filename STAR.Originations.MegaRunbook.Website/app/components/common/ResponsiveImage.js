@@ -56,15 +56,13 @@ class ResponsiveImage extends React.Component {
         const imageHeight   = this.state.imageDimensions.height;
 
         const max           = imageWidth ? imageWidth + 100 : appWidth;
-        const top           = (appHeight / 2) - imageHeight;
 
         // If the width of the app window is less than the size of the image + 100 then shrink the size of the image
 
         const imageStyle = {
                                width:       appWidth < max ? appWidth / 1.5 : imageWidth, 
                                marginLeft:  'auto', 
-                               marginRight: 'auto', 
-                               marginTop:   top ? top : 50
+                               marginRight: 'auto'
                            };
 
         return (
