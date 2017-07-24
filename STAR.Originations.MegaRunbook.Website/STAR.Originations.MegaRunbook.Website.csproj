@@ -318,7 +318,7 @@
     <Content Include="app\utils.js" />
     <Content Include="Design\flipclock.css" />
     <Content Include="Design\flipclock.min.js" />
-    <Content Include="Design\layout.html" />
+    <Content Include="Design\release-status.html" />
     <Content Include="Design\styles.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
