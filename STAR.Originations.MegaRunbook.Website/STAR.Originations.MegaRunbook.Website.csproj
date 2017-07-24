@@ -316,9 +316,12 @@
       <DependentUpon>_mrc-colors.css</DependentUpon>
     </Content>
     <Content Include="app\utils.js" />
+    <Content Include="Design\app-services.html" />
     <Content Include="Design\flipclock.css" />
     <Content Include="Design\flipclock.min.js" />
     <Content Include="Design\release-status.html" />
+    <Content Include="Design\rfcs.html" />
+    <Content Include="Design\runbooks.html" />
     <Content Include="Design\styles.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />

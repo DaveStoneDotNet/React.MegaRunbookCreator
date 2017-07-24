@@ -1,0 +1,235 @@
+﻿<html style="" class=" js flexbox flexboxlegacy canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers applicationcache svg inlinesvg smil svgclippaths">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CMA - Capital Markets</title>
+
+    <link href="/node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="/node_modules/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
+
+    <script src="/node_modules/moment/min/moment.min.js"></script>
+    <script src="/node_modules/jquery/dist/jquery.min.js"></script>
+</head>
+<body>
+    <div id="app" class="container-fluid">
+        <div data-reactroot="">
+            <div class="navbar-root">
+                <div id="navbar" class="navbar navbar-inverse navbar-fixed-top">
+                    <div class="container-fluid">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#mainNavbar"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a class="navbar-brand" href="/">MRC</a>
+                        </div>
+                        <div id="mainNavbar" class="navbar-collapse collapse">
+                            <div class="head-runner">
+                                <img src="../../app//images/running-01.gif" class="hide-working-head-runner" alt="working">
+                            </div>
+                            <div class="float-right pad-top-15"><span class=""><i class="fa fa-user-circle gray-5 font-1-10"></i><!-- react-text: 27 --> <!-- /react-text --><span class="Lato font-1-00 opacity-60 pad-left-5 lowercase" style="margin-top: -1px;">Dave Stone</span></span></div><ul class="nav navbar-nav"><li><a href="/" class="active">Home</a></li><li><a href="/releases">Release</a></li><li><a href="/rfcs">RFCs</a></li><li><a href="/runbooks">Runbooks</a></li><li><a href="/templates">Templates</a></li><li><a href="/builds">Builds</a></li><li><a href="/applications">Applications</a></li><li><a href="/admin">Admin</a></li><li><a href="/about">About</a></li><li><a href="/demo">Demo</a></li></ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container body-content">
+                <div class="pad-20">
+
+                    <div class="inner-body-content">
+
+                        <div class="pad-10"></div>
+
+                        <!-- SEARCH -->
+                        <div class="row">
+                            <div class="col-md-12 border-bottom-a-10 margin-bottom-10">
+                                <div class="float-right Lato font-1-60 opacity-50">
+                                    Application Links & Locations
+                                </div>
+                                <form class="mrc-forms">
+                                    <table *ngIf="searchCriteria">
+                                        <tr>
+                                            <td class="td">
+                                                <input type="text" name="ApplicationName" placeholder="search..." class="width-100" [(ngModel)]="searchCriteria.ApplicationName" (ngModelChange)="onApplicationNameChanged($event)" />
+                                            </td>
+
+                                            <td>
+
+                                                <div class="btn-group" dropdown keyboardNav="true">
+                                                    <button id="simple-btn-keyboard-nav" type="button" class="btn btn-sm btn-default" dropdownToggle>
+                                                        Group <span class="caret"></span>
+                                                    </button>
+                                                    <ul class="dropdown-menu" dropdownMenu role="menu">
+                                                        <li role="menuitem" *ngFor="let lookup of appLookups.ApplicationGroups"><a class="dropdown-item" (click)="onGroupChanged(lookup)">{{ lookup.Description }}</a></li>
+                                                    </ul>
+                                                </div>
+
+                                            </td>
+
+                                            <td>
+
+                                                <div class="btn-group" dropdown keyboardNav="true">
+                                                    <button id="simple-btn-keyboard-nav" type="button" class="btn btn-sm btn-default" dropdownToggle>
+                                                        Type <span class="caret"></span>
+                                                    </button>
+                                                    <ul class="dropdown-menu" dropdownMenu role="menu" aria-labelledby="simple-btn-keyboard-nav">
+                                                        <li role="menuitem" *ngFor="let lookup of appLookups.ApplicationTypes"><a class="dropdown-item" (click)="onTypeChanged(lookup)">{{ lookup.Description }}</a></li>
+                                                    </ul>
+                                                </div>
+
+                                            </td>
+
+                                            <td>
+                                                <div>
+                                                    <button class="btn btn-sm btn-primary" (click)="onClearSearchCriteria()">Clear</button>
+                                                </div>
+                                            </td>
+
+                                        </tr>
+                                    </table>
+                                </form>
+                            </div>
+                        </div>
+
+                        <!-- LIST -->
+                        <div class="row">
+                            <div class="col-md-4">
+
+                                <div>
+                                    <div class="fat-header">
+                                        Application
+                                    </div>
+                                </div>
+
+                                <table class="mrc-data-table">
+                                    <tbody>
+                                        <tr *ngFor="let item of mrcDataTable.mrcDataInput.Items;" >
+                                            <td>item.Name</td>
+                                            <td>item.ApplicationType.Description</td>
+                                            <td><span class="opacity-50 font-0-75 pad-right-10">edit</span></td>
+                                        </tr>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <td colspan="2">
+                                                
+                                            </td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+
+                            </div>
+                            <div class="col-md-4 align-top">
+                                <div class="fat-header">
+                                    Sites / Services
+                                </div>
+                                <div *ngIf="applicationLink">
+                                    <div class="row">
+                                        <div class="link-table">
+                                            <div class="link-tr" >
+                                                <div class="link-td">
+                                                    ServiceLink.ServiceName
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="fat-header">
+                                    Environments
+                                </div>
+                                <div *ngIf="serviceLink">
+                                    <div class="link-table">
+                                        <div class="link-tr">
+                                            <div class="link-td align-right border-right-a-20" style="width: 15%;">
+                                                Server.Environment.Name
+                                            </div>
+                                            <div class="link-td">
+                                                <a href="EnvironmentLink.Url" title="EnvironmentLink.Url" target="_blank" class="static-link"><i class="fa fa-external-link"></i></a>Server.Name
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- SELECTED -->
+                        <div *ngIf="environmentLink">
+                            <div class="selected-link">
+                                <div class="close-selected-link" (click)="onSelectedEnvironmentLinkClosed()">
+                                    <i class="fa fa-times-circle font-2-00 white opacity-50"></i>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div>
+                                            <table class="width-100">
+                                                <tr>
+                                                    <td class="BebasNeue align-center align-middle white-a-5 pad-right-10 border-dotted-right-a-50" style="width: 10%;">
+                                                        <div class="font-4-00">
+                                                            Server.Name
+                                                        </div>
+                                                        <div class="pad-5 margin-bottom-5 border-a-10 white-a-1-bg font-2-00">
+                                                            <div>Environment</div>
+                                                        </div>
+                                                        <div class="pad-5 align-center Lato">
+                                                            ApplicationGroup.Name
+                                                        </div>
+                                                    </td>
+                                                    <td class="align-left align-middle fixed-font">
+                                                        <ul *ngIf="environmentLink">
+                                                            <li class="font-1-80">
+                                                                <span class="opacity-50">ApplicationLink.ApplicationType.Description</span> : ApplicationLink.Name &gt; ServiceLink.ServiceName
+                                                            </li>
+                                                            <li class="pad-top-10" style="list-style: none;">
+                                                                <ul>
+                                                                    <li class="pad-top-10">
+                                                                        <i class="fa fa-clone pointer" title="copy"></i> <a href="EnvironmentLink.Url" target="_blank" class="expand-o-line">EnvironmentLink.Url</a>
+                                                                    </li>
+                                                                    <li class="pad-top-10 pointer">
+                                                                        <i class="fa fa-clone" title="copy"></i> EnvironmentLink.FolderPath
+                                                                    </li>
+                                                                </ul>
+                                                            </li>
+                                                        </ul>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+
+                                        <!-- NOTES -->
+                                        <div class="margin-top-5">
+                                            <div class="align-left pad-5 border-a-50 white-a-1-bg">
+                                                <i class="fa fa-chevron-down"></i><span class="pad-left-10">Notes</span>
+                                            </div>
+                                            <div class="pad-10 fixed-font align-left">
+                                                See additional notes about this service.
+                                            </div>
+                                        </div>
+
+                                        <!-- 'HIDDEN' COPY FIELDS -->
+                                        <div style="position: absolute; right: -1000px;">
+                                            <input type="text" [(ngModel)]="environmentLink.Url" #environmentLink_Url class="hidden_input">
+                                            <input type="text" [(ngModel)]="environmentLink.FolderPath" #environmentLink_FolderPath class="hidden_input">
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div id="foot">
+                <div id="footer" class="footer non-working-footer">
+                    <span class="float-right"><i class="fa fa-clone gray-9 font-1-10"></i></span><div class="hide"><i class="fa fa-cog fa-spin gray-9 font-1-10"></i><!-- react-text: 68 --> <!-- /react-text --><span class="app-working-message"><!-- react-text: 70 -->Working...<!-- /react-text --><!-- react-text: 71 --> <!-- /react-text --></span><span class="font-0-75 opacity-10">0</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        (function () {
+
+
+        })();
+    </script>
+</body>
+</html>

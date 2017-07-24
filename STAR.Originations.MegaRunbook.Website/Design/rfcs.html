@@ -1,0 +1,234 @@
+﻿<html style="" class=" js flexbox flexboxlegacy canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers applicationcache svg inlinesvg smil svgclippaths">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CMA - Capital Markets</title>
+
+    <link href="/node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="/node_modules/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
+
+    <script src="/node_modules/moment/min/moment.min.js"></script>
+    <script src="/node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="flipclock.min.js"></script>
+    <link href="flipclock.css" rel="stylesheet" />
+</head>
+<body>
+    <div id="app" class="container-fluid">
+        <div data-reactroot="">
+            <div class="navbar-root">
+                <div id="navbar" class="navbar navbar-inverse navbar-fixed-top">
+                    <div class="container-fluid">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#mainNavbar"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a class="navbar-brand" href="/">MRC</a>
+                        </div>
+                        <div id="mainNavbar" class="navbar-collapse collapse">
+                            <div class="head-runner">
+                                <img src="../../app//images/running-01.gif" class="hide-working-head-runner" alt="working">
+                            </div>
+                            <div class="float-right pad-top-15"><span class=""><i class="fa fa-user-circle gray-5 font-1-10"></i><!-- react-text: 27 --> <!-- /react-text --><span class="Lato font-1-00 opacity-60 pad-left-5 lowercase" style="margin-top: -1px;">Dave Stone</span></span></div><ul class="nav navbar-nav"><li><a href="/" class="active">Home</a></li><li><a href="/releases">Release</a></li><li><a href="/rfcs">RFCs</a></li><li><a href="/runbooks">Runbooks</a></li><li><a href="/templates">Templates</a></li><li><a href="/builds">Builds</a></li><li><a href="/applications">Applications</a></li><li><a href="/admin">Admin</a></li><li><a href="/about">About</a></li><li><a href="/demo">Demo</a></li></ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container body-content">
+                <div class="pad-20">
+                    <div class="align-right margin-right-10 margin-top-2">
+                        <button class="btn btn-primary btn-sm" (click)="addRfcClick()">Add New RFC</button>
+                    </div>
+
+                    <div class="inner-body-content">
+
+                        <!-- SEARCH -->
+                        <div class="row">
+                            <div class="col-md-12 border-bottom-a-10 margin-bottom-10">
+                                <div class="float-right Lato font-1-60 opacity-50">
+                                    RFC's
+                                </div>
+                                <form class="mrc-forms">
+                                    <table *ngIf="searchCriteria">
+                                        <tr>
+                                            <td class="td">
+                                                <input type="text"
+                                                       name="Search"
+                                                       placeholder="search..."
+                                                       class="width-100"
+                                                       autocomplete="off"
+                                                       #RfcSearchInput
+                                                       [(ngModel)]="searchCriteria.Name"
+                                                       (ngModelChange)="onRfcNameChanged($event)"
+                                                       [focus]="focusSettingEventEmitter" />
+                                            </td>
+
+                                            <td>
+                                                <div>
+                                                    <button class="btn btn-sm btn-primary" (click)="onClearSearchCriteria()">Clear</button>
+                                                </div>
+                                            </td>
+
+                                        </tr>
+                                    </table>
+                                </form>
+                            </div>
+                        </div>
+
+                        <div class="row">
+
+                            <div class="col-md-5">
+
+                                <div>
+                                    <div *ngIf="pagedApplicationLink" class="float-right align-right">
+                                        TotalRecordCount
+                                        <div class="small-caps opacity-50">
+                                            <span>Rfc.Name</span> <span>ApplicationType.Description</span>
+                                        </div>
+                                    </div>
+                                    <div class="fat-header">
+                                        RFC's
+                                    </div>
+                                </div>
+
+                                <table class="mrc-data-table" [mrc-data-input]="pagedRfcs" #mrcDataTable="mrcDataTable" [mrc-records-per-page]="10" (onDataRequested)="onDataRequested($event)">
+                                    <thead>
+                                        <tr>
+                                            <th class="pad-5 border-bottom-a-10 nowrap" style="width: 10%;"><mrc-table-sorter PropertyName="Number">RFC #</mrc-table-sorter></th>
+                                            <th class="pad-5 border-bottom-a-10" style="width: 81%;"><mrc-table-sorter PropertyName="Name">Name</mrc-table-sorter></th>
+                                            <th class="pad-5 border-bottom-a-10" style="width: 1%;"></th>
+                                            <th class="pad-5 border-bottom-a-10" style="width: 1%;"></th>
+                                            <th class="pad-5 border-bottom-a-10" style="width: 1%;"></th>
+                                            <th class="pad-5 border-bottom-a-10" style="width: 1%;"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let item of mrcDataTable.mrcDataInput.Items;" (click)="onRfcSelected(item)" [class.selected]="item.IsSelected">
+                                            <td class="pad-5 align-right">Item.Number</td>
+                                            <td class="pad-5">Item.Name</td>
+                                            <td class="pad-5 align-right nowrap">Item.StartTime</td>
+                                            <td class="pad-5 align-right nowrap"> - Item.EndTime</td>
+                                            <td class="pad-5"><button class="btn btn-xs btn-default">delete</button></td>
+                                            <td class="pad-5"><button class="btn btn-xs btn-info" (click)="editRfcClick(item)">edit</button></td>
+                                        </tr>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <td colspan="2">
+                                                <mrcBootstrapPaginator *ngIf="mrcDataTable.hasItems()" [rowsOnPageSet]="[10,50,100]"></mrcBootstrapPaginator>
+                                            </td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+
+                            </div>
+
+                            <div class="col-md-7">
+
+                                <!-- SELECTED RFC -->
+                                <div *ngIf="selectedRfc">
+
+                                    <!-- HEADER -->
+                                    <div class="thin-header pointer" [hidden]="selectedRfc.Name.length == 0">
+                                        <div *ngIf="selectedRfc" (click)="editRfcClick(selectedRfc)">Rfc.Name</div>
+                                    </div>
+
+                                    <div class="table bordered">
+                                        <div class="thead">
+                                            <div class="th">&nbsp;</div>
+                                            <div class="th align-right">Group</div>
+                                            <div class="th align-right">Step</div>
+                                            <div class="th">Team</div>
+                                            <div class="th">Description</div>
+                                            <div class="th">Developer</div>
+                                            <div class="th">PBIs</div>
+                                            <div class="th">Notes</div>
+                                            <div class="th">Duration</div>
+                                            <div class="th">Resource</div>
+                                            <div class="th">Comments</div>
+                                        </div>
+                                        <div class="tr" *ngFor="let step of selectedRfc.RunbookSteps; let i = index">
+                                            <div style="width: 2%;" class="td align-right">
+                                                <div class="pad-top-5">
+                                                    <button class="btn btn-default btn-xs" title="Collapse All"><i class="fa fa-chevron-down"></i></button>
+                                                </div>
+                                            </div>
+                                            <div style="width: 3%;" class="td align-right">
+                                                <div class="pad-top-5">Number</div>
+                                            </div>
+                                            <div style="width: 3%;" class="td align-right">
+                                                <div class="pad-top-5">Number</div>
+                                            </div>
+                                            <div style="width: 5%;" class="td">
+                                                <div class="pad-top-5">
+                                                    <div>Name</div>
+                                                </div>
+                                            </div>
+                                            <div style="width: 25%;" class="td">
+                                                <div class="pad-top-5">
+                                                    <div>Description</div>
+                                                </div>
+                                            </div>
+                                            <div style="width: 5%;" class="td nowrap">
+                                                <div class="pad-top-5" *ngIf="!IsNotCollapsed">
+                                                    <div>DisplayName</div>
+                                                </div>
+                                            </div>
+                                            <div style="width: 3%;" class="td">
+                                                <div class="pad-top-5">
+                                                    <div>PbiNumber</div>
+                                                </div>
+                                            </div>
+                                            <div style="width: 10%;" class="td">
+                                                <div class="pad-top-5">
+                                                    <code>Notes</code>
+                                                </div>
+                                            </div>
+
+                                            <div style="width: 3%;" class="td">
+                                                <div class="pad-top-5">
+                                                    <code>Duration</code>
+                                                </div>
+                                            </div>
+                                            <div style="width: 5%;" class="td">
+                                                <div class="pad-top-5">
+                                                    <div>DisplayName</div>
+                                                </div>
+                                            </div>
+                                            <div style="width: 5%;" class="td">
+                                                <div class="pad-top-5">
+                                                    <code *ngIf="IsNotCollapsed"></code>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="opacity-10">
+                            <ul>
+                                <li>List and Define RFC's.</li>
+                                <li>Each Release is composed of multiple selected RFC's.</li>
+                                <li>This is where you would deine a singular RFC for an expected release. It would be based off a copied Template.</li>
+                                <li>Not sure of the workflow here. For example, perhaps someone like Noor go in, select a Template, which would copy the Template into the RFC. She would then ask a developer to approve and/or modify the selected template.</li>
+                            </ul>
+                        </div>
+                    </div>                </div>
+            </div>
+            <div id="foot">
+                <div id="footer" class="footer non-working-footer">
+                    <span class="float-right"><i class="fa fa-clone gray-9 font-1-10"></i></span><div class="hide"><i class="fa fa-cog fa-spin gray-9 font-1-10"></i><!-- react-text: 68 --> <!-- /react-text --><span class="app-working-message"><!-- react-text: 70 -->Working...<!-- /react-text --><!-- react-text: 71 --> <!-- /react-text --></span><span class="font-0-75 opacity-10">0</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        (function () {
+
+
+        })();
+    </script>
+</body>
+</html>

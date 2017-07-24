@@ -1,0 +1,183 @@
+﻿<html style="" class=" js flexbox flexboxlegacy canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers applicationcache svg inlinesvg smil svgclippaths">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CMA - Capital Markets</title>
+
+    <link href="/node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="/node_modules/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
+
+    <script src="/node_modules/moment/min/moment.min.js"></script>
+    <script src="/node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="flipclock.min.js"></script>
+    <link href="flipclock.css" rel="stylesheet" />
+</head>
+<body>
+    <div id="app" class="container-fluid">
+        <div data-reactroot="">
+            <div class="navbar-root">
+                <div id="navbar" class="navbar navbar-inverse navbar-fixed-top">
+                    <div class="container-fluid">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#mainNavbar"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a class="navbar-brand" href="/">MRC</a>
+                        </div>
+                        <div id="mainNavbar" class="navbar-collapse collapse">
+                            <div class="head-runner">
+                                <img src="../../app//images/running-01.gif" class="hide-working-head-runner" alt="working">
+                            </div>
+                            <div class="float-right pad-top-15"><span class=""><i class="fa fa-user-circle gray-5 font-1-10"></i><!-- react-text: 27 --> <!-- /react-text --><span class="Lato font-1-00 opacity-60 pad-left-5 lowercase" style="margin-top: -1px;">Dave Stone</span></span></div><ul class="nav navbar-nav"><li><a href="/" class="active">Home</a></li><li><a href="/releases">Release</a></li><li><a href="/rfcs">RFCs</a></li><li><a href="/runbooks">Runbooks</a></li><li><a href="/templates">Templates</a></li><li><a href="/builds">Builds</a></li><li><a href="/applications">Applications</a></li><li><a href="/admin">Admin</a></li><li><a href="/about">About</a></li><li><a href="/demo">Demo</a></li></ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container body-content">
+                <div class="pad-20">
+
+                    <div class="align-right margin-right-10 margin-top-5">
+                        <button class="btn btn-primary btn-xs">Add New Release</button>
+                    </div>
+                    <div class="inner-body-content">
+                        <div class="fat-header">Runbooks / Releases</div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="pad-20 border-right-a-10">
+                                    <table class="fixed-font pointer width-100">
+                                        <tr>
+                                            <th class="pad-5 border-bottom-a-10">Release</th>
+                                            <th class="pad-5 border-bottom-a-10">FileName</th>
+                                            <th class="pad-5 border-bottom-a-10">Last Write Time</th>
+                                            <th class="pad-5 border-bottom-a-10"></th>
+                                            <th class="pad-5 border-bottom-a-10"></th>
+                                        </tr>
+                                        <tr>
+                                            <td class="pad-5">WED 10-12-2016</td>
+                                            <td class="pad-5">10-12-2016.xlsx</td>
+                                            <td class="pad-5">Mon 10-10-2016  08:10:32 AM</td>
+                                            <td class="pad-5"><button class="btn btn-xs btn-default">edit</button></td>
+                                            <td class="pad-5"><button class="btn btn-xs btn-primary">create</button></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="pad-5 gray-4-bg">SAT 10-15-2016</td>
+                                            <td class="pad-5 gray-4-bg">10-15-2016.xlsx</td>
+                                            <td class="pad-5 gray-4-bg">Thu 10-13-2016  10:17:41 AM</td>
+                                            <td class="pad-5 gray-4-bg"><button class="btn btn-xs btn-default">edit</button></td>
+                                            <td class="pad-5 gray-4-bg"><button class="btn btn-xs btn-primary">create</button></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="pad-5">WED 10-19-2016</td>
+                                            <td class="pad-5">10-19-2016.xlsx</td>
+                                            <td class="pad-5">Tue 10-18-2016  01:20:57 PM</td>
+                                            <td class="pad-5"><button class="btn btn-xs btn-default">edit</button></td>
+                                            <td class="pad-5"><button class="btn btn-xs btn-primary">create</button></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="pad-5 gray-4-bg">SAT 10-22-2016</td>
+                                            <td class="pad-5 gray-4-bg">10-22-2016.xlsx</td>
+                                            <td class="pad-5 gray-4-bg">Thu 10-20-2016  03:05:19 PM</td>
+                                            <td class="pad-5 gray-4-bg"><button class="btn btn-xs btn-default">edit</button></td>
+                                            <td class="pad-5 gray-4-bg"><button class="btn btn-xs btn-primary">create</button></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="pad-5 muted-blue-bg white">WED 10-26-2016</td>
+                                            <td class="pad-5 muted-blue-bg white">10-26-2016.xlsx</td>
+                                            <td class="pad-5 muted-blue-bg white">Mon 10-24-2016  12:20:23 PM</td>
+                                            <td class="pad-5 muted-blue-bg white"><button class="btn btn-xs btn-default">edit</button></td>
+                                            <td class="pad-5 muted-blue-bg white"><button class="btn btn-xs btn-primary">create</button></td>
+                                        </tr>
+
+                                        <tr>
+                                            <td class="pad-5 gray-4-bg">SAT 10-29-2016</td>
+                                            <td class="pad-5 gray-4-bg"></td>
+                                            <td class="pad-5 gray-4-bg"></td>
+                                            <td class="pad-5 gray-4-bg"><button class="btn btn-xs btn-default">edit</button></td>
+                                            <td class="pad-5 gray-4-bg"><button class="btn btn-xs btn-primary">create</button></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="pad-5">WED 11-02-2016</td>
+                                            <td class="pad-5"></td>
+                                            <td class="pad-5"></td>
+                                            <td class="pad-5"><button class="btn btn-xs btn-default">edit</button></td>
+                                            <td class="pad-5"><button class="btn btn-xs btn-primary">create</button></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="float-right pad-10 font-0-80 align-right">
+                                    <div class="opacity-70">approximately</div>
+                                    <div class="opacity-90">3 hours 30 minutes</div>
+                                </div>
+                                <div class="fat-header opacity-50">
+                                    WED 10-26-2016 8:00 PM - 11:30 PM
+                                </div>
+                                <div>
+                                    <table class="fixed-font pointer width-100">
+                                        <tr>
+                                            <th class="pad-5 border-bottom-a-10 nowrap">RFC #</th>
+                                            <th class="pad-5 border-bottom-a-10 width-100">Name</th>
+                                            <th class="pad-5 border-bottom-a-10"></th>
+                                            <th class="pad-5 border-bottom-a-10"></th>
+                                        </tr>
+                                        <tr>
+                                            <td class="pad-5">10363</td>
+                                            <td class="pad-5">Install Chef (Phase 2)</td>
+                                            <td class="pad-5 nowrap">08:00 PM - 08:30 PM</td>
+                                            <td class="pad-5"><button class="btn btn-xs btn-default">edit</button></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="pad-5 gray-4-bg">10391</td>
+                                            <td class="pad-5 gray-4-bg nowrap">CMA, ETL</td>
+                                            <td class="pad-5 gray-4-bg">09:00 PM - 10:00 PM</td>
+                                            <td class="pad-5 gray-4-bg"><button class="btn btn-xs btn-default">edit</button></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="pad-5">10498</td>
+                                            <td class="pad-5 nowrap">USAA</td>
+                                            <td class="pad-5">11:00 PM - 11:15 PM</td>
+                                            <td class="pad-5"><button class="btn btn-xs btn-default">edit</button></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="pad-5 gray-4-bg">10436</td>
+                                            <td class="pad-5 gray-4-bg nowrap">Filenet</td>
+                                            <td class="pad-5 gray-4-bg">11:15 PM - 11:30 PM</td>
+                                            <td class="pad-5 gray-4-bg"><button class="btn btn-xs btn-default">edit</button></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="pad-5">10406</td>
+                                            <td class="pad-5 nowrap">NationstarMtg</td>
+                                            <td class="pad-5">09:30 PM - 10:30 PM</td>
+                                            <td class="pad-5"><button class="btn btn-xs btn-default">edit</button></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="opacity-10">
+                            <ul>
+                                <li>Create and list Excel Runbooks in a shared folder.</li>
+                                <li>Each Runbook represents a Release and is composed of multiple selected RFC's.</li>
+                                <li>This is where you would find a release and click a button to generate the Excel spreadsheet.</li>
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div id="foot">
+                <div id="footer" class="footer non-working-footer">
+                    <span class="float-right"><i class="fa fa-clone gray-9 font-1-10"></i></span><div class="hide"><i class="fa fa-cog fa-spin gray-9 font-1-10"></i><!-- react-text: 68 --> <!-- /react-text --><span class="app-working-message"><!-- react-text: 70 -->Working...<!-- /react-text --><!-- react-text: 71 --> <!-- /react-text --></span><span class="font-0-75 opacity-10">0</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        (function () {
+
+
+        })();
+    </script>
+</body>
+</html>
