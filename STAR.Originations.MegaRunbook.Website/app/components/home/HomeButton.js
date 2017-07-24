@@ -25,10 +25,6 @@ class HomeButton extends React.Component {
                              marginTop: top ? top + 'px' : '50px'
                          };
 
-        console.log('APP DIMENSIONS', appDimensions);
-        console.log('TOP', top);
-        console.log('TOP STYLE', topStyle);
-
         return (
             <div className={staticStyles}>
                 <div className="">
