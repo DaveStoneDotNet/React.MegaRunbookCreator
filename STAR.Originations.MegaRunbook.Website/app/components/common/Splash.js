@@ -21,9 +21,6 @@ class Splash extends React.Component {
                             <div className="app-authenticating bounceInLeft animated">authenticating</div>
                             <img src="app/images/running.gif" className="opacity-50" alt="working" />
                             <img src="app/images/spiro.svg" className="spriro-02" alt="decorative" />
-                            <div className="BebasNeue font-1-00 opacity-10">
-                                { app.ajaxCount }
-                            </div>
                         </div>
                     </div>
                    </div>

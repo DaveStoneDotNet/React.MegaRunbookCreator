@@ -25,7 +25,7 @@ class HomeButton extends React.Component {
                     <IndexLink to="/releases" className="no-underline">
                         <ResponsiveImage appDimensions={appDimensions} src="../app/images/Mega-Runbook-Creator-Button-04.png" staticStyles="pointer" />
                         <div className="home-date-block">
-                            <img src="../app/images/spiro.svg" className="spriro-m-01" />
+                            <img src="../app/images/spiro.svg" className="spriro-03" />
                         </div>
                     </IndexLink>
                 </div>
