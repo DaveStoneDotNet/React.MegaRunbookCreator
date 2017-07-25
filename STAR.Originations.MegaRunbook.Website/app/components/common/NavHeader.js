@@ -20,7 +20,7 @@ class NavHeader extends React.Component {
         const app = this.props.app;
 
         return (
-            <div className="navbar-root">
+            <div className="navbar-root hidden">
                 
                 <Navbar inverse fixedTop collapseOnSelect>
                     <div className="container-fluid">

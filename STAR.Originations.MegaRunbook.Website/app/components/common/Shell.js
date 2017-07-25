@@ -1,11 +1,12 @@
-﻿import React         from 'react';
-import PropTypes     from 'prop-types';
-import { connect }   from 'react-redux';
+﻿import React            from 'react';
+import PropTypes        from 'prop-types';
+import { connect }      from 'react-redux';
 
-import NavHeader     from './NavHeader';
-import AppFooter     from './AppFooter';
-import Splash        from './Splash';
-import ResponsiveApp from './ResponsiveApp';
+import NavHeader        from './NavHeader';
+import AppFooter        from './AppFooter';
+import Splash           from './Splash';
+import ResponsiveApp    from './ResponsiveApp';
+import ResponsiveNavBar from './ResponsiveNavBar';
 
 import '../../../node_modules/font-awesome/css/font-awesome.min.css';
 import '../../../node_modules/toastr/build/toastr.css';
@@ -52,6 +53,7 @@ class Shell extends React.Component {
         return (
                   <div>
                     <Splash app={app} />
+                    <ResponsiveNavBar app={app} />
                     <NavHeader app={app} />
                     <div className="container body-content">
                         {
