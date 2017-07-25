@@ -8,7 +8,7 @@ import Splash        from './Splash';
 import ResponsiveApp from './ResponsiveApp';
 
 import '../../../node_modules/font-awesome/css/font-awesome.min.css';
-import '../../../node_modules/toastr/build/toastr.min.css';
+import '../../../node_modules/toastr/build/toastr.css';
 
 class Shell extends React.Component {
 

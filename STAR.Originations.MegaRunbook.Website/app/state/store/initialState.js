@@ -70,22 +70,25 @@ export default {
                                                           ], 
                                     contacts:             [
                                                             {
-                                                                Id:                  0, 
-                                                                BlockOrder:          0, 
-                                                                StepsText:           '', 
-                                                                BlockType:           '', 
-                                                                BlockName:           '', 
-                                                                BlockDescription:    '', 
-                                                                StartTime:           '', 
-                                                                StopTime:            '', 
-                                                                BlockStatus:         '', 
-                                                                BlockUsers:          [''] 
+                                                                Id:                0, 
+                                                                BlockOrder:        0, 
+                                                                StepsText:         '', 
+                                                                BlockType:         '', 
+                                                                BlockName:         '', 
+                                                                BlockDescription:  '', 
+                                                                StartTime:         '', 
+                                                                StopTime:          '', 
+                                                                BlockStatus:       '', 
+                                                                BlockUsers:        [''] 
                                                             }
                                                           ]
                                 }, 
                    app:         {
                                     config:               {
                                                               SlackWebhookUrl: ''
+                                                          }, 
+                                    twilioResponse:       {
+                                                              IsSuccessful: false
                                                           }, 
                                     user:                 {
                                                               HasRole:         false, 

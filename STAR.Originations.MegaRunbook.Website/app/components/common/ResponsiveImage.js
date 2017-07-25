@@ -1,6 +1,4 @@
-﻿import React         from 'react';
-
-import { IndexLink } from 'react-router';
+﻿import React from 'react';
 
 class ResponsiveImage extends React.Component {
 

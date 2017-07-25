@@ -7,7 +7,6 @@ import { NavDropdown }   from 'react-bootstrap';
 import { MenuItem }      from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 import { Link }          from 'react-router';
-import { IndexLink }     from 'react-router';
 
 class NavHeader extends React.Component {
 
@@ -36,7 +35,7 @@ class NavHeader extends React.Component {
                         <Navbar.Header>
                             <Navbar.Toggle className="navbar-toggle collapsed" data-toggle="collapse" data-target="#mainNavbar" />
                             <Navbar.Brand>
-                                <Link to='/'>MRC</Link>
+                                <Link to="/">MRC</Link>
                             </Navbar.Brand>
                             <Nav id="mainNavbar" className="navbar-collapse collapse">
                                 <LinkContainer to="/" onlyActiveOnIndex><NavItem>Home</NavItem></LinkContainer>

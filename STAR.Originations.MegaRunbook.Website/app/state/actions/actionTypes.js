@@ -44,7 +44,8 @@ export const SIGNALR_PIE_DATA_RECEIVED    = 'SIGNALR_PIE_DATA_RECEIVED';
 
 // -------------------------------------------------------------------------------
 
-export const POST_SLACK_MESSAGE          = 'POST_SLACK_MESSAGE';
+export const POST_SLACK_MESSAGE           = 'POST_SLACK_MESSAGE';
+export const SEND_TWILIO_MESSAGE          = 'SEND_TWILIO_MESSAGE';
 
 // -------------------------------------------------------------------------------
 

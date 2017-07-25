@@ -1,5 +1,4 @@
 ﻿import React         from 'react';
-import { IndexLink } from 'react-router';
 
 import HomeButton    from '../home/HomeButton';
 

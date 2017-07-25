@@ -73,6 +73,10 @@ export default function appReducer(state = initialState.app, action) {
             new_state = Object.assign({}, state, { ajaxCount: state.ajaxCount - 1 });
             return new_state;
 
+        case types.SEND_TWILIO_MESSAGE:
+            new_state = Object.assign({}, state, { twilioResponse: action.twilioResponse });
+            return new_state;
+
         default:
             return state;
     }

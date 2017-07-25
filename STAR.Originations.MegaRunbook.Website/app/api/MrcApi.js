@@ -181,6 +181,16 @@ class MrcApi {
                }
               );
     }
+
+    static sendTwilioMessage(request) {
+        return fetch('/api/SendTwilioMessage',
+            {
+                headers: API_HEADERS, 
+                method: 'POST',
+                body:   JSON.stringify(request)
+            })
+            .then((response) => response.json());
+    }
 }
 
 export default MrcApi;

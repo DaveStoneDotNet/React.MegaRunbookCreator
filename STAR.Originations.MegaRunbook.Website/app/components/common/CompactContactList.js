@@ -24,8 +24,6 @@ class CompactContactList extends React.Component {
 
         const contacts = this.props.contacts;
 
-        console.log('COMPACT CONTACT LIST - PROPS', this.props);
-
         return (
                     <div>
                         <div id="contacts-header">

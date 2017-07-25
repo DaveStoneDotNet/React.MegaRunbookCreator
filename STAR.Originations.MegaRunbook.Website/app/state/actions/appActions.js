@@ -50,13 +50,14 @@ import * as ajaxActions from './ajaxStatusActions';
 // If you typed 'monkey' instead of 'home' then nothing would get updated and no error would occur, but 
 // most importantly, 'home' would NOT be updated.
 
-export function getConfigSuccess(data)     { return { type: types.GET_CONFIG_SUCCESS,    config:        data    }; }
-export function getDataSuccess(data)       { return { type: types.GET_DATA_SUCCESS,      home:          data    }; }
+export function getConfigSuccess(data)     { return { type: types.GET_CONFIG_SUCCESS,    config:         data    }; }
+export function getDataSuccess(data)       { return { type: types.GET_DATA_SUCCESS,      home:           data    }; }
 
-export function getLookupsSuccess(lookups) { return { type: types.GET_LOOKUPS_SUCCESS,   lookups:       lookups }; }
-export function getUserSuccess(user)       { return { type: types.GET_USER_SUCCESS,      user:          user    }; }
-export function updateIsInitialized(app)   { return { type: types.IS_INITIALIZED,        app:           app     }; }
-export function updateAppDimensions(data)  { return { type: types.UPDATE_APP_DIMENSIONS, appDimensions: data    }; }
+export function getLookupsSuccess(lookups) { return { type: types.GET_LOOKUPS_SUCCESS,   lookups:        lookups }; }
+export function getUserSuccess(user)       { return { type: types.GET_USER_SUCCESS,      user:           user    }; }
+export function updateIsInitialized(app)   { return { type: types.IS_INITIALIZED,        app:            app     }; }
+export function updateAppDimensions(data)  { return { type: types.UPDATE_APP_DIMENSIONS, appDimensions:  data    }; }
+export function setTwilioMessage(data)     { return { type: types.SEND_TWILIO_MESSAGE,   twilioResponse: data    }; }
 
 // -----------------------------------------------------------------------------------------------------------------------
 // Thunks:
@@ -144,5 +145,15 @@ export function postSlackMessage(request) {
         return MrcApi.postSlackMessage(request)
             .then(() => dispatch(ajaxActions.endAjaxCall()))
             .catch((error) => { throw (error); });
+    };
+}
+
+export function sendTwilioMessage(request) {
+    return function (dispatch) {
+        dispatch(ajaxActions.beginAjaxCall());
+        return MrcApi.sendTwilioMessage(request)
+            .then((response) => dispatch(setTwilioMessage(response)))
+            .catch((error)   => { throw (error); })
+            .then(()         => dispatch(ajaxActions.endAjaxCall()));
     };
 }

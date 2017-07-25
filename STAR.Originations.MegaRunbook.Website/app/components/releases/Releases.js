@@ -5,6 +5,7 @@ import { bindActionCreators }   from 'redux';
 import toastr                   from 'toastr';
 
 import * as releaseActions      from '../../state/actions/releaseActions';
+import * as appActions          from '../../state/actions/appActions';
 
 import { getReleaseBlockBgCss } from '../../constants';
 
@@ -34,8 +35,10 @@ class Releases extends React.Component {
 
         this.staticCss = 'BebasNeue font-1-40 pad-10';
 
-        this.getRelease         = this.getRelease.bind(this);
-        this.toggleRandomizing  = this.toggleRandomizing.bind(this);
+        this.getRelease        = this.getRelease.bind(this);
+        this.toggleRandomizing = this.toggleRandomizing.bind(this);
+
+        toastr.options.positionClass = 'toast-bottom-right';
     }
 
     componentWillMount () {
@@ -49,7 +52,6 @@ class Releases extends React.Component {
     componentWillUnmount() {
         this.stopInterval();
     }
-
 
     // ------------------------------------------------------------------------------------------------
 
@@ -114,9 +116,6 @@ class Releases extends React.Component {
         const bgClass       = getReleaseBlockBgCss(release.ReleaseStatus);
         const isRandomizing = this.state.isRandomizing;
 
-        console.log('RELEASE - PROPS', this.props);
-        console.log('RELEASE - RELEASE CONTACTS', contacts);
-
         return (
                 <div>
                   <div className="pad-20">
@@ -142,7 +141,7 @@ class Releases extends React.Component {
                                 <ReleaseActivity releaseStatus={ release.ReleaseStatus } activities={ activities } />
                               </div>
                               <div className="pad-top-10">
-                                <CompactContactList contacts={ contacts } />
+                                <CompactContactList contacts={contacts} />
                               </div>
 
                           </div>
@@ -165,6 +164,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => { 
     return {
                actions: {
+                            appActions:     bindActionCreators(appActions, dispatch), 
                             releaseActions: bindActionCreators(releaseActions, dispatch)
                         }
            };

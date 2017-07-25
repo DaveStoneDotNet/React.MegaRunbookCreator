@@ -273,6 +273,44 @@ namespace STAR.Originations.MegaRunbook.Website.Controllers
 
         //private readonly static Lazy<ApiController> _instance = new Lazy<ApiController>(() => new ApiController(GlobalHost.ConnectionManager.GetHubContext<ReleaseHub>()));
 
+        #region SendTwilioMessage
+        [System.Web.Http.HttpPost]
+        public async Task<JsonResult> SendTwilioMessage(contracts::TwilioMessageRequest request)
+        {
+            var response = new { IsSuccessful = false };
+
+            var configs = await this.LoadJson<contracts::Config>(@"private.json");
+            var config = configs.FirstOrDefault();
+
+            var twilioConfig = new TwilioConfig
+            {
+                TwilioAccountSid  = config.TwilioProdAccountSid,
+                TwilioAuthToken   = config.TwilioProdAuthToken,
+                TwilioPhoneNumber = config.TwilioPhoneNumber
+            };
+
+            if (request.UserId == 21981)
+            {
+                var twilloMessage = new TwilioMessage
+                {
+                    ToPhoneNumber = config.TestNumber,
+                    Message = !String.IsNullOrWhiteSpace(request.Message) ? request.Message : $"Please confirm your availability as soon as possible."
+                };
+                try
+                {
+                    await new MrcTwilioSmsClient(twilioConfig).SendMessage(twilloMessage);
+                    response = new { IsSuccessful = true };
+                }
+                catch (Exception ex)
+                {
+                    System.Diagnostics.Debug.WriteLine(ex.Message);
+                }
+            }
+
+            return this.Json(response);
+        }
+        #endregion SendTwilioMessage
+
         #region GetData
         [System.Web.Http.HttpGet]
         public async Task<JsonResult> GetData()
@@ -280,13 +318,9 @@ namespace STAR.Originations.MegaRunbook.Website.Controllers
             System.Threading.Thread.Sleep(5000);
             var response = await Task.Run(() => new { info = "Some Random Data" });
 
-
             // FAILED ATTEMPT...
             //var context = GlobalHost.ConnectionManager.GetHubContext<ReleaseHub>();
             //context.Clients.All.Send("API MESSAGE");
-
-
-
 
             return this.Json(response);
         }
