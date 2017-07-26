@@ -9,7 +9,7 @@ import * as demoActions       from '../../state/actions/demoActions';
 
 import CourseForm             from './CourseForm';
 
-class ManageCoursePage extends React.Component {
+export class ManageCoursePage extends React.Component {
 
     constructor(props, context) {
 
@@ -104,7 +104,7 @@ ManageCoursePage.propTypes    = {
                                 };
 
 ManageCoursePage.contextTypes = {
-                                    router: PropTypes.object.isRequired
+                                    router: PropTypes.object
                                 };
 
 // const getCourseById = (courses, id) => {

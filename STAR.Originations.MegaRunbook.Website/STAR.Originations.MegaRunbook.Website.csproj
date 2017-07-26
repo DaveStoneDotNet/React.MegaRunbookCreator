@@ -20,7 +20,7 @@
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication>enabled</IISExpressAnonymousAuthentication>
-    <IISExpressWindowsAuthentication>enabled</IISExpressWindowsAuthentication>
+    <IISExpressWindowsAuthentication>disabled</IISExpressWindowsAuthentication>
     <IISExpressUseClassicPipelineMode />
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
@@ -271,9 +271,8 @@
     <Content Include="app\components\applications\Applications.js" />
     <Content Include="app\components\builds\Builds.js" />
     <Content Include="app\components\common\Splash.js" />
-    <Content Include="app\components\demo\CourseForm.Enzyme.test.js" />
+    <Content Include="app\components\demo\CourseForm.test.js" />
     <Content Include="app\components\demo\CourseForm.js" />
-    <Content Include="app\components\demo\CourseForm.ReactTestUtils.test.js" />
     <Content Include="app\components\demo\CourseList.js" />
     <Content Include="app\components\demo\CourseListRow.js" />
     <Content Include="app\components\demo\Demo.js" />
@@ -422,6 +421,9 @@
       <Project>{0eea4435-d75d-42df-b309-ce9ea5e4e440}</Project>
       <Name>STAR.Originations.MRC.DataAccess</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
