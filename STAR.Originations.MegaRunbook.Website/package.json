@@ -48,7 +48,7 @@
                        "react-table":            "6.4.0",
                        "recharts":               "1.0.0-alpha.1",
                        "redux":                  "3.6.0",
-                       "redux-thunk":            "2.1.0", 
+                       "redux-thunk":            "2.2.0", 
                        "toastr":                 "2.1.2", 
                        "whatwg-fetch":           "1.0.0"
                      },

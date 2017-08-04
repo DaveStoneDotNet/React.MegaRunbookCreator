@@ -245,6 +245,7 @@ ModelManifest.xml
 .fake/
 /ReactTests/README.md
 
+/STAR.Originations.MegaRunbook.Website/coverage
 /STAR.Originations.MegaRunbook.Website/js/fonts
 /STAR.Originations.MegaRunbook.Website/json/bing-api.json
 /STAR.Originations.MegaRunbook.Website/json/private.json

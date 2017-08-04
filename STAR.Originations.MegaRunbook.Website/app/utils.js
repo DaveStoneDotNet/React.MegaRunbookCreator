@@ -29,11 +29,19 @@ export const throttle = (func, wait) => {
     };
 };
 
+export const isNumeric = (num) => {
+  return !isNaN(parseFloat(num)) && isFinite(num);
+}
+
 export const padZero = (num) => {
-    if (num <= 9 && num >= 0) {
-        num = '0' + num;
+    if (isNumeric(num)) {
+        if (num <= 9 && num >= 0) {
+            num = '0' + num;
+        }
+    } else {
+        return '00';
     }
-    return num;
+    return num + '';
 };
 
 export const getTimeText = (targetDate) => {

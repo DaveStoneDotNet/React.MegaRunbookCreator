@@ -1,6 +1,7 @@
 
 import courseApi         from '../../api/mockCourseApi';    // Only need to change this import to use a real api instead of a mocked one.
 import MrcApi            from '../../api/MrcApi';           // For example, substitute it with a real api.
+
 import * as types        from './actionTypes';
 import * as ajaxActions  from './ajaxStatusActions';
 
@@ -128,7 +129,6 @@ export function getCourses() {
 //              dispatch(endAjaxCall()); 
 //              dispatch(getCourseSuccess(response));           <-------- WRONG, does not use a return statement
 //          }
-
 
 export function getCourse(courseId) {
     return function(dispatch) {

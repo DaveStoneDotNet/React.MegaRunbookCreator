@@ -1,56 +1,116 @@
-import nock               from 'nock';
+//import nock             from 'nock';
 import thunk              from 'redux-thunk';
 import configureMockStore from 'redux-mock-store';
+
+import MrcApi             from '../../api/MrcApi';
+
+import demoReducer        from '../reducers/demoReducer';
+import initialState       from '../store/initialState';
 
 import * as demoActions   from './demoActions';
 import * as types         from './actionTypes';
 
-// Test a sync action
-describe('Course Actions', () => {
-    describe('createCourseSuccess', () => {
-        it('should create a CREATE_COURSE_SUCCESS action', () => {
-            //arrange
-            const course = {id: 'clean-code', title: 'Clean Code'};
-            const expectedAction = {
-                type: types.CREATE_COURSE_SUCCESS,
-                course: course
-            };
+const middlewares = [ thunk ];
+const mockStore   = configureMockStore(middlewares);
 
-            //act
-            const action = demoActions.createCourseSuccess(course);
+const mockResponse = (status, statusText, response) => {
+    return new window.Response(response, {
+                                             status:     status,
+                                             statusText: statusText,
+                                             headers:    {
+                                                             'Content-type': 'application/json'
+                                                         }
+                                         });
+};
 
-            //assert
-            expect(action).toEqual(expectedAction);
-        });
+describe ('Demo Actions', () => {
+                                
+                                    it('does not crash', () => {
+                                                               
+                                                                   //const wrapper = setup();
+                                                                   //expect(wrapper.find('div').length).toBe(1);
+                                                               }
+                                      );
+                                }
+         );
+
+
+describe('Demo Reducer', () => {
+
+    it('Initializes the State', () => {
+
+        const expected = initialState.demo;
+        const action   = { };
+        const reducer  = demoReducer(undefined, action);
+
+        expect(reducer).toEqual(expected);
+
+    });
+
+    it('Sets the Demo to the Given Value', () => {
+
+        const initial  = initialState.demo.courses;
+
+        const expected = [{ id: '', title: '', watchHref: '', authorId: '', length: '', category: '' }];
+        const action   = demoActions.getCoursesSuccess(initial);
+        const reducer  = demoReducer(initial, action.courses);
+
+        expect(reducer).toEqual(expected);
+
+    });
+
+    it('Should handle GET_COURSES_SUCCESS', () => {
+
+        const initialState = [];
+
+        const newState = demoReducer(initialState, { type: 'GET_COURSES_SUCCESS', courses: [{ id: 1 }] });
+
+        expect(newState).toEqual({
+                                     courses: [{ id: 1 }]
+                                 });
     });
 });
 
-const middleware = [thunk];
-const mockStore = configureMockStore(middleware);
 
-describe('Async Actions', () => {
-    afterEach(() => {
-        nock.cleanAll();
-    });
 
-    it('should create BEGIN_AJAX_CALL and GET_COURSES_SUCCESS when loading courses', (done) => {
 
-        // Here's an example call to nock.
-        // nock('http://example.com/')
-        //   .get('/courses')
-        //   .reply(200, { body: { course: [{ id: 1, firstName: 'Cory', lastName: 'House'}] }});
 
-        const expectedActions = [
-          {type: types.BEGIN_AJAX_CALL},
-          {type: types.GET_COURSES_SUCCESS, body: {courses: [{id: 'clean-code', title: 'Clean Code'}]}}
-        ];
 
-        const store = mockStore({courses: []}, expectedActions, done);
-        store.dispatch(demoActions.getCourses()).then(() => {
-            const actions = store.getActions();
-            expect(actions[0].type).toEqual(types.BEGIN_AJAX_CALL);
-            expect(actions[1].type).toEqual(types.GET_COURSES_SUCCESS);
-            done();
-        });
-    });
-});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//function success() { return { type: 'FETCH_DATA_SUCCESS' } };
+
+//describe ('Demo Async Redux Actions', 
+
+//          () => {
+
+//                    it('does not crash either', 
+                        
+//                       () => {
+//                                 const store = mockStore({ });
+                             
+//                                 store.dispatch(MrcApi.getCourses()).then(() => {
+//                                                                                  const actions = store.getActions();
+//                                                                                  expect(actions[0]).toEqual(success());
+//                                                                                }
+//                                                                         )
+//                                                                    .catch((error) => console.log('RATS 02', error));
+//                             }
+//                      );
+//                }
+//         );
+
