@@ -18,7 +18,7 @@ import ReleaseStatusHeader      from './ReleaseStatusHeader';
 import ReleaseProgressTimers    from './ReleaseProgressTimers';
 import ReleaseActivity          from './ReleaseActivity';
 
-class Releases extends React.Component {
+export class Releases extends React.Component {
     
     constructor(props, context) {
 

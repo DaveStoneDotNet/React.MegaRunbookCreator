@@ -13,10 +13,8 @@ class DateHeader extends React.Component {
                      };
     }
 
-    componentDidMount () {
-    }
-
-    componentWillUnmount() {
+    getFormattedDateTime(dateTimeText, dateTimeFormat, defaultText) {
+        return dateTimeText ? moment(dateTimeText, DateFormats.DefaultDateTime).format(dateTimeFormat) : defaultText;
     }
 
     render() {

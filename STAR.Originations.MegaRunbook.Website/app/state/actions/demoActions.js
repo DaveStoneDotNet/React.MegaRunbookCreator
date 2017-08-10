@@ -47,6 +47,18 @@ export function signalrPieDataReceived(value)  { return { type: types.SIGNALR_PI
 // -----------------------------------------------------------------------------------------------------------------------
 // Thunks:
 // -----------------------------------------------------------------------------------------------------------------------
+// Redux Thunks middleware allows you to write action creators that return a function instead of an action. The thunk
+// can be used to *delay* the dispatch of an action, or to dispatch only if a certain condition is met. The inner function 
+// received the store methods dispatch and getState as parameters.
+//
+// To enable Redux Thunk, use applyMiddleware() when configuring the store in 'configStore.js'
+// 
+//          return createStore(rootReducer, initialState, compose(applyMiddleware(thunk, . . . )));
+// 
+// -----------------------------------------------------------------------------------------------------------------------
+// 
+// A thunk is a function that wraps an expression to delay its evaluation.
+// 
 // A thunk always returns a function that accepts a dispatch....
 // 
 //      return function (dispatch) 
@@ -54,6 +66,36 @@ export function signalrPieDataReceived(value)  { return { type: types.SIGNALR_PI
 // ... this wrapper function will exist in every thunk.
 // 
 // -----------------------------------------------------------------------------------------------------------------------
+// 
+// The 'dispatch' here was really confusing. Where does it come from? How is it passed in? It's not global. It's not 
+// referenced via an import or a prop off the store. We're not even referencing 'react-redux'.
+// 
+// The 'dispatch' comes from the 'bindActionCreators' function in a connected component...
+// 
+//  "The dispatch() function can be accessed directly from the store as store.dispatch(), but more likely you'll access
+//   it using a helper like react-redux's connect(). You can use bindActionCreators() to automatically bind many action
+//   creators to a dispatch() function." For example...
+// 
+//              const mapDispatchToProps = (dispatch) => { 
+//                  return {
+//                             actions: {
+//                                          appActions:     bindActionCreators(appActions, dispatch), 
+//                                          releaseActions: bindActionCreators(releaseActions, dispatch)
+//                                      }
+//                         };
+//              };
+// 
+//              export default connect(mapStateToProps, mapDispatchToProps)(Releases);
+// 
+// Actions describe the fact that something happened, but don't explicitly specify how the application's state changes
+// in response. This is the job of reducers.fs
+// 
+// A thunk is a function that wraps an expression to DELAY ITS EVALUATION, e.g. an async call.
+// Thunk middleware allows dispatching thunk async actions as if they were actions.
+// 
+//          e.g. store.dipatch(someAsyncOperations('some-parameter')).then(() => { console.log('Done'); });
+// 
+// 
 
 export function getCourses() {
     return function(dispatch) {

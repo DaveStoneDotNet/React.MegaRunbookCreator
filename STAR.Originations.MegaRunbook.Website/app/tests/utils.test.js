@@ -1,5 +1,6 @@
 
 import moment          from 'moment';
+import countdown       from 'countdown';
 
 import { DateFormats } from '../constants';
 
@@ -72,5 +73,111 @@ describe('Is Numeric', () => {
             expect(b).toBe(false);
         }
         
+    );
+});
+
+describe('Countdown', () => {
+    it('A year ago', () => {
+
+        const targetDate = moment().subtract(1, 'year').subtract(1, 'month');
+        const timeText = utils.getTimeText(targetDate);
+        expect(timeText).toBe('a year ago');
+        }
+    );
+
+    it('years ago', () => {
+
+        const targetDate = moment().subtract(2, 'year').subtract(2, 'month');
+        const timeText = utils.getTimeText(targetDate);
+        expect(timeText).toBe('years ago');
+        }
+    );
+
+    it('a month ago', () => {
+
+        const targetDate = moment().subtract(1, 'month');
+        const timeText = utils.getTimeText(targetDate);
+        expect(timeText).toBe('a month ago');
+        }
+    );
+
+    it('months ago', () => {
+
+        const targetDate = moment().subtract(2, 'month');
+        const timeText = utils.getTimeText(targetDate);
+        expect(timeText).toBe('months ago');
+        }
+    );
+
+    it('a day ago', () => {
+
+        const targetDate = moment().subtract(1, 'day');
+        const timeText = utils.getTimeText(targetDate);
+        expect(timeText).toBe('a day ago');
+        }
+    );
+
+    it('days ago', () => {
+
+        const targetDate = moment().subtract(2, 'day');
+        const timeText = utils.getTimeText(targetDate);
+        expect(timeText).toBe('days ago');
+        }
+    );
+
+    it('hours ago', () => {
+
+        const targetDate = moment().subtract(2, 'hour');
+        const timeText = utils.getTimeText(targetDate);
+        expect(timeText).toBe('hours ago');
+        }
+    );
+
+    it('about an hour ago', () => {
+
+        const targetDate = moment().subtract(1, 'hour').subtract(1, 'minute');
+        const timeText = utils.getTimeText(targetDate);
+        expect(timeText).toBe('about an hour ago');
+        }
+    );
+
+    it('more than an hour ago', () => {
+
+        const targetDate = moment().subtract(1, 'hour').subtract(11, 'minute');
+        const timeText = utils.getTimeText(targetDate);
+        expect(timeText).toBe('more than an hour ago');
+        }
+    );
+
+    it('almost an hour ago', () => {
+
+        const targetDate = moment().subtract(51, 'minute');
+        const timeText = utils.getTimeText(targetDate);
+        expect(timeText).toBe('almost an hour ago');
+        }
+    );
+
+    it('4 minutes ago', () => {
+
+        const targetDate = moment().subtract(4, 'minute');
+        const timeText = utils.getTimeText(targetDate);
+        expect(timeText).toBe('4 minutes ago');
+        }
+    );
+
+    it('just now', () => {
+
+        const targetDate = moment().subtract(3, 'minute');
+        const timeText = utils.getTimeText(targetDate);
+        expect(timeText).toBe('just now');
+        }
+    );
+
+    it('EMPTY', () => {
+
+        const targetDate = '';
+        const timeText = utils.getTimeText(targetDate);
+        expect(timeText).toBe('');
+        }
     );
 });

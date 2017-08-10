@@ -132,10 +132,11 @@ class MrcApi {
     static getData() {
 
         return fetch('/api/GetData',
-               {
-                   headers: API_HEADERS
-               })
-               .then((response) => response.json());
+            {
+                headers: API_HEADERS
+            })
+            .then((response) => response.json())
+            .catch((error) => error);
     }
 
     // --------------------------------------------------------------------------------------------------------------------
