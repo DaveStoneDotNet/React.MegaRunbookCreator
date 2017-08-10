@@ -25,7 +25,6 @@ class Home extends React.Component {
             <div className="align-center">
 
                 <Desktop>
-                    <div className='loader' />
                     <HomeButton appDimensions={appDimensions} />
                     <div className="pad-40 white-a-1 font-1-50">
                         <div>
