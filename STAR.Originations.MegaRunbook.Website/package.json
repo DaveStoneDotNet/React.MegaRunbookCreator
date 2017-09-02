@@ -47,6 +47,7 @@
                        "react-router-bootstrap": "0.23.3",
                        "react-router-redux":     "4.0.8",
                        "react-table":            "6.4.0",
+                       "react-tree-graph":       "2.0.0",
                        "recharts":               "1.0.0-alpha.1",
                        "redux":                  "3.6.0",
                        "redux-thunk":            "2.2.0", 
@@ -87,6 +88,7 @@
                        "isparta":                                        "4.0.0",
                        "istanbul":                                       "0.4.5",
                        "jest":                                           "20.0.4",
+                       "jest-fetch-mock":                                "1.2.1",
                        "json-loader":                                    "0.5.4",
                        "mocha":                                          "3.4.2",
                        "mockdate":                                       "2.0.1",
@@ -126,6 +128,8 @@
                      },
   "jest":            {
                        "collectCoverage":  true, 
+                       "automock":         false,
+                       "setupFiles":       ["./setupJest.js"], 
                        "moduleNameMapper": {
                                              "\\.(css|scss)$":                          "identity-obj-proxy",
                                              "^.+\\.(gif|ttf|eot|svg|woff|woff2|ico)$": "<rootDir>/tools/fileMock.js"

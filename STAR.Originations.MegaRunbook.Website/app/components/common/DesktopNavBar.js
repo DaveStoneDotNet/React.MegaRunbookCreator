@@ -64,6 +64,7 @@ class DesktopNavBar extends React.Component {
                                 <LinkContainer to="/about" className="hidden-sm hidden-xs visible-md-block visible-lg-block"><NavItem>About</NavItem></LinkContainer>
                                 <NavDropdown title="Demo" id="basic-nav-dropdown">
                                     <LinkContainer to="/demo"><MenuItem>Demo</MenuItem></LinkContainer>
+                                    <LinkContainer to="/tree"><MenuItem>Dependency Tree</MenuItem></LinkContainer>
                                     <LinkContainer to="/responsive"><MenuItem>Responsive Demos</MenuItem></LinkContainer>
                                     <LinkContainer to="/tba_01"><MenuItem>Design</MenuItem></LinkContainer>
                                     <LinkContainer to=""><MenuItem divider /></LinkContainer>

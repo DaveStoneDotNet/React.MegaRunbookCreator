@@ -15,6 +15,7 @@ import Runbooks             from './components/runbooks/Runbooks';
 import Templates            from './components/templates/Templates';
 import NotFound             from './components/common/NotFound';
 import Demo                 from './components/demo/Demo';
+import DependencyTree       from './components/demo/DependencyTree';
 import ManageCoursePage     from './components/demo/ManageCoursePage';
 import ResponsiveDemos      from './components/demo/ResponsiveDemos';
 
@@ -33,6 +34,7 @@ export default (
       <Route path="templates"    component = { Templates            } />
       
       <Route path="demo"         component = { Demo                 } />
+      <Route path="tree"         component = { DependencyTree       } />
       <Route path="responsive"   component = { ResponsiveDemos      } />
       <Route path="compact"      component = { CompactReleaseStatus } />
       <Route path="course"       component = { ManageCoursePage     } />

@@ -2325,3 +2325,34 @@ a.static-link:visited {
     }
 }
 
+// ----------------------------------------------------------------------
+// DEPENDENCY TREE
+// ----------------------------------------------------------------------
+
+div.custom-container {
+    background-color: #2d2d30;
+}
+
+svg.custom .node circle {
+	fill: #F3F3FF;
+	stroke: #2593B8;
+	stroke-width: 1.5px;
+}
+
+svg.custom .node text {
+	font-size: 11px;
+	background-color: #444;
+	fill: #F4F4F4;
+	text-shadow: 0 1px 4px black;
+}
+
+svg.custom .node {
+	cursor: pointer;
+}
+
+svg.custom path.link {
+	fill: none;
+	stroke: #2593B8;
+	stroke-width: 1.5px;
+}
+

@@ -238,7 +238,9 @@
     <Content Include="app\components\common\SimpleUserList.js" />
     <Content Include="app\components\common\ToggleHeader.js" />
     <Content Include="app\components\common\ToggleIcon.js" />
+    <Content Include="app\components\demo\DependencyTree.js" />
     <Content Include="app\components\demo\ResponsiveDemos.js" />
+    <Content Include="app\components\demo\TreeDependency.js" />
     <Content Include="app\components\home\HomeButton.js" />
     <Content Include="app\components\releases\CompactReleaseStatus.js" />
     <Content Include="app\components\releases\ReleaseActivity.js" />
@@ -256,13 +258,13 @@
     <Content Include="app\components\releases\ReleaseProgressTimers.js" />
     <Content Include="app\components\releases\ReleaseStatusHeader.js" />
     <Content Include="app\constants.js" />
+    <Content Include="app\models.js" />
     <Content Include="app\state\actions\actionTypes.js" />
     <Content Include="app\state\actions\ajaxStatusActions.js" />
     <Content Include="app\state\actions\appActions.js" />
     <Content Include="app\state\actions\authorActions.js" />
     <Content Include="app\state\actions\bingApiActions.js" />
     <Content Include="app\state\actions\demoActions.js" />
-    <Content Include="app\state\actions\demoActions.test.js" />
     <Content Include="app\api\delay.js" />
     <Content Include="app\api\mockAuthorApi.js" />
     <Content Include="app\api\mockCourseApi.js" />
@@ -271,19 +273,19 @@
     <Content Include="app\components\applications\Applications.js" />
     <Content Include="app\components\builds\Builds.js" />
     <Content Include="app\components\common\Splash.js" />
-    <Content Include="app\components\demo\CourseForm.test.js" />
     <Content Include="app\components\demo\CourseForm.js" />
     <Content Include="app\components\demo\CourseList.js" />
     <Content Include="app\components\demo\CourseListRow.js" />
     <Content Include="app\components\demo\Demo.js" />
     <Content Include="app\components\demo\ManageCoursePage.js" />
-    <Content Include="app\components\demo\ManageCoursePage.test.js" />
     <Content Include="app\components\releases\Releases.js" />
     <Content Include="app\components\rfcs\Rfcs.js" />
     <Content Include="app\components\runbooks\Runbooks.js" />
     <Content Include="app\components\templates\Templates.js" />
     <Content Include="app\state\actions\randomDataActions.js" />
     <Content Include="app\state\actions\releaseActions.js" />
+    <Content Include="app\state\actions\__tests__\actions.test.js" />
+    <Content Include="app\state\actions\__tests__\demoActions.test.js" />
     <Content Include="app\state\reducers\ajaxStatusReducer.js" />
     <Content Include="app\state\reducers\appReducer.js" />
     <Content Include="app\state\reducers\authorReducer.js" />
@@ -291,6 +293,7 @@
     <Content Include="app\state\reducers\demoReducer.js" />
     <Content Include="app\state\reducers\randomDataReducer.js" />
     <Content Include="app\state\reducers\releaseReducer.js" />
+    <Content Include="app\state\reducers\__tests__\demoReducer.test.js" />
     <Content Include="app\state\store\initialState.js" />
     <Content Include="app\components\common\Shell.js" />
     <Content Include="app\components\common\AppFooter.js" />
@@ -330,6 +333,8 @@
       <DependentUpon>_mrc-colors.css</DependentUpon>
     </Content>
     <Content Include="app\utils.js" />
+    <Content Include="app\__tests__\constants.test.js" />
+    <Content Include="app\__tests__\utils.test.js" />
     <Content Include="Design\app-services.html" />
     <Content Include="Design\flipclock.css" />
     <Content Include="Design\flipclock.min.js" />
@@ -380,6 +385,17 @@
     <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="app\containers\about\" />
+    <Folder Include="app\containers\admin\" />
+    <Folder Include="app\containers\applications\" />
+    <Folder Include="app\containers\builds\" />
+    <Folder Include="app\containers\common\" />
+    <Folder Include="app\containers\demo\" />
+    <Folder Include="app\containers\home\" />
+    <Folder Include="app\containers\releases\" />
+    <Folder Include="app\containers\rfcs\" />
+    <Folder Include="app\containers\runbooks\" />
+    <Folder Include="app\containers\templates\" />
     <Folder Include="App_Data\" />
     <Folder Include="Content\" />
     <Folder Include="js\" />

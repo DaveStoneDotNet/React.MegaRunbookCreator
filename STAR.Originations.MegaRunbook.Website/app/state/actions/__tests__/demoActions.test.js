@@ -1,14 +1,14 @@
-//import nock             from 'nock';
-import thunk              from 'redux-thunk';
-import configureMockStore from 'redux-mock-store';
+import thunk               from 'redux-thunk';
+import configureMockStore  from 'redux-mock-store';
+import { applyMiddleware } from 'redux';
 
-import MrcApi             from '../../../api/MrcApi';
+import MrcApi              from '../../../api/MrcApi';
 
-import demoReducer        from '../../reducers/demoReducer';
-import initialState       from '../../store/initialState';
+import demoReducer         from '../../reducers/demoReducer';
+import initialState        from '../../store/initialState';
 
-import * as demoActions   from '../demoActions';
-import * as types         from '../actionTypes';
+import * as demoActions    from '../demoActions';
+import * as types          from '../actionTypes';
 
 const middlewares = [ thunk ];
 const mockStore   = configureMockStore(middlewares);
@@ -25,92 +25,170 @@ const mockResponse = (status, statusText, response) => {
 
 describe ('Demo Actions', () => {
                                 
-    it('does not crash', () => {
-                               
-            //const wrapper = setup();
-            //expect(wrapper.find('div').length).toBe(1);
+    it('create an action for getting courses success', () => {
+
+        const courses = { };
+        const expectedAction = { type: types.GET_COURSES_SUCCESS, courses: courses };
+        expect(demoActions.getCoursesSuccess(courses)).toEqual(expectedAction);
         }
       );
     }
 );
 
+// -------------------------------------------------------------------
 
-describe('Demo Reducer', () => {
+const failedActions = [
+                       { 'type': 'BEGIN_AJAX_CALL', 'ajaxCount': undefined }, 
+                       { 'type': 'AJAX_CALL_ERROR', 'ajaxCount': undefined }, 
+                       { 'type': 'END_AJAX_CALL'  , 'ajaxCount': undefined }
+                      ];
 
-    it('Initializes the State', () => {
+describe('Async Actions', () => {
 
-        const expected = initialState.demo;
-        const action   = { };
-        const reducer  = demoReducer(undefined, action);
+    // SUCCESSFUL
+    // it('GET_COURSES_SUCCESS', () => {
 
-        expect(reducer).toEqual(expected);
+    //     const init = { 'status' : 500 , 'statusText' : 'SuperSmashingGreat!' };
 
-    });
+    //     fetch.mockResponse(JSON.stringify({courses: [] }), init);
 
-    it('Sets the Demo to the Given Value', () => {
+    //     //fetch.mockReject();
 
+    //     const expectedAction  =  { 'type': 'END_AJAX_CALL',       'ajaxCount': undefined       };
+    //     const expectedActions = [
+    //                              { 'type': 'BEGIN_AJAX_CALL'    , 'ajaxCount': undefined       }, 
+    //                              { 'type': 'GET_COURSES_SUCCESS', 'courses':   {'courses': []} }, 
+    //                              { 'type': 'END_AJAX_CALL'      , 'ajaxCount': undefined       }
+    //                             ];
+
+    //     const store = mockStore();
+
+    //     return store.dispatch(demoActions.getCourses()).then((actualAction) => {
+
+    //         // return of async actions
+    //         expect(store.getActions()).toEqual(expectedActions);
+    //         expect(actualAction).toEqual(expectedAction);
+    //     });
+    // });
+
+    // // VALID ERROR
+    // it('AJAX_CALL_ERROR', () => {
+        
+    //     fetch.mockReject();
+
+    //     const expectedAction = { 'type': 'END_AJAX_CALL', 'ajaxCount': undefined };
+
+    //     const store = mockStore();
+
+    //     return store.dispatch(demoActions.getCourses()).then((action) => {
+
+    //         // return of async actions
+    //         expect(store.getActions()).toEqual(failedActions);
+    //         expect(action).toEqual(expectedAction);
+    //     });
+    // });
+
+    // SUCCCESS
+    it('GET_COURSE_SUCCESS', () => {
+        
         const initial  = initialState.demo.courses;
-
-        const expected = [{ id: '', title: '', watchHref: '', authorId: '', length: '', category: '' }];
-        const action   = demoActions.getCoursesSuccess(initial);
-        const reducer  = demoReducer(initial, action.courses);
-
-        expect(reducer).toEqual(expected);
-
+        
+        const expectedAction = { type: types.GET_COURSES_SUCCESS, courses: initial };
+        const actualAction   = demoActions.getCoursesSuccess(initial);
+    
+        expect(actualAction).toEqual(expectedAction);
     });
 
-    it('Should handle GET_COURSES_SUCCESS', () => {
+    // it('GET_COURSE_SUCCESS', () => {
+        
+    //     const initialState = {};
 
-        const initialState = [];
+    //     const newState = demoReducer(initialState, { type: 'GET_COURSE_SUCCESS', course: { id: 1 } });
 
-        const newState = demoReducer(initialState, { type: 'GET_COURSES_SUCCESS', courses: [{ id: 1 }] });
+    //     expect(newState).toEqual({ course: { id: 1 } });
+    // });
 
-        expect(newState).toEqual({
-                                     courses: [{ id: 1 }]
-                                 });
-    });
+    // it('CREATE_COURSE_SUCCESS', () => {
+        
+    //     const initial  = initialState.demo.course;
+        
+    //     const expected = {
+    //                          id:        '', 
+    //                          title:     '', 
+    //                          watchHref: '', 
+    //                          authorId:  '', 
+    //                          length:    '', 
+    //                          category:  ''
+    //                      };
+    
+    //         const action  = demoActions.createCourseSuccess(initial);
+    //         const reducer = demoReducer(initial, action.course);
+    
+    //         expect(reducer).toEqual(expected);
+    // });
+
+    // it('UPDATE_COURSE_SUCCESS', () => {
+        
+    //     const initial  = initialState.demo.course;
+        
+    //     const expected = {
+    //                          id:        '', 
+    //                          title:     '', 
+    //                          watchHref: '', 
+    //                          authorId:  '', 
+    //                          length:    '', 
+    //                          category:  ''
+    //                      };
+    
+    //     const action  = demoActions.updateCourseSuccess(initial);
+    //     const reducer = demoReducer(initial, action.course);
+
+    //     expect(reducer).toEqual(expected);
+    // });
+
+    // it('creates GET_COURSE_DEMOS_SUCCESS when get courses is done', () => {
+        
+            //     const init = { 'status' : 500 , 'statusText' : 'SuperSmashingGreat!' };
+        
+            //     fetch.mockResponse(JSON.stringify({courses: [] }), init);
+        
+            //     //fetch.mockReject();
+        
+            //     const expectedAction  =  { 'type': 'END_AJAX_CALL',       'ajaxCount': undefined       };
+            //     const expectedActions = [
+            //                              { 'type': 'BEGIN_AJAX_CALL'    , 'ajaxCount': undefined       }, 
+            //                              { 'type': 'GET_COURSES_SUCCESS', 'courses':   {'courses': []} }, 
+            //                              { 'type': 'END_AJAX_CALL'      , 'ajaxCount': undefined       }
+            //                             ];
+        
+            //     const store = mockStore();
+        
+            //     return store.dispatch(demoActions.getCourseDemos({})).then((action) => {
+        
+            //         // return of async actions
+            //         // expect(store.getActions()).toEqual(expectedActions);
+            //         expect(action).toEqual(expectedAction);
+            //     });
+            // });
+                
+
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//function success() { return { type: 'FETCH_DATA_SUCCESS' } };
-
-//describe ('Demo Async Redux Actions', 
-
-//          () => {
-
-//                    it('does not crash either', 
-                        
-//                       () => {
-//                                 const store = mockStore({ });
-                             
-//                                 store.dispatch(MrcApi.getCourses()).then(() => {
-//                                                                                  const actions = store.getActions();
-//                                                                                  expect(actions[0]).toEqual(success());
-//                                                                                }
-//                                                                         )
-//                                                                    .catch((error) => console.log('RATS 02', error));
-//                             }
-//                      );
-//                }
-//         );
 
