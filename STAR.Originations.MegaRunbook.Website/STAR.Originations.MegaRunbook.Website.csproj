@@ -202,6 +202,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Activity.cs" />
+    <Compile Include="Models\ApplicationGroup.cs" />
     <Compile Include="Models\Contact.cs" />
     <Compile Include="Models\CourseDemo.cs" />
     <Compile Include="Models\CourseData.cs" />
@@ -262,6 +263,7 @@
     <Content Include="app\state\actions\actionTypes.js" />
     <Content Include="app\state\actions\ajaxStatusActions.js" />
     <Content Include="app\state\actions\appActions.js" />
+    <Content Include="app\state\actions\applicationActions.js" />
     <Content Include="app\state\actions\authorActions.js" />
     <Content Include="app\state\actions\bingApiActions.js" />
     <Content Include="app\state\actions\demoActions.js" />

@@ -192,6 +192,119 @@ class MrcApi {
             })
             .then((response) => response.json());
     }
+
+    // --------------------------------------------------------------------------------------------------------------------
+
+    static getRfcs(request) {
+        return fetch('/api/GetRfcs',
+            {
+                headers: API_HEADERS, 
+                method: 'POST',
+                body:   JSON.stringify(request)
+            })
+            .then((response) => response.json());
+    }
+
+    static getRfc(request) {
+        return fetch('/api/GetRfc',
+            {
+                headers: API_HEADERS, 
+                method: 'POST',
+                body:   JSON.stringify(request)
+            })
+            .then((response) => response.json());
+    }
+
+    static getRunbookTemplates(request) {
+        return fetch('/api/GetRunbookTemplates',
+            {
+                headers: API_HEADERS, 
+                method: 'POST',
+                body:   JSON.stringify(request)
+            })
+            .then((response) => response.json());
+    }
+
+    static getRunbookTemplate(request) {
+        return fetch('/api/GetRunbookTemplate',
+            {
+                headers: API_HEADERS, 
+                method: 'POST',
+                body:   JSON.stringify(request)
+            })
+            .then((response) => response.json());
+    }
+
+    static getRunbookSteps(request) {
+        return fetch('/api/GetRunbookSteps',
+            {
+                headers: API_HEADERS, 
+                method: 'POST',
+                body:   JSON.stringify(request)
+            })
+            .then((response) => response.json());
+    }
+
+    static getRunbookStep(request) {
+        return fetch('/api/GetRunbookStep',
+            {
+                headers: API_HEADERS, 
+                method: 'POST',
+                body:   JSON.stringify(request)
+            })
+            .then((response) => response.json());
+    }
+
+    static updateRunbookStep(request) {
+        return fetch('/api/UpdateRunbookStep',
+            {
+                headers: API_HEADERS, 
+                method: 'POST',
+                body:   JSON.stringify(request)
+            })
+            .then((response) => response.json());
+    }
+
+    static getApplicationGroups(request) {
+        return fetch('/api/GetApplicationGroups',
+            {
+                headers: API_HEADERS, 
+                method: 'POST',
+                body:   JSON.stringify(request)
+            })
+            .then((response) => response.json());
+    }
+
+    static getApplicationLinks(request) {
+        return fetch('/api/GetApplicationLinks',
+            {
+                headers: API_HEADERS, 
+                method: 'POST',
+                body:   JSON.stringify(request)
+            })
+            .then((response) => response.json());
+    }
+
+    static insertRfc(request) {
+        return fetch('/api/InsertRfc',
+            {
+                headers: API_HEADERS, 
+                method: 'POST',
+                body:   JSON.stringify(request)
+            })
+            .then((response) => response.json());
+    }
+
+    static getHardCodedApplicationLinks(request) {
+        return fetch('/api/GetHardCodedApplicationLinks',
+            {
+                headers: API_HEADERS, 
+                method: 'POST',
+                body:   JSON.stringify(request)
+            })
+            .then((response) => response.json());
+    }
+
 }
 
 export default MrcApi;
