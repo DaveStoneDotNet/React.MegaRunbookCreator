@@ -1,7 +1,7 @@
 ﻿
-import MrcApi           from '../../api/MrcApi';
-import * as types       from './actionTypes';
-import * as ajaxActions from './ajaxStatusActions';
+import MrcApi           from '../../api/MrcApi'
+import * as types       from './actionTypes'
+import * as ajaxActions from './ajaxStatusActions'
 
 // -----------------------------------------------------------------------------------------------------------------------
 // Actions:
@@ -44,20 +44,20 @@ import * as ajaxActions from './ajaxStatusActions';
 // referenced as 'home' since that's the property intended to be updated/replaced by the corresponding 
 // reducer. For example, suppose you drunk and you typed 'monkey' instead of 'home'...
 //  
-//      export function getDataSuccess(data) { return { type: types.GET_DATA_SUCCESS, home:   data  }; }   CORRECT
-//      export function getDataSuccess(data) { return { type: types.GET_DATA_SUCCESS, monkey: data  }; }   WRONG
+//      export function getDataSuccess(data) { return { type: types.GET_DATA_SUCCESS, home:   data  } }   CORRECT
+//      export function getDataSuccess(data) { return { type: types.GET_DATA_SUCCESS, monkey: data  } }   WRONG
 //
 // If you typed 'monkey' instead of 'home' then nothing would get updated and no error would occur, but 
 // most importantly, 'home' would NOT be updated.
 
-export function getConfigSuccess(data)     { return { type: types.GET_CONFIG_SUCCESS,    config:         data    }; }
-export function getDataSuccess(data)       { return { type: types.GET_DATA_SUCCESS,      home:           data    }; }
+export function getConfigSuccess(data)     { return { type: types.GET_CONFIG_SUCCESS,    config:         data    } }
+export function getDataSuccess(data)       { return { type: types.GET_DATA_SUCCESS,      home:           data    } }
 
-export function getLookupsSuccess(lookups) { return { type: types.GET_LOOKUPS_SUCCESS,   lookups:        lookups }; }
-export function getUserSuccess(user)       { return { type: types.GET_USER_SUCCESS,      user:           user    }; }
-export function updateIsInitialized(app)   { return { type: types.IS_INITIALIZED,        app:            app     }; }
-export function updateAppDimensions(data)  { return { type: types.UPDATE_APP_DIMENSIONS, appDimensions:  data    }; }
-export function setTwilioMessage(data)     { return { type: types.SEND_TWILIO_MESSAGE,   twilioResponse: data    }; }
+export function getLookupsSuccess(lookups) { return { type: types.GET_LOOKUPS_SUCCESS,   lookups:        lookups } }
+export function getUserSuccess(user)       { return { type: types.GET_USER_SUCCESS,      user:           user    } }
+export function updateIsInitialized(app)   { return { type: types.IS_INITIALIZED,        app:            app     } }
+export function updateAppDimensions(data)  { return { type: types.UPDATE_APP_DIMENSIONS, appDimensions:  data    } }
+export function setTwilioMessage(data)     { return { type: types.SEND_TWILIO_MESSAGE,   twilioResponse: data    } }
 
 // -----------------------------------------------------------------------------------------------------------------------
 // Thunks:
@@ -70,90 +70,89 @@ export function setTwilioMessage(data)     { return { type: types.SEND_TWILIO_ME
 // 
 // -----------------------------------------------------------------------------------------------------------------------
 
-let isLookupsInitialized = false;
-let isUserInitialized    = false;
+let isLookupsInitialized = false
+let isUserInitialized    = false
 
 function isAppInitialized(dispatch) {
-    const isInitialized = isLookupsInitialized && isUserInitialized;
+    const isInitialized = isLookupsInitialized && isUserInitialized
     if (isInitialized) {
-        dispatch(updateIsInitialized({ isAppInitialized: true }));
+        dispatch(updateIsInitialized({ isAppInitialized: true }))
     }
 }
 
 export function getLookups() {
     return function (dispatch) {
-        dispatch(ajaxActions.beginAjaxCall());
+        dispatch(ajaxActions.beginAjaxCall())
         return MrcApi.getLookups()
             .then(response => {
-                dispatch(getLookupsSuccess(response));
-                dispatch(updateIsInitialized({ isLookupsInitialized: true }));
-                isLookupsInitialized = true;
-                isAppInitialized(dispatch);
+                dispatch(getLookupsSuccess(response))
+                dispatch(updateIsInitialized({ isLookupsInitialized: true }))
+                isLookupsInitialized = true
+                isAppInitialized(dispatch)
             })
-            .catch(error => { throw (error); })
-            .then(() => dispatch(ajaxActions.endAjaxCall()));
-    };
+            .catch(error => { throw (error) })
+            .then(() => dispatch(ajaxActions.endAjaxCall()))
+    }
 }
 
 export function getUser() {
     return function (dispatch) {
-        dispatch(ajaxActions.beginAjaxCall());
+        dispatch(ajaxActions.beginAjaxCall())
         return MrcApi.getUserProfile()
             .then(response => {
-                dispatch(getUserSuccess(response));
-                dispatch(updateIsInitialized({ isUserInitialized: true }));
-                isUserInitialized = true;
-                isAppInitialized(dispatch);
+                dispatch(getUserSuccess(response))
+                dispatch(updateIsInitialized({ isUserInitialized: true }))
+                isUserInitialized = true
+                isAppInitialized(dispatch)
             })
-            .catch((error) => { throw (error); })
-            .then(() => dispatch(ajaxActions.endAjaxCall()));
-    };
+            .catch((error) => { throw (error) })
+            .then(() => dispatch(ajaxActions.endAjaxCall()))
+    }
 }
-
 
 export function getConfig() {
     return function (dispatch) {
-        dispatch(ajaxActions.beginAjaxCall());
+        dispatch(ajaxActions.beginAjaxCall())
         return MrcApi.getConfig()
             .then(response => dispatch(getConfigSuccess(response)))
-            .catch((error) => { throw (error); })
-            .then(()       => dispatch(ajaxActions.endAjaxCall()));
-    };
+            .catch((error) => { throw (error) })
+            .then(()       => dispatch(ajaxActions.endAjaxCall()))
+    }
 }
 
 export function getData() {
     return function (dispatch) {
-        dispatch(ajaxActions.beginAjaxCall());
+        dispatch(ajaxActions.beginAjaxCall())
         return MrcApi.getData()
             .then(response => dispatch(getDataSuccess(response)))
-            .catch((error) => { throw (error); })
-            .then(()       => dispatch(ajaxActions.endAjaxCall()));
-    };
+            .catch((error) => { throw (error) })
+            .then(()       => dispatch(ajaxActions.endAjaxCall()))
+    }
 }
 
 // -----------------------------------------------------------------------------------------------------------------------
 
 export function updateDimensions(appDimensions) {
     return function (dispatch) {
-        return dispatch(updateAppDimensions(appDimensions));
-    };
+        return dispatch(updateAppDimensions(appDimensions))
+    }
 }
 
 export function postSlackMessage(request) {
     return function (dispatch) {
-        dispatch(ajaxActions.beginAjaxCall());
+        dispatch(ajaxActions.beginAjaxCall())
         return MrcApi.postSlackMessage(request)
             .then(() => dispatch(ajaxActions.endAjaxCall()))
-            .catch((error) => { throw (error); });
-    };
+            .catch((error) => { throw (error) })
+    }
 }
 
 export function sendTwilioMessage(request) {
     return function (dispatch) {
-        dispatch(ajaxActions.beginAjaxCall());
+        dispatch(ajaxActions.beginAjaxCall())
         return MrcApi.sendTwilioMessage(request)
             .then((response) => dispatch(setTwilioMessage(response)))
-            .catch((error)   => { throw (error); })
-            .then(()         => dispatch(ajaxActions.endAjaxCall()));
-    };
+            .catch((error)   => { throw (error) })
+            .then(()         => dispatch(ajaxActions.endAjaxCall()))
+    }
 }

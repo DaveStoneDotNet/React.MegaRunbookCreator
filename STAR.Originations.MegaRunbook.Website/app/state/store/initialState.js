@@ -46,6 +46,20 @@ export default {
                    bingApiData: {
                                     authorizationToken:   ''
                                 }, 
+                   appLinks:    {
+                                    appSearchText:    '', 
+                                    selectedAppGroup: { Code: 'UNINITIALIZED', Description: 'UNINITIALIZED', active: false }, 
+                                    selectedAppType:  { }, 
+                                    appLinkList:      {
+                                                          HasNext:          false, 
+                                                          HasPrevious:      false, 
+                                                          PageNumber:       0, 
+                                                          RecordsPerPage:   10, 
+                                                          TotalPageCount:   0, 
+                                                          TotalRecordCount: 0, 
+                                                          Items:            []
+                                                      }
+                                }, 
                    release:     {
                                     release:              {
                                                               Id:                 0, 

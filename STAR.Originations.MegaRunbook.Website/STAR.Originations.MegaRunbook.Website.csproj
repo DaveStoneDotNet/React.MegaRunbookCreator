@@ -225,10 +225,14 @@
     <Content Include="app\audio\pop_01.mp3" />
     <Content Include="app\audio\started_01.mp3" />
     <Content Include="app\audio\warning_01.mp3" />
+    <Content Include="app\components\applications\applications.css" />
+    <Content Include="app\components\common\ApplicationGroupDropDown.js" />
+    <Content Include="app\components\applications\ApplicationSearch.js" />
     <Content Include="app\components\common\CompactContactList.js" />
     <Content Include="app\components\common\CompactContactListItem.js" />
     <Content Include="app\components\common\CompactNavBar.js" />
     <Content Include="app\components\common\DesktopNavBar.js" />
+    <Content Include="app\components\common\MrcDropDownButton.js" />
     <Content Include="app\components\common\ResponsiveApp.js" />
     <Content Include="app\components\common\ResponsiveImage.js" />
     <Content Include="app\components\common\ResponsiveNavBar.js" />
@@ -264,6 +268,7 @@
     <Content Include="app\state\actions\ajaxStatusActions.js" />
     <Content Include="app\state\actions\appActions.js" />
     <Content Include="app\state\actions\applicationActions.js" />
+    <Content Include="app\state\actions\appLinkActions.js" />
     <Content Include="app\state\actions\authorActions.js" />
     <Content Include="app\state\actions\bingApiActions.js" />
     <Content Include="app\state\actions\demoActions.js" />
@@ -289,6 +294,7 @@
     <Content Include="app\state\actions\__tests__\actions.test.js" />
     <Content Include="app\state\actions\__tests__\demoActions.test.js" />
     <Content Include="app\state\reducers\ajaxStatusReducer.js" />
+    <Content Include="app\state\reducers\appLinkReducer.js" />
     <Content Include="app\state\reducers\appReducer.js" />
     <Content Include="app\state\reducers\authorReducer.js" />
     <Content Include="app\state\reducers\bingApiReducer.js" />
@@ -322,6 +328,7 @@
     <Content Include="app\state\reducers\index.js" />
     <Content Include="app\routes.js" />
     <Content Include="app\state\store\configureStore.js" />
+    <Content Include="app\styles\react-select.css" />
     <Content Include="app\styles\sass.css">
       <DependentUpon>sass.scss</DependentUpon>
     </Content>

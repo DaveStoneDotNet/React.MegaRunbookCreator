@@ -2,6 +2,7 @@ import { combineReducers } from 'redux';
 import { routerReducer }   from 'react-router-redux';
 
 import appReducer          from './appReducer';
+import appLinkReducer      from './appLinkReducer';
 import releaseReducer      from './releaseReducer';
 import demoReducer         from './demoReducer';
 
@@ -49,6 +50,7 @@ const rootReducer = combineReducers({
                                         routing:        routerReducer, 
                                                  
                                         app:            appReducer,
+                                        appLinks:       appLinkReducer,
                                         release:        releaseReducer,
                                         demo:           demoReducer, 
                                         bingApiReducer: bingApiReducer, 

@@ -1,48 +1,49 @@
 /* eslint-disable import/default */
 
-import React                      from 'react';
-import { render }                 from 'react-dom';
-import { Provider }               from 'react-redux';
-import { Router, browserHistory } from 'react-router';
-import { syncHistoryWithStore }   from 'react-router-redux';
+import React                      from 'react'
+import { render }                 from 'react-dom'
+import { Provider }               from 'react-redux'
+import { Router, browserHistory } from 'react-router'
+import { syncHistoryWithStore }   from 'react-router-redux'
 
-import routes                     from './routes';
-import configureStore             from './state/store/configureStore';
+import routes                     from './routes'
+import configureStore             from './state/store/configureStore'
 
-import * as demoActions           from './state/actions/demoActions';
-import * as authorActions         from './state/actions/authorActions';
-import * as appActions            from './state/actions/appActions';
-import * as releaseActions        from './state/actions/releaseActions';
+import * as demoActions           from './state/actions/demoActions'
+import * as authorActions         from './state/actions/authorActions'
+import * as appActions            from './state/actions/appActions'
+import * as releaseActions        from './state/actions/releaseActions'
+import * as appLinkActions        from './state/actions/appLinkActions'
 
 // Import babel-polyfill to support Object.assign functions for deep-cloning of immutable objects.
 // Babel does not support Object.assign by default, so a pollyfill is needed.
 // 
-//      e.g. Object.assign({}, state, { someProperty: 'some value' });
+//      e.g. Object.assign({}, state, { someProperty: 'some value' })
 
-import 'babel-polyfill';
+import 'babel-polyfill'
 
 // The whole state of your app is stored in an object tree inside a single store.
 // The only way to change the state tree is to emit an action, an object describing what happened.
 // To specify how the actions transform the state tree, you write pure reducers.
 
-const store = configureStore();
+const store = configureStore()
 
-store.dispatch(demoActions.getCourses());
-store.dispatch(appActions.getConfig());
-store.dispatch(appActions.getUser());
-store.dispatch(appActions.getLookups());
-store.dispatch(authorActions.getAuthorLookups());
-store.dispatch(releaseActions.getReleaseContacts({ }));
+store.dispatch(demoActions.getCourses())
+store.dispatch(appActions.getConfig())
+store.dispatch(appActions.getUser())
+store.dispatch(appActions.getLookups())
+store.dispatch(authorActions.getAuthorLookups())
+store.dispatch(releaseActions.getReleaseContacts({ }))
 
 //store.subscribe(() =>
 //    console.log(store.getState())
-//);
+//)
 
 // Create an enhanced history that syncs navigation events with the store
-const history = syncHistoryWithStore(browserHistory, store);
+const history = syncHistoryWithStore(browserHistory, store)
 
 render(
   <Provider store = { store }>
     <Router history = { history } routes = { routes } onUpdate = { () => window.scrollTo(0, 0) } />
   </Provider>, document.getElementById('app')
-);
+)

@@ -19,6 +19,12 @@ export const UPDATE_APP_DIMENSIONS         = 'UPDATE_APP_DIMENSIONS'
 
 // -------------------------------------------------------------------------------
 
+export const UPDATE_SELECTED_APP_GROUP     = 'UPDATE_SELECTED_APP_GROUP'
+export const UPDATE_SELECTED_APP_TYPE      = 'UPDATE_SELECTED_APP_TYPE'
+export const UPDATE_APP_SEARCH_TEXT        = 'UPDATE_APP_SEARCH_TEXT'
+export const UPDATE_APPLICATION_LINKS      = 'UPDATE_APPLICATION_LINKS'
+
+// -------------------------------------------------------------------------------
 export const GET_COURSES_SUCCESS           = 'GET_COURSES_SUCCESS'
 export const GET_COURSE_SUCCESS            = 'GET_COURSE_SUCCESS'
 export const GET_AUTHORS_SUCCESS           = 'GET_AUTHORS_SUCCESS'
