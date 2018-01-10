@@ -38,9 +38,9 @@ class Applications extends React.Component {
 
     componentWillMount () {
         const request = {
-                            Paging: { PageNumber: 0, RecordsPerPage: 100, SortInfo: [{ PropertyName: 'Id', SortOrder: 'Ascending' }] }
+                            Paging: { PageNumber: 0, RecordsPerPage: 100, SortInfo: [{ PropertyName: 'Id', SortOrder: 'Descending' }] }
                         }
-        this.getRelease(request)
+        this.getApplicationLinks(request)
     }
     
     componentDidMount () {
@@ -60,7 +60,8 @@ class Applications extends React.Component {
     
     // ------------------------------------------------------------------------------------------------
 
-    getRelease(request) {
+    getApplicationLinks(request) {
+
         this.setState({ isLoading: true })
         this.props.actions.appLinkActions.getApplicationLinks(request)
                                          .then((response) => {
@@ -149,11 +150,11 @@ class Applications extends React.Component {
                       <div className="float-right Lato font-1-60 opacity-50">
                           Application Links and Locations
                       </div>
-                      <ApplicationSearch applicationGroups={applicationGroups} 
-                                         applicationTypes={applicationTypes} 
-                                         selectAppGroup={this.selectAppGroup} 
-                                         selectAppType={this.selectAppType} 
-                                         clearSelections={this.clearSelections} 
+                      <ApplicationSearch applicationGroups = {applicationGroups} 
+                                         applicationTypes  = {applicationTypes} 
+                                         selectAppGroup    = {this.selectAppGroup} 
+                                         selectAppType     = {this.selectAppType} 
+                                         clearSelections   = {this.clearSelections} 
                                          />
                   </div>
               </div>

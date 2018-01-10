@@ -1,7 +1,10 @@
 ﻿import React             from 'react'
 import PropTypes         from 'prop-types';
 
+import _                 from 'lodash';
+
 import MrcDropDownButton from '../common/MrcDropDownButton'
+import DebouncedInput    from '../common/DebouncedInput'
 
 class ApplicationSearch extends React.Component {
 
@@ -9,9 +12,14 @@ class ApplicationSearch extends React.Component {
 
         super(props, context)
 
+        this.state = {
+                          applicationName: '' 
+                     }
+
         this.appNameRef = null
 
         this.handleAppNameRef = this.handleAppNameRef.bind(this)
+        this.onAppNameChange  = this.onAppNameChange.bind(this)
     }
 
     componentWillMount () {
@@ -37,7 +45,21 @@ class ApplicationSearch extends React.Component {
         this.appNameRef = c;
     }
 
+    debouncer(applicationName) {
+        console.log('DEBOUNCER', applicationName)
+    }
+
+    onAppNameChange(applicationName) {
+        
+        console.log('APP NAME CHANGE', applicationName)
+
+        this.setState({ applicationName: applicationName })
+        _.debounce(this.debouncer, 500)(applicationName)
+    }
+
     render() {
+
+        const applicationName   = this.state.applicationName
 
         const applicationGroups = this.props.applicationGroups
         const applicationTypes  = this.props.applicationTypes
@@ -51,7 +73,7 @@ class ApplicationSearch extends React.Component {
                           <tbody>
                               <tr>
                                   <td className="td">
-                                      <input type="text" name="ApplicationName" placeholder="search..." className="width-100" autoFocus ref={this.handleAppNameRef} /><br/>
+                                      <DebouncedInput value={applicationName} minLength={2} debounceTimeout={500} className="width-100" onChange={e => this.onAppNameChange(e.target.value)} autoFocus inputRef={this.handleAppNameRef}/><br/>
                                   </td>
                           
                                   <td>

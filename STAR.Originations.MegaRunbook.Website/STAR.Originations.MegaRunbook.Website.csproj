@@ -231,6 +231,7 @@
     <Content Include="app\components\common\CompactContactList.js" />
     <Content Include="app\components\common\CompactContactListItem.js" />
     <Content Include="app\components\common\CompactNavBar.js" />
+    <Content Include="app\components\common\DebouncedInput.js" />
     <Content Include="app\components\common\DesktopNavBar.js" />
     <Content Include="app\components\common\MrcDropDownButton.js" />
     <Content Include="app\components\common\ResponsiveApp.js" />
