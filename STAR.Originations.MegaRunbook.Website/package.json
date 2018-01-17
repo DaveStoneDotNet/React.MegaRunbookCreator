@@ -49,6 +49,7 @@
     "react-select": "1.1.0",
     "react-table": "6.4.0",
     "react-tree-graph": "2.0.0",
+    "react-ultimate-pagination": "1.0.3",
     "recharts": "1.0.0-alpha.1",
     "redux": "3.6.0",
     "redux-thunk": "2.2.0",
@@ -141,27 +142,43 @@
     }
   },
   "babel": {
-             "presets": ["es2015", "react", "stage-0"],
-             "env":     {
-                          "development": {
-                                           "presets": ["env", "react-hmre"]
-                                         },
-                          "production":  {
-                                           "presets": [
-                                                        ["env", { "es2015": { "modules": false } }]
-                                                      ],
-                                           "plugins": [
-                                                        "transform-react-constant-elements",
-                                                        "transform-react-remove-prop-types",
-                                                        "transform-class-properties"
-                                                      ]
-                                         },
-                          "test":        {
-                                           "presets": ["env"]
-                                         }
-                        }
-           },
-"eslintConfig": {
+    "presets": [
+      "es2015",
+      "react",
+      "stage-0"
+    ],
+    "env": {
+      "development": {
+        "presets": [
+          "env",
+          "react-hmre"
+        ]
+      },
+      "production": {
+        "presets": [
+          [
+            "env",
+            {
+              "es2015": {
+                "modules": false
+              }
+            }
+          ]
+        ],
+        "plugins": [
+          "transform-react-constant-elements",
+          "transform-react-remove-prop-types",
+          "transform-class-properties"
+        ]
+      },
+      "test": {
+        "presets": [
+          "env"
+        ]
+      }
+    }
+  },
+  "eslintConfig": {
     "root": true,
     "extends": [
       "eslint:recommended",

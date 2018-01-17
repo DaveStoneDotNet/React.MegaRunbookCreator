@@ -5,6 +5,8 @@ import { Button }             from 'react-bootstrap'
 import { DropdownButton }     from 'react-bootstrap'
 import { MenuItem }           from 'react-bootstrap'
 
+import BootstrapPaginator     from '../common/BootstrapPaginator'
+
 import ApplicationSearch      from './ApplicationSearch'
 
 import './applications.css'
@@ -25,7 +27,9 @@ class Applications extends React.Component {
                          applicationTypes:  props.applicationTypes.map(o  => { return {Code: o.Code, Description: o.Description, active: false} }), 
                          selectedAppGroup:  { }, 
                          selectedAppType:   { }, 
-                         applicationName:   ''
+                         applicationName:   '', 
+                         appPage:           1, 
+                         totalAppPages:     50
         }
 
         this.selectAppGroup        = this.selectAppGroup.bind(this)
@@ -34,13 +38,14 @@ class Applications extends React.Component {
         this.clearSelectedAppGroup = this.clearSelectedAppGroup.bind(this)
         this.clearSelectedAppType  = this.clearSelectedAppType.bind(this)
         this.onAppNameChange       = this.onAppNameChange.bind(this)
+        this.onPaginationChange    = this.onPaginationChange.bind(this)
     }
 
     // ------------------------------------------------------------------------------------------------
 
     componentWillMount () {
         const request = {
-                            Paging: { PageNumber: 0, RecordsPerPage: 100, SortInfo: [{ PropertyName: 'Id', SortOrder: 'Descending' }] }
+                            Paging: { PageNumber: 0, RecordsPerPage: 10, SortInfo: [{ PropertyName: 'Id', SortOrder: 'Descending' }] }
                         }
         this.getApplicationLinks(request)
     }
@@ -137,6 +142,12 @@ class Applications extends React.Component {
         this.setState({ applicationName: applicationName })
     }
 
+    onPaginationChange(pageNumber) {
+        
+        console.log('PAGINATION CHANGE', pageNumber)
+        this.setState({appPage: pageNumber})
+    }
+
     // ------------------------------------------------------------------------------------------------
 
     render() {
@@ -211,8 +222,10 @@ class Applications extends React.Component {
                           </tbody>
                           <tfoot>
                           <tr>
-                              <td colSpan="2">
-                                  mrcBootstrapPaginator
+                              <td colSpan="2" className="align-center">
+                                  <BootstrapPaginator currentPage = {this.state.appPage} 
+                                                      totalPages  = {this.state.totalAppPages} 
+                                                      onChange    = {this.onPaginationChange}/>
                               </td>
                           </tr>
                           </tfoot>

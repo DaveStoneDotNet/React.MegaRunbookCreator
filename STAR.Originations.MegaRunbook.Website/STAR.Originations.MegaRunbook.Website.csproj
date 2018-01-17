@@ -228,6 +228,7 @@
     <Content Include="app\components\applications\applications.css" />
     <Content Include="app\components\common\ApplicationGroupDropDown.js" />
     <Content Include="app\components\applications\ApplicationSearch.js" />
+    <Content Include="app\components\common\BootstrapPaginator.js" />
     <Content Include="app\components\common\CompactContactList.js" />
     <Content Include="app\components\common\CompactContactListItem.js" />
     <Content Include="app\components\common\CompactNavBar.js" />
