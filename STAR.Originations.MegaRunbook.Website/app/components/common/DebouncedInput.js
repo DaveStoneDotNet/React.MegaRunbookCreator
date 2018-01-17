@@ -67,10 +67,6 @@ class DebouncedInput extends React.PureComponent {
         }
     }
 
-    onChange() {
-        console.log('DEBOUNCER')
-    }
-
     onChange = event => {
 
         event.persist()
@@ -78,18 +74,19 @@ class DebouncedInput extends React.PureComponent {
         const oldValue = this.state.value
 
         this.setState({value: event.target.value}, () => {
-            const {value} = this.state
 
-            if (value.length >= this.props.minLength) {
-                this.notify(event)
-                return
-            }
-
-            // If user hits backspace and goes below minLength consider it cleaning the value
-            if (oldValue.length > value.length) {
-                this.notify({...event, target: {...event.target, value: ''}})
-            }
-        })
+                                                       const {value} = this.state
+                                           
+                                                       if (value.length >= this.props.minLength) {
+                                                           this.notify(event)
+                                                           return
+                                                       }
+                                           
+                                                       // If user hits backspace and goes below minLength consider it cleaning the value
+                                                       if (oldValue.length > value.length) {
+                                                           this.notify({...event, target: {...event.target, value: ''}})
+                                                       }
+                                                   })
     }
 
     onKeyDown = event => {
@@ -126,32 +123,38 @@ class DebouncedInput extends React.PureComponent {
         } else if (debounceTimeout === 0) {
             this.notify = this.doNotify
         } else {
+
+            // A lodash debounced function delays invoking a function ('doNotify') until after a given number of milliseconds have elapsed since the last time the debounced function was invoked ('debounceTimeout'). 
+            // The debounce function comes with a 'cancel' method to cancel the delayed function ('doNotify') invocation and a 'flush' method to immediately invoke it. This occurs upon 'componentWillUnmount'.
+            // It's possible to provide options to indicate whether the function ('doNotify') should be invoked on the leading and/or trailing edge of the wait timeout, but those options have not been implemented here. 
+            // The function ('doNotify') is invoked with the last arguments provided to the debounced function ('event'). Subsequent calls to the debounced function return the result of the last function invocation.
+
             const debouncedChangeFunc = debounce(event => {
-                this.isDebouncing = false
-                this.doNotify(event)
-            }, debounceTimeout)
+                                            this.isDebouncing = false
+                                            this.doNotify(event)
+                                        }, debounceTimeout)
     
             this.notify = event => {
-                this.isDebouncing = true
-                debouncedChangeFunc(event)
-            }
+                              this.isDebouncing = true
+                              debouncedChangeFunc(event)
+                          }
     
             this.flush = () => debouncedChangeFunc.flush()
     
             this.cancel = () => {
-                this.isDebouncing = false
-                debouncedChangeFunc.cancel()
-            }
+                              this.isDebouncing = false
+                              debouncedChangeFunc.cancel()
+                          }
         }
     }
     
     doNotify = (...args) => {
-        const {onChange} = this.props
-    
-        onChange(...args)
+
+        this.props.onChange(...args)
     }
-    
+
     forceNotify = event => {
+
         if (!this.isDebouncing) {
             return
         }
@@ -160,7 +163,7 @@ class DebouncedInput extends React.PureComponent {
             this.cancel()
         }
     
-        const {value} = this.state
+        const {value}     = this.state
         const {minLength} = this.props
     
         if (value.length >= minLength) {
@@ -169,9 +172,9 @@ class DebouncedInput extends React.PureComponent {
             this.doNotify({...event, target: {...event.target, value}})
         }
     }
-    
+
     render() {
-    
+
         const {
                   element,
                   onChange:        _onChange,
@@ -209,9 +212,9 @@ class DebouncedInput extends React.PureComponent {
         const maybeRef = inputRef ? {ref: inputRef} : {}
     
         return React.createElement(element, {
-                                                ...props,
                                                 onChange: this.onChange,
                                                 value:    this.state.value,
+                                                ...props,
                                                 ...maybeOnKeyDown,
                                                 ...maybeOnBlur,
                                                 ...maybeRef

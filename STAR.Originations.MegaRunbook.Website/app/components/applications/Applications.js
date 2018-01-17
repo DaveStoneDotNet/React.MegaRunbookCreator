@@ -24,7 +24,8 @@ class Applications extends React.Component {
                          applicationGroups: props.applicationGroups.map(o => { return {Code: o.Code, Description: o.Description, active: false} }), 
                          applicationTypes:  props.applicationTypes.map(o  => { return {Code: o.Code, Description: o.Description, active: false} }), 
                          selectedAppGroup:  { }, 
-                         selectedAppType:   { }
+                         selectedAppType:   { }, 
+                         applicationName:   ''
         }
 
         this.selectAppGroup        = this.selectAppGroup.bind(this)
@@ -32,6 +33,7 @@ class Applications extends React.Component {
         this.clearSelections       = this.clearSelections.bind(this)
         this.clearSelectedAppGroup = this.clearSelectedAppGroup.bind(this)
         this.clearSelectedAppType  = this.clearSelectedAppType.bind(this)
+        this.onAppNameChange       = this.onAppNameChange.bind(this)
     }
 
     // ------------------------------------------------------------------------------------------------
@@ -93,7 +95,9 @@ class Applications extends React.Component {
         const applicationGroups = this.state.applicationGroups.map(o => { return { Code: o.Code, Description: o.Description, active: false } }) 
         const applicationTypes  = this.state.applicationTypes.map(o  => { return { Code: o.Code, Description: o.Description, active: false } })
 
-        this.setState({ applicationGroups: applicationGroups, applicationTypes: applicationTypes, selectedAppGroup: { }, selectedAppType: { }  })
+        this.setState({ applicationGroups: applicationGroups, applicationTypes: applicationTypes, selectedAppGroup: { }, selectedAppType: { } })
+
+        this.onAppNameChange('')
     }
 
     clearSelectedAppGroup() {
@@ -126,21 +130,32 @@ class Applications extends React.Component {
 
     // ------------------------------------------------------------------------------------------------
 
-    render() {
+    onAppNameChange(applicationName) {
         
-        const appHeader        = this.getApplicationHeader()
-        const appLinkListItems = this.props.appLinkList.Items
+        console.log('APP NAME CHANGE', applicationName)
+        
+        this.setState({ applicationName: applicationName })
+    }
 
-        const applicationGroups = this.state.applicationGroups
-        const applicationTypes  = this.state.applicationTypes
+    // ------------------------------------------------------------------------------------------------
 
-        const selectedAppGroup = this.state.selectedAppGroup
-        const selectedAppType  = this.state.selectedAppType
+    render() {
 
+        const appHeader         = this.getApplicationHeader()
+        const appLinkListItems  = this.props.appLinkList.Items
+
+        const {
+                applicationGroups, 
+                applicationTypes, 
+                applicationName, 
+                selectedAppGroup, 
+                selectedAppType 
+              }  = this.state
+        
         const selectedAppGroupStyle = { display: selectedAppGroup.Description ? '' : 'none' }
         const selectedAppTypeStyle  = { display: selectedAppType.Description  ? '' : 'none' }
 
-        const clearDropDownIcon = { display: selectedAppGroup.Description || selectedAppType.Description  ? '' : 'none' }
+        const clearDropDownIcon     = { display: selectedAppGroup.Description || selectedAppType.Description  ? '' : 'none' }
 
         return (
             <div className="margin-top-20">
@@ -152,8 +167,10 @@ class Applications extends React.Component {
                       </div>
                       <ApplicationSearch applicationGroups = {applicationGroups} 
                                          applicationTypes  = {applicationTypes} 
+                                         applicationName   = {applicationName}
                                          selectAppGroup    = {this.selectAppGroup} 
                                          selectAppType     = {this.selectAppType} 
+                                         onAppNameChange   = {this.onAppNameChange}
                                          clearSelections   = {this.clearSelections} 
                                          />
                   </div>

@@ -12,14 +12,9 @@ class ApplicationSearch extends React.Component {
 
         super(props, context)
 
-        this.state = {
-                          applicationName: '' 
-                     }
-
         this.appNameRef = null
 
-        this.handleAppNameRef = this.handleAppNameRef.bind(this)
-        this.onAppNameChange  = this.onAppNameChange.bind(this)
+        this.initializeAppNameRef = this.initializeAppNameRef.bind(this)
     }
 
     componentWillMount () {
@@ -41,31 +36,21 @@ class ApplicationSearch extends React.Component {
         }
     }
 
-    handleAppNameRef(c) {
+    initializeAppNameRef(c) {
         this.appNameRef = c;
-    }
-
-    debouncer(applicationName) {
-        console.log('DEBOUNCER', applicationName)
-    }
-
-    onAppNameChange(applicationName) {
-        
-        console.log('APP NAME CHANGE', applicationName)
-
-        this.setState({ applicationName: applicationName })
-        _.debounce(this.debouncer, 500)(applicationName)
     }
 
     render() {
 
-        const applicationName   = this.state.applicationName
-
-        const applicationGroups = this.props.applicationGroups
-        const applicationTypes  = this.props.applicationTypes
-        const selectAppGroup    = this.props.selectAppGroup
-        const selectAppType     = this.props.selectAppType
-        const clearSelections   = this.props.clearSelections
+        const {
+                applicationName,
+                applicationGroups,
+                applicationTypes,
+                selectAppGroup,
+                selectAppType,
+                clearSelections,
+                onAppNameChange
+             } = this.props
 
         return (
                     <div className="mrc-forms">
@@ -73,7 +58,13 @@ class ApplicationSearch extends React.Component {
                           <tbody>
                               <tr>
                                   <td className="td">
-                                      <DebouncedInput value={applicationName} minLength={2} debounceTimeout={500} className="width-100" onChange={e => this.onAppNameChange(e.target.value)} autoFocus inputRef={this.handleAppNameRef}/><br/>
+                                      <DebouncedInput value={applicationName} 
+                                                      minLength={2} 
+                                                      debounceTimeout={500} 
+                                                      className="width-100" 
+                                                      onChange={e => onAppNameChange(e.target.value)} 
+                                                      inputRef={this.initializeAppNameRef} 
+                                                      autoFocus /><br/>
                                   </td>
                           
                                   <td>
