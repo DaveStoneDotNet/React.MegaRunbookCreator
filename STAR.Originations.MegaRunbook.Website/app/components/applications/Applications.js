@@ -6,6 +6,8 @@ import { DropdownButton }     from 'react-bootstrap'
 import { MenuItem }           from 'react-bootstrap'
 
 import BootstrapPaginator     from '../common/BootstrapPaginator'
+import RecordsPerPageSelector from '../common/RecordsPerPageSelector'
+import SortHeader             from '../common/SortHeader'
 
 import ApplicationSearch      from './ApplicationSearch'
 
@@ -21,33 +23,34 @@ class Applications extends React.Component {
         super(props, context)
 
         this.state = {
-                         isSaving:          false, 
-                         isLoading:         false, 
-                         applicationGroups: props.applicationGroups.map(o => { return {Code: o.Code, Description: o.Description, active: false} }), 
-                         applicationTypes:  props.applicationTypes.map(o  => { return {Code: o.Code, Description: o.Description, active: false} }), 
-                         selectedAppGroup:  { }, 
-                         selectedAppType:   { }, 
-                         applicationName:   '', 
-                         appPage:           1, 
-                         totalAppPages:     50
-        }
+                         isSaving:            false, 
+                         isLoading:           false, 
+                         applicationGroups:   props.applicationGroups.map(o => { return {Code: o.Code, Description: o.Description, active: false} }), 
+                         applicationTypes:    props.applicationTypes.map(o  => { return {Code: o.Code, Description: o.Description, active: false} }), 
+                         applicationRequest:  { Paging: { PageNumber: 1, RecordsPerPage: 10, SortInfo: [{ PropertyName: 'Id', SortOrder: 'Ascending' }] } }, 
+                         selectedAppGroup:    { }, 
+                         selectedAppType:     { }, 
+                         applicationName:     '', 
+                         appPage:             1, 
+                         totalAppPages:       1 
+                     }
 
-        this.selectAppGroup        = this.selectAppGroup.bind(this)
-        this.selectAppType         = this.selectAppType.bind(this)
-        this.clearSelections       = this.clearSelections.bind(this)
-        this.clearSelectedAppGroup = this.clearSelectedAppGroup.bind(this)
-        this.clearSelectedAppType  = this.clearSelectedAppType.bind(this)
-        this.onAppNameChange       = this.onAppNameChange.bind(this)
-        this.onPaginationChange    = this.onPaginationChange.bind(this)
+        this.selectAppGroup         = this.selectAppGroup.bind(this)
+        this.selectAppType          = this.selectAppType.bind(this)
+        this.clearSelections        = this.clearSelections.bind(this)
+        this.clearSelectedAppGroup  = this.clearSelectedAppGroup.bind(this)
+        this.clearSelectedAppType   = this.clearSelectedAppType.bind(this)
+        this.onAppNameChange        = this.onAppNameChange.bind(this)
+        this.onPaginationChange     = this.onPaginationChange.bind(this)
+        this.onRecordsPerPageChange = this.onRecordsPerPageChange.bind(this)
+        this.onAppSort              = this.onAppSort.bind(this)
+        this.onAppSelected          = this.onAppSelected.bind(this)
     }
 
     // ------------------------------------------------------------------------------------------------
 
     componentWillMount () {
-        const request = {
-                            Paging: { PageNumber: 0, RecordsPerPage: 10, SortInfo: [{ PropertyName: 'Id', SortOrder: 'Descending' }] }
-                        }
-        this.getApplicationLinks(request)
+        this.getApplicationLinks()
     }
     
     componentDidMount () {
@@ -67,9 +70,34 @@ class Applications extends React.Component {
     
     // ------------------------------------------------------------------------------------------------
 
-    getApplicationLinks(request) {
+    getApplicationLinks() {
+
+        // request = { 
+        //              Name:               "", 
+        //              ApplicationGroupId: "7", 
+        //              ApplicationType:    {
+        //                                    Code:        "WCF", 
+        //                                    Description: "WCF Service"
+        //                                  }, 
+        //              Paging:             {
+        //                                    PageNumber:      1, 
+        //                                    RecordsPerPage: 10, 
+        //                                    SortInfo:       [{
+        //                                                        PropertyName: "Id", 
+        //                                                        SortOrder:    "Descending"
+        //                                                    }]
+        //           }
+
+        const selectedAppGroup     = this.state.selectedAppGroup
+        const selectedAppType      = this.state.selectedAppType
+
+        const request              = this.state.applicationRequest
+        request.Name               = this.state.applicationName
+        request.ApplicationGroupId = selectedAppGroup.Code
+        request.ApplicationType    = { Code: selectedAppType.Code,  Description: selectedAppType.Description  }
 
         this.setState({ isLoading: true })
+
         this.props.actions.appLinkActions.getApplicationLinks(request)
                                          .then((response) => {
                                              console.log('RELEASE RESPONSE', response)
@@ -85,14 +113,14 @@ class Applications extends React.Component {
 
         selectedAppGroup.active = true
         const applicationGroups = this.state.applicationGroups.map(o => { return { Code: o.Code, Description: o.Description, active: o.Code === selectedAppGroup.Code } }) 
-        this.setState({ applicationGroups: applicationGroups, selectedAppGroup: selectedAppGroup })
+        this.setState({ applicationGroups: applicationGroups, selectedAppGroup: selectedAppGroup }, () => { this.getApplicationLinks() })
     }
 
     selectAppType(selectedAppType) {
 
         selectedAppType.active = true
         const applicationTypes = this.state.applicationTypes.map(o => { return { Code: o.Code, Description: o.Description, active: o.Code === selectedAppType.Code } }) 
-        this.setState({ applicationTypes: applicationTypes, selectedAppType: selectedAppType })
+        this.setState({ applicationTypes: applicationTypes, selectedAppType: selectedAppType }, () => { this.getApplicationLinks() })
     }
 
     clearSelections() {
@@ -109,51 +137,131 @@ class Applications extends React.Component {
 
         const applicationGroups = this.state.applicationGroups.map(o => { return { Code: o.Code, Description: o.Description, active: false } }) 
 
-        this.setState({ applicationGroups: applicationGroups, selectedAppGroup: { } })
+        this.setState({ applicationGroups: applicationGroups, selectedAppGroup: { } }, () => { this.getApplicationLinks() })
     }
 
     clearSelectedAppType() {
 
         const applicationTypes  = this.state.applicationTypes.map(o  => { return { Code: o.Code, Description: o.Description, active: false } })
 
-        this.setState({ applicationTypes: applicationTypes, selectedAppType: { }  })
+        this.setState({ applicationTypes: applicationTypes, selectedAppType: { } }, () => { this.getApplicationLinks() })
     }
 
     getApplicationHeader() {
 
-        let header = 'Application'
+        let header = '0 Applications'
 
         if (this.props.appLinkList) {
-            if (this.props.appLinkList.Items) {
-                const count = this.props.appLinkList.Items.length
-                header = count === 1 ? '1 Application' : count + ' Applications'
+
+            const { Items, TotalRecordCount, RecordsPerPage } = this.props.appLinkList
+
+            if (Items) {
+                const count = Items.length < RecordsPerPage ? Items.length : RecordsPerPage
+                const total = TotalRecordCount
+                header = count + ' of ' + total  + ' Total Applications'
             }
         }
 
         return header
     }
 
+    calculatePageNumber() {
+
+        // Attempting to handle page number issues. 
+        // 
+        // e.g. - The client-side works with one-based page numbers
+        //      - The server-side works with zero-based page numbers
+        // 
+        // Additionally, when the component mounts, 'totalPageCount' is, via Redux 'connect' on the Redux store. 
+        // If the page number is greater than the total number of pages ('totalPageCount') then an error is thrown.
+        // 
+        //      Error: getPaginationModel(): currentPage shouldn't be greater than totalPages
+        // 
+
+        const totalPageCount = this.props.appLinkList.TotalPageCount
+
+        let pageNumber = this.state.applicationRequest.Paging.PageNumber
+        pageNumber = pageNumber === 0 ? 1 : pageNumber
+        pageNumber = pageNumber > totalPageCount ? totalPageCount : pageNumber
+
+        return pageNumber
+    }
+
+    getSortInfo(key) {
+
+        let sortInfo = { PropertyName: key, SortOrder: 'Ascending' }
+        const index = this.state.applicationRequest.Paging.SortInfo.findIndex(o => o.PropertyName === key)
+
+        if (index >= 0) {
+            sortInfo = { ...this.state.applicationRequest.Paging.SortInfo[index] }
+            switch (sortInfo.SortOrder) {
+                case 'Ascending':
+                    sortInfo.SortOrder = 'Descending'
+                    break
+                case 'Descending':
+                    sortInfo.PropertyName = 'Id'
+                    sortInfo.SortOrder     = 'Ascending'
+                    break
+                case '':
+                    sortInfo.SortOrder = 'Ascending'
+                    break
+                default:
+                    break
+            }
+        }
+
+        return sortInfo
+    }
+
     // ------------------------------------------------------------------------------------------------
 
     onAppNameChange(applicationName) {
         
-        console.log('APP NAME CHANGE', applicationName)
-        
-        this.setState({ applicationName: applicationName })
+        this.setState({ applicationName: applicationName }, () => { this.getApplicationLinks() })
     }
 
     onPaginationChange(pageNumber) {
         
-        console.log('PAGINATION CHANGE', pageNumber)
-        this.setState({appPage: pageNumber})
+        const applicationRequest = { ...this.state.applicationRequest }
+        applicationRequest.Paging.PageNumber = pageNumber
+
+        this.setState({applicationRequest: applicationRequest}, () => { this.getApplicationLinks() })
+    }
+
+    onRecordsPerPageChange(pageCount) {
+        
+        const applicationRequest = { ...this.state.applicationRequest }
+        applicationRequest.Paging.RecordsPerPage = pageCount
+        applicationRequest.Paging.PageNumber = 1
+
+        this.setState({applicationRequest: applicationRequest}, () => { this.getApplicationLinks() })
+    }
+
+    onAppSort(appKey) {
+
+        const applicationRequest = { ...this.state.applicationRequest }
+        const sortInfo           = this.getSortInfo(appKey)
+
+        applicationRequest.Paging.SortInfo = [sortInfo]
+        this.setState({applicationRequest: applicationRequest}, () => { this.getApplicationLinks() })
+    }
+
+    onAppSelected(appKey) {
+        
+        console.log('APP SORT CHANGE', appKey)
     }
 
     // ------------------------------------------------------------------------------------------------
 
     render() {
 
-        const appHeader         = this.getApplicationHeader()
-        const appLinkListItems  = this.props.appLinkList.Items
+        const appHeader        = this.getApplicationHeader()
+        const pageNumber       = this.calculatePageNumber()
+        const appLinkListItems = this.props.appLinkList.Items
+        const totalPageCount   = this.props.appLinkList.TotalPageCount
+        const recordsPerPage   = this.props.appLinkList.RecordsPerPage
+
+        const indexer = (pageNumber-1) * recordsPerPage
 
         const {
                 applicationGroups, 
@@ -163,6 +271,8 @@ class Applications extends React.Component {
                 selectedAppType 
               }  = this.state
         
+        const sortInfo = this.state.applicationRequest.Paging.SortInfo[0]
+
         const selectedAppGroupStyle = { display: selectedAppGroup.Description ? '' : 'none' }
         const selectedAppTypeStyle  = { display: selectedAppType.Description  ? '' : 'none' }
 
@@ -204,17 +314,19 @@ class Applications extends React.Component {
                       <table className="mrc-data-table">
                           <thead>
                           <tr>
-                              <th style={{width: '80%'}}><mrc-table-sorter PropertyName="Name">Name</mrc-table-sorter></th>
-                              <th style={{width: '19%'}}><mrc-table-sorter PropertyName="ApplicationType.Description">Type</mrc-table-sorter></th>
-                              <th style={{ width: '1%' }}>-</th>
+                              <th style={{ width:  '1%' }}>&nbsp;</th>
+                              <th style={{ width: '80%' }} onClick={ () => this.onAppSort('Name')                        } className="pointer"><SortHeader title="Name" propertyName="Name"                        selectedSortInfo={ sortInfo }/></th>
+                              <th style={{ width: '19%' }} onClick={ () => this.onAppSort('ApplicationType.Description') } className="pointer"><SortHeader title="Type" propertyName="ApplicationType.Description" selectedSortInfo={ sortInfo }/></th>
+                              <th style={{ width:  '1%' }}>&nbsp;</th>
                           </tr>
                           </thead>
                           <tbody>
                               {
                                   appLinkListItems.map((item, index) => 
                                       <tr key={index}>
+                                          <td className="align-right opacity-50">{ indexer + (index + 1) }</td>
                                           <td>{ item.Name }</td>
-                                          <td>{ item.ApplicationType.Description }</td>
+                                          <td className="nowrap">{ item.ApplicationType.Description }</td>
                                           <td><span className="opacity-50 font-0-75 pad-right-10">edit</span></td>
                                       </tr>
                                   )
@@ -222,10 +334,14 @@ class Applications extends React.Component {
                           </tbody>
                           <tfoot>
                           <tr>
-                              <td colSpan="2" className="align-center">
-                                  <BootstrapPaginator currentPage = {this.state.appPage} 
-                                                      totalPages  = {this.state.totalAppPages} 
-                                                      onChange    = {this.onPaginationChange}/>
+                              <td colSpan="4">
+                                  <BootstrapPaginator currentPage = {pageNumber} 
+                                                      totalPages  = {totalPageCount} 
+                                                      onChange    = {this.onPaginationChange}
+                                                      />
+                                  <div className="float-right">
+                                        <RecordsPerPageSelector onChange={ this.onRecordsPerPageChange } />
+                                  </div>
                               </td>
                           </tr>
                           </tfoot>

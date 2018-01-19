@@ -413,6 +413,7 @@ namespace STAR.Originations.MegaRunbook.Website.Controllers
         {
             request.Paging = request.Paging ?? BaseController.GetDefaultPaging("Name");
             request.Paging.SortInfo = request.Paging.SortInfo ?? BaseController.GetDefaultSortInfo("Name");
+            request.Paging.PageNumber = request.Paging.PageNumber - 1;
             var response = await this.MrcDataAccess.GetApplicationLinksAsync(request);
 
             return this.JsonDateResult(response);

@@ -1,0 +1,18 @@
+﻿.sort-indicator {
+    float: right;
+    font-size: 1.0em;
+    color:  rgba(255,255,255,0.25);
+}
+
+.sort-indicator-asc {
+    margin-bottom: 4px;
+}
+
+.sort-indicator-desc {
+    margin-top: 4px;
+}
+
+.sort-indicator-hidden {
+    margin-top: 4px;
+    visibility: hidden;
+}

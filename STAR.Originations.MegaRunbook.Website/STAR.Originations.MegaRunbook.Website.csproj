@@ -235,9 +235,13 @@
     <Content Include="app\components\common\DebouncedInput.js" />
     <Content Include="app\components\common\DesktopNavBar.js" />
     <Content Include="app\components\common\MrcDropDownButton.js" />
+    <Content Include="app\components\common\RecordsPerPageSelector.css" />
+    <Content Include="app\components\common\RecordsPerPageSelector.js" />
     <Content Include="app\components\common\ResponsiveApp.js" />
     <Content Include="app\components\common\ResponsiveImage.js" />
     <Content Include="app\components\common\ResponsiveNavBar.js" />
+    <Content Include="app\components\common\SortHeader.css" />
+    <Content Include="app\components\common\SortHeader.js" />
     <Content Include="app\components\common\TimerProgressBar.js" />
     <Content Include="app\components\common\TimeSpan.js" />
     <Content Include="app\components\common\Icon.js" />
